@@ -1,5 +1,7 @@
 # Boilerplate System
 
+# Robert E. Howard's Conan (2D20)
+
 This system is a boilerplate system that you can use as a starting point for building your own custom systems. It's similar to Simple World-building, but has examples of creating attributes in code rather than dynamically through the UI.
 
 ## Usage
