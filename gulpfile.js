@@ -1,3 +1,10 @@
+var gulp   = require('gulp');
+var gutil  = require('gulp-util');
+var argv   = require('minimist')(process.argv);
+var gulpif = require('gulp-if');
+var prompt = require('gulp-prompt');
+var rsync  = require('gulp-rsync');
+
 const gulp = require('gulp');
 const prefix = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
@@ -48,3 +55,8 @@ exports.default = gulp.series(
   watchUpdates
 );
 exports.css = css;
+
+	
+gulp.task('deploy', function() {
+
+})
