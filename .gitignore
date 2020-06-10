@@ -2,6 +2,8 @@
 .idea/
 .vs/
 .vscode/
+#references/
+
 
 # Node Modules
 node_modules/
