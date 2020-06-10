@@ -1,0 +1,13 @@
+.attributes {
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 300px 300px 300px;
+  justify-items: center;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  gap: 0;
+}
+
+.attribute > skill {
+  font-size: 2em;
+}

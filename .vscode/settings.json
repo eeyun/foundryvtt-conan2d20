@@ -1,0 +1,26 @@
+{
+    "deploy.reloaded": {
+        "packages": [
+            {
+                "name": "Conan 2D20",
+                "description": "Production Version",
+                "files": [
+                    "**/*"
+                ],
+                "exclude": [
+                    "node_modules/**",
+                    ".vscode/*"
+                ]
+            }
+        ],
+        "targets": [
+            {
+                "type": "local",
+                "name": "Foundry VTT",
+                "description": "A SMB shared network folder",
+
+                "dir": "\\\\hoard\\homes\\foundry\\data\\Data\\system"
+            }
+        ]
+    }
+}

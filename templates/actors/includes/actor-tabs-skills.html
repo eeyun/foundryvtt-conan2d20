@@ -1,0 +1,188 @@
+{{!-- The grid classes are defined in scss/global/_grid.scss. To use, use both the "grid" and "grid-Ncol" class where "N" can be any number from 1 to 12 and will create that number of columns. --}}
+<div class="attributes">
+    <!-- <div class="attribute flexrow flex-group-center"> -->
+    {{!-- Agility Skills --}}
+    <div class="attribute grid">
+        <div class="attribue grid grid-2col">
+            <span class="attribute-mod rollable" data-roll="2d20cs<={{data.attributes.agi.value}}" data-label="agi"><label for="data.attributes.agi.value" class="attribute-label">{{ localize "conan2d20.attributes.agi" }}</label></span>
+            <input type="text" name="data.attributes.agi.value" value="{{data.attributes.agi.value}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.acr.tn}}" data-label="acr"><label for="data.skills.acr.value" class="skill-label">{{ localize "conan2d20.skills.acr" }}</label></span>
+            <input type="text" name="data.skills.acr.value" value="{{data.skills.acr.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.acr.focus" value="{{data.skills.acr.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.mel.tn}}" data-label="mel"><label for="data.skills.mel.value" class="skill-label">{{ localize "conan2d20.skills.mel" }}</label></span>
+            <input type="text" name="data.skills.mel.value" value="{{data.skills.mel.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.mel.focus" value="{{data.skills.mel.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.ste.tn}}" data-label="ste"><label for="data.skills.ste.value" class="skill-label">{{ localize "conan2d20.skills.ste" }}</label></span>
+            <input type="text" name="data.skills.ste.value" value="{{data.skills.ste.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.ste.focus" value="{{data.skills.ste.focus}}" data-dtype="Number" />
+        </div>
+    </div>
+    {{!-- Awareness Skills --}}
+    <div class="attribute grid">
+        <div class="attribue grid grid-2col">
+            <span class="attribute-mod rollable" data-roll="2d20cs<={{data.attributes.awa.value}}" data-label="agi"><label for="data.attributes.awa.value" class="attribute-label">{{ localize "conan2d20.attributes.awa" }}</label></span>
+            <input type="text" name="data.attributes.awa.value" value="{{data.attributes.awa.value}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.ins.tn}}" data-label="ins"><label for="data.skills.ins.value" class="skill-label">{{ localize "conan2d20.skills.ins" }}</label></span>
+            <input type="text" name="data.skills.ins.value" value="{{data.skills.ins.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.ins.focus" value="{{data.skills.ins.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.obs.tn}}" data-label="obs"><label for="data.skills.obs.value" class="skill-label">{{ localize "conan2d20.skills.obs" }}</label></span>
+            <input type="text" name="data.skills.obs.value" value="{{data.skills.obs.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.obs.focus" value="{{data.skills.obs.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.sur.tn}}" data-label="sur"><label for="data.skills.sur.value" class="skill-label">{{ localize "conan2d20.skills.sur" }}</label></span>
+            <input type="text" name="data.skills.sur.value" value="{{data.skills.sur.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.sur.focus" value="{{data.skills.sur.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.thi.tn}}" data-label="thi"><label for="data.skills.thi.value" class="skill-label">{{ localize "conan2d20.skills.thi" }}</label></span>
+            <input type="text" name="data.skills.thi.value" value="{{data.skills.thi.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.thi.focus" value="{{data.skills.thi.focus}}" data-dtype="Number" />
+        </div>
+    </div>
+    {{!-- Brawn Skills --}}
+    <div class="attribute grid">
+        <div class="attribue grid grid-2col">
+            <span class="attribute-mod rollable" data-roll="2d20cs<={{data.attributes.bra.value}}" data-label="bra"><label for="data.attributes.bra.value" class="attribute-label">{{ localize "conan2d20.attributes.bra" }}</label></span>
+            <input type="text" name="data.attributes.bra.value" value="{{data.attributes.bra.value}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.ath.tn}}" data-label="ath"><label for="data.skills.ath.value" class="skill-label">{{ localize "conan2d20.skills.ath" }}</label></span>
+            <input type="text" name="data.skills.ath.value" value="{{data.skills.ath.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.ath.focus" value="{{data.skills.ath.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.res.tn}}" data-label="res"><label for="data.skills.res.value" class="skill-label">{{ localize "conan2d20.skills.res" }}</label></span>
+            <input type="text" name="data.skills.res.value" value="{{data.skills.res.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.res.focus" value="{{data.skills.res.focus}}" data-dtype="Number" />
+        </div>
+    </div>
+    {{!-- Coordination Skills --}}
+    <div class="attribute grid">
+        <div class="attribue grid grid-2col">
+            <span class="attribute-mod rollable" data-roll="2d20cs<={{data.attributes.coo.value}}" data-label="coo"><label for="data.attributes.coo.value" class="attribute-label">{{ localize "conan2d20.attributes.coo" }}</label></span>
+            <input type="text" name="data.attributes.coo.value" value="{{data.attributes.coo.value}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.par.tn}}" data-label="par"><label for="data.skills.par.value" class="skill-label">{{ localize "conan2d20.skills.par" }}</label></span>
+            <input type="text" name="data.skills.par.value" value="{{data.skills.par.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.par.focus" value="{{data.skills.par.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.ran.tn}}" data-label="ran"><label for="data.skills.ran.value" class="skill-label">{{ localize "conan2d20.skills.ran" }}</label></span>
+            <input type="text" name="data.skills.ran.value" value="{{data.skills.ran.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.ran.focus" value="{{data.skills.ran.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.sai.tn}}" data-label="sai"><label for="data.skills.sai.value" class="skill-label">{{ localize "conan2d20.skills.sai" }}</label></span>
+            <input type="text" name="data.skills.sai.value" value="{{data.skills.sai.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.sai.focus" value="{{data.skills.sai.focus}}" data-dtype="Number" />
+        </div>
+    </div>
+    {{!-- Intelligence Skills --}}
+    <div class="attribute grid">
+        <div class="attribue grid grid-2col">
+            <span class="attribute-mod rollable" data-roll="2d20cs<={{data.attributes.int.value}}" data-label="int"><label for="data.attributes.int.value" class="attribute-label">{{ localize "conan2d20.attributes.int" }}</label></span>
+            <input type="text" name="data.attributes.int.value" value="{{data.attributes.int.value}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.alc.tn}}" data-label="alc"><label for="data.skills.alc.value" class="skill-label">{{ localize "conan2d20.skills.alc" }}</label></span>
+            <input type="text" name="data.skills.alc.value" value="{{data.skills.alc.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.alc.focus" value="{{data.skills.alc.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.cra.tn}}" data-label="cra"><label for="data.skills.cra.value" class="skill-label">{{ localize "conan2d20.skills.cra" }}</label></span>
+            <input type="text" name="data.skills.cra.value" value="{{data.skills.cra.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.cra.focus" value="{{data.skills.cra.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.hea.tn}}" data-label="hea"><label for="data.skills.hea.value" class="skill-label">{{ localize "conan2d20.skills.hea" }}</label></span>
+            <input type="text" name="data.skills.hea.value" value="{{data.skills.hea.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.hea.focus" value="{{data.skills.hea.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.lin.tn}}" data-label="lin"><label for="data.skills.lin.value" class="skill-label">{{ localize "conan2d20.skills.lin" }}</label></span>
+            <input type="text" name="data.skills.lin.value" value="{{data.skills.lin.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.lin.focus" value="{{data.skills.lin.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.lor.tn}}" data-label="lor"><label for="data.skills.lor.value" class="skill-label">{{ localize "conan2d20.skills.lor" }}</label></span>
+            <input type="text" name="data.skills.lor.value" value="{{data.skills.lor.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.lor.focus" value="{{data.skills.lor.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.war.tn}}" data-label="war"><label for="data.skills.war.value" class="skill-label">{{ localize "conan2d20.skills.war" }}</label></span>
+            <input type="text" name="data.skills.war.value" value="{{data.skills.war.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.war.focus" value="{{data.skills.war.focus}}" data-dtype="Number" />
+        </div>
+    </div> 
+    {{!-- Personality Skills --}}
+    <div class="attribute grid">
+        <div class="attribue grid grid-2col">
+            <span class="attribute-mod rollable" data-roll="2d20cs<={{data.attributes.per.value}}" data-label="per"><label for="data.attributes.per.value" class="attribute-label">{{ localize "conan2d20.attributes.per" }}</label></span>
+            <input type="text" name="data.attributes.per.value" value="{{data.attributes.per.value}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.ani.tn}}" data-label="ani"><label for="data.skills.ani.value" class="skill-label">{{ localize "conan2d20.skills.ani" }}</label></span>
+            <input type="text" name="data.skills.ani.value" value="{{data.skills.ani.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.ani.focus" value="{{data.skills.ani.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.com.tn}}" data-label="com"><label for="data.skills.com.value" class="skill-label">{{ localize "conan2d20.skills.com" }}</label></span>
+            <input type="text" name="data.skills.com.value" value="{{data.skills.com.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.com.focus" value="{{data.skills.com.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.cou.tn}}" data-label="cou"><label for="data.skills.cou.value" class="skill-label">{{ localize "conan2d20.skills.cou" }}</label></span>
+            <input type="text" name="data.skills.cou.value" value="{{data.skills.cou.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.cou.focus" value="{{data.skills.cou.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.per.tn}}" data-label="per"><label for="data.skills.per.value" class="skill-label">{{ localize "conan2d20.skills.per" }}</label></span>
+            <input type="text" name="data.skills.per.value" value="{{data.skills.per.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.per.focus" value="{{data.skills.per.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.soc.tn}}" data-label="soc"><label for="data.skills.soc.value" class="skill-label">{{ localize "conan2d20.skills.soc" }}</label></span>
+            <input type="text" name="data.skills.soc.value" value="{{data.skills.soc.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.soc.focus" value="{{data.skills.soc.focus}}" data-dtype="Number" />
+        </div>
+    </div> 
+    {{!-- Willpower Skills --}}
+    <div class="attribute grid">
+        <div class="attribue grid grid-2col">
+            <span class="attribute-mod rollable" data-roll="2d20cs<={{data.attributes.wil.value}}" data-label="wil"><label for="data.attributes.wil.value" class="attribute-label">{{ localize "conan2d20.attributes.wil" }}</label></span>
+            <input type="text" name="data.attributes.wil.value" value="{{data.attributes.wil.value}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.dis.tn}}" data-label="dis"><label for="data.skills.dis.value" class="skill-label">{{ localize "conan2d20.skills.dis" }}</label></span>
+            <input type="text" name="data.skills.dis.value" value="{{data.skills.dis.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.dis.focus" value="{{data.skills.dis.focus}}" data-dtype="Number" />
+        </div>
+        <div class="skill grid grid-3col">
+            <span class="skill-mod rollable" data-roll="2d20cs<={{data.skills.sor.tn}}" data-label="sor"><label for="data.skills.sor.value" class="skill-label">{{ localize "conan2d20.skills.sor" }}</label></span>
+            <input type="text" name="data.skills.sor.value" value="{{data.skills.sor.value}}" data-dtype="Number" />
+            <input type="text" name="data.skills.sor.focus" value="{{data.skills.sor.focus}}" data-dtype="Number" />
+        </div>
+	</div> 
+    {{!-- End of the Attribute / Skills list --}}
+</div>
+
+
+<div class="attributes grid grid-3col">
+    {{#each data.skills as |skill s| }}
+    <p>{{s}}->{{skill.attribute}}</p>
+    {{/each}}
+    <br /><br /> {{data.skilldice}}
+    <br /> {{data.vigor.value}} <br />
+</div>
