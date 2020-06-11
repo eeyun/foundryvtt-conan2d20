@@ -7,7 +7,7 @@
   "author": "Jerome Lavoie",
   "scripts": [ ],
   "esmodules": [ "module/conan2d20.mjs" ],
-  "styles": [ "css/conan2d20.css", "css/sheets.css" ],
+  "styles": [ "css/conan2d20.css" ],
   "packs": [
     {
       "name": "foes",

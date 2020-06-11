@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap');
-@import url('system/ui/CELTIC.TTF');
+@font-face {
+    font-family: 'celticbold';
+    src: url('/systems/conan2d20/ui/celtic-webfont.woff2') format('woff2'),
+         url('/systems/conan2d20/ui/celtic-webfont.woff') format('woff'),
+         url('/systems/conan2d20/ui/CELTIC.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 $font-primary: 'Martel', sans-serif;
 $font-secondary: 'Roboto', sans-serif;
-
-h1, h2, h3, h4, h5 {
-    font: 'Celtic', sans-serif;
-}
+$font-header: 'celticbold', sans-serif;

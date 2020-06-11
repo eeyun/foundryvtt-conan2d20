@@ -12,8 +12,8 @@
                     ".vscode/**",
                     ".references/**"
                 ],
-                "deployOnSave": [ "Conan 2D20 on Foundry VTT" ],
-                
+                "deployOnChange": [ "Conan 2D20 on Foundry VTT" ],
+                "timeToWaitBeforeActivateDeployOnChange": 2500                
             }
         ],
         "targets": [
@@ -22,7 +22,7 @@
                 "name": "Conan 2D20 on Foundry VTT",
                 "description": "A SMB shared network folder pointing to the Conan 2D20 System in the Foundry VTT",
 
-                "dir": "\\\\hoard\\homes\\foundry\\data\\Data\\system\\conan2d20"
+                "dir": "Y:\\systems\\conan2d20"
             }
         ]
     }

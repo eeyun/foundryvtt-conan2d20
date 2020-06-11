@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\module\\actors\\actor.js"
+            "program": "${workspaceFolder}\\module\\conan2d20.mjs"
         }
     ]
 }

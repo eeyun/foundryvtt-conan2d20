@@ -1,12 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap");
-@import url("system/ui/CELTIC.TTF");
-h1, h2, h3, h4, h5 {
-  font: 'Celtic', sans-serif;
+@font-face {
+  font-family: 'celticbold';
+  src: url("/systems/conan2d20/ui/celtic-webfont.woff2") format("woff2"), url("/systems/conan2d20/ui/celtic-webfont.woff") format("woff"), url("/systems/conan2d20/ui/CELTIC.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* Global styles */
 .window-app {
   font-family: "Martel", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font: 'celticbold', sans-serif;
 }
 
 .rollable:hover, .rollable:focus {
@@ -120,6 +126,13 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Styles limited to conan2d20 sheets */
+.conan2d20 {
+  /* Layout the attributes & skills container */
+  /* Layout a single attribute group with it's dependant skills */
+  /* Layout a single attribute with 2 cells: label & value */
+  /* Layout a single skill with its three cells: label, expertise (value), focus */
+}
+
 .conan2d20 .item-form {
   font-family: "Martel", sans-serif;
 }
@@ -163,6 +176,7 @@ h1, h2, h3, h4, h5 {
   padding: 0px;
   margin: 5px 0;
   border-bottom: 0;
+  font-family: "celticbold", sans-serif;
 }
 
 .conan2d20 .sheet-header h1.charname input {
@@ -204,7 +218,8 @@ h1, h2, h3, h4, h5 {
 
 .conan2d20 .tabs .item {
   line-height: 40px;
-  font-weight: bold;
+  font-weight: 400;
+  font-family: "Martel", sans-serif;
 }
 
 .conan2d20 .tabs .item.active {
@@ -253,16 +268,22 @@ h1, h2, h3, h4, h5 {
 }
 
 .conan2d20 .attributes {
-  grid-template-columns: 200px 200px 200px;
-  justify-items: center;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: start;
-  gap: 0;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-.conan2d20 .attribute > .skill {
-  font-size: 2em;
-  grid-template-rows: 50px;
-  grid-template-columns: 1fr 1fr 1fr;
+.conan2d20 .attributes input {
+  width: 20px;
+}
+
+.conan2d20 .attribute-skills {
+  grid-template-columns: 1fr;
+}
+
+.conan2d20 .attribute {
+  font-size: 15px;
+}
+
+.conan2d20 .skill {
+  font-size: 12px;
+  gap: 2px;
 }
