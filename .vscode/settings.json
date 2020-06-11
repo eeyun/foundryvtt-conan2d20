@@ -3,23 +3,26 @@
         "packages": [
             {
                 "name": "Conan 2D20",
-                "description": "Production Version",
+                "description": "Production Folder for Conan 2D20 System",
                 "files": [
                     "**/*"
                 ],
                 "exclude": [
                     "node_modules/**",
-                    ".vscode/*"
-                ]
+                    ".vscode/**",
+                    ".references/**"
+                ],
+                "deployOnSave": [ "Conan 2D20 on Foundry VTT" ],
+                
             }
         ],
         "targets": [
             {
                 "type": "local",
-                "name": "Foundry VTT",
-                "description": "A SMB shared network folder",
+                "name": "Conan 2D20 on Foundry VTT",
+                "description": "A SMB shared network folder pointing to the Conan 2D20 System in the Foundry VTT",
 
-                "dir": "\\\\hoard\\homes\\foundry\\data\\Data\\system"
+                "dir": "\\\\hoard\\homes\\foundry\\data\\Data\\system\\conan2d20"
             }
         ]
     }

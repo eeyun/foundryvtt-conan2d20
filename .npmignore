@@ -1,6 +1,7 @@
 # IDE
 .idea/
 .vs/
+.references/
 
 # Node Modules
 node_modules/

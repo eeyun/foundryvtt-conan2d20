@@ -1,14 +1,8 @@
-var gulp   = require('gulp');
-var gutil  = require('gulp-util');
+var gulp = require('gulp');
+var prefix = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
+var sass = require('gulp-sass');
 var argv   = require('minimist')(process.argv);
-var gulpif = require('gulp-if');
-var prompt = require('gulp-prompt');
-var rsync  = require('gulp-rsync');
-
-const gulp = require('gulp');
-const prefix = require('gulp-autoprefixer');
-const sourcemaps = require('gulp-sourcemaps');
-const sass = require('gulp-sass');
 
 /* ----------------------------------------- */
 /*  Compile Sass
@@ -20,7 +14,7 @@ function handleError(err) {
   this.emit('end');
 }
 
-const SYSTEM_SCSS = ["scss/**/*.scss"];
+var SYSTEM_SCSS = ["scss/**/*.scss"];
 function compileScss() {
   // Configure options for sass output. For example, 'expanded' or 'nested'
   let options = {
@@ -34,9 +28,9 @@ function compileScss() {
     .pipe(prefix({
       cascade: false
     }))
-    .pipe(gulp.dest("./css"))
+    .pipe(gulp.dest("./css"));
 }
-const css = gulp.series(compileScss);
+var css = gulp.series(compileScss);
 
 /* ----------------------------------------- */
 /*  Watch Updates
@@ -58,4 +52,4 @@ exports.css = css;
 
 	
 gulp.task('deploy', function() {
-})
+});

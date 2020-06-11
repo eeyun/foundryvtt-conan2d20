@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap");
 @import url("system/ui/CELTIC.TTF");
+h1, h2, h3, h4, h5 {
+  font: 'Celtic', sans-serif;
+}
+
 /* Global styles */
 .window-app {
   font-family: "Martel", sans-serif;
