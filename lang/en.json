@@ -26,6 +26,7 @@
         "wil": "Willpower"
     },
     "conan2d20.skills": {
+        "skills": "Skills",
         "acr": "Acrobatics",
         "mel": "Melee",
         "ste": "Stealth",

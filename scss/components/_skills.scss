@@ -1,25 +1,113 @@
 /* Layout the attributes & skills container */
-.attributes {
-    grid-template-columns: 1fr 1fr 1fr;
+.attributes-skills {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px repeat(7, min-content);
+    gap: 1px 1px;
+    grid-template-areas:
+        "attributes-skills-title"
+        "agility"
+        "awareness"
+        "brawn"
+        "coordination"
+        "intelligence"
+        "personality"
+        "willpower";
+    grid-area: attributes-skills;
+
     input {
-        width: 20px;
+        max-width: 27px;
+        text-align: center;
     }
 }
 
+.attributes-skills-title {
+    grid-area: attributes-skills-title;
+}
+
+.awareness {
+    grid-area: awareness;
+}
+
+.agility {
+    grid-area: agility;
+}
+
+.brawn {
+    grid-area: brawn;
+}
+
+.coordination {
+    grid-area: coordination;
+}
+
+.intelligence {
+    grid-area: intelligence;
+}
+
+.personality {
+    grid-area: personality;
+}
+
+.willpower {
+    grid-area: willpower;
+}
+
+/*
+.attributes-skills {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: space-between;
+    width:180px;
+    label {
+        width: 100px;
+    }
+    input {
+        width: 20px;
+    }
+}*/
+
 /* Layout a single attribute group with it's dependant skills */
 .attribute-skills {
-    flex-flow: ;
-    
-}
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    align-content: space-between;
+    margin: 5px;
+    }
 
 /* Layout a single attribute with 2 cells: label & value */
 .attribute {
     font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: space-between;
+    label { flex-grow:3; }
+    input { flex-grow:1; }
 }
 
 /* Layout a single skill with its three cells: label, expertise (value), focus */
 .skill {
     font-size: 12px;
-    gap: 2px;
-    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+
+    .label {
+        flex: 4 0 auto;
+        justify-self:start;
+        margin: 5px;
+    }
+
+    .input {
+        flex: 1 0 auto;
+        justify-self:end;
+        margin: 5px;
+    }
 }

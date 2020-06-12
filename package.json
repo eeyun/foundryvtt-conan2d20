@@ -6,9 +6,7 @@
     "build": "gulp",
     "compile": "gulp css",
     "watch": "gulp",
-    "gulp": "gulp",
-    "deployCopy": "copyfiles --error --verbose --exclude=\"node_modules/*\" ./* \\\\hoard\\homes\\foundry\\data\\Data\\test",
-    "deployOld": "ncp ./ \\\\hoard\\homes\\foundry\\data\\Data\\systems\\conan2d20\\ --limit=10  --stopOnErr"
+    "gulp": "gulp"
   },
   "browserslist": [
     "last 3 versions"

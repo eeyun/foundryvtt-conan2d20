@@ -33,16 +33,15 @@ export class Conan2D20Actor extends Actor {
 
     //  DMG BONUS
     // Prepare Bonus Melee Damage
-    data.attributes.bra.damage = 2;
-    data.attributes.bra.damage = identifyBonusDmg(data.attributes.bra.value);
+    data.attributes.bra.damage = this.identifyBonusDmg(data.attributes.bra.value);
     // Prepare Bonus Ranged Damage
-    data.attributes.awa.damage = 0;
+    data.attributes.awa.damage = this.identifyBonusDmg(data.attributes.awa.value);
     // Prepare Bonus Mental Damage
-    data.attributes.per.damage = 1;
+    data.attributes.per.damage = this.identifyBonusDmg(data.attributes.per.value);;
 
-    /*//  HEALTH
+    //  HEALTH
     // Calculate Vigor
-    //      data.health.vigor.max = Brawn + skills.resistance.value;
+    //data.health.vigor.max = data.attributes.bra.value + data.skills.resistance.value;
     data.health.vigor.max = data.attributes.bra.value + data.skills.res.value;
     data.health.vigor.value = data.health.vigor.max;
     // Prepare Resolve
@@ -50,7 +49,6 @@ export class Conan2D20Actor extends Actor {
     data.health.resolve.max = data.attributes.wil.value + data.skills.dis.value;
     data.health.resolve.value = data.health.resolve.max;
     //  SET TN for Skills
-    */
 
     // Loop through talents, assign roll modifications
     for (let [key, talents] of Object.entries(data.talents)) {
@@ -59,56 +57,44 @@ export class Conan2D20Actor extends Actor {
 
     // Loop through skills, assigning TN for checks
     for (let [key, skill] of Object.entries(data.skills)) {
-      //skill.tn = skill.value + data.attributes[key];
+      skill.tn = skill.value + data.attributes[skill.attribute].value;
     }
-
 
     // Prepare Upkeep Cost
     // 3 gp + [Standing] - [Renown]
     data.resources.upkeep = 3 + data.background.standing.value - data.background.renown;
 
-    //Console.Log(data);
+    //console.log(data);
 
     // End Data Preparation
   }
 
-  async identifyBonusDmg(attribute) {
+  identifyBonusDmg(attribute) {
     var bonus = 0;
     if (typeof attribute == 'number') {
-      switch (attribute) {
-      case -1:
-      case 0:
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-      case 5:
-      case 6:
-      case 7:
-      case 8:
-        bonus = 0;
-        break;
-      case 9:
-        bonus = 1;
-        break;
-      case 10:
-      case 11:
-        bonus = 2;
-        break;
-      case 12:
-      case 13:
-        bonus = 3;
-        break;
-      case 14:
-      case 15:
-        bonus = 4;
-        break;
-      default:
-        bonus = 5;
+      if (attribute > 8) {
+        switch (attribute) {
+          case 9:
+            bonus = 1;
+            break;
+          case 10:
+          case 11:
+            bonus = 2;
+            break;
+          case 12:
+          case 13:
+            bonus = 3;
+            break;
+          case 14:
+          case 15:
+            bonus = 4;
+            break;
+          default:
+            bonus = 5;
+        }
       }
-    }
-    else {
-      //    Console.Log('Conan 2D20 | Bonus Damage Identification received NaN.')
+    } else {
+      console.log('Conan 2D20 | Bonus Damage Identification received NaN.')
     }
     return bonus;
   }

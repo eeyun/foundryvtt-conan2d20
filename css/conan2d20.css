@@ -8,11 +8,12 @@
 
 /* Global styles */
 .window-app {
-  font-family: "Martel", sans-serif;
+  font-family: "celticbold", sans-serif;
+  font-weight: 200;
 }
 
 h1, h2, h3, h4, h5 {
-  font: 'celticbold', sans-serif;
+  font-family: "celticbold", sans-serif;
 }
 
 .rollable:hover, .rollable:focus {
@@ -26,7 +27,7 @@ h1, h2, h3, h4, h5 {
   display: grid;
   grid-column: span 2 / span 2;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 5px;
   margin: 5px 0;
   padding: 0;
 }
@@ -128,81 +129,24 @@ h1, h2, h3, h4, h5 {
 /* Styles limited to conan2d20 sheets */
 .conan2d20 {
   /* Layout the attributes & skills container */
+  /*
+.attributes-skills {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: space-between;
+    width:180px;
+    label {
+        width: 100px;
+    }
+    input {
+        width: 20px;
+    }
+}*/
   /* Layout a single attribute group with it's dependant skills */
   /* Layout a single attribute with 2 cells: label & value */
   /* Layout a single skill with its three cells: label, expertise (value), focus */
-}
-
-.conan2d20 .item-form {
-  font-family: "Martel", sans-serif;
-}
-
-.conan2d20 .sheet-header {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 210px;
-  flex: 0 0 210px;
-  overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-}
-
-.conan2d20 .sheet-header .profile-img {
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 100px;
-  flex: 0 0 100px;
-  height: 100px;
-  margin-right: 10px;
-}
-
-.conan2d20 .sheet-header .header-fields {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.conan2d20 .sheet-header h1.charname {
-  height: 50px;
-  padding: 0px;
-  margin: 5px 0;
-  border-bottom: 0;
-  font-family: "celticbold", sans-serif;
-}
-
-.conan2d20 .sheet-header h1.charname input {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-
-.conan2d20 .sheet-tabs {
-  -webkit-box-flex: 0;
-  -ms-flex: 0;
-  flex: 0;
-}
-
-.conan2d20 .sheet-body,
-.conan2d20 .sheet-body .tab,
-.conan2d20 .sheet-body .tab .editor {
-  height: 100%;
-}
-
-.conan2d20 .tox .tox-editor-container {
-  background: #fff;
-}
-
-.conan2d20 .tox .tox-edit-area {
-  padding: 0 8px;
 }
 
 .conan2d20 .resource-label {
@@ -219,12 +163,13 @@ h1, h2, h3, h4, h5 {
 .conan2d20 .tabs .item {
   line-height: 40px;
   font-weight: 400;
-  font-family: "Martel", sans-serif;
+  font-family: "celticbold", sans-serif;
 }
 
 .conan2d20 .tabs .item.active {
   text-decoration: underline;
   text-shadow: none;
+  font-weight: 500;
 }
 
 .conan2d20 .items-list {
@@ -267,23 +212,222 @@ h1, h2, h3, h4, h5 {
   text-align: right;
 }
 
-.conan2d20 .attributes {
-  grid-template-columns: 1fr 1fr 1fr;
+.conan2d20 .item-form {
+  font-family: "celticbold", sans-serif;
 }
 
-.conan2d20 .attributes input {
-  width: 20px;
+.conan2d20 .grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 195px;
+  grid-template-rows: 1fr 40px repeat(2, 1.4fr);
+  gap: 5px 5px;
+  grid-template-areas: "sheet-header sheet-header sheet-header sheet-header attributes-skills" "sheet-tabs sheet-tabs sheet-tabs sheet-tabs attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills";
+  -ms-flex-line-pack: min-content;
+  align-content: min-content;
+}
+
+.conan2d20 .sheet-header {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 210px;
+  flex: 0 0 210px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1px 1px;
+  grid-template-areas: "profile-img charname charname charname charname" "health health health health health";
+  grid-area: sheet-header;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.conan2d20 .sheet-header .profile-img {
+  grid-area: profile-img;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.conan2d20 .sheet-header h1.charname {
+  grid-area: charname;
+  height: 50px;
+  width: 100%;
+  padding: 0px;
+  margin: 5px 0;
+  border-bottom: 0;
+  font-family: "celticbold", sans-serif;
+}
+
+.conan2d20 .sheet-header h1.charname input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.conan2d20 .sheet-header .health {
+  grid-area: health;
+}
+
+.conan2d20 .sheet-header {
+  grid-area: sheet-header;
+}
+
+.conan2d20 .sheet-tabs {
+  grid-area: sheet-tabs;
+  -webkit-box-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
+}
+
+.conan2d20 .sheet-body,
+.conan2d20 .sheet-body .tab {
+  grid-area: sheet-body;
+  height: 100%;
+}
+
+.conan2d20 .sheet-body .tab .editor {
+  height: 50%;
+}
+
+.conan2d20 .tox .tox-editor-container {
+  background: #fff;
+}
+
+.conan2d20 .tox .tox-edit-area {
+  padding: 0 8px;
+}
+
+.conan2d20 .attributes-skills {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px repeat(7, -webkit-min-content);
+  grid-template-rows: 50px repeat(7, min-content);
+  gap: 1px 1px;
+  grid-template-areas: "attributes-skills-title" "agility" "awareness" "brawn" "coordination" "intelligence" "personality" "willpower";
+  grid-area: attributes-skills;
+}
+
+.conan2d20 .attributes-skills input {
+  max-width: 27px;
+  text-align: center;
+}
+
+.conan2d20 .attributes-skills-title {
+  grid-area: attributes-skills-title;
+}
+
+.conan2d20 .awareness {
+  grid-area: awareness;
+}
+
+.conan2d20 .agility {
+  grid-area: agility;
+}
+
+.conan2d20 .brawn {
+  grid-area: brawn;
+}
+
+.conan2d20 .coordination {
+  grid-area: coordination;
+}
+
+.conan2d20 .intelligence {
+  grid-area: intelligence;
+}
+
+.conan2d20 .personality {
+  grid-area: personality;
+}
+
+.conan2d20 .willpower {
+  grid-area: willpower;
 }
 
 .conan2d20 .attribute-skills {
-  grid-template-columns: 1fr;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: justify;
+  align-content: space-between;
+  margin: 5px;
 }
 
 .conan2d20 .attribute {
   font-size: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: justify;
+  align-content: space-between;
+}
+
+.conan2d20 .attribute label {
+  -webkit-box-flex: 3;
+  -ms-flex-positive: 3;
+  flex-grow: 3;
+}
+
+.conan2d20 .attribute input {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 .conan2d20 .skill {
   font-size: 12px;
-  gap: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-line-pack: justify;
+  align-content: space-between;
+}
+
+.conan2d20 .skill .label {
+  -webkit-box-flex: 4;
+  -ms-flex: 4 0 auto;
+  flex: 4 0 auto;
+  justify-self: start;
+  margin: 5px;
+}
+
+.conan2d20 .skill .input {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  justify-self: end;
+  margin: 5px;
 }

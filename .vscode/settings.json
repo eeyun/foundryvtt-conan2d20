@@ -1,4 +1,6 @@
 {
+    "jshint.packageManager": "npm",
+    "jshint.options": {"esversion": 6},
     "deploy.reloaded": {
         "packages": [
             {

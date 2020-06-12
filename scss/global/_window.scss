@@ -1,9 +1,10 @@
 .window-app {
   font-family: $font-primary;
+  font-weight: 200;
 }
 
 h1, h2, h3, h4, h5 {
-  font: 'celticbold', sans-serif;
+  font-family: $font-header;
 }
 
 .rollable {
