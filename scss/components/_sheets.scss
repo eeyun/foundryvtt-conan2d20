@@ -1,6 +1,6 @@
-.item-form {
-    font-family: $font-primary;
-}
+/* Setup with grid
+    https://grid.layoutit.com/?id=h3XQGaL 
+*/
 
 .grid-container {
     display: grid;
@@ -12,7 +12,8 @@
         "sheet-tabs sheet-tabs sheet-tabs sheet-tabs attributes-skills"
         "sheet-body sheet-body sheet-body sheet-body attributes-skills"
         "sheet-body sheet-body sheet-body sheet-body attributes-skills";
-    align-content: min-content;
+    align-content: start;
+    font-weight:400;
 }
 
 .sheet-header {
@@ -22,7 +23,7 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 1px 1px;
-    grid-template-areas: "profile-img charname charname charname charname" "health health health health health";
+    grid-template-areas: "profile-img header-fields header-fields header-fields header-fields" "health health health health health";
     grid-area: sheet-header;
     flex-direction: row;
     flex-wrap: wrap;
@@ -36,13 +37,14 @@
     }
 
     .header-fields {
+        grid-area: header-fields;
         //flex: 1;
+        width: 100%;
     }
 
     h1.charname {
-        grid-area: charname;
         height: 50px;
-        width:100%;
+        /*width: 100%;*/
         padding: 0px;
         margin: 5px 0;
         border-bottom: 0;

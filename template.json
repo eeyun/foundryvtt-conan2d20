@@ -448,7 +448,8 @@
         "talent": {
             "templates": ["base"],
             "xpcost": 100,
-            "effects": []
+            "effects": [],
+            "skill": ""
         },
         "spell": {
             "templates": ["base"],

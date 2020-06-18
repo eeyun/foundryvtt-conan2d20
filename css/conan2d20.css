@@ -128,6 +128,9 @@ h1, h2, h3, h4, h5 {
 
 /* Styles limited to conan2d20 sheets */
 .conan2d20 {
+  /* Setup with grid
+    https://grid.layoutit.com/?id=h3XQGaL 
+*/
   /* Layout the attributes & skills container */
   /*
 .attributes-skills {
@@ -149,8 +152,12 @@ h1, h2, h3, h4, h5 {
   /* Layout a single skill with its three cells: label, expertise (value), focus */
 }
 
+.conan2d20 .item-form {
+  font-family: "celticbold", sans-serif;
+}
+
 .conan2d20 .resource-label {
-  font-weight: bold;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -180,7 +187,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .conan2d20 .items-list .item-header {
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .conan2d20 .items-list .item {
@@ -212,18 +219,15 @@ h1, h2, h3, h4, h5 {
   text-align: right;
 }
 
-.conan2d20 .item-form {
-  font-family: "celticbold", sans-serif;
-}
-
 .conan2d20 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr) 195px;
   grid-template-rows: 1fr 40px repeat(2, 1.4fr);
   gap: 5px 5px;
   grid-template-areas: "sheet-header sheet-header sheet-header sheet-header attributes-skills" "sheet-tabs sheet-tabs sheet-tabs sheet-tabs attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills";
-  -ms-flex-line-pack: min-content;
-  align-content: min-content;
+  -ms-flex-line-pack: start;
+  align-content: start;
+  font-weight: 400;
 }
 
 .conan2d20 .sheet-header {
@@ -235,7 +239,7 @@ h1, h2, h3, h4, h5 {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 1px 1px;
-  grid-template-areas: "profile-img charname charname charname charname" "health health health health health";
+  grid-template-areas: "profile-img header-fields header-fields header-fields header-fields" "health health health health health";
   grid-area: sheet-header;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -255,10 +259,14 @@ h1, h2, h3, h4, h5 {
   margin-right: 10px;
 }
 
-.conan2d20 .sheet-header h1.charname {
-  grid-area: charname;
-  height: 50px;
+.conan2d20 .sheet-header .header-fields {
+  grid-area: header-fields;
   width: 100%;
+}
+
+.conan2d20 .sheet-header h1.charname {
+  height: 50px;
+  /*width: 100%;*/
   padding: 0px;
   margin: 5px 0;
   border-bottom: 0;
@@ -307,8 +315,8 @@ h1, h2, h3, h4, h5 {
 .conan2d20 .attributes-skills {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 50px repeat(7, -webkit-min-content);
-  grid-template-rows: 50px repeat(7, min-content);
+  grid-template-rows: 35px repeat(7, -webkit-min-content);
+  grid-template-rows: 35px repeat(7, min-content);
   gap: 1px 1px;
   grid-template-areas: "attributes-skills-title" "agility" "awareness" "brawn" "coordination" "intelligence" "personality" "willpower";
   grid-area: attributes-skills;
@@ -319,8 +327,11 @@ h1, h2, h3, h4, h5 {
   text-align: center;
 }
 
-.conan2d20 .attributes-skills-title {
+.conan2d20 h3.attributes-skills-title {
   grid-area: attributes-skills-title;
+  font-size: 15px;
+  text-justify: center;
+  text-align: start;
 }
 
 .conan2d20 .awareness {
@@ -368,7 +379,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .conan2d20 .attribute {
-  font-size: 15px;
+  font-size: 14px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -399,7 +410,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .conan2d20 .skill {
-  font-size: 12px;
+  font-size: 11px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -2,7 +2,7 @@
 .attributes-skills {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 50px repeat(7, min-content);
+    grid-template-rows: 35px repeat(7, min-content);
     gap: 1px 1px;
     grid-template-areas:
         "attributes-skills-title"
@@ -21,8 +21,11 @@
     }
 }
 
-.attributes-skills-title {
+h3.attributes-skills-title {
     grid-area: attributes-skills-title;
+    font-size: 15px;
+    text-justify: center;
+    text-align: start;
 }
 
 .awareness {
@@ -80,7 +83,7 @@
 
 /* Layout a single attribute with 2 cells: label & value */
 .attribute {
-    font-size: 15px;
+    font-size: 14px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -92,7 +95,7 @@
 
 /* Layout a single skill with its three cells: label, expertise (value), focus */
 .skill {
-    font-size: 12px;
+    font-size: 11px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
