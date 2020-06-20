@@ -1,5 +1,4 @@
-# Work In Progress
-# Robert E. Howard's Conan (2D20)
+# Robert E. Howard's Conan (2D20) ~ Work In Progress
 
 Community contributed (WIP) system for the Foundry VTT (https://foundryvtt.com/) based on the BoilerPlate system by asacolips (Discord: asacolips#1867).
 
@@ -15,3 +14,7 @@ If you wish to manually install the system, you must clone or extract it into th
 
 You can find out where the `foundrydata` folder is located in the Configuration and Setup page under the Configuration tab (next to the Update Software tab).
 
+## Community Contribution
+
+Code and content contributions are accepted. Please feel free to submit issues to the issue tracker or submit merge
+requests for code changes.
