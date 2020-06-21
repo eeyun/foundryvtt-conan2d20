@@ -14,9 +14,9 @@
         "personality"
         "willpower";
     grid-area: attributes-skills;
-
+    border-left: 1px solid #CCC;
     input {
-        max-width: 27px;
+        width: 29px;
         text-align: center;
     }
 }
@@ -79,7 +79,7 @@ h3.attributes-skills-title {
     align-items: center;
     align-content: space-between;
     margin: 5px;
-    }
+}
 
 /* Layout a single attribute with 2 cells: label & value */
 .attribute {
@@ -87,10 +87,17 @@ h3.attributes-skills-title {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    justify-items: space-between;
     align-items: center;
     align-content: space-between;
-    label { flex-grow:3; }
-    input { flex-grow:1; }
+
+    label {
+        flex-grow: 3;
+    }
+
+    input {
+        flex-grow: 1;
+    }
 }
 
 /* Layout a single skill with its three cells: label, expertise (value), focus */
@@ -100,17 +107,19 @@ h3.attributes-skills-title {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
+    justify-items: space-between;
+    align-items: center;
     align-content: space-between;
 
     .label {
         flex: 4 0 auto;
-        justify-self:start;
+        justify-self: start;
         margin: 5px;
     }
 
     .input {
         flex: 1 0 auto;
-        justify-self:end;
+        justify-self: end;
         margin: 5px;
     }
 }

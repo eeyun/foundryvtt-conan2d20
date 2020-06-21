@@ -4,7 +4,7 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 195px;
+    grid-template-columns: repeat(4, 1fr) 185px;
     grid-template-rows: 1fr 40px repeat(2, 1.4fr);
     gap: 5px 5px;
     grid-template-areas:
@@ -12,8 +12,8 @@
         "sheet-tabs sheet-tabs sheet-tabs sheet-tabs attributes-skills"
         "sheet-body sheet-body sheet-body sheet-body attributes-skills"
         "sheet-body sheet-body sheet-body sheet-body attributes-skills";
-    align-content: start;
-    font-weight:400;
+    align-items: flex-start;
+    font-weight:300;
 }
 
 .sheet-header {

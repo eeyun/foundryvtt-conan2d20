@@ -1,13 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap');
+
 @font-face {
     font-family: 'celticbold';
     src: url('/systems/conan2d20/ui/celtic-webfont.woff2') format('woff2'),
-         url('/systems/conan2d20/ui/celtic-webfont.woff') format('woff'),
-         url('/systems/conan2d20/ui/CELTIC.TTF') format('truetype');
+        url('/systems/conan2d20/ui/celtic-webfont.woff') format('woff'),
+        url('/systems/conan2d20/ui/CELTIC.TTF') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
-$font-primary: 'celticbold', sans-serif;
-$font-secondary: 'Martel', sans-serif;
-$font-header: 'celticbold', sans-serif;
+$font-primary: 'celticbold',
+sans-serif;
+$font-secondary: 'Martel',
+sans-serif;
+$font-header: 'celticbold',
+sans-serif;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-primary;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 16;
+}
+
+h2 {
+    font-size: 14;
+}
+
+h3 {
+    font-size: 12;
+    font-style: underline;
+}
+
+h4 {
+    font-size: 12;
+}

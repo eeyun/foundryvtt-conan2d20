@@ -29,11 +29,13 @@ Hooks.once('init', async function() {
   CONFIG.Item.entityClass = Conan2D20Item;
 
   // Register sheet application classes
+  console.log('Conan2D20 System | Loading Actor & Item Sheets.');
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("conan2d20", Conan2D20ActorSheet, { makeDefault: true });
   Actors.registerSheet("conan2d20", Conan2D20FoeSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("conan2d20", Conan2D20ItemSheet, { makeDefault: true });
+  
 
   // If you need to add Handlebars helpers, here are a few useful examples:
   Handlebars.registerHelper('concat', function() {

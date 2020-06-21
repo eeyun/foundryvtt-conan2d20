@@ -6,6 +6,33 @@
   font-style: normal;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "celticbold", sans-serif;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 16;
+}
+
+h2 {
+  font-size: 14;
+}
+
+h3 {
+  font-size: 12;
+  font-style: underline;
+}
+
+h4 {
+  font-size: 12;
+}
+
 /* Global styles */
 .window-app {
   font-family: "celticbold", sans-serif;
@@ -157,8 +184,12 @@ h1, h2, h3, h4, h5 {
 }
 
 .conan2d20 .resource-label {
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.conan2d20 .health-content input {
+  width: 29px;
+  text-align: center;
 }
 
 .conan2d20 .tabs {
@@ -187,7 +218,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .conan2d20 .items-list .item-header {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .conan2d20 .items-list .item {
@@ -221,13 +252,14 @@ h1, h2, h3, h4, h5 {
 
 .conan2d20 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 195px;
+  grid-template-columns: repeat(4, 1fr) 185px;
   grid-template-rows: 1fr 40px repeat(2, 1.4fr);
   gap: 5px 5px;
   grid-template-areas: "sheet-header sheet-header sheet-header sheet-header attributes-skills" "sheet-tabs sheet-tabs sheet-tabs sheet-tabs attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills";
-  -ms-flex-line-pack: start;
-  align-content: start;
-  font-weight: 400;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  font-weight: 300;
 }
 
 .conan2d20 .sheet-header {
@@ -320,10 +352,11 @@ h1, h2, h3, h4, h5 {
   gap: 1px 1px;
   grid-template-areas: "attributes-skills-title" "agility" "awareness" "brawn" "coordination" "intelligence" "personality" "willpower";
   grid-area: attributes-skills;
+  border-left: 1px solid #CCC;
 }
 
 .conan2d20 .attributes-skills input {
-  max-width: 27px;
+  width: 29px;
   text-align: center;
 }
 
@@ -390,6 +423,7 @@ h1, h2, h3, h4, h5 {
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
+  justify-items: space-between;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -423,6 +457,10 @@ h1, h2, h3, h4, h5 {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  justify-items: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -ms-flex-line-pack: justify;
   align-content: space-between;
 }

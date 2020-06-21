@@ -9,7 +9,7 @@ export class Conan2D20ActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["conan2d20", "sheet", "actor"],
       template: "systems/conan2d20/templates/actors/actor-sheet.html",
-      width: 600,
+      width: 700,
       height: 700,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
     });
@@ -56,6 +56,7 @@ export class Conan2D20ActorSheet extends ActorSheet {
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
+    console.log('Conan 2D20 | Preparing Character Items.');
     for (let i of sheetData.items) {
       let item = i.data;
       i.img = i.img || DEFAULT_TOKEN;
@@ -77,18 +78,16 @@ export class Conan2D20ActorSheet extends ActorSheet {
       }
       // Append to spells.
       else if (i.type === 'spell') {
-        if (i.data.spellLevel != undefined) {
-          spells[i.data.spellLevel].push(i);
-        }
+          spells.push(i);
       }
     }
 
     // Assign and return
-    actorData.equipment = equipment;
     actorData.weapons  = weapons;
+    actorData.equipment = equipment;
     actorData.talents = talents;
-    actorData.spells = spells;
     actorData.backgrounds = backgrounds;
+    actorData.spells = spells;
   }
 
   /* -------------------------------------------- */

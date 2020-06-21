@@ -3,12 +3,65 @@
         <fieldset>
             <legend>{{ localize "conan2d20.sectionBackground" }}</legend>
             <div class="background flex-group-left">
-
+                <div class="background-item">
+                    <label for="data.background.homeland" class="background-item">{{ localize "conan2d20.backgroundHomeland" }}</label>
+                    <input type="text" name="data.background.homeland" value="{{data.background.homeland}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.caste" class="background-item">{{ localize "conan2d20.backgroundCaste" }}</label>
+                    <input type="text" name="data.background.caste" value="{{data.background.caste}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.trait" class="background-item">{{ localize "conan2d20.backgroundTrait" }}</label>
+                    <input type="text" name="data.background.trait" value="{{data.background.trait}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.archetype" class="background-item">{{ localize "conan2d20.backgroundArchetype" }}</label>
+                    <input type="text" name="data.background.archetype" value="{{data.background.archetype}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.nature" class="background-item">{{ localize "conan2d20.backgroundNature" }}</label>
+                    <input type="text" name="data.background.nature" value="{{data.background.nature}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.education" class="background-item">{{ localize "conan2d20.backgroundEducation" }}</label>
+                    <input type="text" name="data.background.education" value="{{data.background.education}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.warstory" class="background-item">{{ localize "conan2d20.backgroundWarStory" }}</label>
+                    <input type="text" name="data.background.warstory" value="{{data.background.warstory}}"
+                    data-dtype="String" />
+                </div>
             </div>
         </fieldset>
         <fieldset>
             <legend>Social</legend>
-            <p>socialy social</p>
+            <div class="background-item">
+                <label for="data.background.renown" class="background-item">{{ localize "conan2d20.renown" }}</label>
+                <input type="text" name="data.background.renown" value="{{data.background.renown}}"
+                data-dtype="String" />
+            </div>
+            <div class="background-item">
+                <label for="data.background.standing.value" class="background-item">{{ localize "conan2d20.standing" }}</label>
+                <input type="text" name="data.background.standing.value" value="{{data.background.standing.value}}"
+                data-dtype="String" />
+            </div>
+            <div class="background-item">
+                <label for="data.background.upkeep" class="background-item">{{ localize "conan2d20.upkeep" }}</label>
+                <input type="text" name="data.background.upkeep" value="{{data.background.upkeep}}"
+                data-dtype="String" />
+            </div>
+            <div class="background-item">
+                <label for="data.background.languages" class="background-item">{{ localize "conan2d20.backgroundLanguages" }}</label>
+                <input type="text" name="data.background.languages" value="{{data.background.languages}}"
+                data-dtype="String" />
+            </div>
         </fieldset>
     </div>
 </div>
