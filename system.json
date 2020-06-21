@@ -3,7 +3,7 @@
   "title": "Robert E. Howard's Conan: Adventures In An Age Undreamed Of",
   "description": "WIP !!! A community-contributed game system for running games of Conan in the cinematic 2D20 game system by Modiphius in the Foundry VTT environment.",
   "version": "0.0.3",
-  "templateVersion": 2,
+  "templateVersion": 3,
   "author": "Jerome Lavoie",
   "scripts": [ ],
   "esmodules": [ "module/conan2d20.mjs" ],
@@ -18,11 +18,11 @@
       "entity": "Actor"
     },
     {
-      "name": "equipment",
-      "label": "Equipment",
+      "name": "items",
+      "label": "Items",
       "system": "conan2d20",
       "module": "conan2d20",
-      "path": "./packs/equipment.db",
+      "path": "./packs/items.db",
       "entity": "Item"
     },
 	{

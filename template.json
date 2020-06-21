@@ -1,10 +1,9 @@
 {
     "Actor": {
-        "types": ["character", "minion", "toughened", "nemesis"],
+        "types": ["character", "npc"],
         "templates": {
-            "base": {
+            "common": {
                 "skilldice": 2,
-                "description": "basic description",
                 "attributes": {
                     "agi": {
                         "value": 7,
@@ -42,417 +41,434 @@
                     "vigor": {
                         "min": 0,
                         "value": 7,
-                        "max": 7
-                    },
-                    "wounds": {
-                        "min": 0,
-                        "value": 0,
-                        "treated": 0,
-                        "max": 5
-                    },
-                    "armor": {
-                        "value": 0
+                        "max": 7,
+                        "wounds": {
+                            "min": 0,
+                            "value": 0,
+                            "treated": 0,
+                            "max": 5
+                        }
                     },
                     "resolve": {
                         "min": 0,
                         "value": 7,
-                        "max": 7
+                        "max": 7,
+                        "trauma": {
+                            "min": 0,
+                            "value": 0,
+                            "treated": 0,
+                            "max": 5
+                        }
                     },
-                    "trauma": {
-                        "min": 0,
-                        "value": 0,
-                        "treated": 0,
-                        "max": 5
+                    "armor": {
+                        "head": 0,
+                        "torso": 0,
+                        "r-arm": 0,
+                        "l-arm": 0,
+                        "r-leg": 0,
+                        "l-leg": 0
                     },
-                    "courage": {
-                        "value": 0
-                    }
+                    "courage": 0,
+                    "armor-qualities": ""
                 },
                 "spells": false,
-                "spellslist": []
-            },
-            "player": {
-                "background": {
-                    "homeland": "",
-                    "attribute-aspect": "",
-                    "caste": "",
-                    "archetype": "",
-                    "nature": "",
-                    "education": "",
-                    "story": "",
-                    "trait": "",
-                    "war-story": "",
-                    "standing": {
-                        "value": 0,
-                        "min": -2,
-                        "max": 5
-                    },
-                    "renown": 0,
-                    "upkeep": 3,
-                    "languages": {
-                        "value": [],
-                        "custom": ""
-                    }
-                },
-                "resources": {
-                    "momentum": {
-                        "min": 0,
-                        "value": 0,
-                        "max": 6
-                    },
-                    "fortune": {
-                        "min": 0,
-                        "value": 3,
-                        "max": 3
-                    },
-                    "gold": {
-                        "min": 0,
-                        "value": 0,
-                        "max": 100
-                    },
-                    "upkeep": {
-                        "value": 3,
-                        "min": 0
-                    },
-                    "xp": {
-                        "value": 0,
-                        "min": 0,
-                        "max": 9999
-                    }
-                },
-                "skills": {
-                    "acr": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "agi",
-                        "name": "acrobatics",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "mel": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "agi",
-                        "name": "melee",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "ste": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "agi",
-                        "name": "stealth",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "ins": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "awa",
-                        "name": "insight",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "obs": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "awa",
-                        "name": "observation",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "sur": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "awa",
-                        "name": "survival",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "thi": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "awa",
-                        "name": "thievery",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "ath": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "bra",
-                        "name": "athletics",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "res": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "bra",
-                        "name": "resistance",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "par": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "coo",
-                        "name": "parry",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "ran": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "coo",
-                        "name": "ranged",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "sai": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "coo",
-                        "name": "sailing",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "alc": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "int",
-                        "name": "alchemy",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "cra": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "int",
-                        "name": "craft",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "hea": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "int",
-                        "name": "healing",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "lin": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "int",
-                        "name": "linguistics",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "lor": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "int",
-                        "name": "lore",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "war": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "int",
-                        "name": "warfare",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "ani": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "per",
-                        "name": "animal-handling",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "com": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "per",
-                        "name": "command",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "cou": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "per",
-                        "name": "counsel",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "per": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "per",
-                        "name": "persuade",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "soc": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "per",
-                        "name": "society",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "dis": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "wil",
-                        "name": "discipline",
-                        "diceMod": 0,
-                        "successMod": 0
-                    },
-                    "sor": {
-                        "trained": 0,
-                        "expertise": 0,
-                        "max": 5,
-                        "focus": 0,
-                        "attribute": "wil",
-                        "name": "sorcery",
-                        "diceMod": 0,
-                        "successMod": 0
+                "spellslist": [],
+                "details": {
+                    "biography": {
+                        "value": "",
+                        "public": false
                     }
                 }
-            },
-            "npc": {
-                "description": "physical description",
-                "skills": {
-                    "move": 0,
-                    "combat": 0,
-                    "fort": 0,
-                    "know": 0,
-                    "soci": 0,
-                    "sens": 0
-                },
-                "attacks": [],
-                "abilities": [],
-                "doom-spends": []
             }
         },
         "character": {
-            "templates": ["base", "player"],
-            "talents": []
-        },
-        "minion": {
-            "templates": ["base", "npc"],
-            "base": {
-                "skilldice": 1,
-                "health": {
-                    "wounds": {
-                        "value": 1,
-                        "max": 1
-                    },
-                    "trauma": {
-                        "value": 1,
-                        "max": 1
-                    }
+            "templates": ["common"],
+            "background": {
+                "age": "",
+                "gender": "",
+                "homeland": "",
+                "attribute-aspect": "",
+                "caste": "",
+                "archetype": "",
+                "nature": "",
+                "education": "",
+                "story": "",
+                "trait": "",
+                "war-story": "",
+                "languages": {
+                    "value": [],
+                    "custom": ""
+                }
+            },
+            "renown": 0,
+            "standing": {
+                "value": 0,
+                "min": -2,
+                "max": 5
+            },
+            "resources": {
+                "momentum": {
+                    "min": 0,
+                    "value": 0,
+                    "max": 6
+                },
+                "fortune": {
+                    "min": 0,
+                    "value": 3,
+                    "max": 3
+                },
+                "gold": {
+                    "min": 0,
+                    "value": 0,
+                    "max": 100
+                },
+                "upkeep": {
+                    "value": 3,
+                    "min": 0
+                },
+                "xp": {
+                    "value": 0,
+                    "min": 0,
+                    "max": 9999
+                }
+            },
+            "skills": {
+                "acr": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "agi",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "mel": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "agi",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "ste": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "agi",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "ins": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "awa",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "obs": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "awa",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "sur": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "awa",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "thi": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "awa",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "ath": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "bra",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "res": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "bra",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "par": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "coo",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "ran": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "coo",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "sai": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "coo",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "alc": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "cra": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "int",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "hea": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "int",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "lin": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "int",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "lor": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "int",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "war": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "int",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "ani": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "per",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "com": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "per",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "cou": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "per",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "per": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "per",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "soc": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "per",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "dis": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "wil",
+                    "diceMod": 0,
+                    "successMod": 0
+                },
+                "sor": {
+                    "trained": 0,
+                    "expertise": 0,
+                    "max": 5,
+                    "focus": 0,
+                    "attribute": "wil",
+                    "diceMod": 0,
+                    "successMod": 0
                 }
             }
         },
-        "toughened": {
-            "templates": ["base", "npc"]
-        },
-        "nemesis": {
-            "templates": ["base", "npc"]
+        "npc": {
+            "templates": ["common"],
+            "description": "physical description",
+            "skills": {
+                "move": 0,
+                "combat": 0,
+                "fort": 0,
+                "know": 0,
+                "soci": 0,
+                "sens": 0
+            },
+            "attacks": [],
+            "abilities": [],
+            "doom-spends": []
         }
     },
     "Item": {
-        "types": ["equipment", "weapon", "talent", "spell", "background", "quality"],
+        "types": ["archetype", "caste", "education", "equipment", "homeland", "kit", "quality", "spell", "talent", "war-story", "weapon"],
         "templates": {
-            "base": {
-                "description": "",
-                "source": {
-                    "book": "Core",
-                    "page": 1
+            "itemDescription": {
+                "description": {
+                    "value": "",
+                    "source": {
+                        "book": "Core",
+                        "page": 1
+                    }
                 }
             },
-            "physical": {
+            "physicalItem": {
                 "skill": "",
-                "type": "tool",
+                "type": "",
+                "equipped": false,
                 "encumbrance": 0,
-                "availability": 1,
-                "cost": 1,
-                "quantity": 1
+                "availability": 0,
+                "cost": 0,
+                "quantity": 0
+            },
+            "activatedEffect": {
+                "activation": {
+                    "type": "",
+                    "cost": 0,
+                    "condition": ""
+                },
+                "duration": {
+                    "value": null,
+                    "units": ""
+                },
+                "target": {
+                    "value": "",
+                    "units": "",
+                    "type": ""
+                },
+                "range": {
+                    "value": null,
+                    "long": null,
+                    "units": ""
+                },
+                "uses": {
+                    "value": 0,
+                    "max": 0,
+                    "per": null
+                },
+                "consume": {
+                    "type": "",
+                    "target": null,
+                    "amount": null
+                }
+            },
+            "action": {
+                "attribute": null,
+                "actionType": null,
+                "attackBonus": 0,
+                "chatFlavor": "",
+                "critical": null,
+                "damage": {
+                    "parts": []
+                },
+                "formula": ""
             }
         },
         "equipment": {
-            "templates": ["base", "physical"]
+            "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
+            "armor": {
+                "type": "",
+                "coverage": "",
+                "soak": 0,
+                "qualities": []
+            }
+        },
+        "kit": {
+            "templates": ["itemDescription", "physicalItem"],
+            "skill": "",
+            "kitType": ""
         },
         "weapon": {
-            "templates": ["base", "physical"],
-            "reach": 2,
-            "damage": 2,
-            "size": "1H",
+            "templates": ["itemDescription", "physicalItem"],
+            "reach": 0,
+            "damage": 0,
+            "size": "",
             "qualities": [],
-            "loads": 1
+            "loads": 0
         },
         "talent": {
-            "templates": ["base"],
+            "templates": ["itemDescription"],
             "xpcost": 100,
             "effects": [],
             "skill": ""
         },
         "spell": {
-            "templates": ["base"],
+            "templates": ["itemDescription"],
             "spellLevel": 1,
             "costBuyResolve": 2,
             "costCastResolve": 2,
@@ -460,21 +476,52 @@
             "momentumSpends": [],
             "altEffects": []
         },
-        "background": {
-            "templates": ["base"],
-            "source": "Caste",
-            "attribute": [],
+        "caste": {
+            "templates": ["itemDescription"],
+            "talents": [],
+            "skill": "",
+            "story": [{
+                "event":{
+                    "value": "",
+                    "description": ""
+                },
+                "trait": ""
+            }]
+        },
+        "homeland": {
+            "templates": ["itemDescription"],
+            "talent": "",
+            "language": ""
+        },
+        "education": {
+            "value": "",
+            "talent": "",
+            "skills": {
+                "mandatory": [],
+                "elective": []
+            },
+            "equipment": []
+        },
+        "archetype": {
+            "templates": ["itemDescription"],
             "talents": [],
             "skills": {
                 "main": "",
                 "mandatory": [],
                 "elective": []
             },
-            "language": "",
-            "equipment": []
+            "equipment": [],
+            "weapons": [],
+            "kits": [],
+            "consumables": [],
+            "mounts": []
         },
         "quality": {
-            "templates": ["base"]
+            "templates": ["itemDescription"]
+        },
+        "war-story": {
+            "templates": ["itemDescription"],
+            "skills": []
         }
     }
 }
