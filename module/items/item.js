@@ -27,7 +27,11 @@ export class Conan2D20Item extends Item {
     const actorData = this.actor ? this.actor.data.data : {};
     const itemData = item.data;
 
-    let roll = new Roll('2d20+@abilities.str.mod', actorData);
+    /* 
+    * This will need to ba adjusted to take the item associated skill into account.
+    * Currently weird behavior with Spells.
+    * */
+    let roll = new Roll('2d20cs<=@skills.mel.tn', actorData);
     let label = `Rolling ${item.name}`;
     roll.roll().toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),

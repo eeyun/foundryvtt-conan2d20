@@ -1,0 +1,55 @@
+<div class="health">
+    <h3 class="">{{ localize "conan2d20.sectionHealth" }}</h3>
+    <div class="health">
+        <fieldset>
+            <legend>{{ localize "conan2d20.healthPhysical" }}</legend>
+            <div class="health-content">
+                <label for="data.health.vigor.value" class="health-label">{{ localize "conan2d20.healthVigor" }}</label>
+                <input type="text" name="data.health.vigor.value" value="{{data.health.vigor.value}}"
+                    data-dtype="Number" />
+                <span> / </span>
+                <input type="text" name="data.health.vigor.max" value="{{data.health.vigor.max}}" data-dtype="Number" />
+            </div>
+            <div class="health-content">
+                <label for="data.health.wounds.value"
+                    class="health-label">{{ localize "conan2d20.healthWounds" }}</label>
+                <input type="text" name="data.health.wounds.value" value="{{data.health.wounds.value}}"
+                    data-dtype="Number" />
+                <span> / </span>
+                <label for="data.health.wounds.value"
+                    class="health-label">{{ localize "conan2d20.healthTreated" }}</label>
+                <input type="text" name="data.health.wounds.treated" value="{{data.health.wounds.treated}}"
+                    data-dtype="Number" />
+                <span> / </span>
+                <input type="text" name="data.health.wounds.max" value="{{data.health.wounds.max}}"
+                    data-dtype="Number" />
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>{{ localize "conan2d20.healthMental" }}</legend>
+            <div class="health-content">
+                <label for="data.health.resolve.value"
+                    class="health-label">{{ localize "conan2d20.healthResolve" }}</label>
+                <input type="text" name="data.health.resolve.value" value="{{data.health.resolve.value}}"
+                    data-dtype="Number" />
+                <span> / </span>
+                <input type="text" name="data.health.resolve.max" value="{{data.health.resolve.max}}"
+                    data-dtype="Number" />
+            </div>
+            <div class="health-content">
+                <label for="data.health.trauma.value"
+                    class="health-label">{{ localize "conan2d20.healthTrauma" }}</label>
+                <input type="text" name="data.health.trauma.value" value="{{data.health.trauma.value}}"
+                    data-dtype="Number" />
+                <span> / </span>
+                <label for="data.health.trauma.treated"
+                    class="health-label">{{ localize "conan2d20.healthTreated" }}</label>
+                <input type="text" name="data.health.trauma.treated" value="{{data.health.trauma.treated}}"
+                    data-dtype="Number" />
+                <span> / </span>
+                <input type="text" name="data.health.trauma.max" value="{{data.health.trauma.max}}"
+                    data-dtype="Number" />
+            </div>
+        </fieldset>
+    </div>
+</div>

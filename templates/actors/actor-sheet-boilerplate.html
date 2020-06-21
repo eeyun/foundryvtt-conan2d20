@@ -1,0 +1,48 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        {{> systems/conan2d20/templates/actors/includes/actor-header.html}}
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <!-- Navigation -->
+    <nav class="sheet-tabs tabs" data-group="primary">
+        {{> systems/conan2d20/templates/actors/includes/actor-navigation.html}}
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Skills Tab --}}
+        <div class="tab skills" data-group="primary" data-tab="skills">
+            <fieldset><legend>{{ localize "conan2d20.skills.skills" }}</legend>
+                {{> systems/conan2d20/templates/actors/includes/actor-tabs-skills.html}}
+            </fieldset>
+        </div>
+
+        {{!-- Owned Talents Tab --}}
+        <div class="tab talents" data-group="primary" data-tab="talents">
+            {{> systems/conan2d20/templates/actors/includes/actor-tabs-talents.html}}
+        </div>
+
+        {{!-- Owned Weapons Tab --}}
+        <div class="tab equipment" data-group="primary" data-tab="weapons">
+            {{> systems/conan2d20/templates/actors/includes/actor-tabs-weapons.html}}
+        </div>
+
+        {{!-- Owned Equipment Tab --}}
+        <div class="tab equipment" data-group="primary" data-tab="equipment">
+            {{> systems/conan2d20/templates/actors/includes/actor-tabs-equipment.html}}
+        </div>
+
+        {{!-- Owned Spells Tab --}}
+        <div class="tab spells" data-group="primary" data-tab="spells">
+            {{> systems/conan2d20/templates/actors/includes/actor-tabs-spells.html}}
+        </div>
+
+        {{!-- Background Tab --}}
+        <div class="tab story" data-group="primary" data-tab="background">
+            {{> systems/conan2d20/templates/actors/includes/actor-tabs-background.html}}
+        </div>
+    </section>
+</form>

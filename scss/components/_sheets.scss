@@ -1,0 +1,90 @@
+/* Setup with grid
+    https://grid.layoutit.com/?id=h3XQGaL 
+*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 185px;
+    grid-template-rows: 1fr 40px repeat(2, 1.4fr);
+    gap: 5px 5px;
+    grid-template-areas:
+        "sheet-header sheet-header sheet-header sheet-header attributes-skills"
+        "sheet-tabs sheet-tabs sheet-tabs sheet-tabs attributes-skills"
+        "sheet-body sheet-body sheet-body sheet-body attributes-skills"
+        "sheet-body sheet-body sheet-body sheet-body attributes-skills";
+    align-items: flex-start;
+    font-weight:300;
+}
+
+.sheet-header {
+    flex: 0 0 210px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1px 1px;
+    grid-template-areas: "profile-img header-fields header-fields header-fields header-fields" "health health health health health";
+    grid-area: sheet-header;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    
+    .profile-img {
+        grid-area: profile-img;
+        height: 100px;
+        margin-right: 10px;
+    }
+
+    .header-fields {
+        grid-area: header-fields;
+        //flex: 1;
+        width: 100%;
+    }
+
+    h1.charname {
+        height: 50px;
+        /*width: 100%;*/
+        padding: 0px;
+        margin: 5px 0;
+        border-bottom: 0;
+        font-family: $font-header;
+
+        input {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+    }
+    .health { grid-area: health; }
+}
+
+.sheet-header {
+    grid-area: sheet-header;
+}
+
+.sheet-tabs {
+    grid-area: sheet-tabs;
+    flex: 0;
+}
+
+.sheet-body,
+.sheet-body .tab {
+    grid-area: sheet-body;
+    height: 100%;
+}
+
+.sheet-body .tab .editor {
+    height: 50%;
+}
+
+// Editor
+.tox {
+    .tox-editor-container {
+        background: $c-white;
+    }
+
+    .tox-edit-area {
+        padding: 0 8px;
+    }
+}

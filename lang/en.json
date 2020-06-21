@@ -26,6 +26,7 @@
         "wil": "Willpower"
     },
     "conan2d20.skills": {
+        "skills": "Skills",
         "acr": "Acrobatics",
         "mel": "Melee",
         "ste": "Stealth",
@@ -58,10 +59,7 @@
     "conan2d20.targetNumber": "Target Number",
 
     "conan2d20.sectionTalents": "Talents",
-    "conan2d20.addTalent":"Add talent",
     "conan2d20.sectionEquipment": "Equipment",
-    "conan2d20.addEquipment": "Add equipment",
-    "conan2d20.addWeapon": "Add weapon",
     "conan2d20.sectionWeapons": "Weapons",
     "conan2d20.sectionSpells": "Spells",
     "conan2d20.sectionBackground": "Background",
@@ -89,6 +87,7 @@
     "conan2d20.healthCourage": "Courage",
     "conan2d20.standing": "Social Standing",
     "conan2d20.renown": "Renown",
+    "conan2d20.upkeep": "Upkeep",
     "conan2d20.talents": "Talents",
     "conan2d20.charGold": "Gold",
     "conan2d20.fortune": "Fortune",
@@ -106,6 +105,11 @@
     "conan2d20.itemReach": "Reach",
     "conan2d20.itemGrip": "Grip",
     "conan2d20.itemLoads": "Loads",
+    "conan2d20.addItem":"Add",
+    "conan2d20.addTalent":"Add talent",
+    "conan2d20.addEquipment": "Add equipment",
+    "conan2d20.addWeapon": "Add weapon",
+    "conan2d20.addSpell": "Add Spell",
 
     "conan2d20.chatAttack": "attacks",
     "conan2d20.chatCast": "casts",
