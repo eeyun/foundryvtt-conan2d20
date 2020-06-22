@@ -2,13 +2,13 @@
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class Conan2D20ActorSheet extends ActorSheet {
+export default class Conan2D20ActorSheetCharacter extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["conan2d20", "sheet", "actor"],
-      template: "systems/conan2d20/templates/actors/actor-sheet.html",
+      template: "systems/conan2d20/templates/actors/character-sheet.html",
       width: 700,
       height: 700,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
@@ -31,7 +31,7 @@ export class Conan2D20ActorSheet extends ActorSheet {
     }
     
     // REMOVE THIS --- DEBUG OUTPUT
-    console.log("OUTPUT FROM actor-sheet.js in getData()");
+    console.log("OUTPUT FROM actor/sheets/character.js in getData()");
     console.log(this.actor);
 
     return data;

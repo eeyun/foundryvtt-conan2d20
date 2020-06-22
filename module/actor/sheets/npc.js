@@ -2,13 +2,13 @@
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class Conan2D20FoeSheet extends ActorSheet {
+export default class Conan2D20ActorSheetNPC extends ActorSheet {
 
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["conan2d20", "sheet", "actor"],
-      template: "systems/conan2d20/templates/actor/foe-sheet.html",
+      template: "systems/conan2d20/templates/actor/npc-sheet.html",
       width: 600,
       height: 600,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]

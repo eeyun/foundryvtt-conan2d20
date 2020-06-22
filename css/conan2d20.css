@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap");
 @font-face {
   font-family: 'celticbold';
-  src: url("/systems/conan2d20/ui/celtic-webfont.woff2") format("woff2"), url("/systems/conan2d20/ui/celtic-webfont.woff") format("woff"), url("/systems/conan2d20/ui/CELTIC.TTF") format("truetype");
+  src: url("/systems/conan2d20/fonts/CELTIC.TTF") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -255,7 +255,7 @@ h1, h2, h3, h4, h5 {
   grid-template-columns: repeat(4, 1fr) 185px;
   grid-template-rows: 1fr 40px repeat(2, 1.4fr);
   gap: 5px 5px;
-  grid-template-areas: "sheet-header sheet-header sheet-header sheet-header attributes-skills" "sheet-tabs sheet-tabs sheet-tabs sheet-tabs attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills";
+  grid-template-areas: "sheet-header sheet-header sheet-header sheet-header attributes-skills" "sheet-tabs sheet-tabs sheet-tabs sheet-tabs attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills" "sheet-body sheet-body sheet-body sheet-body attributes-skills";
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
@@ -350,7 +350,7 @@ h1, h2, h3, h4, h5 {
   grid-template-rows: 35px repeat(7, -webkit-min-content);
   grid-template-rows: 35px repeat(7, min-content);
   gap: 1px 1px;
-  grid-template-areas: "attributes-skills-title" "agility" "awareness" "brawn" "coordination" "intelligence" "personality" "willpower";
+  grid-template-areas: "attributes-skills-title" "agility" "awareness" "brawn" "coordination" "intelligence" "personality" "willpower";
   grid-area: attributes-skills;
   border-left: 1px solid #CCC;
 }

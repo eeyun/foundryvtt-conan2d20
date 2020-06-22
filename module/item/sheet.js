@@ -2,7 +2,7 @@
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class Conan2D20ItemSheet extends ItemSheet {
+export default class Conan2D20ItemSheet extends ItemSheet {
 
   /** @override */
   static get defaultOptions() {
@@ -22,7 +22,7 @@ export class Conan2D20ItemSheet extends ItemSheet {
 
     // Alternatively, you could use the following return statement to do a
     // unique item sheet by type, like `weapon-sheet.html`.
-    return `${path}/item-${this.item.data.type}-sheet.html`;
+    return `${path}/${this.item.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
