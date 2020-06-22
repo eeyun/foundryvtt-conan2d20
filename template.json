@@ -98,13 +98,13 @@
                 "languages": {
                     "value": [],
                     "custom": ""
+                },
+                "renown": 0,
+                "standing": {
+                    "value": 0,
+                    "min": -2,
+                    "max": 5
                 }
-            },
-            "renown": 0,
-            "standing": {
-                "value": 0,
-                "min": -2,
-                "max": 5
             },
             "resources": {
                 "momentum": {
@@ -135,224 +135,350 @@
             "skills": {
                 "acr": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "agi",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "mel": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "agi",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "ste": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "agi",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "ins": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "awa",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "obs": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "awa",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "sur": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "awa",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "thi": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "awa",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "ath": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "bra",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "res": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "bra",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "par": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "coo",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "ran": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "coo",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "sai": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "coo",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "alc": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "attribute": "int",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "cra": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "int",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "hea": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "int",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "lin": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "int",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "lor": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "int",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "war": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "int",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "ani": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "per",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "com": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "per",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "cou": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "per",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "per": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "per",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "soc": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "per",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "dis": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "wil",
                     "diceMod": 0,
                     "successMod": 0
                 },
                 "sor": {
                     "trained": 0,
-                    "expertise": 0,
-                    "max": 5,
-                    "focus": 0,
+                    "expertise": {
+                        "value": 0,
+                        "max": 5
+                    },
+                    "focus": {
+                        "value": 0,
+                        "max": 5
+                    },
                     "attribute": "wil",
                     "diceMod": 0,
                     "successMod": 0

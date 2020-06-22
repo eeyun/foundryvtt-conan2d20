@@ -1,13 +1,15 @@
 // Import Modules
-import { Utils } from "./utils.js";
-import { preloadHandlebarsTemplates } from "./templates.js";
+import { Utils } from "./module/utils.js";
+import { preloadHandlebarsTemplates } from "./module/templates.js";
 
 // Import Sheets & Applications
-import { Conan2D20Actor } from "./actors/actor.js";
-import { Conan2D20ActorSheet } from "./actors/actor-sheet.js";
-import { Conan2D20FoeSheet } from "./actors/foe-sheet.js";
-import { Conan2D20Item } from "./items/item.js";
-import { Conan2D20ItemSheet } from "./items/item-sheet.js";
+import Conan2D20ActorSheetCharacter from "./module/actor/sheets/character.js";
+import Conan2D20ActorSheetNPC from "./module/actor/sheets/npc.js";
+import Conan2D20ItemSheet from "./module/item/sheet.js";
+
+// Import Entities
+import Conan2D20Actor from "./module/actor/entity.js";
+import Conan2D20Item  from "./module/item/entity.js";
 
 
 Hooks.once('init', async function() {
@@ -26,13 +28,13 @@ Hooks.once('init', async function() {
 
   // Define custom Entity classes
   CONFIG.Actor.entityClass = Conan2D20Actor;
-  CONFIG.Item.entityClass = Conan2D20Item;
+  //CONFIG.Item.entityClass = Conan2D20Item;
 
   // Register sheet application classes
   console.log('Conan2D20 System | Loading Actor & Item Sheets.');
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("conan2d20", Conan2D20ActorSheet, { makeDefault: true });
-  Actors.registerSheet("conan2d20", Conan2D20FoeSheet, { makeDefault: true });
+  Actors.registerSheet("conan2d20", Conan2D20ActorSheetCharacter, { makeDefault: true });
+  Actors.registerSheet("conan2d20", Conan2D20ActorSheetNPC, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("conan2d20", Conan2D20ItemSheet, { makeDefault: true });
   

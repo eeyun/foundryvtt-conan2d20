@@ -2,7 +2,7 @@
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
  */
-export class Conan2D20Actor extends Actor {
+export default class Conan2D20Actor extends Actor {
 
   /**
    * Augment the basic actor data with additional dynamic data.
@@ -16,10 +16,8 @@ export class Conan2D20Actor extends Actor {
 
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    if (actorData.type === 'character') this._prepareCharacterData(actorData);
-    if (actorData.type === 'minion') this._prepareMinionData(actorData);
-    if (actorData.type === 'toughened') this._prepareToughenedData(actorData);
-    if (actorData.type === 'nemesis') this._prepareNemesisData(actorData);
+    if ( actorData.type === "character" ) this._prepareCharacterData(actorData);
+    else if ( actorData.type === "npc" ) this._prepareNPCData(actorData)
   }
 
   /**
@@ -42,29 +40,30 @@ export class Conan2D20Actor extends Actor {
     //  HEALTH
     // Calculate Vigor
     //data.health.vigor.max = data.attributes.bra.value + data.skills.resistance.value;
-    data.health.vigor.max = data.attributes.bra.value + data.skills.res.value;
+    data.health.vigor.max = data.attributes.bra.value + data.skills.res.tn;
     data.health.vigor.value = data.health.vigor.max;
+
     // Prepare Resolve
     // Willpower + Discipline.Expertise  
-    data.health.resolve.max = data.attributes.wil.value + data.skills.dis.value;
+    data.health.resolve.max = data.attributes.wil.value + data.skills.dis.tn;
     data.health.resolve.value = data.health.resolve.max;
+
     //  SET TN for Skills
 
     // Loop through talents, assign roll modifications
-    for (let [key, talents] of Object.entries(data.talents)) {
-      //skill.tn = skill.value + data.attributes[key];
-    }
+    //for (let [key, talents] of Object.entries(data.talents)) {
+      //skill.value = skill.value + data.attributes[key];
+    //}
 
     // Loop through skills, assigning TN for checks
     for (let [key, skill] of Object.entries(data.skills)) {
-      skill.tn = skill.value + data.attributes[skill.attribute].value;
+      skill.tn = skill.expertise.value + data.attributes[skill.attribute].value;
     }
 
     // Prepare Upkeep Cost
     // 3 gp + [Standing] - [Renown]
-    data.resources.upkeep = 3 + data.background.standing.value - data.background.renown;
 
-    //console.log(data);
+    data.resources.upkeep.value = 3 + data.background.standing.value - data.background.renown;
 
     // End Data Preparation
   }
@@ -118,7 +117,7 @@ export class Conan2D20Actor extends Actor {
   /**
    * Prepare Character type specific data
    */
-  _prepareMinionData(actorData) {
+  _prepareNPCData(actorData) {
     const data = actorData.data;
 
     // Calculate Vigor from Brawn + Fortitude for an NPC    
@@ -132,18 +131,18 @@ export class Conan2D20Actor extends Actor {
     }  */
   }
 
-  _prepareToughenedData(actorData) {
-    const data = actorData.data;
+  //_prepareToughenedData(actorData) {
+  //  const data = actorData.data;
 
     // Calculate Vigor from Brawn + Fortitude for an NPC    
     //      data.health.vigor.max = data.attributes.['Brawn'].value + data.skills.['fortitude'];
-  }
+  //}
 
-  _prepareNemesisData(actorData) {
-    const data = actorData.data;
+  //_prepareNemesisData(actorData) {
+  //  const data = actorData.data;
 
     // Calculate Vigor from Brawn + Fortitude for an NPC    
     //      data.health.vigor.max = data.attributes.['Brawn'].value + data.skills.['fortitude'];
-  }
+  //}
 
 }

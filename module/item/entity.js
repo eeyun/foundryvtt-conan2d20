@@ -2,7 +2,7 @@
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
-export class Conan2D20Item extends Item {
+export default class Conan2D20Item extends Item {
   /**
    * Augment the basic Item data model with additional dynamic data.
    */

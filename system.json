@@ -2,18 +2,16 @@
   "name": "conan2d20",
   "title": "Robert E. Howard's Conan: Adventures In An Age Undreamed Of",
   "description": "WIP !!! A community-contributed game system for running games of Conan in the cinematic 2D20 game system by Modiphius in the Foundry VTT environment.",
-  "version": "0.0.3",
-  "templateVersion": 3,
-  "author": "Jerome Lavoie",
+  "version": "0.0.4",
+  "author": ["Jerome Lavoie", "Ian Henry"],
   "scripts": [ ],
-  "esmodules": [ "module/conan2d20.mjs" ],
+  "esmodules": [ "conan2d20.js" ],
   "styles": [ "css/conan2d20.css" ],
   "packs": [
     {
       "name": "foes",
       "label": "Foes",
       "system": "conan2d20",
-      "module": "conan2d20",
       "path": "./packs/foes.db",
       "entity": "Actor"
     },
@@ -21,7 +19,6 @@
       "name": "items",
       "label": "Items",
       "system": "conan2d20",
-      "module": "conan2d20",
       "path": "./packs/items.db",
       "entity": "Item"
     },
@@ -29,7 +26,6 @@
       "name": "spells",
       "label": "Spells",
       "system": "conan2d20",
-      "module": "conan2d20",
       "path": "./packs/spells.db",
       "entity": "Item"
     },
@@ -37,7 +33,6 @@
       "name": "backgrounds",
       "label": "Backgrounds",
       "system": "conan2d20",
-      "module": "conan2d20",
       "path": "./packs/backgrounds.db",
       "entity": "Item"
     },
@@ -45,7 +40,6 @@
       "name": "talents",
       "label": "Talents",
       "system": "conan2d20",
-      "module": "conan2d20",
       "path": "./packs/talents.db",
       "entity": "Item"
     }
