@@ -45,6 +45,8 @@ export default class Conan2D20Actor extends Actor {
       data.health.physical.value = data.attributes.bra.value + data.skills.res.expertise.value;
     } else if (data.health.physical.value > data.health.physical.max) {
       data.health.physical.value = data.health.physical.max;
+    } else if (data.health.physical.value < 0) {
+      data.health.physical.value = 0;
     }
 
     // Prepare Resolve
@@ -54,6 +56,8 @@ export default class Conan2D20Actor extends Actor {
       data.health.mental.value = data.attributes.wil.value + data.skills.dis.expertise.value;
     } else if (data.health.mental.value > data.health.mental.max) {
       data.health.mental.value = data.health.mental.max;
+    } else if (data.health.mental.value < 0) {
+      data.health.mental.value = 0;
     }
 
     //  SET TN for Skills
