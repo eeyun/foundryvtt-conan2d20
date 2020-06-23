@@ -2,7 +2,7 @@
   "name": "conan2d20",
   "title": "Robert E. Howard's Conan: Adventures In An Age Undreamed Of",
   "description": "WIP !!! A community-contributed game system for running games of Conan in the cinematic 2D20 game system by Modiphius in the Foundry VTT environment.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": ["Jerome Lavoie", "Ian Henry"],
   "scripts": [ ],
   "esmodules": [ "conan2d20.js" ],
