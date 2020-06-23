@@ -19,6 +19,7 @@
         width: 29px;
         text-align: center;
     }
+    @extend .ptserif;
 }
 
 h3.attributes-skills-title {
@@ -84,13 +85,14 @@ h3.attributes-skills-title {
 /* Layout a single attribute with 2 cells: label & value */
 .attribute {
     font-size: 14px;
+    font-weight: 900;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     justify-items: space-between;
     align-items: center;
     align-content: space-between;
-
+    @extend .alverata;
     label {
         flex-grow: 3;
     }

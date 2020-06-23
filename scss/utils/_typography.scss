@@ -1,17 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap');
+/* ----------------------------------------- */
+/*  Fonts                                    */
+/* ----------------------------------------- */
+@import url('https://fonts.googleapis.com/css2??family=Alice&family=Martel:wght@400;800&family=PT+Serif:wght@400;700&display=swap');
+@import url(//db.onlinewebfonts.com/c/2bb394c5bd547b5649e6496f9ec8185f?family=AlverataW01-Regular);
+@import url(//db.onlinewebfonts.com/c/6a8e343a761586afee7c2264c79098cb?family=Alverata);
 
 @font-face {
-    font-family: 'celticbold';
-    src: url('/systems/conan2d20/fonts/CELTIC.TTF') format('truetype');
+    font-family: 'CrushYourEnemies';
+    src: url('/systems/conan2d20/fonts/crushyourenemies.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-
-$font-primary: 'celticbold',
+  
+  .alverata {
+      font-family: 'Alverata';
+      font-size: 15px;
+  }
+  .ptserif {
+      font-family: "PT Serif";
+  }
+  .signika {
+      font-family: "Palatino Linotype", serif;
+      font-size: 18;
+  }
+$font-primary: 'CrushYourEnemies',
 sans-serif;
 $font-secondary: 'Martel',
 sans-serif;
-$font-header: 'celticbold',
+$font-header: 'CrushYourEnemies',
 sans-serif;
 
 h1,
