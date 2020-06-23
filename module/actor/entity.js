@@ -16,8 +16,8 @@ export default class Conan2D20Actor extends Actor {
 
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    if ( actorData.type === "character" ) this._prepareCharacterData(actorData);
-    else if ( actorData.type === "npc" ) this._prepareNPCData(actorData)
+    if (actorData.type === "character") this._prepareCharacterData(actorData);
+    else if (actorData.type === "npc") this._prepareNPCData(actorData);
   }
 
   /**
@@ -35,24 +35,32 @@ export default class Conan2D20Actor extends Actor {
     // Prepare Bonus Ranged Damage
     data.attributes.awa.damage = this.identifyBonusDmg(data.attributes.awa.value);
     // Prepare Bonus Mental Damage
-    data.attributes.per.damage = this.identifyBonusDmg(data.attributes.per.value);;
+    data.attributes.per.damage = this.identifyBonusDmg(data.attributes.per.value);
 
     //  HEALTH
     // Calculate Vigor
     //data.health.vigor.max = data.attributes.bra.value + data.skills.resistance.value;
-    data.health.vigor.max = data.attributes.bra.value + data.skills.res.tn;
-    data.health.vigor.value = data.health.vigor.max;
+    data.health.physical.max = data.attributes.bra.value + data.skills.res.expertise.value - data.health.physical.fatigue;
+    if (data.health.physical.value === null) {
+      data.health.physical.value = data.attributes.bra.value + data.skills.res.expertise.value;
+    } else if (data.health.physical.value > data.health.physical.max) {
+      data.health.physical.value = data.health.physical.max;
+    }
 
     // Prepare Resolve
     // Willpower + Discipline.Expertise  
-    data.health.resolve.max = data.attributes.wil.value + data.skills.dis.tn;
-    data.health.resolve.value = data.health.resolve.max;
+    data.health.mental.max = data.attributes.wil.value + data.skills.dis.expertise.value - data.health.mental.despair;
+    if (data.health.mental.value === null) {
+      data.health.mental.value = data.attributes.wil.value + data.skills.dis.expertise.value;
+    } else if (data.health.mental.value > data.health.mental.max) {
+      data.health.mental.value = data.health.mental.max;
+    }
 
     //  SET TN for Skills
 
     // Loop through talents, assign roll modifications
     //for (let [key, talents] of Object.entries(data.talents)) {
-      //skill.value = skill.value + data.attributes[key];
+    //skill.value = skill.value + data.attributes[key];
     //}
 
     // Loop through skills, assigning TN for checks
@@ -61,9 +69,11 @@ export default class Conan2D20Actor extends Actor {
     }
 
     // Prepare Upkeep Cost
-    // 3 gp + [Standing] - [Renown]
-
+    // 3 gp + [Standing] - [Renown] | Can't go below 0
     data.resources.upkeep.value = 3 + data.background.standing.value - data.background.renown;
+    if (data.resources.upkeep.value < 0) {
+      data.resources.upkeep.value = 0;
+    }
 
     // End Data Preparation
   }
@@ -93,7 +103,7 @@ export default class Conan2D20Actor extends Actor {
         }
       }
     } else {
-      console.log('Conan 2D20 | Bonus Damage Identification received NaN.')
+      console.log('Conan 2D20 | Bonus Damage Identification received NaN.');
     }
     return bonus;
   }
@@ -134,15 +144,15 @@ export default class Conan2D20Actor extends Actor {
   //_prepareToughenedData(actorData) {
   //  const data = actorData.data;
 
-    // Calculate Vigor from Brawn + Fortitude for an NPC    
-    //      data.health.vigor.max = data.attributes.['Brawn'].value + data.skills.['fortitude'];
+  // Calculate Vigor from Brawn + Fortitude for an NPC    
+  //      data.health.vigor.max = data.attributes.['Brawn'].value + data.skills.['fortitude'];
   //}
 
   //_prepareNemesisData(actorData) {
   //  const data = actorData.data;
 
-    // Calculate Vigor from Brawn + Fortitude for an NPC    
-    //      data.health.vigor.max = data.attributes.['Brawn'].value + data.skills.['fortitude'];
+  // Calculate Vigor from Brawn + Fortitude for an NPC    
+  //      data.health.vigor.max = data.attributes.['Brawn'].value + data.skills.['fortitude'];
   //}
 
 }

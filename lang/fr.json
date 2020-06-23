@@ -1,0 +1,16 @@
+{
+    "conan2d20.title": "Conan de Robert E. Howard",
+    "conan2d20.fulltitle": "Conan de Robert E. Howard : Aventures à une Époque Insoupçonnée",
+    "conan2d20.welcomeMsg": "Bienvenue dans Conan de Robert E. Howard : Aventures à une Époque Insoupçonnée",
+    "conan2d20.momentum": "Momentum",
+    "conan2d20.doom": "Malheur",
+    "conan2d20.name": "Nom",
+    "conan2d20.actionMinor": "Action Mineure",
+    "conan2d20.actionFree": "Action Libre",
+    "conan2d20.actionStandard": "Action Normale",
+    "conan2d20.actionReaction": "Réaction",
+    "conan2d20.movement": "Mouvement",
+    "conan2d20.customRollDice": "Combien de D20s ?",
+    "conan2d20.customRollBonus": "Combien de succès ajoutés ?",
+    "conan2d20.customRollDifficulty": "Difficulté du jet ?"
+}

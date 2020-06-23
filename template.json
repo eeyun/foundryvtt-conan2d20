@@ -38,7 +38,7 @@
                     }
                 },
                 "health": {
-                    "vigor": {
+                    "physical": {
                         "min": 0,
                         "value": 7,
                         "max": 7,
@@ -47,9 +47,10 @@
                             "value": 0,
                             "treated": 0,
                             "max": 5
-                        }
+                        },
+                        "fatigue": 0
                     },
-                    "resolve": {
+                    "mental": {
                         "min": 0,
                         "value": 7,
                         "max": 7,
@@ -58,7 +59,8 @@
                             "value": 0,
                             "treated": 0,
                             "max": 5
-                        }
+                        },
+                        "despair": 0
                     },
                     "armor": {
                         "head": 0,
