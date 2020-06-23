@@ -25,12 +25,12 @@
   .item {
     line-height: 40px;
     font-weight: 400;
-    font-family: $font-primary;
+    font-size: 15px;
   }
 
   .item.active {
     text-decoration: underline;
     text-shadow: none;
-    font-weight: 500;
+    font-weight: 900;
   }
 }

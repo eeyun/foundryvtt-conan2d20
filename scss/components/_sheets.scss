@@ -57,10 +57,16 @@
         }
     }
     .health { grid-area: health; }
+
+    .health .label {
+        @extend .alverata;
+        font-weight: 900;
+    }
 }
 
 .sheet-header {
     grid-area: sheet-header;
+    @extend .ptserif;
 }
 
 .sheet-tabs {
@@ -68,7 +74,11 @@
     flex: 0;
 }
 
-.sheet-body,
+.sheet-body {
+    @extend .ptserif;
+    grid-area: sheet-body;
+}
+
 .sheet-body .tab {
     grid-area: sheet-body;
     height: 100%;
@@ -76,6 +86,11 @@
 
 .sheet-body .tab .editor {
     height: 50%;
+}
+
+.sheet-body .label {
+    font-weight: 700;
+    @extend .alverata;
 }
 
 // Editor
