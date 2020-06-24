@@ -1,8 +1,10 @@
+import Conan2D20ActorSheet from "./base.js";
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export default class Conan2D20ActorSheetCharacter extends ActorSheet {
+export default class Conan2D20ActorSheetCharacter extends Conan2D20ActorSheet {
 
   /** @override */
   static get defaultOptions() {
