@@ -5,8 +5,8 @@
 @import url(//db.onlinewebfonts.com/c/2bb394c5bd547b5649e6496f9ec8185f?family=AlverataW01-Regular);
 @import url(//db.onlinewebfonts.com/c/6a8e343a761586afee7c2264c79098cb?family=Alverata);
 @font-face {
-  font-family: 'Hyborian';
-  src: url("/systems/conan2d20/fonts/HYBORIAN.TTF") format("truetype");
+  font-family: 'CrushYourEnemies';
+  src: url("/systems/conan2d20/fonts/crushyourenemies.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -31,7 +31,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Hyborian", sans-serif;
+  font-family: "CrushYourEnemies", sans-serif;
   font-weight: 500;
 }
 
@@ -57,12 +57,12 @@ h4 {
 /* ----------------------------------------- */
 /* Global styles */
 .window-app {
-  font-family: "Hyborian", sans-serif;
+  font-family: "CrushYourEnemies", sans-serif;
   font-weight: 200;
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: "Hyborian", sans-serif;
+  font-family: "CrushYourEnemies", sans-serif;
 }
 
 .rollable:hover, .rollable:focus {
@@ -276,7 +276,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .conan2d20 .item-form {
-  font-family: "Hyborian", sans-serif;
+  font-family: "CrushYourEnemies", sans-serif;
 }
 
 .conan2d20 .resource-label {
@@ -398,7 +398,7 @@ h1, h2, h3, h4, h5 {
   padding: 0px;
   margin: 5px 0;
   border-bottom: 0;
-  font-family: "Hyborian", sans-serif;
+  font-family: "CrushYourEnemies", sans-serif;
 }
 
 .conan2d20 .sheet-header h1.charname input {

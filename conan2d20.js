@@ -1,5 +1,6 @@
 // Import Modules
 import { Utils } from "./module/utils.js";
+import { CONAN } from "./scripts/config.js";
 import { preloadHandlebarsTemplates } from "./module/templates.js";
 
 // Import Sheets & Applications
@@ -27,6 +28,7 @@ Hooks.once('init', async function() {
    */
 
   // Define custom Entity classes
+  CONFIG.CONAN = CONAN;
   CONFIG.Actor.entityClass = Conan2D20Actor;
   //CONFIG.Item.entityClass = Conan2D20Item;
 
@@ -56,6 +58,37 @@ Hooks.once('init', async function() {
   
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
+});
+
+/* -------------------------------------------- */
+/*  Foundry VTT Setup                           */
+/* -------------------------------------------- */
+
+/**
+ * This function runs after game data has been requested and loaded from the servers, so entities exist
+ */
+Hooks.once("setup", function() {
+
+  // Localize CONFIG objects once up-front
+  const toLocalize = [
+    "attributes", "skills" 
+  ];
+
+  const noSort = [
+    "attributes", "skills" 
+  ];
+
+  // Localize and sort CONFIG objects
+  for ( let o of toLocalize ) {
+    const localized = Object.entries(CONFIG.CONAN[o]).map(e => {
+      return [e[0], game.i18n.localize(e[1])];
+    });
+    if ( !noSort.includes(o) ) localized.sort((a, b) => a[1].localeCompare(b[1]));
+    CONFIG.CONAN[o] = localized.reduce((obj, e) => {
+      obj[e[0]] = e[1];
+      return obj;
+    }, {});
+  }
 });
 
 Hooks.once("ready", async function() {

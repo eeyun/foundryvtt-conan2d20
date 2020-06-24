@@ -1,3 +1,5 @@
+import { CONAN } from "../../scripts/config.js";
+
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
@@ -71,6 +73,30 @@ export default class Conan2D20Actor extends Actor {
     for (let [key, skill] of Object.entries(data.skills)) {
       skill.tn = skill.expertise.value + data.attributes[skill.attribute].value;
     }
+
+    // Pull Archetype and Caste items and attach them
+    // to data object
+    const caste = actorData.items.find((o) => {
+      if (o.type === 'caste') {
+          return o.name
+      }
+    });
+
+    const archetype = actorData.items.find((o) => {
+      if (o.type === 'archetype') {
+        return o.name
+      }
+    });
+
+    const homeland = actorData.items.find((o) => {
+      if (o.type === 'homeland') {
+        return o.name
+      }
+    });
+
+    data.background.caste = caste;
+    data.background.archetype = archetype;
+    data.background.homeland = homeland;
 
     // Prepare Upkeep Cost
     // 3 gp + [Standing] - [Renown] | Can't go below 0
