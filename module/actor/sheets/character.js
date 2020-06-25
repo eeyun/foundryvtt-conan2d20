@@ -34,7 +34,6 @@ export default class Conan2D20ActorSheetCharacter extends Conan2D20ActorSheet {
     
     // REMOVE THIS --- DEBUG OUTPUT
     console.log("OUTPUT FROM actor/sheets/character.js in getData()");
-    console.log(this.actor);
 
     return data;
   }

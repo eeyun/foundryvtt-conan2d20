@@ -5,11 +5,13 @@
             <div class="background flex-group-left">
                 <div class="background-item">
                     <label for="data.background.homeland" class="background-item">{{ localize "CONAN.backgroundHomeland" }}</label>
-                    {{data.background.homeland.name}}
+                    <input type="text" name="data.background.homeland" value="{{data.background.homeland}}"
+                    data-dtype="String" />
                 </div>
                 <div class="background-item">
                     <label for="data.background.caste" class="background-item">{{ localize "CONAN.backgroundCaste" }}</label>
-                    {{data.background.caste.name}}
+                    <input type="text" name="data.background.caste" value="{{data.background.caste}}"
+                    data-dtype="String" />
                 </div>
                 <div class="background-item">
                     <label for="data.background.trait" class="background-item">{{ localize "CONAN.backgroundTrait" }}</label>
@@ -18,7 +20,8 @@
                 </div>
                 <div class="background-item">
                     <label for="data.background.archetype" class="background-item">{{ localize "CONAN.backgroundArchetype" }}</label>
-                    {{data.background.archetype.name}}
+                    <input type="text" name="data.background.archetype" value="{{data.background.archetype}}"
+                    data-dtype="String" />
                 </div>
                 <div class="background-item">
                     <label for="data.background.nature" class="background-item">{{ localize "CONAN.backgroundNature" }}</label>

@@ -7,6 +7,7 @@ import { preloadHandlebarsTemplates } from "./module/templates.js";
 import Conan2D20ActorSheetCharacter from "./module/actor/sheets/character.js";
 import Conan2D20ActorSheetNPC from "./module/actor/sheets/npc.js";
 import Conan2D20ItemSheet from "./module/item/sheet.js";
+import TraitSelector from "./scripts/actor/trait-selector.js";
 
 // Import Entities
 import Conan2D20Actor from "./module/actor/entity.js";
@@ -17,8 +18,17 @@ Hooks.once('init', async function() {
   console.log('Conan2D20 System | Initializing Sytem.');
 
   game.conan2d20 = {
-    Conan2D20Actor,
-    Conan2D20Item,
+    applications: {
+      Conan2D20ActorSheetCharacter,
+      Conan2D20ActorSheetNPC,
+      Conan2D20ItemSheet,
+      TraitSelector,
+    },
+    config: CONAN,
+    entities: {
+      Conan2D20Actor,
+      Conan2D20Item,
+    },
     rollItemMacro
   };
 
@@ -71,7 +81,7 @@ Hooks.once("setup", function() {
 
   // Localize CONFIG objects once up-front
   const toLocalize = [
-    "attributes", "skills" 
+    "attributes", "skills"
   ];
 
   const noSort = [
