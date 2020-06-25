@@ -12,6 +12,7 @@
       "name": "foes",
       "label": "Foes",
       "system": "conan2d20",
+      "module": "conan2d20",
       "path": "./packs/foes.db",
       "entity": "Actor"
     },
@@ -19,6 +20,7 @@
       "name": "items",
       "label": "Items",
       "system": "conan2d20",
+      "module": "conan2d20",
       "path": "./packs/items.db",
       "entity": "Item"
     },
@@ -26,6 +28,7 @@
       "name": "spells",
       "label": "Spells",
       "system": "conan2d20",
+      "module": "conan2d20",
       "path": "./packs/spells.db",
       "entity": "Item"
     },
@@ -33,6 +36,7 @@
       "name": "backgrounds",
       "label": "Backgrounds",
       "system": "conan2d20",
+      "module": "conan2d20",
       "path": "./packs/backgrounds.db",
       "entity": "Item"
     },
@@ -40,8 +44,17 @@
       "name": "talents",
       "label": "Talents",
       "system": "conan2d20",
+      "module": "conan2d20",
       "path": "./packs/talents.db",
       "entity": "Item"
+    },
+    {
+      "name": "rules-references",
+      "label": "Rules References",
+      "system": "conan2d20",
+      "module": "conan2d20",
+      "path": "./packs/rules-references.db",
+      "entity": "JournalEntry"
     }
   ],
   "languages": [
@@ -49,14 +62,19 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "French",
+      "path": "lang/fr.json"
     }
   ],
   "socket": false,
   "initiative": null,
   "gridDistance": 30,
   "gridUnits": "ft",
-  "primaryTokenAttribute": "health.vigor",
-  "secondaryTokenAttribute": "health.resolve",
+  "primaryTokenAttribute": "health.physical",
+  "secondaryTokenAttribute": "health.mental",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.2",
   "url": "https://github.com/jeromelavoie/foundryvtt-conan2d20",

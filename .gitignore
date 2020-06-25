@@ -1,10 +1,13 @@
 # IDE
-.idea/
-.vs/
-.vscode/
-.references/
+.idea
+.vs
+.vscode
+.references
 
 
 # Node Modules
 node_modules/
 npm-debug.log
+
+# Log Files
+*.log
