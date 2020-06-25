@@ -74,30 +74,6 @@ export default class Conan2D20Actor extends Actor {
       skill.tn = skill.expertise.value + data.attributes[skill.attribute].value;
     }
 
-    // Pull Archetype and Caste items and attach them
-    // to data object
-    const caste = actorData.items.find((o) => {
-      if (o.type === 'caste') {
-          return o.name
-      }
-    });
-
-    const archetype = actorData.items.find((o) => {
-      if (o.type === 'archetype') {
-        return o.name
-      }
-    });
-
-    const homeland = actorData.items.find((o) => {
-      if (o.type === 'homeland') {
-        return o.name
-      }
-    });
-
-    data.background.caste = caste;
-    data.background.archetype = archetype;
-    data.background.homeland = homeland;
-
     // Prepare Upkeep Cost
     // 3 gp + [Standing] - [Renown] | Can't go below 0
     data.resources.upkeep.value = 3 + data.background.standing.value - data.background.renown;
