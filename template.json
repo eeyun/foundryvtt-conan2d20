@@ -583,6 +583,7 @@
         },
         "weapon": {
             "templates": ["itemDescription", "physicalItem"],
+            "weapon type": "",
             "reach": 0,
             "damage": 0,
             "size": "",
@@ -591,6 +592,8 @@
         },
         "talent": {
             "templates": ["itemDescription"],
+            "prereqTalent": "",
+            "prereqSkill":"",
             "xpcost": 100,
             "effects": [],
             "skill": ""
