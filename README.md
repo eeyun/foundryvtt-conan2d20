@@ -18,3 +18,7 @@ You can find out where the `foundrydata` folder is located in the Configuration 
 
 Code and content contributions are accepted. Please feel free to submit issues to the issue tracker or submit merge
 requests for code changes.
+
+## Data Model
+
+[Conan 2D20 for Foundry VTT Data Model](https://app.lucidchart.com/documents/view/4f319568-5171-67b3-97da-61fb0a0041d5)
