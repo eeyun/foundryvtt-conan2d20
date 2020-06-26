@@ -21,4 +21,4 @@ requests for code changes.
 
 ## Data Model
 
-[Conan 2D20 for Foundry VTT Data Model](https://app.lucidchart.com/documents/view/4f319568-5171-67b3-97da-61fb0a0041d5)
+https://app.lucidchart.com/documents/view/4f319568-5171-67b3-97da-61fb0a0041d5
