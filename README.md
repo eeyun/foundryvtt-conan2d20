@@ -40,5 +40,10 @@ Review the [Contributing Guilelines](https://gitlab.com/kayhos/foundryvtt-conan2
 
 ## Legal
 
-© 2017 Conan Properties International LLC (“CPI”). Conan, Conan The Barbarian, Hyboria and related logos, characters, names, and distinctive likenesses thereof are trademarks or registered trademarks of CPI. All rights reserved. Robert E. Howard and related logos, characters, names, and distinctive likenesses thereof are trademarks or registered trademarks of Robert E. Howard Properties Inc. All rights reserved.
-The 2d20 system and Modiphius Logos are copyright Modiphius Entertainment Ltd. 2015–2017. All 2d20 system text is copyright Modiphius Entertainment Ltd.
+© 2017 Conan Properties International LLC (“CPI”). Conan, Conan The Barbarian, Hyboria and related logos, characters, names, and distinctive likenesses thereof are trademarks or registered trademarks of CPI. All rights reserved.
+
+Robert E. Howard and related logos, characters, names, and distinctive likenesses thereof are trademarks or registered trademarks of Robert E. Howard Properties Inc. All rights reserved.
+
+The 2d20 system and Modiphius Logos are copyright Modiphius Entertainment Ltd. 2015–2017. 
+
+All 2d20 system text is copyright Modiphius Entertainment Ltd.
