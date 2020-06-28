@@ -3,11 +3,17 @@
 .vs
 .vscode
 .references
+*.swp
 
+# Local configs
+foundryconfig.json
+
+# Built Artifacts
+dist/*
 
 # Node Modules
-node_modules/
 npm-debug.log
+node_modules
 
 # Log Files
 *.log

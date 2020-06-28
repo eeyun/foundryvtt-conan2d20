@@ -1,0 +1,94 @@
+<div class="health">                                                             
+    <h3 class="">{{ localize "CONAN.sectionHealth" }}</h3>                       
+    <div class="health">                                                         
+        <fieldset>                                                               
+            <legend class='label'>{{ localize "CONAN.healthPhysical" }}</legend> 
+            <div class="health-content armor">                                   
+                <label for="data.health.physical.value"                          
+                    class="health-label">{{ localize "CONAN.healthArmor" }}:</label>
+                <input type="text" name="data.health.armor.head" value="{{data.health.armor.head}}"
+                    data-dtype="Number" />                                       
+                <span> / </span>                                                 
+                <input type="text" name="data.health.armor.r-arm" value="{{data.health.armor.r-arm}}"
+                    data-dtype="Number" />                                       
+                <span> / </span>                                                 
+                <input type="text" name="data.health.armor.l-arm" value="{{data.health.armor.l-arm}}"
+                    data-dtype="Number" />                                       
+                <span> / </span>                                                 
+                <input type="text" name="data.health.armor.torso" value="{{data.health.armor.torso}}"
+                    data-dtype="Number" />                                       
+                <span> / </span>                                                 
+                <input type="text" name="data.health.armor.r-leg" value="{{data.health.armor.r-leg}}"
+                    data-dtype="Number" />                                       
+                <span> / </span>                                                 
+                <input type="text" name="data.health.armor.l-leg" value="{{data.health.armor.l-leg}}"
+                    data-dtype="Number" />                                       
+            </div>                                                               
+            <div class="health-content">                                         
+                <label for="data.health.physical.value"                          
+                    class="health-label">{{ localize "CONAN.healthVigor" }}</label>
+                <input type="text" name="data.health.physical.value" value="{{data.health.physical.value}}"
+                    data-dtype="Number" />                                       
+                <span> / </span>                                                 
+                <input type="text" name="data.health.physical.max" value="{{data.health.physical.max}}"
+                    data-dtype="Number" disabled />                              
+                    <span> / </span>                                             
+                    <label for="data.health.physical.fatigue"                    
+                    class="health-label">{{ localize "CONAN.healthFatigue" }}</label>
+                <input type="text" name="data.health.physical.fatigue" value="{{data.health.physical.fatigue}}"
+                    data-dtype="Number" />                                       
+            </div>                                                               
+            <div class="health-content">                                         
+                <label for="data.health.physical.wounds.value"                   
+                    class="health-label">{{ localize "CONAN.healthWounds" }}</label>
+                <input type="text" name="data.health.physical.wounds.value"      
+                    value="{{data.health.physical.wounds.value}}" data-dtype="Number" />
+                <span> / </span>                                                 
+                <label for="data.health.physical.wounds.value"                   
+                    class="health-label">{{ localize "CONAN.healthTreated" }}</label>
+                <input type="text" name="data.health.physical.wounds.treated"    
+                    value="{{data.health.physical.wounds.treated}}" data-dtype="Number" />
+                <span> / </span>                                                 
+                <input type="text" name="data.health.physical.wounds.max" value="{{data.health.physical.wounds.max}}"
+                    data-dtype="Number" disabled />                              
+            </div>                                                               
+        </fieldset>                                                              
+        <fieldset>                                                               
+            <legend class="label">{{ localize "CONAN.healthMental" }}</legend>   
+            <div class="health-content">                                         
+                <label for="data.health.courage"                                 
+                    class="health-label">{{ localize "CONAN.healthCourage" }}</label>
+                <input type="text" name="data.health.courage" value="{{data.health.courage}}"
+                    data-dtype="Number" />                                       
+            </div> 
+           <div class="health-content">                                         
+                <label for="data.health.mental.value"                            
+                    class="health-label">{{ localize "CONAN.healthResolve" }}</label>
+                <input type="text" name="data.health.mental.value" value="{{data.health.mental.value}}"
+                    data-dtype="Number" />                                       
+                <span> / </span>                                                 
+                <input type="text" name="data.health.mental.max" value="{{data.health.mental.max}}"
+                    data-dtype="Number" disabled />                              
+                <span> / </span>                                                 
+                    <label for="data.health.mental.despair"                      
+                    class="health-label">{{ localize "CONAN.healthDespair" }}</label>
+                <input type="text" name="data.health.mental.despair" value="{{data.health.mental.despair}}"
+                    data-dtype="Number" />                                       
+            </div>                                                               
+            <div class="health-content">                                         
+                <label for="data.health.trauma.value"                            
+                    class="health-label">{{ localize "CONAN.healthTrauma" }}</label>
+                <input type="text" name="data.health.mental.trauma.value" value="{{data.health.mental.trauma.value}}"
+                    data-dtype="Number" />                                       
+                <span> / </span>                                                 
+                <label for="data.health.trauma.treated"                          
+                    class="health-label">{{ localize "CONAN.healthTreated" }}</label>
+                <input type="text" name="data.health.mental.trauma.treated"      
+                    value="{{data.health.mental.trauma.treated}}" data-dtype="Number" />
+                <span> / </span>                                                 
+                <input type="text" name="data.health.mental.trauma.max" value="{{data.health.mental.trauma.max}}"
+                    data-dtype="Number" disabled />                              
+            </div>                                                               
+        </fieldset>                                                              
+    </div>                                                                       
+</div>

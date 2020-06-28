@@ -1,0 +1,12 @@
+<ol class="attributes-list">
+{{#each data.attributes as |attribute id|}}
+    <li class="attribute" data-attribute="{{id}}">
+        <h4 class="attribute-name rollable">{{attribute.label}}</h4>
+        <span class="attribute-score" title="Attribute Score">
+            <input name="data.attributes.{{id}}.value" type="text" value="{{attribute.value}}"
+                   data-dtype="Number" placeholder="10"/>
+        </span>
+    </li>
+{{/each}}
+</ol>
+

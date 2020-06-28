@@ -11,7 +11,8 @@ https://app.lucidchart.com/documents/view/4f319568-5171-67b3-97da-61fb0a0041d5
 
 1. **SCSS** to manage CSS & **Gulp** to compile it.
 2. **esLint** to validate code.
-3. **Typescript** is being implemented
+3. **Typescript** 
+4. At some point we may move from gulp to webpack
 
 ## Testing
 
@@ -19,7 +20,7 @@ Please run your code changes in a Conan 2D20 World before commiting to GitHub.
 
 Before major code commits, ensure all standard entities remain functional: 
 
-1. Create, Read, Update & Delete Characters and Foes.
+1. Create, Read, Update & Delete Characters and NPCs.
 2. Create, Read, Update & Delete Items.
 
 ## Submitting changes

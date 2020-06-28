@@ -1,16 +1,21 @@
 # Robert E. Howard's Conan (2D20) ~ Work In Progress
 
-Community contributed (WIP) system for the Foundry VTT (https://foundryvtt.com/) based on the BoilerPlate system by asacolips (Discord: asacolips#1867).
-
 Robert E. Howard's Conan is based on the 2D20 cinematic system developped by Modiphius Entertainment (https://www.modiphius.net/) through their kickstarter (https://www.kickstarter.com/projects/modiphius/robert-e-howards-conan-roleplaying-game).
+
+Community contributed (WIP) system for the Foundry VTT (https://foundryvtt.com/). MOST of this project has been very heavily influenced by [Foundry VTT Pathfinder 2E](https://gitlab.com/hooking/foundry-vtt---pathfinder-2e) from actual blobs of code to the repository layout and project organization. All credit to their previous work and generosity. 
 
 ## Installation Instructions
 
-To install the Conan 2D20 system for Foundry Virtual Tabletop, simply paste the following URL into the **Install System** dialog on the Setup menu of the application. 
+Conan 2D20 is under active development, with rapid and dramatic changes. It currently depends on unmerged changes to Nick East's [Foundry Project Creator Types](https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-typesTo) so we're consuming a fork (We're on the bleeding edge here apparently!). The project should not yet be considered playable.. yet. 
 
-https://github.com/jeromelavoie/foundryvtt-conan2d20/raw/master/system.json
+To install the Conan 2D20 system for development on Foundry Virtual Tabletop:
 
-If you wish to manually install the system, you must clone or extract it into the `foundrydata` under `systems\conan2d20`, commonly ``Data/systems/conan2d20``. You may do this by cloning the repository or downloading a zip archive from the [Releases Page](https://github.com/jeromelavoie/foundryvtt-conan2d20/).
+1. Clone the repository `git clone git@gitlab.com:kayhos/foundryvtt-conan2d20`
+1. Enter the project directory `cd foundryvtt-conan2d20`
+1. Install node modules `npm install`
+1. Copy foundryconfig.example.json to foundryconfig.json and update the data-path to root of your foundry server install
+1. Run a gulp build or watch `npm run gulp:build`
+
 
 You can find out where the `foundrydata` folder is located in the Configuration and Setup page under the Configuration tab (next to the Update Software tab).
 
