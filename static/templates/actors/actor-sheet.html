@@ -1,0 +1,53 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="grid-container actor">
+        <!-- Sheet Header -->
+            {{> systems/conan2d20/templates/actors/main/actor-header.html}}
+        <!-- Main -->
+        <section class="sheet-main main">
+            <div class="attributes" data-group="main" data-tab="attributes">
+            <!-- Health -->
+            {{> systems/conan2d20/templates/actors/main/actor-health.html}}
+            <!-- Background -->
+            {{> systems/conan2d20/templates/actors/main/actor-background.html}}
+            <!-- Attributes -->
+            {{> systems/conan2d20/templates/actors/main/actor-attributes.html}}
+            </div>
+        </section>
+
+        <!-- Sheet Navigation -->
+        <nav class="sheet-navigation">
+            <nav class="sheet-tabs tabs" data-group="primary">
+                <a class="item" data-tab="skills">
+                    {{localize "CONAN.tabSkillsLabel"}}
+                </a>
+                <a class="item" data-tab="inventory">
+                    {{localize "CONAN.tabInventoryLabel"}}
+                </a>
+                <a class="item" data-tab="spellbook">
+                    {{localize "CONAN.tabSpellsLabel"}}
+                </a>
+                <a class="item" data-tab="talents">
+                    {{localize "CONAN.tabTalentsLabel"}}
+                </a>
+            </nav>
+        </nav>
+
+        <section class="sheet-lower">
+
+        <!-- Sheet Body -->
+            <section class="sheet-content">
+                <!-- Skills -->
+                {{> systems/conan2d20/templates/actors/tabs/actor-skills.html}}
+
+                <!-- Inventory -->
+                {{> systems/conan2d20/templates/actors/tabs/actor-inventory.html}}
+
+                <!-- Spells -->
+                {{> systems/conan2d20/templates/actors/tabs/actor-spells.html}}
+
+                <!-- Talents Tab -->
+                {{> systems/conan2d20/templates/actors/tabs/actor-talents.html}}
+            </section>
+        </section>
+    </div>
+</form>

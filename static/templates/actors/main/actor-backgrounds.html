@@ -1,0 +1,70 @@
+<div class="background-fields">
+    <div class="background grid grid-2col">
+        <fieldset>
+            <legend class="label">{{ localize "CONAN.sectionBackground" }}</legend>
+            <div class="background flex-group-left">
+                <div class="background-item">
+                    <label for="data.background.homeland" class="background-item">{{ localize "CONAN.backgroundHomeland" }}</label>
+                    <input type="text" name="data.background.homeland" value="{{data.background.homeland}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.caste" class="background-item">{{ localize "CONAN.backgroundCaste" }}</label>
+                    <input type="text" name="data.background.caste" value="{{data.background.caste}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.trait" class="background-item">{{ localize "CONAN.backgroundTrait" }}</label>
+                    <input type="text" name="data.background.trait" value="{{data.background.trait}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.archetype" class="background-item">{{ localize "CONAN.backgroundArchetype" }}</label>
+                    <input type="text" name="data.background.archetype" value="{{data.background.archetype}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.nature" class="background-item">{{ localize "CONAN.backgroundNature" }}</label>
+                    <input type="text" name="data.background.nature" value="{{data.background.nature}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.education" class="background-item">{{ localize "CONAN.backgroundEducation" }}</label>
+                    <input type="text" name="data.background.education" value="{{data.background.education}}"
+                    data-dtype="String" />
+                </div>
+                <div class="background-item">
+                    <label for="data.background.warstory" class="background-item">{{ localize "CONAN.backgroundWarStory" }}</label>
+                    <input type="text" name="data.background.warstory" value="{{data.background.warstory}}"
+                    data-dtype="String" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend class="label">Social</legend>
+            <div class="background-item">
+                <label for="data.background.renown" class="background-item">{{ localize "CONAN.renown" }}</label>
+                <input type="text" name="data.background.renown" value="{{data.background.renown}}"
+                data-dtype="Number" />
+            </div>
+            <div class="background-item">
+                <label for="data.background.standing.value" class="background-item">{{ localize "CONAN.standing" }}</label>
+                <input type="text" name="data.background.standing.value" value="{{data.background.standing.value}}"
+                data-dtype="Number" />
+            </div>
+            <div class="background-item">
+                <label for="data.resources.upkeep.value" class="background-item">{{ localize "CONAN.upkeep" }}</label>
+                <input type="text" name="data.resources.upkeep.value" value="{{data.resources.upkeep.value}}"
+                data-dtype="Number" disabled />
+            </div>
+            <div class="background-item">
+                <label for="data.background.languages" class="background-item">{{ localize "CONAN.backgroundLanguages" }}</label>
+                <input type="text" name="data.background.languages" value="{{data.background.languages}}"
+                data-dtype="String" />
+            </div>
+        </fieldset>
+        <div>
+        {{> systems/conan2d20/templates/actors/actor-attributes.html}}
+    </div>
+</div>
+            
