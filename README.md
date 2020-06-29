@@ -13,8 +13,16 @@ To install the Conan 2D20 system for development on Foundry Virtual Tabletop:
 1. Clone the repository `git clone git@gitlab.com:kayhos/foundryvtt-conan2d20`
 1. Enter the project directory `cd foundryvtt-conan2d20`
 1. Install node modules `npm install`
-1. Copy foundryconfig.example.json to foundryconfig.json and update the data-path to root of your foundry server install
-1. Run a gulp build or watch `npm run build:dev` 
+1. Copy foundryconfig.example.json to foundryconfig.json and update the data-path to root of your foundry server's Data directory.
+```
+{
+    "dataPath": "/example/path/to/FoundryVTT/Data",
+    "systemName": "conan2d20"
+}
+```
+You should see the directories `systems`, `modules` and `worlds` in this path.
+1. Run a gulp build or watch `npm run build:dev`
+
 
 You can find out where the `foundrydata` folder is located in the Configuration and Setup page under the Configuration tab (next to the Update Software tab).
 
