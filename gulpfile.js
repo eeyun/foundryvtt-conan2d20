@@ -232,8 +232,8 @@ async function copyToUserData(cb) {
     let destDir;
     let linkDir;
     if (config.dataPath) {
-        if (!fs.existsSync(path.join(config.dataPath, 'Data'))) throw Error('User Data path invalid, no Data directory found');
-        linkDir = path.join(config.dataPath, 'Data', 'systems', name);
+        if (!fs.existsSync(path.join(config.dataPath, 'systems'))) throw Error('User Data path invalid, no systems directory found');
+        linkDir = path.join(config.dataPath, 'systems', name);
     } else {
       throw Error('No User Data path defined in foundryconfig.json');
     }
