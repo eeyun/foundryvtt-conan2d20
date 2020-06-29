@@ -16,7 +16,6 @@ To install the Conan 2D20 system for development on Foundry Virtual Tabletop:
 1. Copy foundryconfig.example.json to foundryconfig.json and update the data-path to root of your foundry server install
 1. Run a gulp build or watch `npm run gulp:build`
 
-
 You can find out where the `foundrydata` folder is located in the Configuration and Setup page under the Configuration tab (next to the Update Software tab).
 
 ## Support & Bug Reports
@@ -33,13 +32,13 @@ Following things are greatly appreciated and speed up the resolution time:
   2. Conan 2D20 System.
   3. Browser and its version.
 
-## Community Contribution
+## Community Contributions
 
 Code and content contributions are welcome. Please feel free to submit issues to the issue tracker or submit merge requests for code changes. 
 
 Review the [Contributing Guilelines](https://gitlab.com/kayhos/foundryvtt-conan2d20/-/blob/master/CONTRIBUTING.md) to know how we would prefer receiving your help.
 
-## Code contributions
+### Code Contributions
 
 @Hooking was generous enough to let us reuse the item selector from his game system [Foundry VTT Pathfinder 2e (PF2e)](https://gitlab.com/hooking/foundry-vtt---pathfinder-2e). That piece of code was contributed by `unknown as of now` on the PF2e game system.
 
