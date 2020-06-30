@@ -1,12 +1,13 @@
 {
+  "private": true,
   "name": "conan2d20",
   "version": "1.0.0",
   "description": "CSS compiler for the Conan 2D20 system",
   "author": "Jerome Lavoie",
   "license": "MIT",
   "scripts": {
-    "build": "gulp build & copy",
-    "build:dev": "gulp watch",
+    "build": "webpack --mode production",
+    "build:dev": "webpack",
     "lint": "eslint ./src"
   },
   "devDependencies": {
@@ -36,12 +37,6 @@
     "foundry-pc-types": "https://gitlab.com/eeyun/foundry-pc-types.git",
     "fs-extra": "^8.1.0",
     "gitlab": "^14.2.2",
-    "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
-    "gulp-git": "^2.10.0",
-    "gulp-less": "^4.0.1",
-    "gulp-sass": "^4.1.0",
-    "gulp-typescript": "^6.0.0-alpha.1",
     "jest": "^26.1.0",
     "jest-each": "^26.0.1",
     "json-stringify-pretty-compact": "^2.0.0",
@@ -58,7 +53,6 @@
     "yargs": "^15.1.0"
   },
   "dependencies": {
-    "jest-diff": "^26.1.0",
     "ky": "^0.18.0",
     "ky-universal": "^0.5.0"
   }

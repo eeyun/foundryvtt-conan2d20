@@ -8,6 +8,8 @@ import { Conan2d20System } from './module/conan2d20-system';
 import registerActors from './module/register-actors';
 import {registerSheets} from './module/register-sheets';
 
+require('./styles/conan2d20.scss');
+
 Hooks.once('init', () => {
     console.log('Conan2d20 | Initializing Robert E. Howard\'s Conan 2D20 System');
 

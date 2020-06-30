@@ -5,7 +5,7 @@
   "version": "0.0.6",
   "author": ["Jerome Lavoie / kayhosraven#1642", "Ian Henry / eeyun#0890"],
   "scripts": [ ],
-  "esmodules": [ "conan2d20.js" ],
+  "esmodules": [ "main.bundle.js" ],
   "styles": [ "styles/conan2d20.css" ],
   "packs": [
     {
