@@ -1,7 +1,6 @@
 {
     "_example_Windows_datapath": "Y:\\games\\foundryvtt\\Data\\",
-    "_example_Linux_datapath": "/home/foundry/.local/share/FoundryVTT"
+    "_example_Linux_datapath": "/home/foundry/.local/share/FoundryVTT",
     "dataPath": "/home/foundry/",
     "systemName": "conan2d20"
 }
-
