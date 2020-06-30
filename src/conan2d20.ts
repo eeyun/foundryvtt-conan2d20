@@ -52,9 +52,10 @@ Hooks.once('setup', () => {
 
 Hooks.on('preCreateActor', (actor: any, dir: any) => {
     if (game.settings.get('conan2d20', 'defaultTokenSettings')) {
-    // Set wounds, advantage, and display name visibility
+    // Set wounds, and display name visibility
         mergeObject(actor, {
           'token.bar1': { attribute: 'health.physical.value' }, // Default Bar 1 to Wounds
+          'token.bar2': { attribute: 'health.mental.value' }, // Default Bar 1 to Wounds
           'token.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display name to be on owner hover
           'token.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER, // Default display bars to be on owner hover
           'token.disposition': CONST.TOKEN_DISPOSITIONS.HOSTILE, // Default disposition to hostile
