@@ -65,6 +65,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
     }
 
     activateListeners(html) {
+        super.activateListeners(html);
         html.find('.trait-selector').click(ev => this.onTraitSelector(ev));
     }
 }
