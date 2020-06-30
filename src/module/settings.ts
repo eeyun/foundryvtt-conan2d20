@@ -7,4 +7,12 @@ export default function () {
         default: 0,
         type: Number,
     });
+    game.settings.register('conan2d20', 'defaultTokenSettings', {                       
+        name: 'Default Token Settings',                                    
+        hint: "Automatically set advised token settings to newly created Actors.",
+        scope: 'world',                                                              
+        config: true,                                                                
+        default: true,                                                               
+        type: Boolean,                                                               
+    });
 }
