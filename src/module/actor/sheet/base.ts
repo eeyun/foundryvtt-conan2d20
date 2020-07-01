@@ -24,7 +24,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         const sheetData : any = super.getData();
 
         // Update Attribute Scores
-        console.log(sheetData.data);
         if (sheetData.data.attributes !== undefined) {
             for ( let [a, atr] of Object.entries(sheetData.data.attributes as Record<any, any>)) {
                 atr.label = CONFIG.CONAN.attributes[a];
@@ -162,9 +161,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         const itemId = li.attr('data-item-id');
         const item = new Item(this.actor.getOwnedItem(itemId).data, { actor: this.actor });
 
-        console.log(itemId);
-        console.log(item);
-
         renderTemplate('systems/conan2d20/templates/actors/delete-item-dialog.html', {name: item.name}).then((html) => {
             new Dialog({
                 title: 'Confirm Deletion',
@@ -187,7 +183,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             }).render(true);
         });
     }
-
 }
 
 export default ActorSheetConan2d20;

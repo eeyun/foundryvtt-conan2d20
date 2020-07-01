@@ -94,7 +94,6 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         const backgroundNames =  new Set(actorData.items
             .filter(item => item.type === 'background')
             .map(item => item.name));
-        console.log(actorData);                                                    
     }
 
     activateListeners(html) {
