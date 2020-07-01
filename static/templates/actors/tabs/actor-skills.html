@@ -3,7 +3,7 @@
         <h3 class="item-name co-heading co-actions">{{localize "CONAN.tabSkillsLabel"}}</h3>
         <ol class="skills-list">
 
-            <!-- Core Skills -->
+            <!-- Core Skills  -->
             {{#each data.skills as |skill s|}}
             <li class="skill" data-skill="{{s}}">
                 <h4 class="skill-name rollable" data-roll="2d20cs<=data.skills.{{s}}.tn">{{skill.label}}</h4>
