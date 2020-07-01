@@ -1,0 +1,47 @@
+<h4 class="sidebar-summary">{{localize "CONAN.weaponSummary"}}</h4>
+
+<div class="inventory-details">
+    <div class="form-group">
+        <label>{{localize "CONAN.quantityLabel"}}</label>
+        <input type="text" name="data.quantity.value" value="{{data.quantity.value}}" data-dtype="{{data.quantity.type}}"/>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "CONAN.availability"}}</label>
+        <select name="data.availability" data-dtype="String">
+            {{#select data.availability}}
+            {{#each availability as |label key|}}
+            <option value="{{key}}">{{localize label}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+
+    <div class="form-group">                                                     
+        <label>{{localize "CONAN.itemEncumbrance"}}</label>                      
+        <select name="data.encumbrance" data-dtype="String">                     
+            {{#select data.encumbrance}}                                         
+            {{#each encumbrance as |label key|}}                                 
+            <option value="{{type}}">{{localize label}}</option>                 
+            {{/each}}                                                            
+            {{/select}}                                                          
+        </select>                                                                
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "CONAN.itemCost"}}</label>
+        <input type="number" name="data.cost" value="{{data.cost}}" data-dtype="{{data.cost}}"/>
+    </div>
+</div>
+
+<ol class="item-tags">                                                           
+    {{#if data.equipped.value}}                                                  
+        <li class="tag">{{localize "CONAN.equipmentEquippedLabel"}}</li>             
+    {{/if}}
+    {{#if weaponQualities}}
+    {{#each data.qualities.value}}
+        <li class="tag">{{this}}</li>
+    {{/each}}
+    {{/if}}
+</ol>
+

@@ -129,6 +129,7 @@
         "addEquipment": "Add equipment",
         "addWeapon": "Add weapon",
         "addSpell": "Add Spell",
+        "equipmentBrokenLabel": "Broken",
         "equipmentEquippedLabel": "Equipped",
         "equipmentSummary": "Equipment Summary",
         "encumbranceShortLabel": "Encumbrance",
@@ -175,7 +176,90 @@
         "tabSpellsLabel": "Spells",
         "tabSkillsLabel": "Skills",
         "tabTalentsLabel": "Talents",
+        "qualities": {
+            "weapons": {
+                "backlash": "Backlash"
+            }
+        },
         "qualitiesLabel": "Qualities",
-        "quantityLabel": "Quantity"
+        "quantityLabel": "Quantity",
+        "weaponDamageLabel": "Weapon Damage",
+        "weaponBaseDamageLabel": "Base Weapon Damage",
+        "weaponDamageTitle": "This section configures the base and bonus damage for the weapon.",
+        "weaponBonusDamageLabel": "Bonus Weapon Damage",
+        "weaponRangeLabel": "Weapon Range",
+        "weaponReachLabel": "Weapon Reach",
+        "weaponGroup": {
+            "axe": "Axe",
+            "bow": "Bow",
+            "clu": "Club",
+            "cro": "Crossbow",
+            "dag": "Dagger",
+            "dir": "Dirk",
+            "fla": "Flail",
+            "fle": "Flexile",
+            "ham": "Hammer",
+            "imp": "Improvised",
+            "pic": "Pick",
+            "pol": "Polearm",
+            "shi": "Shield",
+            "sli": "Sling",
+            "swo": "Sword",
+            "spe": "Spear"
+        },
+        "weaponTypes": {
+            "melee": "Melee",
+            "ranged": "Ranged"
+        },
+        "weaponRanges": {
+            "c": "Close",
+            "m": "Medium",
+            "l": "Long"
+        },
+        "weaponSizes": {
+            "1h": "One-Handed",
+            "2h": "Two-Handed",
+            "ub": "Unbalanced",
+            "uw": "Unwieldy",
+            "fi": "Fixed",
+            "mo": "Monstrous"
+        },
+        "weaponGroupLabel": "Weapon Group",
+        "weaponTypeLabel": "Weapon Type",
+        "weaponSizeLabel": "Weapon Size",
+        "weaponSummary": "Weapon Summary",
+        "qualities": {
+            "equipment": {
+                "heav": "Heavy",
+                "nois": "Noisy",
+                "very": "Very Heavy"
+            },
+            "weapons": {
+                "area": "Area",
+                "back": "Backlash X",
+                "blin": "Blinding",
+                "cava": "Cavalry X",
+                "fear": "Fearsome X",
+                "frag": "Fragile",
+                "grap": "Grappling",
+                "hidd": "Hidden X",
+                "impr": "Improvised",
+                "ince": "Incendiary X",
+                "inte": "Intense",    
+                "knoc": "Knockdown",
+                "nonl": "Non-lethal",
+                "parr": "Parrying",
+                "pers": "Persistent X",
+                "pier": "Piercing X",
+                "shie": "Shield X",
+                "spre": "Spread X",
+                "stun": "Stun",
+                "subt": "Subtle X",
+                "thro": "Thrown",
+                "unfo": "Unforgiving X",
+                "vici": "Vicious X",
+                "voll": "Volley"
+            }
+        }
     }
 }
