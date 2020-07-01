@@ -591,11 +591,20 @@
         "weapon": {
             "templates": ["itemDescription", "physicalItem"],
             "weaponType": "",
-            "reach": 0,
-            "damage": 0,
+            "group": "",
+            "damage": {
+                "value": "",
+                "dice":  1
+            },
+            "bonusDamage":{
+                "value": 0
+            },
             "size": "",
-            "qualities": [],
-            "loads": 0
+            "reach": "",
+            "range": "", 
+            "reload": "",
+            "loads": 0,
+            "qualities": []
         },
         "talent": {
             "templates": ["itemDescription"],
