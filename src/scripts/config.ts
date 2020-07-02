@@ -11,30 +11,30 @@ CONFIG.attributes = {
 };
 
 CONFIG.skills = {
-    acr: 'CONAN.skills.acr', 
-    mel: 'CONAN.skills.mel', 
-    ste: 'CONAN.skills.ste', 
-    ins: 'CONAN.skills.ins', 
-    obs: 'CONAN.skills.obs', 
-    sur: 'CONAN.skills.sur', 
-    thi: 'CONAN.skills.thi', 
-    ath: 'CONAN.skills.ath', 
-    res: 'CONAN.skills.res', 
-    par: 'CONAN.skills.par', 
-    ran: 'CONAN.skills.ran', 
-    sai: 'CONAN.skills.sai', 
-    alc: 'CONAN.skills.alc', 
-    cra: 'CONAN.skills.cra', 
-    hea: 'CONAN.skills.hea', 
-    lin: 'CONAN.skills.lin', 
-    lor: 'CONAN.skills.lor', 
-    war: 'CONAN.skills.war', 
-    ani: 'CONAN.skills.ani', 
-    com: 'CONAN.skills.com', 
-    cou: 'CONAN.skills.cou', 
-    per: 'CONAN.skills.per', 
-    soc: 'CONAN.skills.soc', 
-    dis: 'CONAN.skills.dis', 
+    acr: 'CONAN.skills.acr',
+    mel: 'CONAN.skills.mel',
+    ste: 'CONAN.skills.ste',
+    ins: 'CONAN.skills.ins',
+    obs: 'CONAN.skills.obs',
+    sur: 'CONAN.skills.sur',
+    thi: 'CONAN.skills.thi',
+    ath: 'CONAN.skills.ath',
+    res: 'CONAN.skills.res',
+    par: 'CONAN.skills.par',
+    ran: 'CONAN.skills.ran',
+    sai: 'CONAN.skills.sai',
+    alc: 'CONAN.skills.alc',
+    cra: 'CONAN.skills.cra',
+    hea: 'CONAN.skills.hea',
+    lin: 'CONAN.skills.lin',
+    lor: 'CONAN.skills.lor',
+    war: 'CONAN.skills.war',
+    ani: 'CONAN.skills.ani',
+    com: 'CONAN.skills.com',
+    cou: 'CONAN.skills.cou',
+    per: 'CONAN.skills.per',
+    soc: 'CONAN.skills.soc',
+    dis: 'CONAN.skills.dis',
     sor: 'CONAN.skills.sor'
 };
 
@@ -67,61 +67,118 @@ CONFIG.coverageTypes = {
 };
 
 CONFIG.armorTypes = {
-    hcloth: 'CONAN.armorTypes.heavycloth',
-    larmor: 'CONAN.armorTypes.lightarmor',
-    harmor: 'CONAN.armorTypes.heavyarmor',
-    varmor: 'CONAN.armorTypes.vheavyarmor'
+    heavyCloth: 'CONAN.armorTypes.heavycloth',
+    lightArmor: 'CONAN.armorTypes.lightarmor',
+    heavyArmor: 'CONAN.armorTypes.heavyarmor',
+    veryHeavyRrmor: 'CONAN.armorTypes.vheavyarmor'
 };
 
 CONFIG.equipmentQualities = {
-    heav: 'CONAN.qualities.equipment.heav',
-    nois: 'CONAN.qualities.equipment.nois',
-    very: 'CONAN.qualities.equipment.very'
+    heavy: 'CONAN.qualities.equipment.heav',
+    noisy: 'CONAN.qualities.equipment.nois',
+    veryHeavy: 'CONAN.qualities.equipment.very'
+};
+
+CONFIG.actionTypes = {
+    passive: 'CONAN.actionPassive',
+    free: 'CONAN.actionFree',
+    minor: 'CONAN.actionMinor',
+    standard: 'CONAN.actionStandard',
+    reaction: 'CONAN.actionReaction'
+};
+
+CONFIG.freeActions = {
+    adjust: 'CONAN.actions.free.adj',
+    dropItem: 'CONAN.actions.free.dro',
+    dropProne: 'CONAN.actions.free.pro',
+    simpleTask: 'CONAN.actions.free.sim',
+    speak: 'CONAN.actions.free.spe'
+};
+
+CONFIG.minorActions = {
+    clear: 'CONAN.actions.minor.cle',
+    drawItem: 'CONAN.actions.minor.dra',
+    movement: 'CONAN.actions.minor.mov',
+    regainGuard: 'CONAN.actions.minor.reg',
+    stand: 'CONAN.actions.minor.sta',
+};
+
+CONFIG.standardActions = {
+    assist: 'CONAN.actions.standard.ass',
+    attack: 'CONAN.actions.standard.att',
+    brace: 'CONAN.actions.standard.bra',
+    exploit: 'CONAN.actions.standard.exp',
+    pass: 'CONAN.actions.standard.pas',
+    ready: 'CONAN.actions.standard.rea',
+    recover: 'CONAN.actions.standard.rec',
+    skillTest: 'CONAN.actions.standard.ski',
+    sprint: 'CONAN.actions.standard.spr',
+    treatment: 'CONAN.actions.standard.tre',
+    withdraw: 'CONAN.actions.standard.wit'
+};
+
+CONFIG.reactionActions = {
+    defend: 'CONAN.actions.reaction.def',
+    protect: 'CONAN.actions.reaction.pro',
+    retaliate: 'CONAN.actions.reaction.ret'
+};
+
+CONFIG.actionCategories = {
+    defensive: 'CONAN.talentCategories.def',
+    offensive: 'CONAN.talentCategories.off',
+    interaction: 'CONAN.talentCategories.int'
+};
+
+CONFIG.talentRanks = {
+    1: 1,
+    2: 2,
+    3: 3
 };
 
 CONFIG.weaponQualities = {
     area: 'CONAN.qualities.weapons.area',
-    back: 'CONAN.qualities.weapons.back',
-    blin: 'CONAN.qualities.weapons.blin', 
-    cava: 'CONAN.qualities.weapons.cava',
-    fear: 'CONAN.qualities.weapons.fear',
-    frag: 'CONAN.qualities.weapons.frag',
-    grap: 'CONAN.qualities.weapons.grap',
-    hidd: 'CONAN.qualities.weapons.hidd',
-    impr: 'CONAN.qualities.weapons.impr',
-    ince: 'CONAN.qualities.weapons.ince',
-    inte: 'CONAN.qualities.weapons.inte',
-    knoc: 'CONAN.qualities.weapons.knoc',
-    nonl: 'CONAN.qualities.weapons.nonl',
-    parr: 'CONAN.qualities.weapons.parr',
-    pers: 'CONAN.qualities.weapons.pers',
-    pier: 'CONAN.qualities.weapons.pier',
-    shie: 'CONAN.qualities.weapons.shie',
-    spre: 'CONAN.qualities.weapons.spre',
+    backlash: 'CONAN.qualities.weapons.back',
+    blinding: 'CONAN.qualities.weapons.blin',
+    cavalry: 'CONAN.qualities.weapons.cava',
+    fearsome: 'CONAN.qualities.weapons.fear',
+    fragile: 'CONAN.qualities.weapons.frag',
+    grappling: 'CONAN.qualities.weapons.grap',
+    hidden: 'CONAN.qualities.weapons.hidd',
+    improvised: 'CONAN.qualities.weapons.impr',
+    incendiary: 'CONAN.qualities.weapons.ince',
+    intense: 'CONAN.qualities.weapons.inte',
+    knockdown: 'CONAN.qualities.weapons.knoc',
+    nonlethal: 'CONAN.qualities.weapons.nonl',
+    parrying: 'CONAN.qualities.weapons.parr',
+    persistent: 'CONAN.qualities.weapons.pers',
+    piercing: 'CONAN.qualities.weapons.pier',
+    shield: 'CONAN.qualities.weapons.shie',
+    spread: 'CONAN.qualities.weapons.spre',
     stun: 'CONAN.qualities.weapons.stun',
-    subt: 'CONAN.qualities.weapons.subt',
-    thro: 'CONAN.qualities.weapons.thro',
-    unfo: 'CONAN.qualities.weapons.unfo',
-    vici: 'CONAN.qualities.weapons.vici',
-    voll: 'CONAN.qualities.weapons.voll'
+    subtle: 'CONAN.qualities.weapons.subt',
+    thrown: 'CONAN.qualities.weapons.thro',
+    unforgiving: 'CONAN.qualities.weapons.unfo',
+    vicious: 'CONAN.qualities.weapons.vici',
+    volley: 'CONAN.qualities.weapons.voll'
 };
 
 CONFIG.weaponGroups = {
-    axe: 'CONAN.weaponGroup.axe',                                                
-    bow: 'CONAN.weaponGroup.bow',                                                 
-    clu: 'CONAN.weaponGroup.clu',                                                 
-    cro: 'CONAN.weaponGroup.cro',                                                 
-    dag: 'CONAN.weaponGroup.dag',                                                 
-    dir: 'CONAN.weaponGroup.dir',                                                 
-    fla: 'CONAN.weaponGroup.fla',                                                 
-    fle: 'CONAN.weaponGroup.fle',                                                 
-    ham: 'CONAN.weaponGroup.ham',                                                 
-    imp: 'CONAN.weaponGroup.imp',                                                 
-    pic: 'CONAN.weaponGroup.pic',                                                 
-    pol: 'CONAN.weaponGroup.pol',                                                 
-    shi: 'CONAN.weaponGroup.shi',                                                 
-    sli: 'CONAN.weaponGroup.sli',                                                 
-    swo: 'CONAN.weaponGroup.swo'                                                
+    axe: 'CONAN.weaponGroup.axe',
+    bow: 'CONAN.weaponGroup.bow',
+    club: 'CONAN.weaponGroup.clu',
+    crossbow: 'CONAN.weaponGroup.cro',
+    dagger: 'CONAN.weaponGroup.dag',
+    dirk: 'CONAN.weaponGroup.dir',
+    flail: 'CONAN.weaponGroup.fla',
+    flexile: 'CONAN.weaponGroup.fle',
+    hammer: 'CONAN.weaponGroup.ham',
+    improvised: 'CONAN.weaponGroup.imp',
+    pick: 'CONAN.weaponGroup.pic',
+    polearm: 'CONAN.weaponGroup.pol',
+    shield: 'CONAN.weaponGroup.shi',
+    sling: 'CONAN.weaponGroup.sli',
+    sword: 'CONAN.weaponGroup.swo',
+    spear: 'CONAN.weaponGroup.spe'
 };
 
 CONFIG.weaponTypes = {
@@ -130,12 +187,12 @@ CONFIG.weaponTypes = {
 };
 
 CONFIG.weaponSizes = {
-    oh: 'CONAN.weaponSizes.1h',
-    th: 'CONAN.weaponSizes.2h',
-    ub: 'CONAN.weaponSizes.ub',
-    uw: 'CONAN.weaponSizes.uw',
-    fi: 'CONAN.weaponSizes.fi',
-    mo: 'CONAN.weaponSizes.mo'
+    oneHanded: 'CONAN.weaponSizes.1h',
+    twoHanded: 'CONAN.weaponSizes.2h',
+    unbalanced: 'CONAN.weaponSizes.ub',
+    unwieldy: 'CONAN.weaponSizes.uw',
+    fixed: 'CONAN.weaponSizes.fi',
+    monstrous: 'CONAN.weaponSizes.mo'
 };
 
 CONFIG.weaponReaches = {
@@ -146,9 +203,9 @@ CONFIG.weaponReaches = {
 };
 
 CONFIG.weaponRanges = {
-    c: "CONAN.weaponRanges.c",
-    m: "CONAN.weaponRanges.m",
-    l: "CONAN.weaponRanges.l"
+    close: "CONAN.weaponRanges.c",
+    medium: "CONAN.weaponRanges.m",
+    long: "CONAN.weaponRanges.l"
 };
 
 CONFIG.damageDice = {

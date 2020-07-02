@@ -6,10 +6,47 @@
         "momentum": "Momentum",
         "doom": "Doom",
         "name": "Name",
-        "actionMinor": "Minor Action",
+        "actionPassive": "Passive",
         "actionFree": "Free Action",
-        "actionStandard": "Standard Action",
+        "actionMinor": "Minor Action",
         "actionReaction": "Reaction",
+        "actionStandard": "Standard Action",
+        "actions": {
+            "free": {
+                "adj": "Adjust",
+                "dro": "Drop Item",
+                "pro": "Drop Prone",
+                "sim": "Simple Task",
+                "spe": "Speak"
+            },
+            "minor": {
+                "cle": "Clear",
+                "dra": "Draw Item",
+                "mov": "Movement",
+                "reg": "Regain Guard",
+                "sta": "Stand"
+            },
+           "reaction": {
+               "def": "Defend",
+               "pro": "Protect",
+               "ret": "Retaliate"
+           },
+           "standard": {
+               "ass": "Assist",
+               "att": "Attack",
+               "bra": "Brace",
+               "exp": "Exploit",
+               "pas": "Pass",
+               "rea": "Ready",
+               "rec": "Recover",
+               "ski": "Skill Test",
+               "spr": "Sprint",
+               "tre": "Treatment",
+               "wit": "Withdraw"
+           }
+        },
+        "actionTypeLabel": "Action Type",
+        "actionCategoryLabel": "Action Category",
         "availability": "Availability",
         "movement": "Movement",
         "customRollDice": "How many D20s?",
@@ -17,8 +54,6 @@
         "customRollDifficulty": "Roll difficulty?",
         "characterNamePlaceholder": "Name",
         "characterDescPlaceholder": "Description",
-        "sectionAttributes": "Attributes",
-        "sectionSkills": "Skills",
         "attributes": {
             "agi": "Agility",
             "awa": "Awareness",
@@ -96,7 +131,6 @@
         "standing": "Social Standing",
         "renown": "Renown",
         "upkeep": "Upkeep",
-        "talents": "Talents",
         "charGold": "Gold",
         "fortune": "Fortune",
         "itemName": "Name",
@@ -183,6 +217,19 @@
         },
         "qualitiesLabel": "Qualities",
         "quantityLabel": "Quantity",
+        "talentCategories": {
+            "off": "Offensive",
+            "def": "Defensive",
+            "int": "Interaction"
+        },
+        "talentActionTypeLabel": "Talent Action Type",
+        "talentCostLabel": "Talent Cost",
+        "talentPrereqLabel": "Prerequisites",
+        "talentRankLabel": "Rank",
+        "talentRankMaxLabel": "Maximum Ranks",
+        "talentSummary": "Talent Summary",
+        "talentTypeLabel": "Talent Type",
+        "talentActionCategoryLabel": "Talent Action Category",
         "weaponDamageLabel": "Weapon Damage",
         "weaponBaseDamageLabel": "Base Weapon Damage",
         "weaponDamageTitle": "This section configures the base and bonus damage for the weapon.",

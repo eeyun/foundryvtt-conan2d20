@@ -38,7 +38,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             }
         }
 
-        // Update traits
+        // Update Skills and Attributes
         sheetData.attributes = CONFIG.CONAN.attributes;
         sheetData.skills = CONFIG.CONAN.skills;
 

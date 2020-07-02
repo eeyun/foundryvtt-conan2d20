@@ -57,6 +57,12 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.encumbrance = CONFIG.CONAN.encumbranceTypes;
 
             this._prepareQualities(data.data.qualities, CONFIG.CONAN.weaponQualities);
+        } else if (type === 'talent') {
+            data.talentTypes = CONFIG.CONAN.skills;
+            data.talentActionTypes = CONFIG.CONAN.actionTypes;
+            data.categories = CONFIG.CONAN.actionCategories;
+            data.rankMax = data.data.rank.max;
+            data.talentTags = [data.data.rank.value].filter(t => !!t);
         }
         return data;
     }

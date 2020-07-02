@@ -3,6 +3,8 @@ export default function() {
         'systems/conan2d20/templates/items/item-sheet.html',
         'systems/conan2d20/templates/items/equipment-details.html',
         'systems/conan2d20/templates/items/equipment-sidebar.html',
+        'systems/conan2d20/templates/items/talent-details.html',
+        'systems/conan2d20/templates/items/talent-sidebar.html',
         'systems/conan2d20/templates/items/weapon-details.html',
         'systems/conan2d20/templates/items/weapon-sidebar.html',
         'systems/conan2d20/templates/actors/actor-sheet.html',
