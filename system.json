@@ -95,6 +95,14 @@
         "module": "conan2d20",
         "path": "./packs/homelands.db",
         "entity": "JournalEntry"
+    },
+    {
+      "name": "rollable-tables",
+      "label": "Rollable Tables",
+      "system": "conan2d20",
+      "module": "conan2d20",
+      "path": "./packs/rollable-tables.db",
+      "entity": "RollTable"
     }
   ],
   "languages": [
@@ -110,8 +118,8 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "health.physical.value",
   "secondaryTokenAttribute": "health.mental.value",
-  "minimumCoreVersion": "0.6.2",
-  "compatibleCoreVersion": "0.6.2",
+  "minimumCoreVersion": "0.6.4",
+  "compatibleCoreVersion": "0.6.4",
   "url": "https://gitlab.com/kayhos/foundryvtt-conan2d20",
   "manifest": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/raw/master/static/system.json",
   "download": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/archive/master/foundryvtt-conan2d20-master.zip",

@@ -258,4 +258,3 @@ CONFIG.damageDice = {
     8: '8',
     9: '9'
 };
-

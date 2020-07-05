@@ -7,6 +7,8 @@ import ActorConan2d20 from './module/actor/actor';
 import { Conan2d20System } from './module/conan2d20-system';
 import registerActors from './module/register-actors';
 import {registerSheets} from './module/register-sheets';
+import {ConanRoll} from './module/system/rolls';
+import {CombatDie} from './module/system/dice';
 
 require('./styles/conan2d20.scss');
 
@@ -70,4 +72,3 @@ Hooks.on('preCreateActor', (actor: any, dir: any) => {
         }
     }
 });
-
