@@ -54,7 +54,7 @@
                         "min": 0,
                         "value": 7,
                         "max": 7,
-                        "trauma": {
+                        "traumas": {
                             "min": 0,
                             "value": 0,
                             "treated": 0,
@@ -522,7 +522,7 @@
                 "encumbrance": 0,
                 "availability": 0,
                 "cost": 0,
-                "quantity": 0
+                "quantity": 1
             },
             "activatedEffect": {
                 "activation": {

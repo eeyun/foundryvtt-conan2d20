@@ -1,0 +1,33 @@
+nav.sheet-navigation {
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+    a {
+        color: black;
+        padding: 4px 0;
+        font-family: CrushYourEnemies;
+        font-size: 10px;
+        font-weight: 600;
+        position: relative;
+        border-bottom: 1px solid transparent;
+
+        &.active::after {
+            bottom: -2px;
+            right: 39%;
+            position: absolute;
+            content: '';
+            width: 0;
+            height: 0;
+        }
+
+        &:hover {
+            background-color: transparent;
+            @include input-glow;
+            cursor: pointer;
+        }
+    }
+
+    a.active {
+        @include input-glow;
+    }
+}

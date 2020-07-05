@@ -9,6 +9,7 @@ export default function() {
         'systems/conan2d20/templates/items/weapon-sidebar.html',
         'systems/conan2d20/templates/actors/actor-sheet.html',
         'systems/conan2d20/templates/actors/delete-item-dialog.html',
+        'systems/conan2d20/templates/actors/tabs/actor-character.html',
         'systems/conan2d20/templates/actors/tabs/actor-inventory.html',
         'systems/conan2d20/templates/actors/tabs/actor-spells.html',
         'systems/conan2d20/templates/actors/tabs/actor-skills.html',

@@ -1,0 +1,98 @@
+.hitpoints {
+    h4,
+    label {
+        font-family: $serif;
+        font-weight: 500;
+        margin: 0;
+        line-height: 1;
+        font-size: 10px;
+    }
+    h2 {
+        text-align: center;
+        border-bottom-color: var(--sidebar-title);
+    }
+    .hp-big {
+        display: grid;
+        justify-content: space-evenly;
+        grid-template-columns: repeat(3, 60px);
+        .container {
+            text-align: center;
+            &.temp-hp {
+                text-align: center;
+                margin-right: 8px;
+                input[type='number'] {
+                    width: 52px;
+                    text-align: center;
+                    border-bottom: 1px solid transparent;
+                    &:focus {
+                        border-bottom: 1px solid var(--tertiary);
+                    }
+                }
+            }
+            &.max-hp {
+                text-align: center;
+                margin-left: 8px;
+                h2 {
+                    @include text-gold;
+                    text-align: center;
+                }
+            }
+            &.max-hp,
+            &.temp-hp {
+                margin-top: 12px;
+            }
+            &.temp-hp,
+            &.current-hp {
+                input:hover {
+                    @include input-glow;
+                }
+            }
+            &.current-hp {
+                display: flex;
+                flex-direction: column;
+                padding: 10px 4px 0;
+                position: relative;
+                z-index: 0;
+                border-radius: 0 0 2px 2px;
+
+                .data-value {
+                    margin-top: 3px;
+                    input[type='text'] {
+                        width: 52px;
+                        font-size: 32px;
+                        letter-spacing: -1px;
+                        height: 32px;
+                    }
+                }
+            }
+        }
+    }
+    .hp-small {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 8px;
+        text-align: center;
+        h4,
+        label {
+            @include micro;
+        }
+        .fa,
+        .far,
+        .fas {
+            color: white;
+
+            &:hover {
+                @include input-glow;
+                color: white;
+                cursor: pointer;
+            }
+        }
+        a.wounds {
+            &:hover {
+                @include input-glow;
+                color: white;
+                cursor: pointer;
+            }
+        }  
+    }
+}

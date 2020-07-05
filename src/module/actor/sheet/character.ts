@@ -1,4 +1,6 @@
 import ActorSheetConan2d20 from './base';
+import { C2_Utility } from '../../../scripts/utility';
+import { data } from 'jquery';
 
 class ActorSheetConan2d20Character extends ActorSheetConan2d20 { 
     static get defaultOptions() {
@@ -21,7 +23,11 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
     getData() {
         const sheetData = super.getData();
 
-        sheetData.uid = this.id;
+        // Update wounded icon
+        sheetData.data.health.physical.wounds = C2_Utility.addDots(duplicate(sheetData.data.health.physical.wounds), sheetData.data.health.physical.wounds.max);
+
+        // Update traumatized icon
+        sheetData.data.health.mental.traumas = C2_Utility.addDots(duplicate(sheetData.data.health.mental.traumas), sheetData.data.health.mental.traumas.max);
 
         return sheetData;
     }
@@ -61,7 +67,9 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
               readonlyEquipment.push(i);                                               
               actorData.hasEquipment = true;                                           
             }                                                                          
-                                                                                       
+            
+            i.canBeEquipped = true;
+            i.isEquipped = i?.data?.equipped ?? false;
             // Inventory                                                               
             if (Object.keys(inventory).includes(i.type)) {                             
                 i.data.quantity = i.data.quantity || 0;                                  
@@ -79,6 +87,13 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                     attacks["weapon"].items.push(i);
                 }
                 inventory[i.type].items.push(i);
+
+                if  (i.type === 'weapon' || i.type === 'equipment') {
+                    i.canBeBroken = true;
+                } else {
+                    i.canBeBroken = false;
+                }
+
             }
 
             else if (i.type === 'background') {                                        
@@ -99,7 +114,9 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
     activateListeners(html) {
         super.activateListeners(html);
 
-        html.find('.trait-selector').click((ev) => this._onTraitSelector(ev));
+        if (!this.options.editable) return;
+
+        html.find('img[data-edit]').click(ev => this._onEditImage(ev));
     }
 }
 

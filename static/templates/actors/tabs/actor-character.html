@@ -1,0 +1,170 @@
+<div class="tab character" data-group="primary" data-tab="character">
+    <section class="character-details">
+        <div class="frame">
+            <img
+                class="player-image"
+                alt="{{actor.name}}"
+                src="{{actor.img}}"
+                title="{{actor.name}}"
+                data-edit="img"
+            />
+        </div>
+        <div class="alignment">
+            <span
+                class="bio-nature pf-value pf-small"
+                title="{{localize 'CONAN.backgroundNatureTitle'}}"
+            >
+                <select
+                name="data.background.nature.value"
+                data-dtype="text"
+                >
+                    {{#select data.background.nature.value}} 
+                        {{#each natures as |label key|}}
+                        <option value="{{key}}">{{label}}</option>
+                        {{/each}} 
+                    {{/select}}
+                </select>
+            </span>
+        </div>
+        <section class="character-traits">
+            <div class="pc pc_languages">
+                <h4 class="pf-title">
+                    {{localize 'CONAN.backgroundLanguages'}}
+                </h4>
+                <ul class="tags">
+                    {{#each data.background.languages.value as |v k|}}
+                    <li class="tag {{k}}">
+                        {{v}}
+                    </li>
+                    {{/each}}
+                    <li class="tag edit-btn" for="data.background.languages">
+                        <a class="trait-selector" data-options="languages">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-plus"
+                            >
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <div class="detail-sheet">
+            <div class="pc pc_homeland">
+                <label for="pc_homeland">
+                    {{localize 'CONAN.backgroundHomeland'}}
+                </label>
+                <span title="{{localize 'CONAN.backgroundHomelandTitle'}}">
+                    <input
+                        id="pc pc_homeland"
+                        name="data.background.homeland.value"
+                        type="text"
+                        value="{{data.background.homeland.value}}"
+                        data-dtype="String"
+                    />
+                </span>
+            </div>
+            <div class="pc pc_caste">
+                <label for="pc_caste">
+                    {{localize 'CONAN.backgroundCaste'}}
+                </label>
+                <span title="{{localize 'CONAN.backgroundCasteTitle'}}">
+                    <input
+                        id="pc pc_caste"
+                        name="data.background.caste.value"
+                        type="text"
+                        value="{{data.background.caste.value}}"
+                        data-dtype="String"
+                    />
+                </span>
+            </div>
+            <div class="pc pc_trait">
+                <label for="pc_trait">
+                    {{localize 'CONAN.backgroundTrait'}}
+                </label>
+                <span title="{{localize 'CONAN.backgroundTraitTitle'}}">
+                    <input
+                        id="pc pc_trait"
+                        name="data.background.story.trait.value"
+                        type="text"
+                        value="{{data.background.story.trait.value}}"
+                        data-dtype="String"
+                    />
+                </span>
+            </div>
+            <div class="pc pc_archetype">
+                <label for="pc_archetype">
+                    {{localize 'CONAN.backgroundArchetype'}}
+                </label>
+                <span title="{{localize 'CONAN.backgroundArchetypeTitle'}}">
+                    <input
+                        id="pc pc_archetype"
+                        name="data.background.archetype.value"
+                        type="text"
+                        value="{{data.background.archetype.value}}"
+                        data-dtype="String"
+                    />
+                </span>
+            </div>
+            <div class="pc pc_education">
+                <label for="pc_education">
+                    {{localize 'CONAN.backgroundEducation'}}
+                </label>
+                <span title="{{localize 'CONAN.backgroundEducationTitle'}}">
+                    <input
+                        id="pc pc_education"
+                        name="data.background.education.value"
+                        type="text"
+                        value="{{data.background.education.value}}"
+                        data-dtype="String"
+                    />
+                </span>
+            </div>
+            <div class="detail-small">
+                <div class="pc pc_age">
+                    <label for="pc_age">
+                        {{localize 'CONAN.backgroundAge'}}
+                    </label>
+                    <span title="{{localize 'CONAN.backgroundAgeTitle'}}">
+                        <input
+                            id="pc pc_age"
+                            name="data.background.age.value"
+                            type="text"
+                            value="{{data.background.age.value}}"
+                            data-dtype="String"
+                        />
+                    </span>
+                </div>
+                <div class="pc pc_gender">
+                    <label for="pc_gender">
+                        {{localize 'CONAN.backgroundGender'}}
+                    </label>
+                    <span title="{{localize 'CONAN.backgroundGenderTitle'}}">
+                        <input
+                            id="pc pc_gender"
+                            name="data.background.gender.value"
+                            type="text"
+                            value="{{data.background.gender.value}}"
+                            data-dtype="String"
+                        />
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h3>{{localize 'CONAN.attributeScoresHeader'}}</h3>
+    <section class="character-attributes">
+        {{> systems/conan2d20/templates/actors/main/actor-attributes.html}}
+    </section>  
+</div>

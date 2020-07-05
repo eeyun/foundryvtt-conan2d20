@@ -3,7 +3,7 @@
 <div class="inventory-details">
     <div class="form-group">
         <label>{{localize "CONAN.quantityLabel"}}</label>
-        <input type="text" name="data.quantity.value" value="{{data.quantity.value}}" data-dtype="{{data.quantity.type}}"/>
+        <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="{{data.quantity.type}}"/>
     </div>
 
     <div class="form-group">
@@ -26,31 +26,31 @@
             {{/each}}
             {{/select}}
         </select>
+    </div>
 
     <div class="form-group">
         <label>{{localize "CONAN.soakLabel"}}</label>
         <input type="text" name="data.armor.soak" value="{{data.armor.soak}}" data-dtype="{{data.armor.soak}}"/>
     </div>
     
-    <div class="form-group-stacked">                                                 
-        <label for="data.armor.coverage">                                                 
-            {{localize "CONAN.coverageLabel"}}                                      
+    <div class="form-group-stacked">
+        <label for="data.armor.coverage">
+            {{localize "CONAN.coverageLabel"}}
             <a class="trait-selector" data-options="coverageTypes"><i class="fas fa-edit"></i></a>
-        </label>                                                                     
-        <ul class="coverages-list co-value co-large">                                
-            {{#each data.armor.coverage.value as |v k|}}                                  
-            <span class="tag {{k}}">{{v}}</span>                                     
-            {{/each}}                                                                
+        </label>
+        <ul class="coverages-list co-value co-large">
+            {{#each data.armor.coverage.value as |v k|}}
+            <span class="tag {{k}}">{{v}}</span>
+            {{/each}}
         </ul>                                                                        
     </div>  
 
-    </div>
     <div class="form-group">
         <label>{{localize "CONAN.itemEncumbrance"}}</label>
-        <select name="data.encumbrance" data-dtype="String">
+        <select name="data.encumbrance" data-dtype="{{data.encumbrance.type}}">
             {{#select data.encumbrance}}
             {{#each encumbrance as |label key|}}
-            <option value="{{type}}">{{localize label}}</option>
+            <option value="{{key}}">{{localize label}}</option>
             {{/each}}
             {{/select}}
         </select>
