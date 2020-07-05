@@ -568,7 +568,7 @@
             }
         },
         "equipment": {
-            "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
+            "templates": ["itemDescription", "physicalItem"],
             "equipmentType": "",
             "armor": {
                 "coverage": [],
@@ -577,7 +577,7 @@
             }
         },
         "kit": {
-            "templates": ["itemDescription", "physicalItem"],
+            "templates": ["itemDescription", "physicalItem", "activatedEffect"],
             "kitType": "",
             "skill": "",
             "uses": {
@@ -607,8 +607,9 @@
             "qualities": []
         },
         "talent": {
-            "templates": ["itemDescription"],
+            "templates": ["itemDescription", "action"],
             "skill": "",
+            "talentType": "",
             "prerequisites": [],
             "category":"",
             "cost": 100,
@@ -620,7 +621,7 @@
             "actionCategory": ""
         },
         "spell": {
-            "templates": ["itemDescription"],
+            "templates": ["itemDescription", "action"],
             "spellLevel": 1,
             "costBuyResolve": 2,
             "costCastResolve": 2,

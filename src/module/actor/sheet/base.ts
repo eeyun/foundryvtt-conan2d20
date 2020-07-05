@@ -199,14 +199,28 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         new TraitSelector(this.actor, options).render(true);
     }
 
+    /**
+     * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
+     * @private
+     */
     _onItemCreate(event) {
         event.preventDefault();
         const header = event.currentTarget;
         const data = duplicate(header.dataset);
-    
+
+        if (data.type === 'talent') {
+        data.name = `New ${data.featTalent.capitalize()} ${data.type.capitalize()}`;
+        mergeObject(data, { 'data.talentType.value': data.talentType });
+        } else if (data.type === 'action') {
+        data.name = `New ${data.actionType.capitalize()}`;
+        mergeObject(data, { 'data.actionType.value': data.actionType });
+        } else {
         data.name = `New ${data.type.capitalize()}`;
+        }
+        // this.actor.createOwnedItem(data, {renderSheet: true});
         this.actor.createEmbeddedEntity('OwnedItem', data);
     }
+
 
     _onItemDelete(event) {
         const li = $(event.currentTarget).parents('.item');

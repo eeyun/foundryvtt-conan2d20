@@ -43,7 +43,7 @@ Hooks.once('setup', () => {
 
    (window as any).Conan2d20 = new Conan2d20System();
 
-    const toLocalize: any = ['attributes', 'skills', 'encumbranceTypes', 'availabilityTypes', 'coverageTypes', 'armorTypes', 'equipmentQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes', 'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories', "naturesTypes", "languages"];
+    const toLocalize: any = ['attributes', 'skills', 'encumbranceTypes', 'availabilityTypes', 'coverageTypes', 'armorTypes', 'equipmentQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes', 'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories', "naturesTypes", "languages", "talentTypes"];
     for (const o of toLocalize) {
         CONFIG.CONAN[o] = Object.entries(CONFIG.CONAN[o]).reduce((obj, e: any) => {
             obj[e[0]] = game.i18n.localize(e[1]);

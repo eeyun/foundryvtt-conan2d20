@@ -43,16 +43,40 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         const inventory = {                                                          
             weapon: { label: game.i18n.localize("CONAN.inventoryWeaponsHeader"), items: [] },
             equipment: { label: game.i18n.localize("CONAN.inventoryEquipmentHeader"), items: [] },
-            kits: { label: game.i18n.localize("CONAN.inventoryKitsHeader"), items: [] },
-            talents: { label: game.i18n.localize("CONAN.inventoryTalentsHeader"), items: [] },
+            kits: { label: game.i18n.localize("CONAN.inventoryKitsHeader"), items: [] }
         };                                                                           
                                                                                   
         const backgrounds = {                                                        
             homeland: { label: game.i18n.localize("CONAN.bgHomelandHeader"), bgs: [] },
             archetype: { label: game.i18n.localize("CONAN.bgArchetypeHeader"), bgs: [] },
-            caste: { label: game.i18n.localize("CONAN.bgCasteHeader"), bgs: [] },
+            caste: { label: game.i18n.localize("CONAN.bgCasteHeader"), bgs: [] }
         };
 
+        const talents = {
+            homeland: {label: game.i18n.localize("CONAN.talentHomelandHeader"), talents: [] },
+            caste: {label: game.i18n.localize("CONAN.talentCasteHeader"), talents: [] },
+            bloodline: {label: game.i18n.localize("CONAN.talentBloodlineHeader"), talents: [] },
+            education: {label: game.i18n.localize("CONAN.talentEducationHeader"), talents: [] },
+            nature: {label: game.i18n.localize("CONAN.talentNatureHeader"), talents: [] },
+            archetype: {label: game.i18n.localize("CONAN.talentArchetypeHeader"), talents: [] },
+            other: {label: game.i18n.localize("CONAN.talentOtherHeader"), talents: [] }            
+        };
+
+            // Actions
+        const actions = {
+            standard: { label: game.i18n.localize("CONAN.actionsStandardActionHeader"), actions: [] },
+            minor: { label: game.i18n.localize("CONAN.actionsMinorActionHeader"), actions: [] },
+            reaction: { label: game.i18n.localize("CONAN.actionsReactionsHeader"), actions: [] },
+            free: { label: game.i18n.localize("CONAN.actionsFreeActionsHeader"), actions: [] }
+        };
+  
+            // Read-Only Actions
+        const readonlyActions = {
+            "interaction": { label: "Interaction Actions", actions: [] },
+            "defensive": { label: "Defensive Actions", actions: [] },
+            "offensive": { label: "Offensive Actions", actions: [] }
+        };
+  
         let readonlyEquipment = [];
 
         const attacks = {
@@ -70,6 +94,9 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             
             i.canBeEquipped = true;
             i.isEquipped = i?.data?.equipped ?? false;
+
+            
+
             // Inventory                                                               
             if (Object.keys(inventory).includes(i.type)) {                             
                 i.data.quantity = i.data.quantity || 0;                                  
@@ -96,6 +123,38 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 
             }
 
+            else if (i.type === 'talent') {
+                const talentType = i.data.talentType || 'None';
+                const actionType = i.data.actionType || 'passive';
+                talents[talentType.value].talents.push(i);
+                if (Object.keys(actions).includes(actionType)) {
+                  i.talent = true;
+                  actions[actionType].actions.push(i);
+        
+                  // Read-Only Actions
+                  if(i.data.actionCategory && i.data.actionCategory.value) {
+                    switch(i.data.actionCategory.value){
+                      case 'interaction':
+                        readonlyActions.interaction.actions.push(i);
+                        actorData.hasInteractionActions = true;
+                      break;
+                      case 'defensive':
+                        readonlyActions.defensive.actions.push(i);
+                        actorData.hasDefensiveActions = true;
+                      break;
+                      //Should be offensive but throw anything else in there too
+                      default:
+                        readonlyActions.offensive.actions.push(i);
+                        actorData.hasOffensiveActions = true;
+                    }
+                  }
+                  else{
+                    readonlyActions.offensive.actions.push(i);
+                    actorData.hasOffensiveActions = true;
+                  }
+                }
+            }
+
             else if (i.type === 'background') {                                        
                 inventory[i.type].bgs.push(i);                                         
             }                                                                          
@@ -103,7 +162,8 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 
         // Assign and return                                                       
         actorData.inventory = inventory;                                           
-        actorData.readonlyEquipment = readonlyEquipment;                           
+        actorData.readonlyEquipment = readonlyEquipment;
+        actorData.talents = talents;                          
         actorData.backgrounds = backgrounds;                                       
 
         const backgroundNames =  new Set(actorData.items
