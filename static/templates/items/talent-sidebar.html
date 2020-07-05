@@ -1,7 +1,8 @@
 <h4 class="sidebar-summary">{{localize "CONAN.talentSummary"}}</h4>
 
-<span class="item-summary">{{lookup talentTypes data.talentType.value }}</span>
-{{# if data.requirements.value }}<span class="item-summary">{{ data.requirements.value }}</span>{{/if}}
+<span class="item-summary">{{lookup talentTypes data.talentType.value }}</span><br>
+{{# if data.prerequisites.value }}
+<span class="item-summary">Requires {{ data.prerequisites.value }}</span>{{/if}}
 
 <ol class="item-tags">
 {{#each 

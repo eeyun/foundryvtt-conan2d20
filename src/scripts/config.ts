@@ -173,6 +173,16 @@ CONFIG.talentRanks = {
     3: 3
 };
 
+CONFIG.talentTypes = {
+    homeland: 'CONAN.talentTypes.homeland',
+    caste: 'CONAN.talentTypes.caste',
+    bloodline: 'CONAN.talentTypes.bloodline',
+    education: 'CONAN.talentTypes.education',
+    nature: 'CONAN.talentTypes.nature',
+    archetype: 'CONAN.talentTypes.archetype',
+    other: 'CONAN.talentTypes.other'
+};
+
 CONFIG.weaponQualities = {
     area: 'CONAN.qualities.weapons.area',
     backlash: 'CONAN.qualities.weapons.back',

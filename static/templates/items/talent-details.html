@@ -1,13 +1,25 @@
 <div class="form-group">
-    <label>{{localize "CONAN.talentTypeLabel"}}</label>
+    <label>{{localize "CONAN.talentSkillLabel"}}</label>
     <select name="data.skill.value" data-dtype="{{data.skill.type}}">
         {{#select data.skill.value}}
+        {{#each talentSkills as |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.talentTypeLabel"}}</label>
+    <select name="data.talentType.value" data-dtype="{{data.talentType.type}}">
+        {{#select data.talentType.value}}
         {{#each talentTypes as |name type|}}
         <option value="{{type}}">{{name}}</option>
         {{/each}}
         {{/select}}
     </select>
 </div>
+
 
 <div class="form-group">
     <label>{{localize "CONAN.talentActionTypeLabel"}}</label>
