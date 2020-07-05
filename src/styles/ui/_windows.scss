@@ -1,0 +1,11 @@
+.conan2d20.sheet {
+    .window-content {
+        background: url('../assets/parchment.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        -webkit-border-image:url('../assets/border_top.png');
+        -webkit-border-image-repeat: stretch;
+        border-image: url('../assets/border_top.png');
+        border-image-repeat: stretch;
+    }
+}

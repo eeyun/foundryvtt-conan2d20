@@ -63,6 +63,16 @@
             "per": "Personality",
             "wil": "Willpower"
         },
+        "attributeScoresHeader":  "Attribute Scores",
+        "attributeId": {
+            "agi": "Agi",
+            "awa": "Awa",
+            "bra": "Bra",
+            "coo": "Coo",
+            "int": "Int",
+            "per": "Per",
+            "wil": "Wil"
+        },
         "skills": {
             "skills": "Skills",
             "acr": "Acrobatics",
@@ -94,6 +104,8 @@
         "skillExpertiseShortLabel": "Expertise",
         "skillFocusShortLabel": "Focus",
         "skillTNShortLabel": "TN",
+        "skillTrainedLabel": "Trained",
+        "skillUnrainedLabel": "Untrained",
         "expertise": "Expertise",
         "focus": "Focus",
         "tn": "TN",
@@ -118,6 +130,8 @@
         "sectionHealth": "Stress & Harms",
         "healthPhysical": "Physical",
         "healthVigor": "Vigor",
+        "healthVigorCurrent": "Current",
+        "healthVigorMax": "Max",
         "healthWounds": "Wounds",
         "healthFatigue": "Fatigue",
         "healthArmor": "Armor",
@@ -198,9 +212,46 @@
             "rleg": "Right Leg"
         },
         "encumbrance1Each": "1-Each",
+        "languages": {
+            "afgh": "Afghuli",
+            "argo": "Argossean",
+            "aqui": "Aquilonian",
+            "bryt": "Brythunian",
+            "cori": "Corinthian",
+            "cimm": "Cimmerian",
+            "darf": "Darfari",
+            "hype": "Hyperborean",
+            "hyrk": "Hyrkanian",
+            "iran": "Iranistani",
+            "kesh": "Keshani",
+            "koth": "Kothic",
+            "kush": "Kushite",
+            "neme": "Nemedian",
+            "nord": "Nordheimer",
+            "ophi": "Opirian",
+            "punt": "Punt",
+            "shem": "Shemitish",
+            "styg": "Stygian",
+            "tura": "Turanian",
+            "vend": "Vendhyan",
+            "zemb": "Zembabwein"
+        },
+        "natures": {
+            "cautious":"Cautious",
+            "curious":"Curious",
+            "inspirational":"Inspirational",
+            "learned":"Learned",
+            "practical":"Practical",
+            "scheming":"Scheming",
+            "sneaky":"Sneaky",
+            "stoic":"Stoic",
+            "supportive":"Supportive",
+            "wrathful":"Wrathful"
+        },
         "specialLabel": "Special",
         "soakLabel": "Armor Soak",
         "updateActorLabel": "Update Actor",
+        "statusHeader": "Status",
         "traitCommon": "Common",
         "traitUncommon": "Uncommon",
         "traitRare": "Rare",
@@ -210,11 +261,6 @@
         "tabSpellsLabel": "Spells",
         "tabSkillsLabel": "Skills",
         "tabTalentsLabel": "Talents",
-        "qualities": {
-            "weapons": {
-                "backlash": "Backlash"
-            }
-        },
         "qualitiesLabel": "Qualities",
         "quantityLabel": "Quantity",
         "talentCategories": {
@@ -230,6 +276,8 @@
         "talentSummary": "Talent Summary",
         "talentTypeLabel": "Talent Type",
         "talentActionCategoryLabel": "Talent Action Category",
+        "traumasLabel": "Traumas",
+        "traumasTitle": "Traumas",
         "weaponDamageLabel": "Weapon Damage",
         "weaponBaseDamageLabel": "Base Weapon Damage",
         "weaponDamageTitle": "This section configures the base and bonus damage for the weapon.",
@@ -275,6 +323,8 @@
         "weaponTypeLabel": "Weapon Type",
         "weaponSizeLabel": "Weapon Size",
         "weaponSummary": "Weapon Summary",
+        "woundsLabel": "Wounds",
+        "woundsTitle": "Wounds",
         "qualities": {
             "equipment": {
                 "heav": "Heavy",

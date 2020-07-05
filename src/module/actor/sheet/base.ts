@@ -6,6 +6,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             scrollY: [
+                '.sheet-sidebar',
                 '.skills-pane',
                 '.character-pane',
                 '.talents-pane',
@@ -33,6 +34,9 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         // Update skill labels
         if (sheetData.data.skills !== undefined) {
             for (let [s, skl] of Object.entries(sheetData.data.skills as Record<any, any>)) {
+                if (sheetData.data.skills[s].expertise.value > 0) {
+                    sheetData.data.skills[s].trained = true;
+                };
                 skl.attribute = sheetData.data.attributes[skl.attribute].label.substring(0, 3);
                 skl.label = CONFIG.CONAN.skills[s];
             }
@@ -41,10 +45,14 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         // Update Skills and Attributes
         sheetData.attributes = CONFIG.CONAN.attributes;
         sheetData.skills = CONFIG.CONAN.skills;
+        sheetData.natures = CONFIG.CONAN.naturesTypes;
+        sheetData.languages = CONFIG.CONAN.languages;
 
         this._prepareItems(sheetData.actor);
 
         this._prepareBackgrounds(sheetData.actor);
+
+        console.log(sheetData);
 
         return sheetData;
     }
@@ -112,8 +120,15 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
           const itemId = f.parents('.item').attr('data-item-id');
           const active = f.hasClass('active');
           this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.equipped.value': !active });
-    
         });
+
+        html.find('.item-toggle-broken').click((ev) => {
+            const f = $(ev.currentTarget);
+            const itemId = f.parents('.item').attr('data-item-id');
+            const active = f.hasClass('active');
+            this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.broken.value': !active });
+          });
+      
 
         // Trait Selector
         html.find('.trait-selector').click((ev) => this._onTraitSelector(ev));
@@ -128,8 +143,46 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             item.sheet.render(true)
         });
 
+        // Increase Item Quantity
+        html.find('.item-increase-quantity').click((event) => {
+            const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+            const item = this.actor.getOwnedItem(itemId).data;
+            this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.quantity': Number(item.data.quantity) + 1 });
+        });
+  
+        // Decrease Item Quantity
+        html.find('.item-decrease-quantity').click((event) => {
+            const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+            const item = this.actor.getOwnedItem(itemId).data;
+            if (Number(item.data.quantity) > 0) {
+                this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.quantity': Number(item.data.quantity) - 1 });
+            }
+        });
+  
         // Delete Inventory Item
         html.find('.item-delete').click((ev) => this._onItemDelete(ev));
+
+        html.find('.wounds').click(ev => {
+            let actorData = duplicate(this.actor)
+            let index = Number($(ev.currentTarget).attr("data-index"));
+            console.log(index);
+            let target = $(ev.currentTarget).parents(".dots-row").attr("data-target")
+        
+            let value = getProperty(actorData, target)
+            if (value == index + 1)
+              setProperty(actorData, target, index)
+            else 
+              setProperty(actorData, target, index + 1)
+
+            let woundElement = $(ev.currentTarget).parents(".health");
+            if(woundElement.length)
+            {
+                if (getProperty(actorData, target) <= 0)
+                setProperty(actorData, target, 1)
+            }
+
+            this.actor.update(actorData);
+        });
     }
 
     _onTraitSelector(event) {
@@ -152,7 +205,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         const data = duplicate(header.dataset);
     
         data.name = `New ${data.type.capitalize()}`;
-        // this.actor.createOwnedItem(data, {renderSheet: true});
         this.actor.createEmbeddedEntity('OwnedItem', data);
     }
 
@@ -183,6 +235,35 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             }).render(true);
         });
     }
+
+    /**
+   * Thank you to PF2 for this code. Saved us so much time.
+   * Handle clicking of stat levels. The max level is by default 4.
+   * The max level can be set in the hidden input field with a data-max attribute. Eg: data-max="3"
+   * @private
+   */
+  _onClickStatLevel(event) {
+    event.preventDefault();
+    const field = $(event.currentTarget).siblings('input[type="hidden"]');
+    const max = (field.data('max')==undefined) ? 5 : field.data('max');
+
+    // Get the current level and the array of levels
+    const level = parseFloat(field.val()+'');
+    console.log(level);
+    let newLevel;
+
+    // Toggle next level - forward on click, backwards on right
+    if (event.type === 'click') {
+      newLevel = Math.clamped( (level + 1) , 0, max );
+    } else if (event.type === 'contextmenu') {
+      newLevel = Math.clamped( (level - 1) , 0, max );
+    }
+    // Update the field value and save the form
+
+    field.val(newLevel);
+    this._onSubmit(event);
+  }
+
 }
 
 export default ActorSheetConan2d20;

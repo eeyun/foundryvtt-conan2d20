@@ -2,7 +2,6 @@
     <label>{{localize "CONAN.weaponTypeLabel"}}</label>
     <select name="data.weaponType.value" data-dtype="{{data.weaponType.type}}">
         {{#select data.weaponType.value}}
-        <option value=""></option>
         {{#each weaponTypes as |name type|}}
         <option value="{{type}}">{{name}}</option>
         {{/each}}
@@ -16,7 +15,6 @@
     <label>{{localize "CONAN.weaponGroupLabel"}}</label>
     <select name="data.group.value" data-dtype="{{data.group.type}}">
         {{#select data.group.value}}
-        <option value=""></option>
         {{#each weaponGroups as |name type|}}
         <option value="{{type}}">{{name}}</option>
         {{/each}}
@@ -28,7 +26,6 @@
    <label>{{localize "CONAN.weaponSizeLabel"}}</label>
    <select name="data.size.value" data-dtype="{{data.size.type}}">
        {{#select data.size.value}}
-       <option value=""></option>
        {{#each weaponSizes as |name size|}}
        <option value="{{size}}">{{name}}</option>
        {{/each}}
@@ -40,7 +37,6 @@
        <label>{{localize "CONAN.weaponRangeLabel"}}</label>                      
        <select name="data.range.value" data-dtype="{{data.range.type}}">         
            {{#select data.range.value}}                                          
-           <option value=""></option>                                            
             {{#each weaponRanges as |name range|}}                               
             <option value="{{range}}">{{name}}</option>                          
             {{/each}}                                                            
@@ -51,7 +47,6 @@
        <label>{{localize "CONAN.weaponReachLabel"}}</label>                      
        <select name="data.range.value" data-dtype="{{data.range.type}}">         
            {{#select data.range.value}}                                          
-           <option value=""></option>                                            
             {{#each weaponReaches as |name reach|}}                              
             <option value="{{reach}}">{{name}}</option>                          
             {{/each}}                                                            
@@ -72,7 +67,7 @@
         <label>{{localize "CONAN.weaponBaseDamageLabel"}}</label>
         <div class="details-container-three-columns">
             <select name="data.damage.dice" data-dtype="Number">
-                {{#select data.damageDice}}
+                {{#select data.damage.dice}}
                 {{#each damageDice as |name type|}}
                 <option value="{{type}}">{{name}}</option>
                 {{/each}}
@@ -92,16 +87,21 @@
        <label>{{localize "CONAN.equipmentEquippedLabel"}}</label>                     
        <input type="checkbox" name="data.equipped.value" value="1" data-dtype="{{data.equipped.type}}" {{checked data.equipped.value}}/>
     </div>
-    
+
     <div class="form-group-stacked">
         <label for="data.qualities">
             {{localize "CONAN.qualitiesLabel"}}
             <a class="trait-selector" data-options="weaponQualities"><i class="fas fa-edit"></i></a>
         </label>
-        <ul class="qualities-list pf-value pf-large">
+        <ul class="qualities-list co-value co-large">
             {{#each data.qualities.value as |v k|}}
                 <span class="tag {{k}}">{{v}}</span>
             {{/each}}
         </ul>
     </div>
 </ol>
+
+        
+
+    
+

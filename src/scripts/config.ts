@@ -57,6 +57,19 @@ CONFIG.availabilityTypes = {
   unique: 'CONAN.traitUnique'
 };
 
+CONFIG.naturesTypes = {
+    cautious: 'CONAN.natures.cautious',
+    curious: 'CONAN.natures.curious',
+    inspirational: 'CONAN.natures.inspirational',
+    learned: 'CONAN.natures.learned',
+    practical: 'CONAN.natures.practical',
+    scheming: 'CONAN.natures.scheming',
+    sneaky: 'CONAN.natures.sneaky',
+    stoic: 'CONAN.natures.stoic',
+    supportive: 'CONAN.natures.supportive',
+    wrathful: 'CONAN.natures.wrathful'
+};
+
 CONFIG.coverageTypes = {
     head: 'CONAN.coverage.head',
     torso: 'CONAN.coverage.torso',
@@ -127,6 +140,31 @@ CONFIG.actionCategories = {
     defensive: 'CONAN.talentCategories.def',
     offensive: 'CONAN.talentCategories.off',
     interaction: 'CONAN.talentCategories.int'
+};
+
+CONFIG.languages = {
+    afghuli: 'CONAN.languages.afgh',
+    argossean: 'CONAN.languages.argo',
+    aquilonian: 'CONAN.languages.aqui',
+    brythunian: 'CONAN.languages.bryt',
+    corinthian: 'CONAN.languages.cori',
+    cimmerian:  'CONAN.languages.cimm',
+    darfari: 'CONAN.languages.darf',
+    hyperborean: 'CONAN.languages.hype',
+    hyrkanian: 'CONAN.languages.hyrk',
+    iranistani: 'CONAN.languages.iran',
+    keshani: 'CONAN.languages.kesh',
+    kothic: 'CONAN.languages.koth',
+    kushite: 'CONAN.languages.kush',
+    nemedian: 'CONAN.languages.neme',
+    nordheimer: 'CONAN.languages.nord',
+    ophirian: 'CONAN.languages.ophi',
+    punt: 'CONAN.languages.punt',
+    shemitish:  'CONAN.languages.shem',
+    stygian: 'CONAN.languages.styg',
+    turanian: 'CONAN.languages.tura',
+    vendhyan: 'CONAN.languages.vend',
+    zembabwein: 'CONAN.languages.zemb'
 };
 
 CONFIG.talentRanks = {

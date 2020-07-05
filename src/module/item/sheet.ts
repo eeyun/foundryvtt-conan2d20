@@ -8,6 +8,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             width:  630,
 	        height: 560,
             template: 'systems/conan2d20/templates/items/item-sheet.html',
+            resizable: false,
 	        tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}]
         });
 	    return options;
@@ -52,11 +53,10 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.weaponRanges = CONFIG.CONAN.weaponRanges;
             data.weaponReaches = CONFIG.CONAN.weaponReaches;
             data.damageDice = CONFIG.CONAN.damageDice;
-            data.bonusDamage = this.item.data.data.bonusDamage;
             data.weaponDamage = CONFIG.CONAN.weaponDamage;
             data.encumbrance = CONFIG.CONAN.encumbranceTypes;
 
-            this._prepareQualities(data.data.qualities, CONFIG.CONAN.weaponQualities);
+           // this._prepareQualities(data.data.qualities, CONFIG.CONAN.weaponQualities);
         } else if (type === 'talent') {
             data.talentTypes = CONFIG.CONAN.skills;
             data.talentActionTypes = CONFIG.CONAN.actionTypes;
