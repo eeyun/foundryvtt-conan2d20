@@ -34,16 +34,16 @@ export class ItemSheetConan2d20 extends ItemSheet {
             type,
             hasSidebar: true,
             sidebarTemplate: () => `systems/conan2d20/templates/items/${type}-sidebar.html`,
-            hasDetails: ['weapon', 'equipment', 'talent', 'kit'].includes(type),
+            hasDetails: ['weapon', 'armor', 'talent', 'kit'].includes(type),
             detailsTemplate: () => `systems/conan2d20/templates/items/${type}-details.html`
         });
 
         data.availability = CONFIG.CONAN.availabilityTypes;
 
-        if (type === 'equipment') {
+        if (type === 'armor') {
             data.armorTypes = CONFIG.CONAN.armorTypes;
             data.coverageTypes = CONFIG.CONAN.coverageTypes;
-            data.equipmentQualities = CONFIG.CONAN.equipmentQualities;
+            data.armorQualities = CONFIG.CONAN.armorQualities;
             data.encumbrance = CONFIG.CONAN.encumbranceTypes;
         } else if (type === 'weapon') {
             data.weaponQualities = CONFIG.CONAN.weaponQualities;

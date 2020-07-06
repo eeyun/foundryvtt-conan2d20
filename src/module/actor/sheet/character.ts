@@ -42,7 +42,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
     _prepareItems(actorData) {
         const inventory = {                                                          
             weapon: { label: game.i18n.localize("CONAN.inventoryWeaponsHeader"), items: [] },
-            equipment: { label: game.i18n.localize("CONAN.inventoryEquipmentHeader"), items: [] },
+            armor: { label: game.i18n.localize("CONAN.inventoryArmorHeader"), items: [] },
             kits: { label: game.i18n.localize("CONAN.inventoryKitsHeader"), items: [] }
         };                                                                           
                                                                                   
@@ -87,7 +87,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             i.img = i.img || CONST.DEFAULT_TOKEN;                                      
                                                                                        
             // Read-Only Equipment                                                     
-            if (i.type === 'equipment' || i.type === 'consumable' || i.type === 'kit') {
+            if (i.type === 'armor' || i.type === 'consumable' || i.type === 'kit') {
               readonlyEquipment.push(i);                                               
               actorData.hasEquipment = true;                                           
             }                                                                          
@@ -115,7 +115,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                 }
                 inventory[i.type].items.push(i);
 
-                if  (i.type === 'weapon' || i.type === 'equipment') {
+                if  (i.type === 'weapon' || i.type === 'armor') {
                     i.canBeBroken = true;
                 } else {
                     i.canBeBroken = false;
