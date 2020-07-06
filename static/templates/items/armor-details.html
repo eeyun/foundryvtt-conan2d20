@@ -4,14 +4,14 @@
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.equipmentBrokenLabel"}}</label>
+    <label>{{localize "CONAN.armorBrokenLabel"}}</label>
     <input type="checkbox" name="data.broken.value" value="1" data-dtype="{{data.broken.type}}" {{checked data.broken.value}}/>
 </div>
 
 <div class="form-group-stacked">
     <label for="data.armor.qualities">
         {{localize "CONAN.qualitiesLabel"}}
-        <a class="trait-selector" data-options="equipmentQualities"><i class="fas fa-edit"></i></a>
+        <a class="trait-selector" data-options="armorQualities"><i class="fas fa-edit"></i></a>
     </label>
     <ul class="qualities-list co-value co-large">
         {{#each data.armor.qualities.value as |v k|}}

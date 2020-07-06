@@ -504,7 +504,7 @@
         }
     },
     "Item": {
-        "types": ["equipment", "kit", "spell", "talent", "weapon"],
+        "types": ["armor", "kit", "spell", "talent", "weapon"],
         "templates": {
             "itemDescription": {
                 "description": {
@@ -567,7 +567,7 @@
                 "formula": ""
             }
         },
-        "equipment": {
+        "armor": {
             "templates": ["itemDescription", "physicalItem"],
             "equipmentType": "",
             "armor": {
