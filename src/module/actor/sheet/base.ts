@@ -1,5 +1,6 @@
 import Conan2d20Actor from '../actor';
 import Conan2d20Item from '../../item/item';
+import {Conan2d20Dice} from '../../system/rolls';
 import { TraitSelector } from '../../system/trait-selector';
 
 abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
@@ -107,11 +108,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             const w = text.length * parseInt(e.getAttribute('data-wpad')) / 2;
             e.setAttribute('style', `flex: 0 0 ${w}px`);
         });
-
-         // TODO: Add expandable item summaries
-         // html.find('.item .item-name h4').click((event) => {
-         //    this._onItemSummary(event);
-         // });
         
         
         // Toggle equip
@@ -129,8 +125,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.broken.value': !active });
           });
       
-
-        // Trait Selector
         html.find('.trait-selector').click((ev) => this._onTraitSelector(ev));
 
         html.find('.item-create').click((ev) => this._onItemCreate(ev));
@@ -143,14 +137,12 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             item.sheet.render(true)
         });
 
-        // Increase Item Quantity
         html.find('.item-increase-quantity').click((event) => {
             const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
             const item = this.actor.getOwnedItem(itemId).data;
             this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.quantity': Number(item.data.quantity) + 1 });
         });
-  
-        // Decrease Item Quantity
+
         html.find('.item-decrease-quantity').click((event) => {
             const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
             const item = this.actor.getOwnedItem(itemId).data;
@@ -159,7 +151,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             }
         });
   
-        // Delete Inventory Item
         html.find('.item-delete').click((ev) => this._onItemDelete(ev));
 
         html.find('.wounds').click(ev => {
@@ -183,6 +174,14 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
 
             this.actor.update(actorData);
         });
+
+        html.find(".skill-name.rollable").click(async ev => {
+            let actorData = duplicate(this.actor)
+            let skill = $(ev.currentTarget).parents(".skill").attr("data-skill")
+            let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
+            await Conan2d20Dice.showSkillRollDialog({dialogData, cardData, rollData, actorData})
+        });
+
     }
 
     _onTraitSelector(event) {

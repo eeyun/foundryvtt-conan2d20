@@ -1,19 +1,22 @@
 
+import { CONFIG } from "../../scripts/config"
 export class ConanChat {
 
     static renderRollCard(rollResult, cardData) {
+        rollResult.result = CONFIG.rollResults[rollResult.result]
 
 
-        // Reference: https://github.com/moo-man/DEGENESIS-FoundryVTT/blob/master/module/chat.js
-        ChatMessage.create({
-            content: "Hello",
-
-        });
+        renderTemplate(cardData.template, rollResult).then(html => {
+            ChatMessage.create({
+                content : html,
+                //sound : CONFIG.sounds.dice,
+                speaker : cardData.speaker,
+                flavor : cardData.flavor
+            })
+        })
     }
 
     static renderCombatCard(rollResult, cardData) {
-
-        // Reference: https://github.com/moo-man/DEGENESIS-FoundryVTT/blob/master/module/chat.js
         ChatMessage.create({
             content: "Hello"
         });

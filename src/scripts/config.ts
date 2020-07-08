@@ -38,6 +38,24 @@ CONFIG.skills = {
     sor: 'CONAN.skills.sor'
 };
 
+CONFIG.skillRollDifficultyLevels = {
+    1: 'CONAN.skillRollDifficultyLevels.1',
+    2: 'CONAN.skillRollDifficultyLevels.2',
+    3: 'CONAN.skillRollDifficultyLevels.3',
+    4: 'CONAN.skillRollDifficultyLevels.4',
+    5: 'CONAN.skillRollDifficultyLevels.5'
+};
+
+CONFIG.skillRollResourceSpends = {
+    momentum: 'CONAN.skillRollResourceSpends.mome',
+    doom: 'CONAN.skillRollResourceSpends.doom'
+};
+
+CONFIG.rollResults = {
+    success: "CONAN.skillRollSuccess",
+    failure: "CONAN.skillRollFailure",
+};
+
 CONFIG.encumbranceTypes = {
   0: '0',
   1: '1',

@@ -1,0 +1,46 @@
+<script>
+    $(document).ready(function(){
+        $('#diceModifierType').on('change', function() {
+            if ( this.value == 'doom' || this.value == 'momentum')
+            {
+                $("#dice-modifier-value").show();
+            }
+            else if (this.value == '')
+            {
+                $("#dice-modifier-value").hide();
+            }
+        });
+    });
+</script>
+<ol class="form-list">
+    <div class = "dialog-inputs">
+        <div class="form-group">
+            <label>{{localize "CONAN.skillRollDifficultyLabel"}}</label>
+            <select name="difficulty" data-dtype="String">
+                {{#select modifiers.difficulty}}
+                {{#each modifiers.difficulty as |name type|}}
+                <option value="{{type}}">{{name}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>{{localize "CONAN.skillRollOpportunityLabel"}}</label>
+            <div class="diceMods"></div>
+                <select name="diceModifierType" data-dtype="" id="diceModifierType">
+                    {{#select modifiers.diceModifier}}
+                    <option value=""/>
+                    {{#each modifiers.diceModifier as |name type|}}
+                    <option value="{{type}}">{{name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                <input type="" name="diceModifier" value="" data-dtype="Number" id="dice-modifier-value"/>
+            </div>
+            <label>{{modifiers.diceModifierType}}</label>
+        </div>    
+        <label>{{localize "CONAN.fortuneSpendLabel"}}</label>
+            <input name="successModifier" value=""/>
+        </div>
+    </div>
+</ol>

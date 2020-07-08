@@ -1,6 +1,7 @@
 /**
  * Extend the base Actor class to implement additiona logic specialized for Conan2d20
  */
+import { CONFIG } from "../../scripts/config";
 import CharacterData from './character';
 
 export default class Conan2d20Actor extends Actor {
@@ -75,8 +76,17 @@ export default class Conan2d20Actor extends Actor {
             data.resources.upkeep.value = 0;
         }
 
-        // Level, Experience
+        // Experience
         data.resources.xp.value = character.exp;
+
+        // Fortune
+        data.resources.fortune.value = data.resources.fortune.value;
+
+        // Renown
+        data.background.renown = data.background.renown;
+
+        // Standing
+        data.background.standing.value = data.background.standing.value;
     }
 
   /* -------------------------------------------- */
@@ -121,6 +131,46 @@ export default class Conan2d20Actor extends Actor {
         return bonus;
     }
 
+  static spendFortune(actorData, fortuneSpend) {
+    let newValue = actorData.data.resources.fortune.value - fortuneSpend;
+      if (newValue < 0) {
+          let error = "Fortune spend would exceed available fortune points."
+          throw error;
+      } else {
+        actorData.data.resources.fortune.value = newValue;
+        game.actors.get(actorData._id).update(actorData);
+      }
+  }
 
+  setupSkill(skill) {
+    let dialogData = {
+        title : CONFIG.skills[skill],
+        modifiers : this.getModifiers("skill", skill),
+        template : "systems/conan2d20/templates/apps/roll-dialogue.html",
+    },
+        cardData = {
+            template : "systems/conan2d20/templates/chat/skill-roll-card.html",
+            flavor : `${CONFIG.skills[skill]}`,
+            speaker : {
+                alias : this.data.name
+            }
+        },
+        rollData = {
+            skill : this.data.data.skills[skill],
+        }
 
+    //let rollResult = await DegenesisDice.rollAction(rollData)
+    return {dialogData, cardData, rollData}
+  }
+
+  getModifiers(type: String, specifier: Object) {
+    let difficultyLevels = CONFIG.skillRollDifficultyLevels;
+    let diceModSpends = CONFIG.skillRollResourceSpends;
+    let mod = {
+        difficulty: difficultyLevels,
+        diceModifier : diceModSpends,
+        successModifier : 0,
+    }
+    return mod
+  }
 }
