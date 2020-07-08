@@ -7,8 +7,6 @@ import ActorConan2d20 from './module/actor/actor';
 import { Conan2d20System } from './module/conan2d20-system';
 import registerActors from './module/register-actors';
 import {registerSheets} from './module/register-sheets';
-import {ConanRoll} from './module/system/rolls';
-import {CombatDie} from './module/system/dice';
 
 require('./styles/conan2d20.scss');
 
@@ -43,7 +41,13 @@ Hooks.once('setup', () => {
 
    (window as any).Conan2d20 = new Conan2d20System();
 
-    const toLocalize: any = ['attributes', 'skills', 'encumbranceTypes', 'availabilityTypes', 'coverageTypes', 'armorTypes', 'armorQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes', 'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories', "naturesTypes", "languages", "talentTypes"];
+    const toLocalize: any = [
+        'attributes', 'skills', 'encumbranceTypes', 'availabilityTypes', 'coverageTypes',
+        'armorTypes', 'armorQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes',
+        'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories',
+        'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'skillRollDifficultyLevels',
+        'rollResults'
+    ];
     for (const o of toLocalize) {
         CONFIG.CONAN[o] = Object.entries(CONFIG.CONAN[o]).reduce((obj, e: any) => {
             obj[e[0]] = game.i18n.localize(e[1]);

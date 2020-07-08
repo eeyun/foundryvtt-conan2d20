@@ -1,5 +1,7 @@
 export default function() {
     const templatePaths: string[] = [
+        'systems/conan2d20/templates/apps/roll-dialogue.html',
+        'systems/conan2d20/templates/apps/fortune-roll-dialogue.html',
         'systems/conan2d20/templates/items/item-sheet.html',
         'systems/conan2d20/templates/items/armor-details.html',
         'systems/conan2d20/templates/items/armor-sidebar.html',
@@ -18,6 +20,7 @@ export default function() {
         'systems/conan2d20/templates/actors/main/actor-header.html',
         'systems/conan2d20/templates/actors/main/actor-health.html',
         'systems/conan2d20/templates/actors/main/actor-background.html',
+        'systems/conan2d20/templates/actors/main/actor-resources.html',
         'systems/conan2d20/templates/actors/main/actor-attributes.html'
     ];
     return loadTemplates(templatePaths);

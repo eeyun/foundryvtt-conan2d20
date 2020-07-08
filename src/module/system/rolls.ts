@@ -1,111 +1,129 @@
-import {
-    ConanChat
-} from "./chat.js";
-import {
-    CombatDie
-} from "./dice.js";
+import {ConanChat} from "./chat";
+import Conan2d20Actor from '../actor/actor';
 
-export class ConanRoll {
+
+export class Conan2d20Dice {
     /**
      * Reference: 
      * @param {number} diceQty          Number of d20 to roll
      * @param {number} tn               The Skill + Attribute to roll under
      * @param {number} focus            The Focus value to roll under for extra successes
-     * @param {number} rerolls          How many dice can be rerolled
      * @param {number} autoSuccess      How many successed to add
-     * @param {boolean} unskilled       Is the roll unskilled, adds 19 to generate complications
+     * @param {boolean} trained         Is the skill trained, adds 19 to generate complications if not
+     * @param {number} difficulty       Difficulty level of the skill check
+     * @param {any} cardData            Data for rendering a chat message on completed roll
      */
-    static async roll(diceQty = 2, tn = 1, focus = 0, rerolls = 0, autoSuccess = 0, unskilled = false) {
-        // Validate parameters for invalid values
+    static async skillRoll(diceQty: number,
+                      tn: number,
+                      focus: number = 0,
+                      autoSuccess: number = 0, 
+                      trained: boolean = false,
+                      difficulty: number = 0,
+                      cardData?: any) {
         if (Number.isNaN(diceQty)) {
-            console.log("Conan 2D20 | Error in Skill Check, D20 Quantity, 1st parameter is not a Number.");
+            throw "Conan 2D20 | Error in Skill Check, D20 Quantity is not a Number.";
         }
         if (Number.isNaN(tn)) {
-            console.log("Conan 2D20 | Error in Skill Check, Target Number, 2nd parameter is not a Number.");
+            throw "Conan 2D20 | Error in Skill Check, Target Number is not a Number.";
         }
         if (Number.isNaN(focus)) {
-            console.log("Conan 2D20 | Error in Skill Check, Focus, 3rd parameter is not a Number.");
-        }
-        if (Number.isNaN(rerolls)) {
-            console.log("Conan 2D20 | Error in Skill Check, Rerolls, 4th parameter is not a Number.");
+            throw "Conan 2D20 | Error in Skill Check, Focus is not a Number.";
         }
         if (Number.isNaN(autoSuccess)) {
-            console.log("Conan 2D20 | Error in Skill Check, Automatic Successes, 5th parameter is not a Number.");
+            throw "Conan 2D20 | Error in Skill Check, Automatic Successes is not a Number.";
         }
-        if (unskilled === true || unskilled === false) {
-            console.log("Conan 2D20 | Error in Skill Check, Unskilled, 6th parameter is not a Boolean.");
+        if (typeof trained !== "boolean") {
+            throw "Conan 2D20 | Error in Skill Check, Trained is not a Boolean.";
         }
 
-        /* Code contributed 
-         * by @Moo Man#7518 
-         * on 2020-07-02 at 10:32 AM 
-         * in #system-development of the Foundry Discord
+        let rollResult = {};
+        let successes = 0;
+        let crits = 0;
+        let momentumGenerated = 0;
+        let complications = 0;
+        let rolls = [];
+        let rollInstance;
+        let result;
 
-        let successes = 0
-        let roll = new Dice(`${num}`d20).roll();
-        roll.forEach(r => {
-          if (r.roll <= expertise)
-            successes++
-          if (r.roll <= focus)
-            successes++
+
+        if (diceQty == 0) {
+            rolls = [];
+        } else {
+            rollInstance = new Roll(`${diceQty}d20`);
+            rolls = rollInstance.roll().parts[0].rolls;
+        }
+
+        let i;
+        for (i = 0; i < autoSuccess; i++) {
+            let successRoll = {roll: 1};
+            rolls.push(successRoll);
+        } 
+
+        rolls.forEach(r => {
+            if (!(trained)) {
+                if (r.roll == 19 || r.roll == 20)
+                    complications++;
+            } else if (r.roll == 20) {
+                complications++;
+            };
+            if (r.roll <= focus) {
+                crits++;
+            } else if (r.roll <= tn) {
+                successes++
+            }
         })
-        */
-        let rollResults = {};
-        // Roll an amount of D20s equal to qtyD20
-        let roll = new Roll(`${qtyD20}d20`);
-        if (game.dice3d) {
-            await game.dice3d.showForRoll(roll);
+
+        successes = successes + (crits * 2);
+
+        if (difficulty > 0)
+        {
+            if (successes >= difficulty)
+            {
+                momentumGenerated = successes - difficulty;
+                result = "success"
+            }
+            else 
+            {
+                result = "failure"
+            }
         }
 
-        console.log(roll);
-        /*
-        rollResults[0] = roll.
+        rollResult = {
+            difficulty,
+            successes,
+            complications,
+            momentumGenerated,
+            result,
+            rolls
+        };
 
-       let successes: number = 0;
-       let complications: number = 0;
-       
-        // Run through the rolled dice to count successes and complications
-        roll.forEach(r => {
-            // Count succeses below or equal to TN
-            if (r <= tn) {
-                successes++;
-            }
-            if (r <= focus) {
-                successes++;
-            }
-            if (unskilled && r == 19) {
-                complications++;
-            }
-            if (r == 20) {
-                complications++;
-            }
-        });
-
-        */
-        let createData = {
-            content: roll.toMessage(),
-            speaker: Roll.getActorData()
-        }
-
-        ChatMessage.create(createData);
-        //ConanChat.renderRollCard(roll);
+        ConanChat.renderRollCard(rollResult, cardData)
     }
 
-    static async Skillroll(diceQty: number, skill: string, actorData) {
-        // Validate parameters for invalid values
-        if (Number.isNaN(diceQty)) {
-            console.log("Conan 2D20 | Error in Skill Check, D20 Quantity, 1st parameter is not a Number.");
+    static async generateRoll(baseDice: number = 2, rollData: any, cardData: any, actorData: any) {
+        console.log(rollData);
+        if (rollData.diceModifier > 0 && rollData.diceModifierType === "") {
+            throw "Conan 2D20 | Error in Skill Check, you must select a resource spend"
+        } else if (rollData.diceModifierType !== "" && rollData.diceModifier === 0) {
+            throw "Conan 2D20 | Error in Skill Check, you must enter a number of resources to spend"
         }
-        if (skill.toString()) {
-            console.log("Conan 2D20 | Error in Skill Check, Skill, 2nd parameter is not a String.");
+        var diceQty = baseDice + rollData.diceModifier;
+        var trained = false;
+        if (rollData.skill.trained > 0) {
+             trained = true;
         }
-        var tn, focus, rerolls, autoSuccess: number = 0;
-        var unskilled = true;
-        if (actorData.getId(skill).expertise > 0) {
-            unskilled = false;
+        if (rollData.successModifier > 0) {
+            try {
+                Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
+                await this.showFortuneSpendDialog(diceQty, rollData.skill.tn, rollData.skill.focus.value, rollData.successModifier, trained, rollData.difficulty, cardData);
+            }
+            catch(e){
+                console.log(e);
+                ui.notifications.error(e);
+            }
+        } else {
+            await this.skillRoll(diceQty, rollData.skill.tn, rollData.skill.focus.value, rollData.successModifier, trained, rollData.difficulty, cardData);
         }
-
-        return this.roll(diceQty, actorData.getId(skill).tn, actorData.getId(skill).focus, actorData.getId(skill).rerolls, actorData.getId(skill).autoSuccess, unskilled);
     }
 
     /**
@@ -115,47 +133,108 @@ export class ConanRoll {
      * @param {jQuery.Event} event
      * @param {function} callback
      */
-    static CombatRoll(diceQty: Number = 1, qualities: String[] = null) {
-        // Validate parameters for invalid values
-        if (Number.isNaN(diceQty)) {
-            console.log("Conan 2D20 | Error in Skill Check, Dice Quantity, 1st parameter is not a Number.");
-        }
-        let combatDice = new CombatDie(diceQty);
+    // static combatRoll(diceQty: Number = 1, qualities: String[] = null) {
+    //     // Validate parameters for invalid values
+    //     if (Number.isNaN(diceQty)) {
+    //         console.log("Conan 2D20 | Error in Skill Check, Dice Quantity, 1st parameter is not a Number.");
+    //     }
+    //     let combatDice = new CombatDie(diceQty);
 
-        let damages: number = 0;
-        let effects: number = 0;
+    //     let damages: number = 0;
+    //     let effects: number = 0;
 
-        let rollResults = combatDice.getResultValues();
+    //     let rollResults = combatDice.getResultValues();
 
 
-        rollResults.forEach(r => {
-            // Count Damages
-            if (r === 1 || r === "Effect") {
-                damages++;
-            }
-            if (r === 2) {
-                damages++;
-                damages++;
-            }
-            // Count Effects 
-            if (r === "Effect") {
-                effects++;
-            }
+    //     rollResults.forEach(r => {
+    //         // Count Damages
+    //         if (r === 1 || r === "Effect") {
+    //             damages++;
+    //         }
+    //         if (r === 2) {
+    //             damages++;
+    //             damages++;
+    //         }
+    //         // Count Effects 
+    //         if (r === "Effect") {
+    //             effects++;
+    //         }
+    //     });
+
+    //     // concat results
+    //     let results = {
+    //         rollResults,
+    //         damages,
+    //         effects,
+    //         qualities
+    //     };
+
+    //     // Output Roll results to chat
+    //     ConanChat.renderCombatCard(results, null);
+
+    //     // return results, damages, effects, {additionnal effects}
+    //     return results;
+    // }
+
+    static async showFortuneSpendDialog(diceQty: number,
+        tn: number,
+        focus: number = 0,
+        autoSuccess: number = 0, 
+        trained: boolean = false,
+        difficulty: number = 0,
+        cardData: any) {
+        let dialogData;
+        let template = 'systems/conan2d20/templates/apps/fortune-roll-dialogue.html';
+        return renderTemplate(template, dialogData).then((html) => {
+            new Dialog({
+              content: html,
+              title: "Roll remaining dice?",
+              buttons: {
+                yes: {
+                  label: 'Yes',
+                  callback: () => this.skillRoll(diceQty, tn, focus, autoSuccess, trained, difficulty, cardData),
+                },
+                no: {
+                  label: 'No',
+                  callback: () => this.skillRoll(0, tn, focus, autoSuccess, trained, difficulty, cardData),
+                }
+              },
+              default: 'yes',
+            }).render(true);
         });
-
-        // concat results
-        let results = {
-            rollResults,
-            damages,
-            effects,
-            qualities
-        };
-
-        // Output Roll results to chat
-        ConanChat.renderCombatCard(results, null);
-
-        // return results, damages, effects, {additionnal effects}
-        return results;
     }
 
+    static async showSkillRollDialog({dialogData, rollData, cardData, actorData})
+    {
+        return renderTemplate("systems/conan2d20/templates/apps/roll-dialogue.html", dialogData).then(html => {
+            new Dialog({
+                content : html,
+                title : dialogData.title,
+                buttons : {
+                    "roll" : {
+                        label : "Roll",
+                        callback : async (template) => {
+                            //@ts-ignore
+                            rollData.difficulty = parseInt(template.find('[name="difficulty"]').val() || 0)
+                            //@ts-ignore
+                            rollData.diceModifierType = template.find('[name="diceModifierType').val() || ''
+                            //@ts-ignore
+                            rollData.diceModifier = parseInt(template.find('[name="diceModifier"]').val() || 0)
+                            //@ts-ignore
+                            rollData.successModifier = parseInt(template.find('[name="successModifier"]').val() || 0)
+                            try {
+                                await Conan2d20Dice.generateRoll(2, rollData, cardData, actorData);
+                             }
+                            catch (e) {
+                                {
+                                    console.log(e);
+                                    ui.notifications.error(e);
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {classes : ["roll-dialog"]}).render(true)
+        })
+    }
 }
