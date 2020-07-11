@@ -45,6 +45,10 @@
                "wit": "Withdraw"
            }
         },
+        "CHATOPT": {
+            "triggerReroll": "Re-roll Selected",
+            "momentumSpendImmediate": "Spend generated Momentum"
+        },
         "actionTypeLabel": "Action Type",
         "actionCategoryLabel": "Action Category",
         "availability": "Availability",
@@ -119,6 +123,8 @@
             "mome": "Spend Momentum",
             "doom": "Add to Doom"
         },
+        "skillRerollText": "{character} used a talent to reroll a failed skill test",
+        "skillRerollActivate": "Re-roll Triggered",
         "expertise": "Expertise",
         "experienceLabel": "Experience",
         "focus": "Focus",
