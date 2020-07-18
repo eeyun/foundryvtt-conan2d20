@@ -54,6 +54,12 @@
        </select>                                                                 
     </div>
 {{/ifEq}}                                                                        
+{{#ifEq data.weaponType.value "ranged"}}                                            <div class="form-group">
+        <label>{{localize "CONAN.weaponShotsLabel"}}</label>
+        <input type="text" name="data.shots" value="{{data.shots}}" data-dtype="Number"/>
+    </div>
+{{/ifEq}}
+
 
 <ol class="form-list">
     <li class="form-group">

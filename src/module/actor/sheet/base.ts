@@ -11,7 +11,8 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 '.skills-pane',
                 '.character-pane',
                 '.talents-pane',
-                '.inventory-pane'
+                '.inventory-pane',
+                '.actions-pane'
             ]
         });
     }
@@ -35,9 +36,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         // Update skill labels
         if (sheetData.data.skills !== undefined) {
             for (let [s, skl] of Object.entries(sheetData.data.skills as Record<any, any>)) {
-                if (sheetData.data.skills[s].expertise.value > 0) {
-                    sheetData.data.skills[s].trained = true;
-                };
                 skl.attribute = sheetData.data.attributes[skl.attribute].label.substring(0, 3);
                 skl.label = CONFIG.CONAN.skills[s];
             }
@@ -52,8 +50,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         this._prepareItems(sheetData.actor);
 
         this._prepareBackgrounds(sheetData.actor);
-
-        console.log(sheetData);
 
         return sheetData;
     }
@@ -156,7 +152,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         html.find('.wounds').click(ev => {
             let actorData = duplicate(this.actor)
             let index = Number($(ev.currentTarget).attr("data-index"));
-            console.log(index);
             let target = $(ev.currentTarget).parents(".dots-row").attr("data-target")
         
             let value = getProperty(actorData, target)
@@ -171,7 +166,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 if (getProperty(actorData, target) <= 0)
                 setProperty(actorData, target, 1)
             }
-
             this.actor.update(actorData);
         });
 
@@ -182,6 +176,21 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             await Conan2d20Dice.showSkillRollDialog({dialogData, cardData, rollData, actorData})
         });
 
+        html.find('.attacks-list [data-action-index]').on('click', '.action-name', (event) => {
+            $(event.currentTarget).parents('.expandable').toggleClass('expanded');
+        });
+
+        html.find('.attacks-list .execute-attack').click(async ev => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            let actorData = duplicate(this.actor).data
+            const attackIndex = $(ev.currentTarget).parents('[data-action-index]').attr('data-action-index');
+            const itemId = this.actor.data.data.actions[Number(attackIndex)]?.attack.id;
+            // @ts-ignore
+            let weapon = duplicate(this.actor.getEmbeddedEntity("OwnedItem", itemId, true));
+            let {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon);
+            await Conan2d20Dice.showDamageRollDialog({dialogData, cardData, rollData, actorData})
+        });
     }
 
     _onTraitSelector(event) {
@@ -208,13 +217,13 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         const data = duplicate(header.dataset);
 
         if (data.type === 'talent') {
-        data.name = `New ${data.featTalent.capitalize()} ${data.type.capitalize()}`;
-        mergeObject(data, { 'data.talentType.value': data.talentType });
+        	data.name = `New ${data.featTalent.capitalize()} ${data.type.capitalize()}`;
+        	mergeObject(data, { 'data.talentType.value': data.talentType });
         } else if (data.type === 'action') {
-        data.name = `New ${data.actionType.capitalize()}`;
-        mergeObject(data, { 'data.actionType.value': data.actionType });
+        	data.name = `New ${data.actionType.capitalize()}`;
+        	mergeObject(data, { 'data.actionType.value': data.actionType });
         } else {
-        data.name = `New ${data.type.capitalize()}`;
+        	data.name = `New ${data.type.capitalize()}`;
         }
         // this.actor.createOwnedItem(data, {renderSheet: true});
         this.actor.createEmbeddedEntity('OwnedItem', data);
@@ -262,7 +271,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
 
     // Get the current level and the array of levels
     const level = parseFloat(field.val()+'');
-    console.log(level);
     let newLevel;
 
     // Toggle next level - forward on click, backwards on right

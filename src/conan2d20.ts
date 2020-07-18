@@ -45,8 +45,8 @@ Hooks.once('setup', () => {
         'attributes', 'skills', 'encumbranceTypes', 'availabilityTypes', 'coverageTypes',
         'armorTypes', 'armorQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes',
         'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories',
-        'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'skillRollDifficultyLevels',
-        'rollResults'
+        'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'rollDifficultyLevels',
+        'rollResults', 'actionCount'
     ];
     for (const o of toLocalize) {
         CONFIG.CONAN[o] = Object.entries(CONFIG.CONAN[o]).reduce((obj, e: any) => {

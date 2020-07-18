@@ -136,7 +136,7 @@
             },
             "skills": {
                 "acr": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -150,7 +150,7 @@
                     "successMod": 0
                 },
                 "mel": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -164,7 +164,7 @@
                     "successMod": 0
                 },
                 "ste": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -178,7 +178,7 @@
                     "successMod": 0
                 },
                 "ins": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -192,7 +192,7 @@
                     "successMod": 0
                 },
                 "obs": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -206,7 +206,7 @@
                     "successMod": 0
                 },
                 "sur": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -220,7 +220,7 @@
                     "successMod": 0
                 },
                 "thi": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -234,7 +234,7 @@
                     "successMod": 0
                 },
                 "ath": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -248,7 +248,7 @@
                     "successMod": 0
                 },
                 "res": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -262,7 +262,7 @@
                     "successMod": 0
                 },
                 "par": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -276,7 +276,7 @@
                     "successMod": 0
                 },
                 "ran": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -290,7 +290,7 @@
                     "successMod": 0
                 },
                 "sai": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -304,7 +304,7 @@
                     "successMod": 0
                 },
                 "alc": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -318,7 +318,7 @@
                     "successMod": 0
                 },
                 "cra": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -332,7 +332,7 @@
                     "successMod": 0
                 },
                 "hea": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -346,7 +346,7 @@
                     "successMod": 0
                 },
                 "lin": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -360,7 +360,7 @@
                     "successMod": 0
                 },
                 "lor": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -374,7 +374,7 @@
                     "successMod": 0
                 },
                 "war": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -388,7 +388,7 @@
                     "successMod": 0
                 },
                 "ani": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -402,7 +402,7 @@
                     "successMod": 0
                 },
                 "com": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -416,7 +416,7 @@
                     "successMod": 0
                 },
                 "cou": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -430,7 +430,7 @@
                     "successMod": 0
                 },
                 "per": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -444,7 +444,7 @@
                     "successMod": 0
                 },
                 "soc": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -458,7 +458,7 @@
                     "successMod": 0
                 },
                 "dis": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -472,7 +472,7 @@
                     "successMod": 0
                 },
                 "sor": {
-                    "trained": 0,
+                    "trained": false,
                     "expertise": {
                         "value": 0,
                         "max": 5
@@ -484,6 +484,12 @@
                     "attribute": "wil",
                     "diceMod": 0,
                     "successMod": 0
+                }
+            },
+            "qualities": {
+                "qualities": {
+                    "value": [],
+                    "custom": ""
                 }
             }
         },
@@ -504,7 +510,15 @@
         }
     },
     "Item": {
-        "types": ["armor", "kit", "spell", "talent", "weapon"],
+        "types": [
+            "armor",
+            "kit",
+            "spell",
+            "talent",
+            "weapon",
+            "display",
+            "action"
+        ],
         "templates": {
             "itemDescription": {
                 "description": {
@@ -554,17 +568,6 @@
                     "target": null,
                     "amount": null
                 }
-            },
-            "action": {
-                "attribute": null,
-                "actionType": null,
-                "attackBonus": 0,
-                "chatFlavor": "",
-                "critical": null,
-                "damage": {
-                    "parts": []
-                },
-                "formula": ""
             }
         },
         "armor": {
@@ -593,25 +596,38 @@
             "weaponType": "",
             "group": "",
             "damage": {
-                "value": "",
-                "dice":  1
+                "type": "physical",
+                "dice": 1
             },
-            "bonusDamage":{
+            "bonusDamage": {
                 "value": 0
             },
             "size": "",
             "reach": "",
-            "range": "", 
-            "reload": "",
-            "loads": 0,
-            "qualities": []
+            "range": "",
+            "shots": 1,
+            "qualities": {
+                "value": []
+            }
+        },
+        "display": {
+            "skill": "",
+            "range": "",
+            "damage": {
+                "type": "mental",
+                "dice": 1
+            },
+            "qualities": {
+                "value": []
+            },
+            "requirement": ""
         },
         "talent": {
             "templates": ["itemDescription", "action"],
             "skill": "",
             "talentType": "",
             "prerequisites": [],
-            "category":"",
+            "category": "",
             "cost": 100,
             "rank": {
                 "value": 1,
@@ -619,6 +635,19 @@
             },
             "actionType": "",
             "actionCategory": ""
+        },
+        "action": {
+            "templates": ["itemDescription"],
+            "actionType": "",
+            "actionCategory": "",
+            "weapon": "",
+            "actions": "",
+            "requirements": "",
+            "trigger": "",
+            "skill_requirements": {
+                "skill": "",
+                "rank": ""
+            }
         },
         "spell": {
             "templates": ["itemDescription", "action"],

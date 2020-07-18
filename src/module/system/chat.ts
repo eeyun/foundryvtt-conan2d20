@@ -1,17 +1,19 @@
-
 import { CONFIG } from "../../scripts/config";
 import { Conan2d20Dice } from "./rolls";
 
 export class ConanChat {
 
-    static renderRollCard(rollResult, rollData, cardData) {
-        rollResult.result = CONFIG.rollResults[rollResult.result]
+    static renderRollCard(rollResult, rollData, cardData, type) {
+        if (type === 'skill') {
+            rollResult.result = CONFIG.rollResults[rollResult.result]
+        };
 
         cardData["flags.data"] = {
             resultData: rollResult,
             title: cardData.title,
             template: cardData.template,
-            rollData: rollData
+            type,
+            rollData
         }
 
         // TODO: add 3d dice with dice-so-nice
@@ -19,18 +21,12 @@ export class ConanChat {
             ChatMessage.create({
                 title: cardData.title,
                 content : html,
-                ["flags.data"]: cardData["flags.data"],
-                //sound : CONFIG.sounds.dice,
+                "flags.data": cardData["flags.data"],
+                // sound : CONFIG.sounds.dice,
                 speaker : cardData.speaker,
                 flavor : cardData.title
             })
         })
-    }
-
-    static renderCombatCard(rollResult, cardData) {
-        ChatMessage.create({
-            content: "Hello"
-        });
     }
 }
 
@@ -49,8 +45,8 @@ Hooks.on('getChatLogEntryContext', (html: HTMLDocument, options: Array<Object>) 
             const actor = game.actors.get(message.data.speaker.actor);
             // @ts-ignore
             if (actor.permission === ENTITY_PERMISSIONS.OWNER && actor.data.type === "character") {
-                const skillcard = li.find(".skill-roll-card");
-                if (skillcard.length && message.data.flags.data.rollData.reroll === false) {
+                const card = li.find(".roll-card");
+                if (card.length && message.data.flags.data.rollData.reroll === false) {
                     result = true;
                 }
             }
@@ -80,7 +76,7 @@ Hooks.on('getChatLogEntryContext', (html: HTMLDocument, options: Array<Object>) 
             callback: li =>  {
                 const message = game.messages.get(li.attr("data-message-id"));
                 // @ts-ignore
-                game.actors.get(message.data.speaker.actor).triggerReroll(message, "reroll");
+                game.actors.get(message.data.speaker.actor).triggerReroll(message, message.data.flags.data.type);
             }
         },
         {

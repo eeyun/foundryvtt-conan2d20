@@ -1,4 +1,5 @@
 import {ConanChat} from "./chat";
+import {CONFIG} from "../../scripts/config";
 import Conan2d20Actor from '../actor/actor';
 
 
@@ -13,7 +14,7 @@ export class Conan2d20Dice {
      * @param {number} difficulty       Difficulty level of the skill check
      * @param {any} cardData            Data for rendering a chat message on completed roll
      */
-    static async skillRoll(diceQty: number,
+    static async calculateSkillRoll(diceQty: number,
                       tn: number,
                       focus: number = 0,
                       trained: boolean = false,
@@ -70,7 +71,7 @@ export class Conan2d20Dice {
             }
         } else if (fixedrolls !== undefined){
             for (i = 0; i < fixedrolls.length; i+=1) {
-                let mergeRoll = {roll: fixedrolls[i]};
+                const mergeRoll = {roll: fixedrolls[i]};
                 rolls.push(mergeRoll);
             }
 
@@ -121,10 +122,116 @@ export class Conan2d20Dice {
             result,
             rolls
         };
-        ConanChat.renderRollCard(rollResult, rollData, cardData)
+        ConanChat.renderRollCard(rollResult, rollData, cardData, 'skill')
     }
 
-    static async generateRoll(baseDice: number = 2, rollData: any, cardData: any, actorData: any) {
+    static async calculateDamageRoll(diceQty: Number = 1, damageType: any, cardData: any, fixedrolls?: any) {
+        const damageRollInstance = new Roll(`${diceQty}d6`);
+        const damageRolls = damageRollInstance.roll().parts[0].rolls;
+        let reroll = false;
+        let damage: number = 0;
+        let effects: number = 0;
+        let hitLocation: any;
+
+        let i;
+        if (fixedrolls !== undefined){
+            for (i = 0; i < fixedrolls.length; i+=1) {
+                const mergeRoll = {roll: fixedrolls[i]};
+                damageRolls.push(mergeRoll);
+            }
+            reroll = true;
+        }
+
+        damageRolls.forEach(r => {
+            if (r.roll === 1) {
+                damage += 1;
+            } else if (r.roll === 2) {
+                damage += 2;
+            } else if (r.roll === 3 || r.roll === 4) {
+                damage += 0;
+            } else {
+                damage  += 1;
+                effects += 1;
+            }
+        })
+
+        const locationRollInstance = new Roll('1d20');
+        const locationRolls = locationRollInstance.roll().parts[0].rolls;
+
+        locationRolls.forEach(r => {
+            // @ts-ignore
+            if (r.roll >=1 && r.roll <=2) {
+                hitLocation = CONFIG.coverageTypes.head;
+            } else if (r.roll >=3 && r.roll <=5) {
+                hitLocation = CONFIG.coverageTypes.rarm;
+            } else if (r.roll >=6 && r.roll <=8) {
+                hitLocation = CONFIG.coverageTypes.larm;
+            } else if (r.roll >=9 && r.roll <=14) {
+                hitLocation = CONFIG.coverageTypes.torso;
+            } else if (r.roll >=15 && r.roll <=17) {
+                hitLocation = CONFIG.coverageTypes.rleg;
+            } else {
+                hitLocation = CONFIG.coverageTypes.lleg;
+            }
+        })
+
+        const rollData = {
+            reroll
+        };
+
+        const rollResult = {
+            damage,
+            damageType,
+            effects,
+            damageRolls,
+            hitLocation
+        };
+
+        ConanChat.renderRollCard(rollResult, rollData, cardData, 'damage');
+    }
+
+    static async generateDamageRoll(rollData: any, cardData: any, actorData: any) {
+        // TODO: Wire in momentum expenditure check
+        let baseDamage;
+        if (rollData.optionalBaseDmg > 0) {
+            baseDamage = Number(rollData.optionalBaseDmg);
+        } else {
+            baseDamage = Number(rollData.extra.weapon.data.damage.dice || 1);
+        };
+        const damageType = rollData.extra.weapon.data.damage.type;
+        const {attackType} = rollData;
+        let diceQty = baseDamage + rollData.momentumModifier + rollData.talentModifier + rollData.reloadModifier;
+        let attribute;
+        let modifier;
+
+        if (attackType === 'melee') {
+            attribute = 'bra';
+        } else if (attackType === 'ranged') {
+            attribute = 'awa';
+        } else {
+            attribute = 'per';
+        };
+
+        if (actorData.attributes[attribute].value <= 8) {
+            modifier = 0;
+        } else if (actorData.attributes[attribute].value === 9) {
+            modifier = 1;
+        } else if (actorData.attributes[attribute].value === 10 || 11) {
+            modifier = 2;
+        } else if (actorData.attributes[attribute].value === 12 || 13) {
+            modifier = 3;
+        } else if (actorData.attributes[attribute].value === 14 || 15) {
+            modifier = 4;
+        } else if (actorData.attributes[attribute].value >= 16) {
+            modifier = 5;
+        }
+
+        diceQty += modifier;
+        await this.calculateDamageRoll(diceQty, damageType, cardData);
+    }
+
+    static async generateSkillRoll(baseDice: number = 2, rollData: any, cardData: any, actorData: any) {
+        // TODO: Wire in momentum expenditure check
         const generatorErr = {
             resource: "Conan 2D20 | Error in Skill Check, you must select a resource spend",
             res_count: "Conan 2D20 | Error in Skill Check, you must enter a number of resources to spend",
@@ -155,59 +262,9 @@ export class Conan2d20Dice {
                 ui.notifications.error(e);
             }
         } else {
-            await this.skillRoll(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
+            await this.calculateSkillRoll(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
         }
     }
-
-    /**
-     * Roll the Combat Dice required and output to chat the results, damages & effects.
-     * @param {number} diceQty
-     * @param {object} context
-     * @param {jQuery.Event} event
-     * @param {function} callback
-     */
-    // static combatRoll(diceQty: Number = 1, qualities: String[] = null) {
-    //     // Validate parameters for invalid values
-    //     if (Number.isNaN(diceQty)) {
-    //         console.log("Conan 2D20 | Error in Skill Check, Dice Quantity, 1st parameter is not a Number.");
-    //     }
-    //     let combatDice = new CombatDie(diceQty);
-
-    //     let damages: number = 0;
-    //     let effects: number = 0;
-
-    //     let rollResults = combatDice.getResultValues();
-
-
-    //     rollResults.forEach(r => {
-    //         // Count Damages
-    //         if (r === 1 || r === "Effect") {
-    //             damages++;
-    //         }
-    //         if (r === 2) {
-    //             damages++;
-    //             damages++;
-    //         }
-    //         // Count Effects 
-    //         if (r === "Effect") {
-    //             effects++;
-    //         }
-    //     });
-
-    //     // concat results
-    //     let results = {
-    //         rollResults,
-    //         damages,
-    //         effects,
-    //         qualities
-    //     };
-
-    //     // Output Roll results to chat
-    //     ConanChat.renderCombatCard(results, null);
-
-    //     // return results, damages, effects, {additionnal effects}
-    //     return results;
-    // }
 
     static async showFortuneSpendDialog(diceQty: number,
         tn: number,
@@ -225,11 +282,11 @@ export class Conan2d20Dice {
               buttons: {
                 yes: {
                   label: 'Yes',
-                  callback: () => this.skillRoll(diceQty, tn, focus, trained, difficulty, autoSuccess, cardData, undefined),
+                  callback: () => this.calculateSkillRoll(diceQty, tn, focus, trained, difficulty, autoSuccess, cardData, undefined),
                 },
                 no: {
                   label: 'No',
-                  callback: () => this.skillRoll(0, tn, focus, trained, difficulty, autoSuccess, cardData, undefined),
+                  callback: () => this.calculateSkillRoll(0, tn, focus, trained, difficulty, autoSuccess, cardData, undefined),
                 }
               },
               default: 'yes',
@@ -237,15 +294,53 @@ export class Conan2d20Dice {
         });
     }
 
+    static async showDamageRollDialog({dialogData, rollData, cardData, actorData}) {
+        return renderTemplate("systems/conan2d20/templates/apps/damage-roll-dialogue.html", dialogData).then(html => {
+            new Dialog({
+                content: html,
+                title: dialogData.title,
+                buttons: {
+                    "roll" : {
+                        label : "Roll Damage",
+                        callback : async (template) => {
+                            /* eslint no-param-reassign: "error" */
+                            // @ts-ignore
+                            rollData.optionalBaseDmg = Number(template.find('[name="baseDamage"]').val() || 0)
+                            /* eslint no-param-reassign: "error" */
+                            // @ts-ignore
+                            rollData.attackType = Number(template.find('[name="attackType"]').val() || 0)
+                            /* eslint no-param-reassign: "error" */
+                            // @ts-ignore
+                            rollData.momentumModifier = Number(template.find('[name="momentumModifier"]').val() || 0)
+                            /* eslint no-param-reassign: "error" */
+                            // @ts-ignore
+                            rollData.reloadModifier = Number(template.find('[name="reloadModifier"]').val() || 0)
+                            /* eslint no-param-reassign: "error" */
+                            // @ts-ignore
+                            rollData.talentModifier = Number(template.find('[name="talentModifier"]').val() || 0)
+                            try {
+                                await Conan2d20Dice.generateDamageRoll(rollData, cardData, actorData);
+                            }
+                            catch (e) {
+                                console.log(e);
+                                ui.notifications.error(e);
+                            }
+                        }
+                    }
+                }
+            }, {classes : ["roll-dialog"]}).render(true)
+        })
+    }
+
     static async showSkillRollDialog({dialogData, rollData, cardData, actorData})
     {
-        return renderTemplate("systems/conan2d20/templates/apps/roll-dialogue.html", dialogData).then(html => {
+        return renderTemplate("systems/conan2d20/templates/apps/skill-roll-dialogue.html", dialogData).then(html => {
             new Dialog({
                 content : html,
                 title : dialogData.title,
                 buttons : {
                     "roll" : {
-                        label : "Roll",
+                        label : "Roll Skill",
                         callback : async (template) => {
                             /* eslint no-param-reassign: "error" */
                             // @ts-ignore
@@ -260,7 +355,7 @@ export class Conan2d20Dice {
                             // @ts-ignore
                             rollData.successModifier = Number(template.find('[name="successModifier"]').val() || 0)
                             try {
-                                await Conan2d20Dice.generateRoll(2, rollData, cardData, actorData);
+                                await Conan2d20Dice.generateSkillRoll(2, rollData, cardData, actorData);
                              }
                             catch (e) {
                                 console.log(e);

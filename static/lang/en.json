@@ -45,13 +45,23 @@
                "wit": "Withdraw"
            }
         },
+		"actionsStandardActionHeader": "Standard Actions",
+		"actionsMinorActionHeader": "Minor Actions",
+		"actionsReactionsHeader": "Reactions",
+		"actionsFreeActionsHeader": "Free Actions",
+        "actionTypeLabel": "Action Type",
+        "actionCategoryLabel": "Action Category",
+		"actionCountLabel": "Action Count",
+        "actionCount": {
+            "1": "1",
+            "2": "2",
+            "1r": "1-repeatable"
+        },
+        "availability": "Availability",
         "CHATOPT": {
             "triggerReroll": "Re-roll Selected",
             "momentumSpendImmediate": "Spend generated Momentum"
         },
-        "actionTypeLabel": "Action Type",
-        "actionCategoryLabel": "Action Category",
-        "availability": "Availability",
         "movement": "Movement",
         "customRollDice": "How many D20s?",
         "customRollBonus": "How many bonus successes?",
@@ -202,6 +212,7 @@
         "addSpell": "Add Spell",
         "armorBrokenLabel": "Broken",
         "equipmentEquippedLabel": "Equipped",
+		"actionSummary": "Action Summary",
         "armorSummary": "Armor Summary",
         "encumbranceShortLabel": "Encumbrance",
         "chatAttack": "attacks",
@@ -218,12 +229,38 @@
         "chatLocationLeftArm": "left arm",
         "chatLocationRightLeg": "right leg",
         "chatLocationLeftLeg": "left leg",
+        "displaySummary": "Display Summary",
+        "displaySkillLabel": "Display Skill",
+        "displayRangeLabel": "Display Range",
+        "displayBaseDamageLabel": "Display Base Damage",
+        "displayQualitiesLabel": "Display Base Damage",
+        "displayDamageTitle": "This section configures the base and bonus damage for the Display of Might and Power.",
+        "displayDamageLabel": "Display Damage",
         "armorTypeLabel": "Armor Type",
         "armorTypes": {
             "heavycloth": "Heavy Clothing",
             "lightarmor": "Light Armor",
             "heavyarmor": "Heavy Armor",
             "vheavyarmor": "Very Heavy Armor"
+        },
+        "attacksLabel": "Attacks",
+		"attacks": {
+			"threaten": {
+				"label": "Threaten",
+                "description": "You terrify, demoralize, or otherwise drive the enemy mad with your actions or renown."
+			},
+            "melee": {
+                "label": "Melee",
+                "description": "You attack with your equipped melee or improvised weapon targeting one foe within reach. Target's Defend reaction uses the Parry skill.</br></br>Melee weapons may be thrown as if they have a range of <b>Close</b>. However, they are ill-balanced for such use. <i>Each melee weapon counts as a single <b>shot</b>: once thrown, the weapon is no longer available for use until it has been recovered.</i>"
+            },
+            "ranged": {
+                "label": "Ranged",
+                "description": "You attack with your equipped ranged weapon targeting one foe within range. This may be a hurled weapon, a heavy projectile or even a loose rock.</br></br><i>Ranged weapons without <b>Volley</b> may have a finite number of shots</i>. <b>Volley</b> weapons may spend a <b>Reload</b> consumable to add <b>+1d20</b> to the skill test and <b>+1d6</b> to the damage rating"
+            }
+		},
+        "attackTypes": {
+            "weapon": "Weapon",
+            "display": "Display of Power"
         },
         "coverageLabel": "Coverage",
         "coverage": {
@@ -234,6 +271,13 @@
             "lleg": "Left Leg",
             "rleg": "Right Leg"
         },
+        "damageRollAttackType": "Attack Type",
+        "damageRollBonusHeader": "Damage Bonuses",
+        "damageRollMomentumSpendLabel": "Momentum",
+        "damageRollTalentSpendLabel": "Talent",
+        "damageRollLoadSpendLabel": "Reloads",
+        "damageRollEffectGenLabel": "Effects generated",
+        "damageRerollText": "{character} used a talent to reroll selected damage dice.",
         "encumbrance1Each": "1-Each",
         "languages": {
             "afgh": "Afghuli",
@@ -275,7 +319,7 @@
         "skillRollSuccess": "Success",
         "skillRollFailure": "Failure",
         "skillRollComplicationsLabel": "complications triggered!",
-        "skillRollMomentumGenLabel": "momentum generated",
+        "skillRollMomentumGenLabel": "Momentum generated",
         "skillRollFortuneSpendPrompt": "You've chosen to spend fortune points for this roll. Would you like to roll your remaining dice (these can still generate complications)?",
         "skillRollMomentumSpendLabel": "Spend Momentum",
         "specialLabel": "Special",
@@ -288,6 +332,7 @@
         "traitRare": "Rare",
         "traitUnique": "Unique",
         "tabCharacterLabel": "Character",
+        "tabActionsLabel": "Actions",
         "tabInventoryLabel": "Inventory",
         "tabSpellsLabel": "Spells",
         "tabSkillsLabel": "Skills",
@@ -333,6 +378,8 @@
         "weaponBonusDamageLabel": "Bonus Weapon Damage",
         "weaponRangeLabel": "Weapon Range",
         "weaponReachLabel": "Weapon Reach",
+        "weaponReloadsLabel": "Weapon Reloads",
+        "weaponShotsLabel": "Weapon Shots",
         "weaponGroup": {
             "axe": "Axe",
             "bow": "Bow",
@@ -343,7 +390,7 @@
             "fla": "Flail",
             "fle": "Flexile",
             "ham": "Hammer",
-            "imp": "Improvised",
+            "imp": "Improvised Weapon",
             "pic": "Pick",
             "pol": "Polearm",
             "shi": "Shield",
@@ -368,6 +415,8 @@
             "fi": "Fixed",
             "mo": "Monstrous"
         },
+        "weaponMeleeHeader": "Melee Attacks",
+        "weaponRangedHeader": "Ranged Attacks",
         "weaponGroupLabel": "Weapon Group",
         "weaponTypeLabel": "Weapon Type",
         "weaponSizeLabel": "Weapon Size",
