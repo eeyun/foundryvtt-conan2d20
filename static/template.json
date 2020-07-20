@@ -487,10 +487,8 @@
                 }
             },
             "qualities": {
-                "qualities": {
-                    "value": [],
-                    "custom": ""
-                }
+                "value": [],
+                "custom": ""
             }
         },
         "npc": {
