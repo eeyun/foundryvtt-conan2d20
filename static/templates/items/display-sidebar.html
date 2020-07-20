@@ -1,0 +1,12 @@
+<h4 class="sidebar-summary">{{localize "CONAN.displaySummary"}}</h4>
+
+<div class="display-details">
+    <ol class="item-tags">
+        {{#if displayQualities}}
+        {{#each data.qualities.value}}
+            <li class="tag">{{this}}</li>
+        {{/each}}
+        {{/if}}
+    </ol>
+</div>
+

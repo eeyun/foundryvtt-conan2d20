@@ -1,6 +1,6 @@
+import { data } from 'jquery';
 import ActorSheetConan2d20 from './base';
 import { C2_Utility } from '../../../scripts/utility';
-import { data } from 'jquery';
 
 class ActorSheetConan2d20Character extends ActorSheetConan2d20 { 
     static get defaultOptions() {
@@ -77,7 +77,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             "offensive": { label: "Offensive Actions", actions: [] }
         };
   
-        let readonlyEquipment = [];
+        const readonlyEquipment = [];
 
         const attacks = {
             weapon:  { label: 'Compendium Weapon', items: [], type: 'weapon' },
@@ -107,11 +107,11 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                     let item;                                                                
                     try {                                                                  
                         item = this.actor.getOwnedItem(i._id);                               
-                        i.chatData = item.getChatData({ secrets: this.actor.owner });        
+                        // i.chatData = item.getChatData({ secrets: this.actor.owner });        
                     } catch (err) {                                                        
                         console.log(`Conan 2D20 System | Character Sheet | Could not load item ${i.name}`)
                     }                                                                      
-                    attacks["weapon"].items.push(i);
+                    attacks.weapon.items.push(i);
                 }
                 inventory[i.type].items.push(i);
 
@@ -127,41 +127,90 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                 const talentType = i.data.talentType || 'None';
                 const actionType = i.data.actionType || 'passive';
                 talents[talentType.value].talents.push(i);
-                if (Object.keys(actions).includes(actionType)) {
-                  i.talent = true;
-                  actions[actionType].actions.push(i);
+                if (Object.keys(actions).includes(actionType.value)) {
+                    i.talent = true;
+                    actions[actionType.value].actions.push(i);
         
-                  // Read-Only Actions
-                  if(i.data.actionCategory && i.data.actionCategory.value) {
-                    switch(i.data.actionCategory.value){
-                      case 'interaction':
-                        readonlyActions.interaction.actions.push(i);
-                        actorData.hasInteractionActions = true;
-                      break;
-                      case 'defensive':
-                        readonlyActions.defensive.actions.push(i);
-                        actorData.hasDefensiveActions = true;
-                      break;
-                      //Should be offensive but throw anything else in there too
-                      default:
-                        readonlyActions.offensive.actions.push(i);
-                        actorData.hasOffensiveActions = true;
+                    // Read-Only Actions
+                    if(i.data.actionCategory && i.data.actionCategory.value) {
+                        switch(i.data.actionCategory.value){
+                        case 'interaction':
+                            readonlyActions.interaction.actions.push(i);
+                            actorData.hasInteractionActions = true;
+                        break;
+                        case 'defensive':
+                            readonlyActions.defensive.actions.push(i);
+                            actorData.hasDefensiveActions = true;
+                        break;
+                        // Should be offensive but throw anything else in there too
+                        default:
+                            readonlyActions.offensive.actions.push(i);
+                            actorData.hasOffensiveActions = true;
+                        }
+                    } else {
+                      readonlyActions.offensive.actions.push(i);
+                      actorData.hasOffensiveActions = true;
                     }
-                  }
-                  else{
-                    readonlyActions.offensive.actions.push(i);
-                    actorData.hasOffensiveActions = true;
-                  }
                 }
             }
+            
+			// Actions
+			if (i.type === 'action') {
+			 	const actionType = i.data.actionType.value || 'action';
+			  	// let actionImg: number|string = 0;
+			  	// if (actionType === 'action') {
+				// 	actionImg = parseInt(i.data.actions.value) || 1;
+			  	// } else if (actionType === 'reaction') {
+				// 	actionImg = 'reaction';
+			  	// } else if (actionType === 'free') {
+				// 	actionImg = 'free';
+			  	// } else if (actionType === 'passive') {
+				// 	actionImg = 'passive';
+				// }
+			  		// i.img = this._getActionImg(actionImg);
+			  	if (actionType === 'passive') {
+					actions.free.actions.push(i);
+			  	} else {
+					actions[actionType].actions.push(i);
+			
+			  		// Read-Only Actions
+			  		if(i.data.actionCategory && i.data.actionCategory.value) {
+			  		 	switch(i.data.actionCategory.value){
+			  		  	 case 'interaction':
+			  		  	    readonlyActions.interaction.actions.push(i);
+			  		  	    actorData.hasInteractionActions = true;
+			  		  	  break;
+			  		  	  case 'defensive':
+			  		  	    readonlyActions.defensive.actions.push(i);
+			  		  	    actorData.hasDefensiveActions = true;
+			  		  	  break;
+			  		  	  case 'offensive':
+			  		  	    // if (i)
+			  		  	    readonlyActions.offensive.actions.push(i);
+			  		  	    actorData.hasOffensiveActions = true;
+			  		  	  break;
+			  		  	  // Should be offensive but throw anything else in there too
+			  		  	  default:
+			  		  	    readonlyActions.offensive.actions.push(i);
+			  		  	    actorData.hasOffensiveActions = true;
+			  		  	}
+			  		} else {
+			  			readonlyActions.offensive.actions.push(i);
+			  			actorData.hasOffensiveActions = true;
+			  		}
+				}
+			}
 
-            else if (i.type === 'background') {                                        
-                inventory[i.type].bgs.push(i);                                         
+
+            else if (i.type === 'background') {
+                inventory[i.type].bgs.push(i);
             }                                                                          
         }
 
         // Assign and return                                                       
         actorData.inventory = inventory;                                           
+		actorData.actions = actions;
+		actorData.readonlyactions = readonlyActions;
         actorData.readonlyEquipment = readonlyEquipment;
         actorData.talents = talents;                          
         actorData.backgrounds = backgrounds;                                       

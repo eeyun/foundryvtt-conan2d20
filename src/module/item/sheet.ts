@@ -34,7 +34,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             type,
             hasSidebar: true,
             sidebarTemplate: () => `systems/conan2d20/templates/items/${type}-sidebar.html`,
-            hasDetails: ['weapon', 'armor', 'talent', 'kit'].includes(type),
+            hasDetails: ['weapon', 'armor', 'talent', 'kit', 'action', 'display'].includes(type),
             detailsTemplate: () => `systems/conan2d20/templates/items/${type}-details.html`
         });
 
@@ -45,6 +45,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.coverageTypes = CONFIG.CONAN.coverageTypes;
             data.armorQualities = CONFIG.CONAN.armorQualities;
             data.encumbrance = CONFIG.CONAN.encumbranceTypes;
+
         } else if (type === 'weapon') {
             data.weaponQualities = CONFIG.CONAN.weaponQualities;
             data.weaponTypes = CONFIG.CONAN.weaponTypes;
@@ -56,7 +57,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.weaponDamage = CONFIG.CONAN.weaponDamage;
             data.encumbrance = CONFIG.CONAN.encumbranceTypes;
 
-           // this._prepareQualities(data.data.qualities, CONFIG.CONAN.weaponQualities);
+           this._prepareQualities(data.data.qualities, CONFIG.CONAN.weaponQualities);
         } else if (type === 'talent') {
             data.talentSkills = CONFIG.CONAN.skills;
             data.talentTypes = CONFIG.CONAN.talentTypes;
@@ -64,6 +65,34 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.categories = CONFIG.CONAN.actionCategories;
             data.rankMax = data.data.rank.max;
             data.talentTags = [data.data.rank.value].filter(t => !!t);
+
+        } else if (type === 'display') {
+            data.displaySkills = CONFIG.CONAN.skills;
+            data.displayRanges = CONFIG.CONAN.weaponRanges;
+            data.displayQualities = CONFIG.CONAN.weaponQualities;
+            const displayDice = mergeObject(CONFIG.CONAN.damageDice, CONFIG.CONAN.displayDamageDice);
+            data.damageDice = displayDice;
+
+            this._prepareQualities(data.data.qualities, CONFIG.CONAN.weaponQualities);
+        } else if (type === 'action') {
+            const actorWeapons = [];
+            if (this.actor) {
+                console.log(this.actor.data.items);
+                for (const i of this.actor.data.items) {
+                    if (i.type === 'weapon') actorWeapons.push(i);
+                }
+            }
+
+            // TODO add function to get action img
+            // const actionType = data.data.actionType.value || 'action';
+            // data.item.img = this._getActionImg(actionType);
+            data.weapons = actorWeapons;
+            data.actionCount = CONFIG.CONAN.actionCount;
+            data.actionTypes = CONFIG.CONAN.actionTypes;
+            data.actionCategories = CONFIG.CONAN.actionCategories;
+            data.skills = CONFIG.CONAN.skills;
+            // TODO generate action tags
+            // data.actionTags = [data.data.qualities.value].filter(t => !!t);
         }
         return data;
     }

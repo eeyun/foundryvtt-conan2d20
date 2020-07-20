@@ -1,0 +1,22 @@
+<H2>Damage</H2>
+
+<h3>{{localize "CONAN.diceRollsLabel"}}</h3>
+<div class="roll-card status">
+    {{#each damageRolls as |roll r|}}
+        <span class="roll-list-entry damage-roll roll" id="roll">{{roll.roll}}</span>
+    {{/each}}
+</div>
+<div class="roll-outcomes">
+    <label>Damage </label>{{damage}} {{damageType}}
+    <br>
+    <label>Hit Location </label>{{hitLocation}}
+</div>
+<br>
+<br>
+<div class="roll-card buttons">
+    {{#if effects}}
+        <div class="roll-complications">
+            <H3>{{effects}} {{localize "CONAN.damageRollEffectGenLabel"}}</h3>
+        </div>
+    {{/if}}
+</div>

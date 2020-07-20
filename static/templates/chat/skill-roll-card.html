@@ -3,9 +3,9 @@
 {{/if}}
 
 <h3>{{localize "CONAN.diceRollsLabel"}}</h3>
-<div class="skill-roll-card status">
+<div class="roll-card status">
     {{#each rolls as |roll r|}}
-        <span class="roll-list-entry roll" id="roll">{{roll.roll}}</span>
+        <span class="roll-list-entry skill-roll roll" id="roll">{{roll.roll}}</span>
     {{/each}}
 </div>
 <div class="roll-outcomes">
@@ -15,7 +15,7 @@
 </div>
 <br>
 <br>
-<div class="skill-roll-card buttons">
+<div class="roll-card buttons">
     {{#if complications}}
         <div class="roll-complications">
             <H3>{{complications}} {{localize "CONAN.skillRollComplicationsLabel"}}</h3>

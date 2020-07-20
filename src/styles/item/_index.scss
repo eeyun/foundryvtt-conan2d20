@@ -2,6 +2,17 @@
 /*  Item Sheet Structure
 /* ----------------------------------------- */
 .item {
+
+    .editor {
+        height: 100%;
+        width: 100%;
+
+        .editor-edit {
+            background: var(--secondary);
+            color: white;
+        }
+    }
+
    form {
     display: flex;
     flex-direction: column;
@@ -104,7 +115,7 @@
             margin-right: 5px
           }
         }
-  
+
         .item-details {
           padding: 8px 8px 0;
           overflow-y: auto;
@@ -132,6 +143,10 @@
 
     .tab {
       padding-left: 10px;
+    }
+
+    .tab[data-tab="description"] {
+        height: 100%;
     }
 
     .form-list {

@@ -19,6 +19,14 @@ export default class Conan2d20Actor extends Actor {
         // Prepare Character data
         if (actorData.type === 'character') this._prepareCharacterData(actorData);
         else if (actorData.type === 'npc') this._prepareNPCData(data);
+
+        if (data.qualities !== undefined) {
+            const map = {};
+            for (const [t, choices] of Object.entries(map)) {
+                const quality = data.qualities[t];
+                if (quality == undefined) continue;
+            }
+        }
         
     // Return the prepared Actor data
         return actorData;
@@ -65,10 +73,13 @@ export default class Conan2d20Actor extends Actor {
         }
 
         // Set TN for Skills
-         for (const [, skl] of Object.entries(data.skills)) {
+         for (const [s, skl] of Object.entries(data.skills)) {
             // @ts-expect-error
             // ^~~~~~~~~~~~~~~^ error: "Unused '@ts-expect-error' directive.(2339)"
             skl.tn = skl.expertise.value + data.attributes[skl.attribute].value;
+            if (data.skills[s].expertise.value > 0) {
+                data.skills[s].trained = true;
+            }
         }
 
         // Prepare Upkeep Cost
@@ -77,6 +88,45 @@ export default class Conan2d20Actor extends Actor {
             data.resources.upkeep.value = 0;
         }
 
+		// Automatic Actions
+		data.actions = [];
+
+		// Attacks
+		{
+			(actorData.items ?? []).filter(
+                (item) => item.type === 'weapon' || item.type === 'display').forEach((item) => {			
+				const action : any =  {};
+                action.imageUrl = item.img;
+                action.name = item.name;
+        		action.type = 'attack';
+        		const flavor = this.getAttackDescription(item);
+        		action.description = flavor.description;
+        		action.success = flavor.success;
+                if (item.type === 'weapon') {
+        		    action.qualities = [
+                        { name: 'attack', label: game.i18n.localize(CONFIG.attacks[item.type])},
+                        { name: 'weaponType', label: CONFIG.weaponTypes[item.data.weaponType.value]},
+                        { name: 'weapongroup', label: CONFIG.weaponGroups[item.data.group.value] ?? ''}].concat(
+                        (item?.data?.qualities?.value).map((quality) => {
+        		        	const key = CONFIG.weaponQualities[quality] ?? quality;
+        		        	return { name: quality, label: game.i18n.localize(key) };
+        		      	})
+        		    );
+                } else if (item.type === 'display') {
+        		    action.qualities = [
+                        { name: 'attack', label: game.i18n.localize(CONFIG.attacks[item.type])}].concat(
+        		    	(item?.data?.qualities?.value).map((quality) => {
+        		        	const key = CONFIG.weaponQualities[quality] ?? quality;
+        		        	return { name: quality, label: game.i18n.localize(key) };
+        		      	})
+                    );
+                }
+                action.attack = {};
+                action.attack.id = item._id;
+                action.attack.type = item.type;
+                data.actions.push(action);
+			});
+		}
         // Experience
         data.resources.xp.value = character.exp;
     }
@@ -150,10 +200,15 @@ export default class Conan2d20Actor extends Actor {
         const diceQty = rerolls.length;
 
         let html = `<h3 class="center"><b>${game.i18n.localize("CONAN.skillRerollActivate")}</b></h3>`;
-        if ( type === "reroll")
+        if ( type === 'skill') {
             /* eslint-disable-next-line prefer-template */
             // @ts-ignore
-            html += `${game.i18n.format("CONAN.skillRerollText",{character:'<b>'+this.name+'</b>'})}<br>`;
+            html += `${game.i18n.format("CONAN.skillRerollText",{character:`<b>${this.name}</b>`})}<br>`;
+        } else if (type === 'damage') {
+            /* eslint-disable-next-line prefer-template */
+            // @ts-ignore
+            html += `${game.i18n.format("CONAN.damageRerollText",{character:`<b>${this.name}</b>`})}<br>`;
+        }
 
         const chatData = {
             user: game.user._id,
@@ -173,34 +228,62 @@ export default class Conan2d20Actor extends Actor {
             template: msgdata.template,
             flags: {img: this.data.token.randomImg ? this.data.img : this.data.token.img}
         };
-        Conan2d20Dice.skillRoll(diceQty, msgdata.rollData.tn, msgdata.rollData.focus, msgdata.rollData.trained, msgdata.resultData.difficulty, undefined, cardData, norolls);
+
+        if (type === 'skill') {
+            Conan2d20Dice.calculateSkillRoll(diceQty, msgdata.rollData.tn, msgdata.rollData.focus, msgdata.rollData.trained, msgdata.resultData.difficulty, undefined, cardData, norolls);
+        } else if (type === 'damage') {
+            Conan2d20Dice.calculateDamageRoll(diceQty, msgdata.resultData.damageType, cardData, norolls);
+        }
     }
 
     momentumSpendImmediate(message, type) {
-        const data = message.data.flags.data;
+        const {data} = message.data.flags;
         console.log("Placeholder Immediate momentum spend");
-        console.log(data);
     }
 
-  /**
-   * Setup a Skill Test.
-   *
-   * Skill tests are fairly simple but there are a number of validations that
-   * need to be made including the handling of fortune and doom/momentum
-   */
-  setupSkill(skill) {
-    const dialogData = {
-        title : CONFIG.skills[skill],
-        modifiers : this._getModifiers("skill", skill),
-        template : "systems/conan2d20/templates/apps/roll-dialogue.html",
-    };
-    const rollData = {
+    /**
+     * Setup a Skill Test.
+     *
+     * Skill tests are fairly simple but there are a number of validations that
+     * need to be made including the handling of fortune and doom/momentum
+     */
+    setupSkill(skill) {
+        const dialogData = {
+            title : CONFIG.skills[skill],
+            modifiers : this._getModifiers("skill", skill),
+            template : "systems/conan2d20/templates/apps/skill-roll-dialogue.html",
+        };
+        const rollData = {
             skill : this.data.data.skills[skill],
-    };
-    const cardData = this._setupCardData("systems/conan2d20/templates/chat/skill-roll-card.html", CONFIG.skills[skill])
+        };
+        const cardData = this._setupCardData("systems/conan2d20/templates/chat/skill-roll-card.html", CONFIG.skills[skill])
+        return {dialogData, cardData, rollData}
+    }
 
-    return {dialogData, cardData, rollData}
-  }
+    /**
+     * Setup a Weapons Test.
+     * 
+     * Probably the most complex test in the game.
+     */
+    setupWeapon(weapon: any, options={}) {
+        const title = `${game.i18n.localize("Damage Roll")} - ${weapon.name}`;
+        const dialogData = {
+            title,
+            modifiers : this._getModifiers("damage", weapon),
+            template : "systems/conan2d20/templates/apps/damage-roll-dialogue.html"
+        };
+        const cardData = this._setupCardData("systems/conan2d20/templates/chat/damage-roll-card.html", title);
+        const rollData = {
+            target : 0,
+            hitLocation : true,
+            extra : {
+                weapon,
+                loads: weapon.data.loads,
+                options
+            }
+        };
+        return {dialogData, cardData, rollData}
+    }
 
   _setupCardData(template: string, title: string) {
       const cardData = {
@@ -235,14 +318,78 @@ export default class Conan2d20Actor extends Actor {
       return cardData
   }
 
-  _getModifiers(type: String, specifier: Object) {
-    const difficultyLevels = CONFIG.skillRollDifficultyLevels;
-    const diceModSpends = CONFIG.skillRollResourceSpends;
-    const mod = {
-        difficulty: difficultyLevels,
-        diceModifier : diceModSpends,
-        successModifier : 0,
+	getAttackDescription(item) {
+  		const flavor = {
+  	  		description: 'CONAN.attack.default.description',
+  	  	  	success: 'CONAN.attack.default.success',
+  	  	};
+  	  	if ((item?.data?.qualities?.value).includes('improvised')) {
+  	  	 flavor.description = 'CONAN.attacks.improvised.description';
+  	  	 	flavor.success = 'CONAN.attacks.improvised.success';
+  	  	} else if (item?.data?.weaponType?.value === 'melee') {
+  	  		flavor.description = 'CONAN.attacks.melee.description';
+  	  	  	flavor.success = 'CONAN.attacks.melee.success';
+  	  	} else if (item?.data?.weaponType?.value === 'ranged') {
+  	  		flavor.description = 'CONAN.attacks.ranged.description';
+  	  	  	flavor.success = 'CONAN.attacks.ranged.success';
+  	  	} else if (item?.data?.damage?.type === 'mental') {
+            console.log(item.data.description);
+			flavor.description = `${item?.data?.description?.value}`;
+			flavor.success = 'CONAN.attacks.display.success';
+		}
+  	  	return flavor;
+  	}
+
+  	_getModifiers(type: String, specifier: any) {
+        let mod;
+        if (type === 'skill') {
+  	  	    const difficultyLevels = CONFIG.rollDifficultyLevels;
+  	  	    const diceModSpends = CONFIG.skillRollResourceSpends;
+  	  	    mod = {
+  	  	        difficulty: difficultyLevels,
+  	  	        diceModifier : diceModSpends,
+  	  	        successModifier : 0,
+  	  	    }
+  	  	    return mod
+        } ;
+        if (type === 'damage') {
+            const attackTypes = CONFIG.weaponTypes;
+            let wType: String;
+            let bDamage: Object;
+            if (specifier.type === 'display') {
+                wType = 'display';
+            } else if (specifier.type === 'weapon') {
+                wType = specifier.data.weaponType.value;
+            }
+            mod = {
+                attackType: attackTypes,
+                weaponType: wType,
+                momentumModifier: 0,
+                reloadModifier: 0,
+                talentModifier: 0,
+            }
+            if (specifier.data.damage.dice === 'x') {
+                mod = mergeObject(mod, {baseDamage: specifier.data.damage.dice});
+            };
+            return mod
+        };
+  	}
+
+     /**
+     * @param {string[]} rollNames
+     * @return {string[]}
+     */
+    getRollOptions(rollNames) {
+        const flag = this.getFlag(game.system.id, 'rollOptions') ?? {};
+        return rollNames.flatMap(rollName =>
+        // convert flag object to array containing the names of all fields with a truthy value
+        Object.entries(flag[rollName] ?? {}).reduce((opts, [key, value]) => opts.concat(value ? key : []), [])
+            ).reduce((unique, option) => {
+            // ensure option entries are unique
+            return unique.includes(option) ? unique : unique.concat(option);
+        }, []);
     }
-    return mod
-  }
+
+    
+
 }

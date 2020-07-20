@@ -38,7 +38,7 @@ CONFIG.skills = {
     sor: 'CONAN.skills.sor'
 };
 
-CONFIG.skillRollDifficultyLevels = {
+CONFIG.rollDifficultyLevels = {
     1: 'CONAN.skillRollDifficultyLevels.1',
     2: 'CONAN.skillRollDifficultyLevels.2',
     3: 'CONAN.skillRollDifficultyLevels.3',
@@ -66,6 +66,11 @@ CONFIG.encumbranceTypes = {
   6: '6',
   7: '7',
   "1each": 'CONAN.encumbrance1Each'
+};
+
+CONFIG.attacks = {
+    weapon: 'CONAN.attackTypes.weapon',
+    display: 'CONAN.attackTypes.display'
 };
 
 CONFIG.availabilityTypes = {
@@ -158,6 +163,12 @@ CONFIG.actionCategories = {
     defensive: 'CONAN.talentCategories.def',
     offensive: 'CONAN.talentCategories.off',
     interaction: 'CONAN.talentCategories.int'
+};
+
+CONFIG.actionCount = {
+    1: 'CONAN.actionCount.1',
+    2: 'CONAN.actionCount.2',
+    '1r': 'CONAN.actionCount.1r'
 };
 
 CONFIG.languages = {
@@ -272,6 +283,10 @@ CONFIG.weaponRanges = {
     close: "CONAN.weaponRanges.c",
     medium: "CONAN.weaponRanges.m",
     long: "CONAN.weaponRanges.l"
+};
+
+CONFIG.displayDamageDice = {
+    x: 'X'
 };
 
 CONFIG.damageDice = {
