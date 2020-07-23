@@ -1,4 +1,31 @@
 <div class="form-group">
+    <label>{{localize "CONAN.armorTypeLabel"}}</label>
+    <select name="data.armorType" data-dtype="String">
+        {{#select data.armorType}}
+        {{#each armorTypes as |label key|}}
+        <option value="{{key}}">{{localize label}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.armorSoakLabel"}}</label>
+    <input type="text" name="data.soak" value="{{data.soak}}" data-dtype="{{data.soak}}"/>
+</div>
+
+<div class="form-group-stacked">
+    <label for="data.coverage">
+        {{localize "CONAN.coverageLabel"}}
+        <a class="trait-selector" data-options="coverageTypes"><i class="fas fa-edit"></i></a>
+    </label>
+    <ul class="coverages-list co-value co-large">
+        {{#each data.coverage as |v k|}}
+        <span class="tag {{k}}">{{v}}</span>
+        {{/each}}
+    </ul>                                                                        
+</div>  
+<div class="form-group">
     <label>{{localize "CONAN.equipmentEquippedLabel"}}</label>
     <input type="checkbox" name="data.equipped.value" value="1" data-dtype="{{data.equipped.type}}" {{checked data.equipped.value}}/>
 </div>
@@ -9,12 +36,12 @@
 </div>
 
 <div class="form-group-stacked">
-    <label for="data.armor.qualities">
+    <label for="data.qualities">
         {{localize "CONAN.qualitiesLabel"}}
         <a class="trait-selector" data-options="armorQualities"><i class="fas fa-edit"></i></a>
     </label>
     <ul class="qualities-list co-value co-large">
-        {{#each data.armor.qualities.value as |v k|}}
+        {{#each data.qualities.value as |v k|}}
         <span class="tag {{k}}">{{v}}</span>
         {{/each}}
     </ul>

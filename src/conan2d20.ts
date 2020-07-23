@@ -46,14 +46,24 @@ Hooks.once('setup', () => {
         'armorTypes', 'armorQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes',
         'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories',
         'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'rollDifficultyLevels',
-        'rollResults', 'actionCount'
+        'rollResults', 'actionCount', 'kitTypes'
     ];
-    for (const o of toLocalize) {
-        CONFIG.CONAN[o] = Object.entries(CONFIG.CONAN[o]).reduce((obj, e: any) => {
-            obj[e[0]] = game.i18n.localize(e[1]);
-            return obj;
-        }, {});
-    }
+
+    const noSort: any = [
+        'availabilityTypes', 'rollDifficultyLevels', 'weaponSizes'
+    ];
+
+    for ( let o of toLocalize ) {
+    const localized = Object.entries(CONFIG.CONAN[o]).map(e => {
+        // @ts-ignore
+        return [e[0], game.i18n.localize(e[1])];
+    });
+    if ( !noSort.includes(o) ) localized.sort((a, b) => a[1].localeCompare(b[1]));
+    CONFIG.CONAN[o] = localized.reduce((obj, e) => {
+        obj[e[0]] = e[1];
+        return obj;
+    }, {});
+  }
 });
 
 Hooks.on('preCreateActor', (actor: any, dir: any) => {

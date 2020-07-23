@@ -38,10 +38,20 @@
             <input name="talentModifier" value=""/>
         </div>
         {{#ifEq modifiers.weaponType "ranged"}}
-        <div class="form-group">
+            {{#if options}}
             <label>{{localize "CONAN.damageRollLoadSpendLabel"}}</label>
-            <input name="reloadModifier" value=""/>
-        </div>
+            <div class="form-group">
+                <select name="reloadItem" data-dtype="" id="reloadItem">
+                    {{#select options}}
+                    <option value=""/>
+                    {{#each options as |object index|}}
+                    <option value="{{object.id}}">{{object.name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                <input name="reloadModifier" value=""/>
+            </div>
+            {{/if}}
         {{/ifEq}}
     </div>
 </ol>

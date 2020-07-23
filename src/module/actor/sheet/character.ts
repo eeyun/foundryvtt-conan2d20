@@ -41,9 +41,9 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 
     _prepareItems(actorData) {
         const inventory = {                                                          
-            weapon: { label: game.i18n.localize("CONAN.inventoryWeaponsHeader"), items: [] },
             armor: { label: game.i18n.localize("CONAN.inventoryArmorHeader"), items: [] },
-            kits: { label: game.i18n.localize("CONAN.inventoryKitsHeader"), items: [] }
+            weapon: { label: game.i18n.localize("CONAN.inventoryWeaponsHeader"), items: [] },
+            kit: { label: game.i18n.localize("CONAN.inventoryKitsHeader"), items: [] }
         };                                                                           
                                                                                   
         const backgrounds = {                                                        
@@ -92,7 +92,12 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
               actorData.hasEquipment = true;                                           
             }                                                                          
             
-            i.canBeEquipped = true;
+            if (i.type === 'armor' || i.type === 'weapon') {
+                i.canBeEquipped = true;
+            } else {
+                i.canBeEquipped = false;
+            }
+
             i.isEquipped = i?.data?.equipped ?? false;
 
             
@@ -102,12 +107,12 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                 i.data.quantity = i.data.quantity || 0;                                  
                 i.data.encumbrance = i.data.encumbrance || 0;                            
                 // i.totalWeight = formatEncumbrance(approximatedEncumbrance);                          
-                i.hasCharges = (i.type === 'consumable') && i.data.charges.max > 0;      
+                i.hasCharges = (i.type === 'kit') && i.data.uses.max > 0;      
                 if (i.type === 'weapon') {                                                   
                     let item;                                                                
                     try {                                                                  
                         item = this.actor.getOwnedItem(i._id);                               
-                        // i.chatData = item.getChatData({ secrets: this.actor.owner });        
+                        i.chatData = item.getChatData({ secrets: this.actor.owner });        
                     } catch (err) {                                                        
                         console.log(`Conan 2D20 System | Character Sheet | Could not load item ${i.name}`)
                     }                                                                      

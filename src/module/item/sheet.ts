@@ -57,15 +57,15 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.weaponDamage = CONFIG.CONAN.weaponDamage;
             data.encumbrance = CONFIG.CONAN.encumbranceTypes;
 
-           this._prepareQualities(data.data.qualities, CONFIG.CONAN.weaponQualities);
+           this._prepareQualities(CONFIG.CONAN.weaponQualities);
         } else if (type === 'talent') {
             data.talentSkills = CONFIG.CONAN.skills;
             data.talentTypes = CONFIG.CONAN.talentTypes;
             data.talentActionTypes = CONFIG.CONAN.actionTypes;
             data.categories = CONFIG.CONAN.actionCategories;
             data.rankMax = data.data.rank.max;
-            data.talentTags = [data.data.rank.value].filter(t => !!t);
 
+            data.talentTags = [data.data.rank.value].filter(t => !!t);
         } else if (type === 'display') {
             data.displaySkills = CONFIG.CONAN.skills;
             data.displayRanges = CONFIG.CONAN.weaponRanges;
@@ -73,11 +73,10 @@ export class ItemSheetConan2d20 extends ItemSheet {
             const displayDice = mergeObject(CONFIG.CONAN.damageDice, CONFIG.CONAN.displayDamageDice);
             data.damageDice = displayDice;
 
-            this._prepareQualities(data.data.qualities, CONFIG.CONAN.weaponQualities);
+            this._prepareQualities(CONFIG.CONAN.weaponQualities);
         } else if (type === 'action') {
             const actorWeapons = [];
             if (this.actor) {
-                console.log(this.actor.data.items);
                 for (const i of this.actor.data.items) {
                     if (i.type === 'weapon') actorWeapons.push(i);
                 }
@@ -93,6 +92,11 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.skills = CONFIG.CONAN.skills;
             // TODO generate action tags
             // data.actionTags = [data.data.qualities.value].filter(t => !!t);
+        } else if (type === 'kit') {
+            data.kitSkills = CONFIG.CONAN.skills;
+            data.kitTypes = CONFIG.CONAN.kitTypes;
+            data.uses = CONFIG.CONAN.kitUses;
+            data.encumbrance = CONFIG.CONAN.encumbranceTypes;
         }
         return data;
     }
@@ -103,7 +107,9 @@ export class ItemSheetConan2d20 extends ItemSheet {
         const options = {
             name: a.parents('label').attr('for'),
             title: a.parent().text().trim(),
-            choices: CONFIG.CONAN[a.attr('data-options')]
+            choices: CONFIG.CONAN[a.attr('data-options')],
+            has_values: (a.attr('data-has-values') === 'true'),
+            allow_empty_values: (a.attr('data-allow-empty-values') === 'true')
         };
         new TraitSelector(this.item, options).render(true);
     }
@@ -118,17 +124,36 @@ export class ItemSheetConan2d20 extends ItemSheet {
         html.find('.trait-selector').click(ev => this.onTraitSelector(ev));
     }
 
-    _prepareQualities(qualities, choices) {
-        if (qualities.selected) {
-            qualities.selected = qualities.value.reduce((obj, t) => {
-                obj[t] = choices[t];
-                return obj;
-            }, {});
-        } else {
-            qualities.selected = [];
+      _prepareQualities(traits) {
+    if (traits == undefined) return;
+
+     for (const [t, choices] of Object.entries(traits)) {
+      const trait = traits[t] || {value: [], selected: []};
+
+      if (Array.isArray(trait)) {
+          // @ts-ignore
+        (trait as any).selected = {};
+        for (const entry of trait) {
+          if (typeof entry === 'object') {
+              let text = `${choices[entry.type]}`;
+              if (entry.value !== "")
+                text = `${text} (${entry.value})`;
+                (trait as any).selected[entry.type] = text;
+          } else {
+            (trait as any).selected[entry] = choices[entry] || `${entry}`;
+          }
         }
-        if (qualities.custom) qualities.selected.custom = qualities.custom;
+      } else if (trait.value) {
+        trait.selected = trait.value.reduce((obj, t) => {
+          obj[t] = choices[t];
+           return obj;
+        }, {});
+      }
+
+      if (trait.custom) trait.selected.custom = trait.custom;
     }
+  }
+
 
     _onChangeInput(event) {
         return this._onSubmit(event);                                                
