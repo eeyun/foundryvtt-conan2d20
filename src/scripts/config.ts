@@ -74,11 +74,11 @@ CONFIG.attacks = {
 };
 
 CONFIG.availabilityTypes = {
-  1: '1',
-  2: '2',
-  3: '3',
-  4: '4',
-  5: '5'
+  1: 'CONAN.skillRollDifficultyLevels.1',
+  2: 'CONAN.skillRollDifficultyLevels.2',
+  3: 'CONAN.skillRollDifficultyLevels.3',
+  4: 'CONAN.skillRollDifficultyLevels.4',
+  5: 'CONAN.skillRollDifficultyLevels.5'
 };
 
 CONFIG.naturesTypes = {
