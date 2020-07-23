@@ -361,7 +361,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 case 'weaponDamage': {
                     ev.preventDefault();
                     ev.stopPropagation();
-                    let actorData = duplicate(this.actor).data
+                    let actorData = duplicate(this.actor)
                     // @ts-ignore
                     let weapon = duplicate(this.actor.getEmbeddedEntity("OwnedItem", itemId, true));
                     const reloadIds = this.actor.data.items

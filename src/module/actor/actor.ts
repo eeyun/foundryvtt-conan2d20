@@ -354,7 +354,6 @@ export default class Conan2d20Actor extends Actor {
   	  		flavor.description = 'CONAN.attacks.ranged.description';
   	  	  	flavor.success = 'CONAN.attacks.ranged.success';
   	  	} else if (item?.data?.damage?.type === 'mental') {
-            console.log(item.data.description);
 			flavor.description = `${item?.data?.description?.value}`;
 			flavor.success = 'CONAN.attacks.display.success';
 		}
