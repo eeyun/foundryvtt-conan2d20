@@ -555,11 +555,15 @@
                     "value": null,
                     "long": null,
                     "units": ""
-                },
+                }
+            },
+            "consumable": {
                 "uses": {
-                    "value": 0,
-                    "max": 0,
-                    "per": null
+                    "value": "",
+                    "max": "",
+                    "per": null,
+                    "autoUse": false,
+                    "autoDestroy": false
                 },
                 "consume": {
                     "type": "",
@@ -570,24 +574,17 @@
         },
         "armor": {
             "templates": ["itemDescription", "physicalItem"],
-            "equipmentType": "",
-            "armor": {
-                "coverage": [],
-                "soak": 0,
-                "qualities": []
+            "armorType": "",
+            "coverage": [],
+            "soak": 0,
+            "qualities": {
+                "value": []
             }
         },
         "kit": {
-            "templates": ["itemDescription", "physicalItem", "activatedEffect"],
+            "templates": ["itemDescription", "physicalItem", "consumable"],
             "kitType": "",
-            "skill": "",
-            "uses": {
-                "value": 0,
-                "max": 0,
-                "per": null,
-                "autoUse": false,
-                "autoDestroy": false
-            }
+            "skill": ""
         },
         "weapon": {
             "templates": ["itemDescription", "physicalItem"],

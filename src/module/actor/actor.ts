@@ -22,9 +22,9 @@ export default class Conan2d20Actor extends Actor {
 
         if (data.qualities !== undefined) {
             const map = {};
-            for (const [t, choices] of Object.entries(map)) {
+            for (const [t,] of Object.entries(map)) {
                 const quality = data.qualities[t];
-                if (quality == undefined) continue;
+                if (quality === undefined) continue;
             }
         }
         
@@ -109,15 +109,21 @@ export default class Conan2d20Actor extends Actor {
                         { name: 'weapongroup', label: CONFIG.weaponGroups[item.data.group.value] ?? ''}].concat(
                         (item?.data?.qualities?.value).map((quality) => {
         		        	const key = CONFIG.weaponQualities[quality] ?? quality;
-        		        	return { name: quality, label: game.i18n.localize(key) };
-        		      	})
+                            if (key.value) {
+        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})` };
+        		            } 	
+        		        	return { name: quality, label: `${game.i18n.localize(key.label)}` };
+                        })
         		    );
                 } else if (item.type === 'display') {
         		    action.qualities = [
                         { name: 'attack', label: game.i18n.localize(CONFIG.attacks[item.type])}].concat(
         		    	(item?.data?.qualities?.value).map((quality) => {
         		        	const key = CONFIG.weaponQualities[quality] ?? quality;
-        		        	return { name: quality, label: game.i18n.localize(key) };
+                            if (key.value) {
+        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})` };
+        		            } 	
+        		        	return { name: quality, label: `${game.i18n.localize(key.label)}` };
         		      	})
                     );
                 }
@@ -181,6 +187,18 @@ export default class Conan2d20Actor extends Actor {
         } else {
             /* eslint-disable-next-line no-param-reassign */
             actorData.data.resources.fortune.value = newValue;
+            game.actors.get(actorData._id).update(actorData);
+        }
+    }
+
+    static spendReload(actorData,  reloadSpend, reloadItem) {
+        const newValue = actorData.items.find(i => i._id === reloadItem).data.uses.value - reloadSpend;
+        if (newValue < 0) {
+            const error = "Resource spend would exceed available reloads."
+            throw error;
+        } else {
+            /* eslint-disable-next-line no-param-reassign */
+            actorData.items.find(i => i._id === reloadItem).data.uses.value = newValue;
             game.actors.get(actorData._id).update(actorData);
         }
     }
@@ -265,21 +283,24 @@ export default class Conan2d20Actor extends Actor {
      * 
      * Probably the most complex test in the game.
      */
-    setupWeapon(weapon: any, options={}) {
+    setupWeapon(weapon: any, options: [] = []) {
         const title = `${game.i18n.localize("Damage Roll")} - ${weapon.name}`;
         const dialogData = {
             title,
             modifiers : this._getModifiers("damage", weapon),
-            template : "systems/conan2d20/templates/apps/damage-roll-dialogue.html"
+            template : "systems/conan2d20/templates/apps/damage-roll-dialogue.html",
         };
+        if (options.length) {
+            // @ts-ignore
+            dialogData.options = options
+        }
         const cardData = this._setupCardData("systems/conan2d20/templates/chat/damage-roll-card.html", title);
+
         const rollData = {
             target : 0,
             hitLocation : true,
             extra : {
                 weapon,
-                loads: weapon.data.loads,
-                options
             }
         };
         return {dialogData, cardData, rollData}

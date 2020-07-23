@@ -4,7 +4,11 @@
     <ol class="item-tags">
         {{#if displayQualities}}
         {{#each data.qualities.value}}
-            <li class="tag">{{this}}</li>
+            {{#if this.value}}
+            <li class="tag">{{this.label}}({{this.value}})</li>
+            {{else}}
+            <li class="tag">{{this.label}}</li>
+            {{/if}}
         {{/each}}
         {{/if}}
     </ol>

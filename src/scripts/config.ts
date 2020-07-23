@@ -74,10 +74,11 @@ CONFIG.attacks = {
 };
 
 CONFIG.availabilityTypes = {
-  common: 'CONAN.traitCommon',
-  uncommon: 'CONAN.traitUncommon',
-  rare: 'CONAN.traitRare',
-  unique: 'CONAN.traitUnique'
+  1: '1',
+  2: '2',
+  3: '3',
+  4: '4',
+  5: '5'
 };
 
 CONFIG.naturesTypes = {
@@ -171,6 +172,25 @@ CONFIG.actionCount = {
     '1r': 'CONAN.actionCount.1r'
 };
 
+CONFIG.kitTypes = {
+    facility: 'CONAN.kitTypes.fac',
+    kit: 'CONAN.kitTypes.kit',
+    library: 'CONAN.kitTypes.lib',
+    reload: 'CONAN.kitTypes.rel',
+    resource: 'CONAN.kitTypes.res',
+    tool: 'CONAN.kitTypes.too'
+};
+
+CONFIG.kitUses = {
+    1: '1',
+    2: '2',
+    3: '3',
+    4: '4',
+    5: '5',
+    6: '6',
+    "inf": "&infin;"
+};
+
 CONFIG.languages = {
     afghuli: 'CONAN.languages.afgh',
     argossean: 'CONAN.languages.argo',
@@ -214,28 +234,28 @@ CONFIG.talentTypes = {
 
 CONFIG.weaponQualities = {
     area: 'CONAN.qualities.weapons.area',
-    backlash: 'CONAN.qualities.weapons.back',
+    backlashx: 'CONAN.qualities.weapons.back',
     blinding: 'CONAN.qualities.weapons.blin',
-    cavalry: 'CONAN.qualities.weapons.cava',
-    fearsome: 'CONAN.qualities.weapons.fear',
+    cavalryx: 'CONAN.qualities.weapons.cava',
+    fearsomex: 'CONAN.qualities.weapons.fear',
     fragile: 'CONAN.qualities.weapons.frag',
     grappling: 'CONAN.qualities.weapons.grap',
-    hidden: 'CONAN.qualities.weapons.hidd',
+    hiddenx: 'CONAN.qualities.weapons.hidd',
     improvised: 'CONAN.qualities.weapons.impr',
-    incendiary: 'CONAN.qualities.weapons.ince',
+    incendiaryx: 'CONAN.qualities.weapons.ince',
     intense: 'CONAN.qualities.weapons.inte',
     knockdown: 'CONAN.qualities.weapons.knoc',
     nonlethal: 'CONAN.qualities.weapons.nonl',
     parrying: 'CONAN.qualities.weapons.parr',
-    persistent: 'CONAN.qualities.weapons.pers',
-    piercing: 'CONAN.qualities.weapons.pier',
-    shield: 'CONAN.qualities.weapons.shie',
-    spread: 'CONAN.qualities.weapons.spre',
+    persistentx: 'CONAN.qualities.weapons.pers',
+    piercingx: 'CONAN.qualities.weapons.pier',
+    shieldx: 'CONAN.qualities.weapons.shie',
+    spreadx: 'CONAN.qualities.weapons.spre',
     stun: 'CONAN.qualities.weapons.stun',
-    subtle: 'CONAN.qualities.weapons.subt',
+    subtlex: 'CONAN.qualities.weapons.subt',
     thrown: 'CONAN.qualities.weapons.thro',
-    unforgiving: 'CONAN.qualities.weapons.unfo',
-    vicious: 'CONAN.qualities.weapons.vici',
+    unforgivingx: 'CONAN.qualities.weapons.unfo',
+    viciousx: 'CONAN.qualities.weapons.vici',
     volley: 'CONAN.qualities.weapons.voll'
 };
 
@@ -300,4 +320,53 @@ CONFIG.damageDice = {
     7: '7',
     8: '8',
     9: '9'
+};
+
+CONFIG.weaponDescriptions = {
+    axe: 'CONAN.weaponDescriptionAxe',
+    bow: 'CONAN.weaponDescriptionBow',
+    club: 'CONAN.weaponDescriptionClu',
+    crossbow: 'CONAN.weaponDescriptionsCro',
+    dagger: 'CONAN.weaponDescritionDag',
+    dirk: 'CONAN.weaponDescriptionDir',
+    flail: 'CONAN.weaponDescriptionFla',
+    flexile: 'CONAN.weaponDescriptionFle',
+    hammer: 'CONAN.weaponDescriptionHam',
+    improvised: 'CONAN.weaponDescriptionImp',
+    pick: 'CONAN.weaponDescriptionPic',
+    polearm: 'CONAN.weaponDescriptionPol',
+    shield: 'CONAN.weaponGroup.shi',
+    sling: 'CONAN.weaponDescriptionSli',
+    sword: 'CONAN.weaponDescriptionSwo',
+    spear: 'CONAN.weaponDescriptionSpe'
+};
+
+CONFIG.qualitiesDescriptions = {
+    heavy: 'CONAN.qualitiesDescriptionsHeavy',
+    noisy: 'CONAN.qualitiesDescriptionsNoisy',
+    veryheavy: 'CONAN.qualitiesDescriptionsVHeavy',
+    area: 'CONAN.qualitiesDescriptionArea',
+    backlashx: 'CONAN.qualitiesDescriptionBack',
+    blinding: 'CONAN.qualitiesDescriptionBlin',
+    cavalryx: 'CONAN.qualitiesDescriptionCava',
+    fearsomex: 'CONAN.qualitiesDescriptionFear',
+    fragile: 'CONAN.qualitiesDescriptionFrag',
+    grappling: 'CONAN.qualitiesDescriptionGrap',
+    hiddenx: 'CONAN.qualitiesDescriptionHidd',
+    improvised: 'CONAN.qualitiesDescriptionImpr',
+    incendiaryx: 'CONAN.qualitiesDescriptionInce',
+    intense: 'CONAN.qualitiesDescriptionInte',
+    knockdown: 'CONAN.qualitiesDescriptionKnoc',
+    nonlethal: 'CONAN.qualitiesDescriptionNonl',
+    parrying: 'CONAN.qualitiesDescriptionParr',
+    persistentx: 'CONAN.qualitiesDescriptionPers',
+    piercingx: 'CONAN.qualitiesDescriptionPier',
+    shieldx: 'CONAN.qualitiesDescriptionShie',
+    spreadx: 'CONAN.qualitiesDescriptionSpre',
+    stun: 'CONAN.qualitiesDescriptionStun',
+    subtlex: 'CONAN.qualitiesDescriptionSubt',
+    thrown: 'CONAN.qualitiesDescriptionsThro',
+    unforgivingx: 'CONAN.qualitiesDescriptionUnfo',
+    viciousx: 'CONAN.qualitiesDescriptionVici',
+    volley: 'CONAN.qualitiesDescriptionVoll'
 };

@@ -1,11 +1,6 @@
-<h4 class="sidebar-summary">{{localize "CONAN.armorSummary"}}</h4>
+<h4 class="sidebar-summary">{{localize "CONAN.kitSummary"}}</h4>
 
 <div class="inventory-details">
-    <div class="form-group">
-        <label>{{localize "CONAN.quantityLabel"}}</label>
-        <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="{{data.quantity.type}}"/>
-    </div>
-
     <div class="form-group">
         <label>{{localize "CONAN.availability"}}</label>
         <select name="data.availability" data-dtype="String">
@@ -32,13 +27,3 @@
         <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="{{data.cost.type}}"/>
     </div>
 </div>
-
-<ol class="item-tags">
-    {{#if data.equipped.value}}
-    <li class="tag">{{localize "CONAN.equipmentEquippedLabel"}}</li>
-    {{/if}}
-    {{#if data.broken.value}}
-    <li class="tag">{{localize "CONAN.armorBrokenLabel"}}</li>
-    {{/if}}
-</ol>
-

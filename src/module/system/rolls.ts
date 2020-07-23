@@ -192,6 +192,15 @@ export class Conan2d20Dice {
 
     static async generateDamageRoll(rollData: any, cardData: any, actorData: any) {
         // TODO: Wire in momentum expenditure check
+        const generatorErr = {
+            reload: "Conan 2D20 | Error in Damage Roll, you must enter a number of reloads to spend",
+            resource: "Conan 2D20 | Error in Damage Roll, you must select a Reload to spend"
+        };
+        if (rollData.reloadItem !== '' && rollData.reloadModifier < 1) {
+            throw generatorErr.reload;
+        } else if (rollData.reloadModifier > 0 && rollData.reloadItem === '') {
+            throw generatorErr.resource;
+        }
         let baseDamage;
         if (rollData.optionalBaseDmg > 0) {
             baseDamage = Number(rollData.optionalBaseDmg);
@@ -212,22 +221,34 @@ export class Conan2d20Dice {
             attribute = 'per';
         };
 
-        if (actorData.attributes[attribute].value <= 8) {
+        if (actorData.data.attributes[attribute].value <= 8) {
             modifier = 0;
-        } else if (actorData.attributes[attribute].value === 9) {
+        } else if (actorData.data.attributes[attribute].value === 9) {
             modifier = 1;
-        } else if (actorData.attributes[attribute].value === 10 || 11) {
+        } else if (actorData.data.attributes[attribute].value === 10 || 11) {
             modifier = 2;
-        } else if (actorData.attributes[attribute].value === 12 || 13) {
+        } else if (actorData.data.attributes[attribute].value === 12 || 13) {
             modifier = 3;
-        } else if (actorData.attributes[attribute].value === 14 || 15) {
+        } else if (actorData.data.attributes[attribute].value === 14 || 15) {
             modifier = 4;
-        } else if (actorData.attributes[attribute].value >= 16) {
+        } else if (actorData.data.attributes[attribute].value >= 16) {
             modifier = 5;
         }
 
         diceQty += modifier;
-        await this.calculateDamageRoll(diceQty, damageType, cardData);
+        if (rollData.reloadModifier > 0) {
+            try {
+                Conan2d20Actor.spendReload(actorData, rollData.reloadModifier, rollData.reloadItem);
+                diceQty + rollData.reloadModifier;
+                await this.calculateDamageRoll(diceQty, damageType, cardData);
+            }
+            catch(e) {
+                console.log(e);
+                ui.notifications.error(e);
+            }
+        } else {
+            await this.calculateDamageRoll(diceQty, damageType, cardData);
+        }
     }
 
     static async generateSkillRoll(baseDice: number = 2, rollData: any, cardData: any, actorData: any) {
@@ -257,7 +278,7 @@ export class Conan2d20Dice {
                 Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
                 await this.showFortuneSpendDialog(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
             }
-            catch(e){
+            catch(e) {
                 console.log(e);
                 ui.notifications.error(e);
             }
@@ -315,6 +336,9 @@ export class Conan2d20Dice {
                             /* eslint no-param-reassign: "error" */
                             // @ts-ignore
                             rollData.reloadModifier = Number(template.find('[name="reloadModifier"]').val() || 0)
+                            /* eslint no-param-reassign: "error" */
+                            // @ts-ignore
+                            rollData.reloadItem = template.find('[name="reloadItem"]').val() || ''
                             /* eslint no-param-reassign: "error" */
                             // @ts-ignore
                             rollData.talentModifier = Number(template.find('[name="talentModifier"]').val() || 0)

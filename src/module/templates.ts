@@ -8,6 +8,8 @@ export default function() {
         'systems/conan2d20/templates/items/armor-sidebar.html',
         'systems/conan2d20/templates/items/display-details.html',
         'systems/conan2d20/templates/items/display-sidebar.html',
+        'systems/conan2d20/templates/items/kit-details.html',
+        'systems/conan2d20/templates/items/kit-sidebar.html',
         'systems/conan2d20/templates/items/talent-details.html',
         'systems/conan2d20/templates/items/talent-sidebar.html',
         'systems/conan2d20/templates/items/weapon-details.html',
