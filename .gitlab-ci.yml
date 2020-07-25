@@ -30,7 +30,7 @@ build:
     - npm i webpack
   script:
     - echo make build
-    - npm run build:dev
+    - npm run build
     # - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
 
 postchecks:
