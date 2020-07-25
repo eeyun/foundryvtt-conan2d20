@@ -1,0 +1,25 @@
+image: node
+
+stages:
+  - build
+  - test
+  - deploy
+
+.global_rules:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
+      allow_failure: false
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: on_success
+      allow_failure: true
+
+prechecks:
+  # extends: .global_rules
+  stage: .pre
+  script: 
+    - echo preliminary job
+    # Install eslint
+    - npm i eslint
+    # Run eslint
+    - node_modules/eslint/bin/eslint.js .
