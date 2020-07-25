@@ -33,7 +33,3 @@ build:
     - npm run build
     # - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
 
-postchecks:
-  extends: .global_rules
-  stage: .post
-  script: echo Clean up after run ?
