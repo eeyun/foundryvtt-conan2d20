@@ -23,3 +23,15 @@ prechecks:
     - npm i eslint
     # Run eslint
     - node_modules/eslint/bin/eslint.js .
+
+build:
+  extends: .global_rules
+  image: node
+  stage: build
+  before_script:
+    # Install WebPack
+    - npm i webpack
+  script:
+    - echo make build
+    - webpack
+    # - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
