@@ -29,7 +29,7 @@ build:
     # Install WebPack
     - npm i webpack
   script:
-    - echo make build
+    - echo building with webpack
     - npm run build
     # - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
 
