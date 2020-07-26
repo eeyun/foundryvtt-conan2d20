@@ -5,8 +5,8 @@ nav.sheet-navigation {
     a {
         color: black;
         padding: 4px 0;
-        font-family: CrushYourEnemies;
-        font-size: 10px;
+        font-family: Norse;
+        font-size: 20px;
         font-weight: 600;
         position: relative;
         border-bottom: 1px solid transparent;
@@ -22,12 +22,12 @@ nav.sheet-navigation {
 
         &:hover {
             background-color: transparent;
-            @include input-glow;
+            @include input-glow-black;
             cursor: pointer;
         }
     }
 
     a.active {
-        @include input-glow;
+        @include input-glow-black;
     }
 }

@@ -9,3 +9,15 @@
 @mixin input-glow {
     text-shadow: 0 0 4px var(--sidebar-title);
 }
+
+@mixin input-glow-white {
+    text-shadow: 0 0 4px white;
+}
+
+@mixin input-glow-black {
+    text-shadow: 0 0 4px black;
+}
+
+@mixin input-glow-brown {
+    text-shadow: 0 0 4px #877053;
+}

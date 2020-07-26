@@ -58,6 +58,13 @@ $btn-radius: 0 !default;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Norse';
+    src: url('../fonts/Norse.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .crushy {
     font-family: "CrushYourEnemies", "Martel", "Roboto", serif;
     font-size: 18px;

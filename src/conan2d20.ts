@@ -46,7 +46,7 @@ Hooks.once('setup', () => {
         'armorTypes', 'armorQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes',
         'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories',
         'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'rollDifficultyLevels',
-        'rollResults', 'actionCount', 'kitTypes'
+        'rollResults', 'actionCount', 'kitTypes', 'conditionTypes'
     ];
 
     const noSort: any = [

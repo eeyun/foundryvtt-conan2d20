@@ -1,98 +1,195 @@
-.hitpoints {
-    h4,
-    label {
-        font-family: $serif;
-        font-weight: 500;
-        margin: 0;
-        line-height: 1;
-        font-size: 10px;
+.health-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "sidebar-health";
+}
+
+.sidebar-health {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 30px 40px 30px;
+  gap: 1px 1px;
+  grid-template-areas: "vigor-container" "vigor-wounds" "resolve-container" "resolve-traumas";
+  grid-area: sidebar-health;
+}
+
+.vigor-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px 1px;
+  grid-template-areas: "vigor-label vigor-value";
+  grid-area: vigor-container;
+  input[type='text'] {
+          width: 52px;
+          font-size: 32px;
+          letter-spacing: -1px;
+          height: 32px;
+  }
+
+  input[type='number'] {
+      width: 52px;
+      text-align: center;
+      border-bottom: 1px solid transparent;
+      &:focus {
+          border-bottom: 1px solid var(--tertiary);
+      }
+  }
+}
+
+.vigor-label { 
+        padding-top: 20px;
+        padding-left: 17px;
+
+    h2 {
+        color: #BDBCBB;
+        font-size: 20px;
+        border: transparent;
+    }
+    grid-area: vigor-label; 
+}
+
+.vigor-value { 
+    grid-area: vigor-value; 
+    font-family: Norse;
+    font-weight: 700;
+    text-align: center;
+    background-image: url("../assets/icons/vigor-display.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 13px;
+    padding-right: 15px;
+    input:hover {
+        @include input-glow;
     }
     h2 {
         text-align: center;
-        border-bottom-color: var(--sidebar-title);
     }
-    .hp-big {
-        display: grid;
-        justify-content: space-evenly;
-        grid-template-columns: repeat(3, 60px);
-        .container {
-            text-align: center;
-            &.temp-hp {
-                text-align: center;
-                margin-right: 8px;
-                input[type='number'] {
-                    width: 52px;
-                    text-align: center;
-                    border-bottom: 1px solid transparent;
-                    &:focus {
-                        border-bottom: 1px solid var(--tertiary);
-                    }
-                }
-            }
-            &.max-hp {
-                text-align: center;
-                margin-left: 8px;
-                h2 {
-                    @include text-gold;
-                    text-align: center;
-                }
-            }
-            &.max-hp,
-            &.temp-hp {
-                margin-top: 12px;
-            }
-            &.temp-hp,
-            &.current-hp {
-                input:hover {
-                    @include input-glow;
-                }
-            }
-            &.current-hp {
-                display: flex;
-                flex-direction: column;
-                padding: 10px 4px 0;
-                position: relative;
-                z-index: 0;
-                border-radius: 0 0 2px 2px;
-
-                .data-value {
-                    margin-top: 3px;
-                    input[type='text'] {
-                        width: 52px;
-                        font-size: 32px;
-                        letter-spacing: -1px;
-                        height: 32px;
-                    }
-                }
-            }
-        }
-    }
-    .hp-small {
-        display: flex;
-        justify-content: space-evenly;
-        margin-top: 8px;
+    input[type='text'] {
+        color: #BDBCBB;
+        font-weight: 700;
+        z-index: 1;
         text-align: center;
-        h4,
-        label {
-            @include micro;
-        }
-        .fa,
-        .far,
-        .fas {
-            color: white;
-
-            &:hover {
-                @include input-glow;
-                color: white;
-                cursor: pointer;
-            }
-        }
-        a.wounds {
-            &:hover {
-                @include input-glow;
-                color: white;
-                cursor: pointer;
-            }
-        }  
+        width: 45px;
+        font-size: 32px;
+        letter-spacing: -1px;
+        height: 35px;
     }
 }
+
+.vigor-wounds { 
+    color: #BDBCBB;
+    grid-area: vigor-wounds; 
+    font-size: 12px;
+    float: right;
+    label {
+        color: #BDBCBB;
+        padding-left: 25px;
+        font-size: 10px;
+    }
+    span {
+        text-align: center;
+    }
+
+    .fa,
+    .far,
+    .fas {
+
+        &:hover {
+            @include input-glow;
+            color: white;
+            cursor: pointer;
+        }
+    }
+    a.wounds {
+        &:hover {
+            @include input-glow;
+            color: white;
+            cursor: pointer;
+        }
+    }  
+}
+
+.resolve-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "resolve-label resolve-value";
+  grid-area: resolve-container;
+}
+
+.resolve-label {
+    grid-area: resolve-label;
+    padding-top: 20px;
+    padding-left: 17px;
+
+    h2 {
+        color: #BDBCBB;
+        font-size: 19px;
+        border: transparent;
+    }
+}
+
+.resolve-value {
+    grid-area: resolve-value;
+    font-family: Norse;
+    font-weight: 700;
+    text-align: center;
+    background-image: url("../assets/icons/resolve-display.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 13px;
+    padding-right: 15px;
+    input:hover {
+        @include input-glow;
+    }
+    h2 {
+        text-align: center;
+    }
+    input[type='text'] {
+        color: #BDBCBB;
+        font-weight: 700;
+        z-index: 1;
+        text-align: center;
+        width: 45px;
+        font-size: 32px;
+        letter-spacing: -1px;
+        height: 35px;
+    }
+}
+
+.resolve-traumas {
+    grid-area: resolve-traumas;
+    font-size: 12px;
+    float: right;
+    color: #BDBCBB;
+    label {
+        color: #BDBCBB;
+        padding-left: 25px;
+        font-size: 10px;
+    }
+    span {
+        text-align: center;
+    }
+
+    .fa,
+    .far,
+    .fas {
+
+        &:hover {
+            @include input-glow;
+            color: white;
+            cursor: pointer;
+        }
+    }
+    a.wounds {
+        &:hover {
+            @include input-glow;
+            color: white;
+            cursor: pointer;
+        }
+    }  
+}
+

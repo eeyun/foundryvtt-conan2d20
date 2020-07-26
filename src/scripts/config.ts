@@ -81,6 +81,16 @@ CONFIG.availabilityTypes = {
   5: 'CONAN.skillRollDifficultyLevels.5'
 };
 
+CONFIG.conditionTypes = {
+    blind: "CONAN.conditions.bli",
+    burningx: "CONAN.conditions.bur",
+    dazed: "CONAN.conditions.daz",
+    deaf: "CONAN.conditions.dea",
+    hindered: "CONAN.conditions.hin",
+    poisoned: "CONAN.conditions.poi",
+    staggered: "CONAN.conditions.sta"
+};
+
 CONFIG.naturesTypes = {
     cautious: 'CONAN.natures.cautious',
     curious: 'CONAN.natures.curious',
