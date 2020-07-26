@@ -87,6 +87,15 @@
             "per": "Per",
             "wil": "Wil"
         },
+        "conditions": {
+            "bli": "Blind",
+            "bur": "Burning X",
+            "daz": "Dazed",
+            "dea": "Deaf",
+            "hin": "Hindered",
+            "poi": "Poisoned",
+            "sta": "Staggered"
+        },
         "skills": {
             "skills": "Skills",
             "acr": "Acrobatics",
@@ -115,6 +124,7 @@
             "dis": "Discipline",
             "sor": "Sorcery"
         },
+        "skillShortLabel": "Skill",
         "skillExpertiseShortLabel": "Expertise",
         "skillFocusShortLabel": "Focus",
         "skillTNShortLabel": "TN",

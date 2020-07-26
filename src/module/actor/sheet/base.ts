@@ -26,7 +26,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
     getData() {
         const sheetData : any = super.getData();
 
-        // Update Attribute Scores
+        // Update Attribute labels
         if (sheetData.data.attributes !== undefined) {
             for ( let [a, atr] of Object.entries(sheetData.data.attributes as Record<any, any>)) {
                 atr.label = CONFIG.CONAN.attributes[a];
@@ -36,7 +36,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         // Update skill labels
         if (sheetData.data.skills !== undefined) {
             for (let [s, skl] of Object.entries(sheetData.data.skills as Record<any, any>)) {
-                skl.attribute = sheetData.data.attributes[skl.attribute].label.substring(0, 3);
                 skl.label = CONFIG.CONAN.skills[s];
             }
         }
@@ -46,11 +45,11 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         sheetData.skills = CONFIG.CONAN.skills;
         sheetData.natures = CONFIG.CONAN.naturesTypes;
         sheetData.languages = CONFIG.CONAN.languages;
+        sheetData.conditions = CONFIG.CONAN.conditionTypes;
 
         this._prepareItems(sheetData.actor);
 
         this._prepareBackgrounds(sheetData.actor);
-
         return sheetData;
     }
 
@@ -104,12 +103,12 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             const w = text.length * parseInt(e.getAttribute('data-wpad')) / 2;
             e.setAttribute('style', `flex: 0 0 ${w}px`);
         });
-        
+
         // Item summaries
         html.find('.item .item-name h4').click((event) => {
           this._onItemSummary(event);
         });
-        
+
         // Toggle equip
         html.find('.item-toggle-equip').click((ev) => {
           const f = $(ev.currentTarget);
@@ -175,7 +174,14 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
 
         html.find(".skill-name.rollable").click(async ev => {
             let actorData = duplicate(this.actor)
-            let skill = $(ev.currentTarget).parents(".skill").attr("data-skill")
+            let skill = $(ev.currentTarget).parents(".skill-entry-name").attr("data-skill")
+            let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
+            await Conan2d20Dice.showSkillRollDialog({dialogData, cardData, rollData, actorData})
+        });
+
+        html.find(".fa-dice-d20.rollable").click(async ev => {
+            let actorData = duplicate(this.actor)
+            let skill = $(ev.currentTarget).parents(".skill-entry-tab-roll").attr("data-skill")
             let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
             await Conan2d20Dice.showSkillRollDialog({dialogData, cardData, rollData, actorData})
         });

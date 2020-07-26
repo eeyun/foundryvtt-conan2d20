@@ -104,7 +104,7 @@
         .detail-sheet {
             grid-area: details;
             display: grid;
-            grid-template-columns: 2fr 3fr;
+            grid-template-columns: 3fr 3fr;
             grid-template-rows: repeat(3, 42px);
             grid-row-gap: 8px;
             padding-left: 12px;
@@ -199,6 +199,101 @@
                 margin-top: 4px;
             }
         }
+    }
+    
+    .character-extras-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 260px;
+        gap: 5px 5px;
+        grid-template-areas: "character-bio character-conditions";
+    }
+
+    .character-biography { 
+        border: solid;
+        grid-area: character-bio; 
+        border-image-slice: 32;
+        border-image-width: 15px;
+        border-image-repeat: repeat;
+        border-image-source: url("data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABpAgMAAABE7OWpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAADFBMVEX///9nXlJnXlIAAADHvn4rAAAAAnRSTlMAAHaTzTgAAAABYktHRAMRDEzyAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH5AcZECcNZmJamQAAANBJREFUSMftljEOwyAMRZ1KuRdLdyKVzF2y9BRcInuXLj1lawMFV8SVGpIw8KckLwhL/G8MQHoyWUhl4RIeewWrmUFxNuMntYKNru7IbvT+IIY/zWNkk8F1U2M/mfGwN+WYvJ/ReNLnZJ07Wc6CS+2JTMEY6gq1MVdxZM6f9zcjD6M+LOh/hlnrBs4G7TK5FfPhJqaSHkCso8J0SLGulWXVWFXsEE/kfb1nxjbpE0Jfqqt/LjPpfpDulRrvv8a+mTDXeQ8XnSN9tovOu6TsfP0Czk5AHbKzIVkAAAAASUVORK5CYII=");
+
+        h3 {
+            margin: 10px;
+        }
+
+        .editor-content {
+            margin: 10px;
+            overflow-y: scroll;
+            height: 220px;
+        }
+    }
+
+    .character-conditions {
+        border: solid transparent;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 1px 1px;
+        grid-template-areas: "condition-header" "condition-blind" "condition-burningx" "condition-dazed" "condition-deaf" "condition-hindered" "condition-poisoned" "condition-staggered";
+        grid-area: character-conditions;
+
+        input[type="checkbox"] {
+            width: 30%;
+            float: left;
+        }
+
+        h3 {
+            margin: 10px;
+        }
+
+    }
+
+    .condition-header {
+        grid-area: condition-header;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .condition-blind {
+        grid-area: condition-blind;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .condition-burningx {
+        grid-area: condition-burningx; 
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .condition-dazed {
+        grid-area: condition-dazed; 
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .condition-deaf {
+        grid-area: condition-deaf; 
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .condition-hindered {
+        grid-area: condition-hindered;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .condition-poisoned {
+        grid-area: condition-poisoned;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .condition-staggered {
+        grid-area: condition-staggered;
+        text-align: left;
+        padding-left: 10px;
     }
 
     .attribute-scores {

@@ -15,7 +15,7 @@ $header-height: 120px;
 .conan2d20 form {
     display: grid;
     grid:
-        'sidebar header' 75px
+        'sidebar header' 120px
         'sidebar nav' minmax(min-content, max-content)
         'sidebar content' 1fr
         / 247px 1fr;

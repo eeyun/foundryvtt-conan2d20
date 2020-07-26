@@ -29,7 +29,7 @@ export default function() {
         'systems/conan2d20/templates/actors/main/actor-health.html',
         'systems/conan2d20/templates/actors/main/actor-background.html',
         'systems/conan2d20/templates/actors/main/actor-resources.html',
-        'systems/conan2d20/templates/actors/main/actor-attributes.html'
+        'systems/conan2d20/templates/actors/main/actor-details.html'
     ];
     return loadTemplates(templatePaths);
 }

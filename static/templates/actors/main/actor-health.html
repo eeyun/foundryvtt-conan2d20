@@ -1,64 +1,48 @@
-<div class="hitpoints">
-    <div class="hp-big">
-        <div class="container current-hp">
-            <label>{{localize "CONAN.healthVigorCurrent"}}</label>
-            <div class="data-value">
-                <input name="data.health.physical.value" type="number" value="{{data.health.physical.value}}" data-dtype="Number" placeholder="20" size="1"/>
+<div class="health-container">
+    <div class="sidebar-health">
+        <div class="vigor-container">
+            <div class="vigor-label">
+                <h2>Vigor</h2>
             </div>
-        </div>
-        <div class="current-hp"><h2>Vigor</h2></div>
-        <div class="container current-hp">
-            <label>{{localize "CONAN.healthVigorMax"}}</label>
-            <div class="data-value">
-                <input name="data.health.physical.max" type="number" value="{{data.health.physical.max}}" data-dtype="Number" placeholder="20" size="1" disabled=true/>
-            </div>
+        <div class="vigor-value">
+            <input name="data.health.physical.value" type="text" value="{{data.health.physical.value}}" data-dtype="text" placeholder="20" size="1"/>
         </div>
     </div>
-    <div class="hp-big">
-        <div class="container current-hp">
-            <label>{{localize "CONAN.healthVigorCurrent"}}</label>
-            <div class="data-value">
-                <input name="data.health.mental.value" type="number" value="{{data.health.mental.value}}" data-dtype="Number" placeholder="20" size="1"/>
-            </div>
-        </div>
-        <div class="current-hp"><h2>Resolve</h2></div>
-        <div class="container current-hp">
-            <label>{{localize "CONAN.healthVigorMax"}}</label>
-            <div class="data-value">
-                <input name="data.health.mental.max" type="number" value="{{data.health.mental.max}}" data-dtype="Number" placeholder="20" size="1" disabled=true/>
-            </div>
-        </div>
-    </div>
-    <div class="hp-small">
-        <div class="dots wounded">
-          <label>{{localize "CONAN.woundsLabel"}}</label>
-          <span title="{{localize "CONAN.woundsTitle"}}">
-            <div class = "dots-row" data-target="data.health.physical.wounds.value">
-                {{#each data.health.physical.wounds.dots as |wound index|}}
-                    {{#if wound.wounded}}
-                        <a class = "wounds" data-index={{index}}><i class="fas fa-skull" data-index={{index}}></i></a>
-                    {{else}}
-                        <a class = "wounds" data-index={{index}}><i class="far fa-circle" data-index={{index}}></i></a>
-                    {{/if}}
-                {{/each}}
-            </div>
-        </span>
-        </div>
-        <div class="">
-        </div>
-        <div class="dots traumatized">
-          <label>{{localize "CONAN.traumasLabel"}}</label>
-          <span title="{{localize "CONAN.traumasTitle"}}">
-            <div class = "dots-row" data-target="data.health.mental.traumas.value">
-                {{#each data.health.mental.traumas.dots as |trauma index|}}
-                    {{#if trauma.wounded}}
-                        <a class = "wounds" data-index={{index}}><i class="fas fa-skull" data-index={{index}}></i></a>
-                    {{else}}
-                        <a class = "wounds" data-index={{index}}><i class="far fa-circle" data-index={{index}}></i></a>
-                    {{/if}}
-                {{/each}}
-            </div>
+        <div class="vigor-wounds">
+            <label>{{localize "CONAN.woundsLabel"}}</label>
+            <span title="{{localize "CONAN.woundsTitle"}}">
+                <div class = "dots-row" data-target="data.health.physical.wounds.value">
+                    {{#each data.health.physical.wounds.dots as |wound index|}}
+                        {{#if wound.wounded}}
+                            <a class="wounds" data-index={{index}}><i class="fas fa-skull" data-index={{index}}></i></a>
+                        {{else}}
+                            <a class="wounds" data-index={{index}}><i class="far fa-circle" data-index={{index}}></i></a>
+                        {{/if}}
+                    {{/each}}
+                </div>
             </span>
         </div>
-    </div>    
+        <div class="resolve-container">
+            <div class="resolve-label">
+                <h2>Resolve</h2> 
+            </div>
+            <div class="resolve-value">
+                <input name="data.health.mental.value" type="text" value="{{data.health.mental.value}}" data-dtype="Number" placeholder="20" size="1"/>
+            </div>
+        </div>
+        <div class="resolve-traumas">
+            <label>{{localize "CONAN.traumasLabel"}}</label>
+            <span title="{{localize "CONAN.traumasTitle"}}">
+                <div class = "dots-row" data-target="data.health.mental.traumas.value">
+                    {{#each data.health.mental.traumas.dots as |trauma index|}}
+                        {{#if trauma.wounded}}
+                            <a class="wounds" data-index={{index}}><i class="fas fa-skull" data-index={{index}}></i></a>
+                        {{else}}
+                            <a class="wounds" data-index={{index}}><i class="far fa-circle" data-index={{index}}></i></a>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </span>
+        </div>
+    </div>
 </div>

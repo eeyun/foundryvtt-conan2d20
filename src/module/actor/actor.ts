@@ -41,17 +41,6 @@ export default class Conan2d20Actor extends Actor {
         const {data} = actorData;
         const character = new CharacterData(data, this.items);
 
-        // DMG BONUS
-        // Melee Bonus
-        data.attributes.bra.damage = this.identifyBonusDmg(data.attributes.bra.value);
-
-        // Ranged Bonus
-        data.attributes.awa.damage = this.identifyBonusDmg(data.attributes.awa.value);
-
-        // Mental Bonus
-        data.attributes.per.damage = this.identifyBonusDmg(data.attributes.per.value);
-
-        // Health
         // Calculate Vigor
         data.health.physical.max = data.attributes.bra.value + data.skills.res.expertise.value - data.health.physical.fatigue;
         if (data.health.physical.value === null) {
@@ -135,6 +124,7 @@ export default class Conan2d20Actor extends Actor {
 		}
         // Experience
         data.resources.xp.value = character.exp;
+
     }
 
   /* -------------------------------------------- */
@@ -145,38 +135,7 @@ export default class Conan2d20Actor extends Actor {
     _prepareNPCData(actorData) {
          const {data} = actorData;
         // const character = new CharacterData(data, this.items);
-
          return data;
-    }
-
-    identifyBonusDmg(attribute) {
-        let bonus = 0;
-        if (typeof attribute === 'number') {
-          if (attribute > 8) {
-            switch (attribute) {
-              case 9:
-                bonus = 1;
-                break;
-              case 10:
-              case 11:
-                bonus = 2;
-                break;
-              case 12:
-              case 13:
-                bonus = 3;
-                break;
-              case 14:
-              case 15:
-                bonus = 4;
-                break;
-              default:
-                bonus = 5;
-            }
-          }
-        } else {
-          console.log('Conan 2D20 | Bonus Damage Identification received NaN.');
-        }
-        return bonus;
     }
 
     static spendFortune(actorData, fortuneSpend) {
