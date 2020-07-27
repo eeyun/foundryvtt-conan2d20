@@ -1,0 +1,57 @@
+<ol class="form-list">
+    <div class="dialog-inputs">
+        <div class="form-group">
+            {{#ifEq modifiers.weaponType "melee"}}
+            <label>{{localize "CONAN.damageRollAttackType"}}</label>
+            <select name="attackType" data-dtype="String">
+                {{#select modifiers.attackType}}
+                {{#each modifiers.attackType as |name type|}}
+                <option value="{{type}}">{{name}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+            {{else ifEq modifiers.weaponType "display"}}
+                <div>
+                <label>{{localize "CONAN.damageRollAttackType"}}</label>
+                <input name="attackType" value={{localize "CONAN.attacks.threaten.label"}} disabled/>
+                </div>
+                {{#if modifiers.baseDamage}}
+                    <div>
+                        <label>{{localize "CONAN.displayBaseDamageLabel"}}</label>
+                        <input name="baseDamage" value=""/>
+                    </div>
+                {{/if}}
+            {{else}}
+                <label>{{localize "CONAN.damageRollAttackType"}}</label>
+                <input name="attackType" value={{localize "CONAN.attacks.ranged.label"}} disabled/>
+            {{/ifEq}}
+        </div>
+        <div class="roll-bonus-header">
+            <h3 class="damage-bonus header">{{localize "CONAN.damageRollBonusHeader"}}</h3>
+        </div>
+        <div class="form-group">
+            <label>{{localize "CONAN.damageRollMomentumSpendLabel"}}</label>
+            <input name="momentumModifier" value=""/>
+        </div>
+        <div class="form-group">
+            <label>{{localize "CONAN.damageRollTalentSpendLabel"}}</label>
+            <input name="talentModifier" value=""/>
+        </div>
+        {{#ifEq modifiers.weaponType "ranged"}}
+            {{#if options}}
+            <label>{{localize "CONAN.damageRollLoadSpendLabel"}}</label>
+            <div class="form-group">
+                <select name="reloadItem" data-dtype="" id="reloadItem">
+                    {{#select options}}
+                    <option value=""/>
+                    {{#each options as |object index|}}
+                    <option value="{{object.id}}">{{object.name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                <input name="reloadModifier" value=""/>
+            </div>
+            {{/if}}
+        {{/ifEq}}
+    </div>
+</ol>

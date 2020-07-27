@@ -1,0 +1,38 @@
+.roll-card {
+	width: 100%;
+
+    .roll.selected {
+        text-shadow: 0 0 3px #FF0000;
+    }
+}
+
+.roll-list-entry {
+    width: 24px;
+    line-height: 24px;
+    float: left;
+    margin-right: 1px;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+
+.skill-roll {
+    background-image: url("../assets/icons/d20-grey.svg");
+}
+
+.damage-roll {
+    background-image: url("../assets/icons/d6-grey.svg");
+}
+
+.roll-outcomes {
+	padding-top: 30px;
+	width: 100%;
+
+	label {
+		font-weight: 600;
+	}
+}
+

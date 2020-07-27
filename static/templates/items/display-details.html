@@ -1,0 +1,56 @@
+<div class="form-group">
+    <label>{{localize "CONAN.displaySkillLabel"}}</label>
+    <select name="data.skill.value" data-dtype="{{data.skill.type}}">
+        {{#select data.skill.value}}
+        {{#each displaySkills as |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.displayRangeLabel"}}</label>
+    <select name="data.range.value" data-dtype="{{data.range.type}}">
+        {{#select data.range.value}}
+        {{#each displayRanges as |name range|}}
+        <option value="{{range}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+<div class="form-group">
+    <label title="{{localize "CONAN.displayDamageTitle"}}">
+        {{localize "CONAN.displayDamageLabel"}}
+        <i class="fas fa-info-circle"></i>
+    </label>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.displayBaseDamageLabel"}}</label>
+    <div class="details-container-three-columns">
+        <select name="data.damage.dice" data-dtype="{{data.damage.dice.type}}">
+            {{#select data.damage.dice}}
+            {{#each damageDice as |name type|}}
+            <option value="{{type}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+        <input type="" name="damageDice" value="d6" data-dtype="String" disabled />
+    </div>
+</div>
+
+<div class="form-group-stacked">
+     <label for="data.qualities.value">
+         {{localize "CONAN.qualitiesLabel"}}
+         <a class="trait-selector" data-options="weaponQualities" data-has-values="true" data-allow-empty-values="true"><i class="fas fa-edit"></i></a>
+     </label>
+     <ul class="qualities-list co-value co-large">
+         {{#each data.qualities.value as |v k|}}
+         <span class="tag {{k}}">{{v.label}}{{#if v.value}}({{v.value}}){{/if}}</span>
+         {{/each}}
+     </ul>
+</div>
+
+

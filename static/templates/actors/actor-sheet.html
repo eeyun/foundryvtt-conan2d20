@@ -1,53 +1,68 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <div class="grid-container actor">
-        <!-- Sheet Header -->
-            {{> systems/conan2d20/templates/actors/main/actor-header.html}}
-        <!-- Main -->
-        <section class="sheet-main main">
-            <div class="attributes" data-group="main" data-tab="attributes">
+    <aside>
+        <img
+            class="logo"
+            src="systems/conan2d20/assets/conan_logo.png"
+            alt=""
+            srcset=""
+        />
+        <!-- Sidebar -->
+        <div class="sidebar" data-group="dashboard" data-tab="attributes">
             <!-- Health -->
             {{> systems/conan2d20/templates/actors/main/actor-health.html}}
-            <!-- Background -->
-            {{> systems/conan2d20/templates/actors/main/actor-background.html}}
-            <!-- Attributes -->
-            {{> systems/conan2d20/templates/actors/main/actor-attributes.html}}
-            </div>
-        </section>
+            <!-- Armor -->
+        </div>
+    </aside>
+    <!-- Sheet Header -->
+    {{> systems/conan2d20/templates/actors/main/actor-header.html}}
 
-        <!-- Sheet Navigation -->
-        <nav class="sheet-navigation">
-            <nav class="sheet-tabs tabs" data-group="primary">
-                <a class="item" data-tab="skills">
-                    {{localize "CONAN.tabSkillsLabel"}}
-                </a>
-                <a class="item" data-tab="inventory">
-                    {{localize "CONAN.tabInventoryLabel"}}
-                </a>
-                <a class="item" data-tab="spellbook">
-                    {{localize "CONAN.tabSpellsLabel"}}
-                </a>
-                <a class="item" data-tab="talents">
-                    {{localize "CONAN.tabTalentsLabel"}}
-                </a>
-            </nav>
-        </nav>
+    <!-- Sheet Navigation -->
+    <nav class="sheet-navigation" data-group="primary">
+        <a class="item active" data-tab="character">
+            {{localize "CONAN.tabCharacterLabel"}}
+        </a>
 
-        <section class="sheet-lower">
+        <a class="item active" data-tab="actions">
+            {{localize "CONAN.tabActionsLabel"}}
+        </a>
 
+        <a class="item" data-tab="skills">
+            {{localize "CONAN.tabSkillsLabel"}}
+        </a>
+
+        <a class="item" data-tab="inventory">
+            {{localize "CONAN.tabInventoryLabel"}}
+        </a>
+
+        <a class="item" data-tab="spellbook">
+            {{localize "CONAN.tabSpellsLabel"}}
+        </a>
+
+        <a class="item" data-tab="talents">
+            {{localize "CONAN.tabTalentsLabel"}}
+        </a>
+    </nav>
+
+    <section class="sheet-body">
         <!-- Sheet Body -->
-            <section class="sheet-content">
-                <!-- Skills -->
-                {{> systems/conan2d20/templates/actors/tabs/actor-skills.html}}
+        <section class="sheet-content content">
+            <!-- Character -->
+            {{> systems/conan2d20/templates/actors/tabs/actor-character.html}}
 
-                <!-- Inventory -->
-                {{> systems/conan2d20/templates/actors/tabs/actor-inventory.html}}
+            <!-- Actions -->
+            {{> systems/conan2d20/templates/actors/tabs/actor-actions.html}}
 
-                <!-- Spells -->
-                {{> systems/conan2d20/templates/actors/tabs/actor-spells.html}}
+            <!-- Skills -->
+            {{> systems/conan2d20/templates/actors/tabs/actor-skills.html}}
 
-                <!-- Talents Tab -->
-                {{> systems/conan2d20/templates/actors/tabs/actor-talents.html}}
-            </section>
+            <!-- Inventory -->
+            {{> systems/conan2d20/templates/actors/tabs/actor-inventory.html}}
+
+            <!-- Spells -->
+            {{> systems/conan2d20/templates/actors/tabs/actor-spells.html}}
+
+            <!-- Talents Tab -->
+            {{> systems/conan2d20/templates/actors/tabs/actor-talents.html}}
         </section>
-    </div>
+    </section>
 </form>

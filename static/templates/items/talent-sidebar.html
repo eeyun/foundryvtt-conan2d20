@@ -1,0 +1,26 @@
+<h4 class="sidebar-summary">{{localize "CONAN.talentSummary"}}</h4>
+
+<span class="item-summary">{{lookup talentTypes data.talentType.value }}</span><br>
+{{# if data.prerequisites.value }}
+<span class="item-summary">Requires {{ data.prerequisites.value }}</span>{{/if}}
+
+<ol class="item-tags">
+{{#each 
+	data.quality.value as |v|}} <li class="tag">{{v}}
+{{/each}} </li>
+{{#if data.rank.value}}
+    <li class="tag">Rank {{data.rank.value}}</li>
+{{/if}}
+{{#if data.actionType.value}}
+	<li class="tag">{{data.actionType.value}}</li>
+{{/if}}
+</ol>
+
+{{#if itemTags.length}}
+<ol class="item-tags">
+    {{#each itemTags}}
+    <li class="tag">{{this}}</li>
+    {{/each}}
+</ol>
+{{/if}}
+

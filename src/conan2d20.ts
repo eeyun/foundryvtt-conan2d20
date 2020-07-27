@@ -41,13 +41,29 @@ Hooks.once('setup', () => {
 
    (window as any).Conan2d20 = new Conan2d20System();
 
-    const toLocalize: any = ['attributes', 'skills', 'encumbranceTypes', 'availabilityTypes', 'coverageTypes', 'armorTypes', 'equipmentQualities'];
-    for (const o of toLocalize) {
-        CONFIG.CONAN[o] = Object.entries(CONFIG.CONAN[o]).reduce((obj, e: any) => {
-            obj[e[0]] = game.i18n.localize(e[1]);
-            return obj;
-        }, {});
-    }
+    const toLocalize: any = [
+        'attributes', 'skills', 'encumbranceTypes', 'availabilityTypes', 'coverageTypes',
+        'armorTypes', 'armorQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes',
+        'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories',
+        'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'rollDifficultyLevels',
+        'rollResults', 'actionCount', 'kitTypes', 'conditionTypes'
+    ];
+
+    const noSort: any = [
+        'availabilityTypes', 'rollDifficultyLevels', 'weaponSizes'
+    ];
+
+    for ( let o of toLocalize ) {
+    const localized = Object.entries(CONFIG.CONAN[o]).map(e => {
+        // @ts-ignore
+        return [e[0], game.i18n.localize(e[1])];
+    });
+    if ( !noSort.includes(o) ) localized.sort((a, b) => a[1].localeCompare(b[1]));
+    CONFIG.CONAN[o] = localized.reduce((obj, e) => {
+        obj[e[0]] = e[1];
+        return obj;
+    }, {});
+  }
 });
 
 Hooks.on('preCreateActor', (actor: any, dir: any) => {
@@ -70,4 +86,3 @@ Hooks.on('preCreateActor', (actor: any, dir: any) => {
         }
     }
 });
-

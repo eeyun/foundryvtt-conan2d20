@@ -1,0 +1,67 @@
+<div class="form-group">
+    <label>{{localize "CONAN.actionTypeLabel"}}</label>
+    <select name="data.actionType.value" data-dtype="{{data.actionType.type}}">
+        {{#select data.actionType.value}}
+        {{#each actionTypes as |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.actionCountLabel"}}</label>
+    <select name="data.actionCount.value" data-dtype="{{data.actionCount.type}}">
+        {{#select data.actionCount.value}}
+        <option value=""></option>
+        {{#each actionCount as |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.actionCategoryLabel"}}</label>
+    <select name="data.actionCategory.value" data-dtype="String">
+        {{#select data.actionCategory.value}}
+        <option value=""></option>
+        {{#each actionCategories as |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+
+<div class="form-group">
+  <label>{{localize "CONAN.actionSkillRequirementLabel"}}</label>
+  <select name="data.skillRequirement.skill.skill" data-dtype="String">
+    {{#select data.skillRequirement.skill.skill}}
+    <option value=""></option>
+    {{#each skills as |label skill|}}
+    <option value="{{skill}}">{{label}}</option>
+    {{/each}}
+    {{/select}}
+  </select>
+  <select name="data.skillRequirement.skill.rank" data-dtype="data.skillRequirement.skill.type">
+    {{#select data.skillRequirement.skill.rank}}
+    <option value=""></option>
+    {{#each proficiencies as |label proficiency_value|}}
+    <option value="{{proficiency_value}}">{{label}}</option>
+    {{/each}}
+    {{/select}}
+  </select>
+</div>
+
+<div class="form-group-stacked">
+    <label for="data.traits">
+        {{localize "CONAN.qualitiesLabel"}}
+        <a class="trait-selector" data-options="featTraits"><i class="fas fa-edit"></i></a>
+    </label>
+    <ul class="traits-list">
+        {{#each data.qualities.selected as |v k|}}
+            <span class="tag {{k}}">{{v}}</span>
+        {{/each}}
+    </ul>
+</div>

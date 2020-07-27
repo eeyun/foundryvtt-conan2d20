@@ -11,7 +11,7 @@
 
         <!-- ITEM SHEET SIDEBAR -->
         {{#if hasSidebar}}
-        <section class="sheet-sidebar">
+        <section class="item sheet-sidebar">
             {{> (sidebarTemplate)}}
         </section>
         {{/if}}
@@ -19,31 +19,25 @@
         <!-- ITEM SHEET BODY -->
         <section class="sheet-body">
 
-            <nav class="sheet-tabs tabs" data-tab-container="primary">
-                {{#if detailsActive}}
-                    <a class="item " data-tab="description">{{localize "CONAN.itemDescription"}}</a>
-                    <a class="item active" data-tab="details">{{localize "CONAN.itemDetails"}}</a>
-                {{/if}}
-                {{#unless detailsActive}}
-                <a class="item active" data-tab="description">{{localize "CONAN.itemDescription"}}</a>
-                    {{#if hasDetails}}
-                        <a class="item" data-tab="details">{{localize "CONAN.itemDetails"}}</a>
-                    {{/if}}
-                {{/unless}}
+        <!-- ITEM SHEET NAV -->
+            <nav class="sheet-tabs tabs" data-tab-container="primary">           
+                 <a class="item active" data-tab="description">{{localize "CONAN.itemDescription"}}</a>
+                 {{#if hasDetails}}
+                 <a class="item" data-tab="details">{{localize "CONAN.itemDetails"}}</a>
+                 {{/if}}                                                      
             </nav>
-
-            <!-- Item Description -->
-            <div class="tab item-description active" data-tab="description">
+        
+            <!-- ITEM DESCRIPTION -->
+            <div class="tab item-description" data-tab="description" data-group="primary">
                 {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
             </div>
 
-            <!-- Item Details -->
+            <!-- ITEM DETAILS -->
             {{#if hasDetails}}
-            <div class="tab item-details" data-tab="details">
+            <div class="tab item-details" data-tab="details" data-group="primary">
                 {{> (detailsTemplate)}}
             </div>
             {{/if}}
         </section>
     </article>
 </form>
-

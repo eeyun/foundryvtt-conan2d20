@@ -1,0 +1,39 @@
+<div class="character-extras-container">
+  <div class="character-biography">
+    <h3>Biography</h3>
+    {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
+  </div>
+  <div class="character-conditions">
+    <div class="condition-header">
+      <h3>Conditions</h3>
+    </div>
+    <div class="condition-blind">
+       <label>{{localize "CONAN.conditions.bli"}}</label>
+       <input type="checkbox" name="data.health.conditions.bli.value" value="1" data-dtype="bool" {{checked data.health.conditions.bli.value}}/>
+    </div>
+    <div class="condition-burningx">
+       <label>{{localize "CONAN.conditions.bur"}}</label>
+       <input type="checkbox" name="data.health.conditions.bur.value" value="1" data-dtype="bool" {{checked data.health.conditions.bur.value}}/>
+    </div>
+    <div class="condition-dazed">
+       <label>{{localize "CONAN.conditions.daz"}}</label>
+       <input type="checkbox" name="data.health.conditions.daz.value" value="1" data-dtype="bool" {{checked data.health.conditions.daz.value}}/>
+    </div>
+    <div class="condition-deaf">
+       <label>{{localize "CONAN.conditions.dea"}}</label>
+       <input type="checkbox" name="data.health.conditions.dea.value" value="1" data-dtype="bool" {{checked data.health.conditions.dea.value}}/>
+    </div>
+    <div class="condition-hindered">
+       <label>{{localize "CONAN.conditions.hin"}}</label>
+       <input type="checkbox" name="data.health.conditions.hin.value" value="1" data-dtype="bool" {{checked data.health.conditions.hin.value}}/>
+    </div>
+    <div class="condition-poisoned">
+       <label>{{localize "CONAN.conditions.poi"}}</label>
+       <input type="checkbox" name="data.health.conditions.poi.value" value="1" data-dtype="bool" {{checked data.health.conditions.poi.value}}/>
+    </div>
+    <div class="condition-staggered">
+       <label>{{localize "CONAN.conditions.sta"}}</label>
+       <input type="checkbox" name="data.health.conditions.sta.value" value="1" data-dtype="bool" {{checked data.health.conditions.sta.value}}/>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
   "name": "conan2d20",
   "title": "Robert E. Howard's Conan: Adventures In An Age Undreamed Of",
   "description": "A community-contributed game system for running games of Conan in the cinematic 2D20 game system by Modiphius in the Foundry VTT environment. Please refer to the README.md file for reporting issues.",
-  "version": "0.0.6",
+  "version": "0.3.5",
   "author": ["Jerome Lavoie / kayhosraven#1642", "Ian Henry / eeyun#0890"],
   "scripts": [ ],
   "esmodules": [ "main.bundle.js" ],
@@ -95,6 +95,14 @@
         "module": "conan2d20",
         "path": "./packs/homelands.db",
         "entity": "JournalEntry"
+    },
+    {
+      "name": "rollable-tables",
+      "label": "Rollable Tables",
+      "system": "conan2d20",
+      "module": "conan2d20",
+      "path": "./packs/rollable-tables.db",
+      "entity": "RollTable"
     }
   ],
   "languages": [
@@ -106,12 +114,12 @@
   ],
   "socket": false,
   "initiative": null,
-  "gridDistance": 30,
+  "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "health.physical.value",
   "secondaryTokenAttribute": "health.mental.value",
-  "minimumCoreVersion": "0.6.2",
-  "compatibleCoreVersion": "0.6.2",
+  "minimumCoreVersion": "0.6.4",
+  "compatibleCoreVersion": "0.6.4",
   "url": "https://gitlab.com/kayhos/foundryvtt-conan2d20",
   "manifest": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/raw/master/static/system.json",
   "download": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/archive/master/foundryvtt-conan2d20-master.zip",

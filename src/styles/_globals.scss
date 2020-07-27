@@ -1,0 +1,218 @@
+/* ----------------------------------------- */
+/* Configuration
+/* ----------------------------------------- */
+
+$primary-color: #42470b !default;
+$secondary-color: #825e4a !default; /* used for mini headers, alternate primary color */
+$tertiary-color: #E9D7A1 !default; /* compliments the primary color, usually used in combination */
+$alt-color: #786452; /* for all other uses */
+$alt-dark: #443730;
+$background-color: #F8F4F1 !default;
+$dark-color: darken($primary-color, 10) !default;
+$light-color: lighten($primary-color, 10) !default;
+$body-color: #1C1C1C;
+$sub-color: #605856;
+
+$sidebar-title-color: #f7d488;
+$sidebar-label: #ffefbd;
+
+/* One Shade Lighter / Darker */
+$light-1: lighten($light-color, 10);
+$dark-1: darken($dark-color, 10);
+
+/* Window Settings */
+$window-title-bg: #121820;
+$window-bg: $background-color;
+
+/* Headers w/ boxes */
+$header-color: #fff; /* Font Color */
+$header-bg: $secondary-color;
+$box-bg: lighten($header-bg, 75);
+
+/* Font Families */
+$sans-serif: 'Roboto', system, -apple-system, sans-serif !default;
+$serif: 'Signika', Georgia, serif !default;
+$body-serif: 'Gelasio', 'Signika', Georgia, serif !default;
+
+/* Buttons */
+$btn-text: $tertiary-color !default;
+$btn-color: $primary-color !default;
+$btn-radius: 0 !default;
+$btn-frame: $tertiary-color !default;
+
+$btn-color: #8e0317 !default;
+$btn-radius: 0 !default;
+
+/* ----------------------------------------- */
+/* Fonts
+/* ----------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed|Tauri|Teko:500|Changa+One|DM+Serif+Text:400i&display=swap');
+
+@font-face {
+    font-family: 'CrushYourEnemies';
+    src: url('../fonts/crushyourenemies.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Norse';
+    src: url('../fonts/Norse.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.crushy {
+    font-family: "CrushYourEnemies", "Martel", "Roboto", serif;
+    font-size: 18px;
+  }
+  
+
+
+/* ----------------------------------------- */
+/* Global Settings
+/* ----------------------------------------- */
+
+:root {
+    --primary: #{$primary-color};
+    --secondary: #{$secondary-color};
+    --tertiary: #{$tertiary-color};
+    --alt: #{$alt-color};
+    --alt-dark: #{$alt-dark};
+    --light: #{$light-color};
+    --lighter: #{$light-1};
+    --dark: #{$dark-color};
+    --darker: #{$dark-1};
+    --bg: #{$background-color};
+    --sub: #{$sub-color};
+    --btn-color: #{$btn-color};
+    --btn-radius: #{$btn-radius};
+    --header-color: #{$header-color};
+    --header-bg: #{$header-bg};
+    --body: #{$body-color};
+    --box-bg: #{$box-bg};
+    --window-bg: #{$window-bg};
+
+    --sidebar-label: #{$sidebar-label};
+    --sidebar-title: #{$sidebar-title-color};
+
+    --animate-duration: 1s;
+    --animate-delay: 1s;
+    --animate-repeat: 1;
+}
+
+body {
+    font-family: $sans-serif;
+    color: var(--body);
+}
+
+/* ----------------------------------------- */
+/* Layout
+/* ----------------------------------------- */
+
+$padding: 0.5em;
+$margin: 0.5em;
+
+.grid {
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+.flex {
+    display: flex;
+}
+
+/* ----------------------------------------- */
+/* Typography
+/* ----------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 600;
+}
+p {
+    font-weight: 500;
+}
+
+@mixin micro {
+    font-family: $sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+}
+
+a[href] {
+    color: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+    outline: none;
+    border-radius: 3px;
+    background: var(--light);
+    border: 1px solid #949f19;
+}
+/* ----------------------------------------- */
+/* Forms
+/* ----------------------------------------- */
+@import 'forms';
+
+.editor {
+    height: 100%;
+    width: 100%;
+
+    .mce-content-body {
+        height: 200px;
+        position: fixed;
+    }
+}
+
+ .tox {
+     .tox-editor-container {
+         .tox-editor-header {
+             .tox-toolbar-overlord {
+                 background: none;
+                 .tox-toolbar {
+                     &__primary {
+                         background: none;
+                         box-shadow: inset 0 0 0 1px rgba(white, 0.3);
+                         height: 100%;
+                     }
+                     &__group {
+                         flex-wrap: nowrap;
+                     }
+                 }
+             }
+         }
+     }
+ 
+     .tox-tbtn {
+         background: none;
+         color: white;
+         border-radius: 1px;
+         &__select-chevron {
+             svg {
+                 fill: rgba(black, 0.5);
+             }
+         }
+ 
+         svg {
+             fill: rgba(black, 0.5);
+         }
+ 
+         &:hover {
+             background: var(--secondary);
+ 
+             svg {
+                 fill: white;
+             }
+         }
+     }
+ }
+

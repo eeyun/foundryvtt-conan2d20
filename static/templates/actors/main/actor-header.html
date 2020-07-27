@@ -1,15 +1,13 @@
-<h1 class="charname" >
-    <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "CONAN.characterNamePlaceholder"}}"/>
-</h1>
-
-<div class="charxp">
-    <div class="xpbar">
-        <span class="bar" style="width: {{data.resources.xp.pct}}%"></span>
+<header class="char-header">
+    <div class="char-details">
+        <h1 class="char-name">
+            <input
+                name="name"
+                type="text"
+                value="{{actor.name}}"
+                placeholder="{{localize "CONAN.characterNamePlaceholder"}}"
+            />
+        </h1>
     </div>
-    <div class="experience">
-        <input name="data.resources.xp.value" type="text" value="{{data.resources.xp.value}}"
-                data-dtype="Number" placeholder="0"/>
-        <span class="max" data-wpad="14"> / {{data.resources.xp.max}}</span>
-    </div>
-</div>
+</header>
 

@@ -1,0 +1,68 @@
+<div class="form-group">
+    <label>{{localize "CONAN.talentSkillLabel"}}</label>
+    <select name="data.skill.value" data-dtype="{{data.skill.type}}">
+        {{#select data.skill.value}}
+        {{#each talentSkills as |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.talentTypeLabel"}}</label>
+    <select name="data.talentType.value" data-dtype="{{data.talentType.type}}">
+        {{#select data.talentType.value}}
+        {{#each talentTypes as |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+
+<div class="form-group">
+    <label>{{localize "CONAN.talentActionTypeLabel"}}</label>
+    <select name="data.actionType.value" data-dtype="{{data.actionType.type}}">
+        {{#select data.actionType.value}}
+        {{#each talentActionTypes as |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.talentActionCategoryLabel"}}</label>
+    <select name="data.actionCategory.value" data-dtype="String">
+        {{#select data.actionCategory.value}}
+        <option value=""></option>
+        {{#each categories as |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.talentPrereqLabel"}}</label>
+    <input type="text" name="data.prerequisites.value" value="{{data.prerequisites.value}}"
+           data-dtype="{{data.prerequisites.type}}"/>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.talentRankLabel"}}</label>
+    <input type="text" name="data.rank.value" value="{{data.rank.value}}"
+            data-dtype="{{data.rank.type}}"/>
+</div>
+
+<div class="form-group">
+    <label>{{localize "CONAN.talentRankMaxLabel"}}</label>
+    <input type="text" name="data.rank.max" value="{{data.rank.max}}"
+            data-dtype="{{data.rank.max.type}}"/>
+</div>
+<div class="form-group">
+    <label>{{localize "CONAN.talentCostLabel"}} xp</label>
+    <input type="text" name="data.cost" value="{{data.cost}}"
+            data-dtype="{{data.cost.type}}"/>
+</div>
