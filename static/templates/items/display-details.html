@@ -30,14 +30,14 @@
 <div class="form-group">
     <label>{{localize "CONAN.displayBaseDamageLabel"}}</label>
     <div class="details-container-three-columns">
-        <select name="data.damage.dice" data-dtype="{{data.damage.dice.type}}">
+        <select name="data.damage.dice" data-dtype="Number">
             {{#select data.damage.dice}}
             {{#each damageDice as |name type|}}
             <option value="{{type}}">{{name}}</option>
             {{/each}}
             {{/select}}
         </select>
-        <input type="" name="damageDice" value="d6" data-dtype="String" disabled />
+        <div class="damage-icon"></div>
     </div>
 </div>
 

@@ -7,7 +7,7 @@
                     <h4 class="attribute-name" title="data.attributes.{{a}}">{{attr.label}}</h4>
                 </div>
                 <div class="attribute-score">
-                    <input name="data.attributes.{{a}}.value" type="number" value="{{attr.value}}" data-dtype="Number" placeholder="10" />
+                    <input name="data.attributes.{{a}}.value" type="Number" value="{{attr.value}}" data-dtype="Number" placeholder="10" />
                 </div>
                 <div class="attribute-roll">
                     <i class="fas fa-dice-d20"></i>
@@ -48,13 +48,13 @@
                             <h4 class="skill-name rollable" data-roll="2d20cs<=data.skills.{{s}}.tn">{{skill.label}}</h4>
                         </td>
                         <td class="skill-entry-expertise">
-                            <input type="text" name="data.skills.{{s}}.expertise.value" value="{{skill.expertise.value}}" data-dtype="Number"/>
+                            <input type="Number" name="data.skills.{{s}}.expertise.value" value="{{skill.expertise.value}}" data-dtype="Number"/>
                         </td>
                         <td class="skill-entry-focus">
-                            <input type="text" name="data.skills.{{s}}.focus.value" value="{{skill.focus.value}}" data-dtype="Number"/>
+                            <input type="Number" name="data.skills.{{s}}.focus.value" value="{{skill.focus.value}}" data-dtype="Number"/>
                         </td>
                         <td class="skill-entry-tn">
-                            <input type="text" name="data.skills.{{s}}.tn" value="{{skill.tn}}" data-dtype="Number" disabled/>
+                            <input type="Number" name="data.skills.{{s}}.tn" value="{{skill.tn}}" data-dtype="Number" disabled/>
                         </td>
                         <td class="skill-entry-tab-roll" data-skill="{{s}}" data-roll="2d20cs <= data.skills.{{s}}.tn">
                             <i class="fas fa-dice-d20 rollable"></i>

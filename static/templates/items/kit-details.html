@@ -22,7 +22,7 @@
 
 <div class="form-group">
     <label>{{localize "CONAN.kitUsesMaxLabel"}}</label>
-    <select name="data.uses.max" data-dtype="{{data.uses.max.type}}">
+    <select name="data.uses.max" data-dtype="Number">
         {{#select data.uses.max}}
         {{#each uses as |label key|}}
         <option value="{{key}}">{{{localize label}}}</option>
@@ -33,5 +33,5 @@
 
 <div class="form-group">
     <label>{{localize "CONAN.kitUsesAvailableLabel"}}</label>
-    <input type="text" name="data.uses.value" value="{{data.uses.value}}" data-dtype="{{data.uses.value.type}}"/>
+    <input type="Number" name="data.uses.value" value="{{data.uses.value}}" data-dtype="Number"/>
 </div>

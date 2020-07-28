@@ -157,20 +157,39 @@
     }
 
     .form-group {
-      height: 24px;
-      margin: 2px 0;
+        height: 24px;
+        margin: 2px 0;
+        input:focus {
+            border-bottom: 1px solid #644f33;
+        }
 
-      select {
-        flex: 2;
-        margin-right: 5px;
-        background-color: var(--darker);
-      }
+        select {
+            flex: 2;
+            margin-right: 5px;
+            background-color: var(--darker);
+        }
 
-      input[type="text"] {
-        background: rgba(255, 255, 255, 0.5);
-        border: 1px solid #AAA;
-        padding: 3px;
-      }
+        input[type="text"] {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #AAA;
+            padding: 3px;
+            margin-right: 5px;
+        }
+
+        input[type="number"] {
+            width: calc(100% - 2px);
+            min-width: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 3px;
+            margin-right: 5px;
+        }
+    }
+
+    .damage-icon {
+        background-image: url('../assets/icons/phoenix-sigil.svg');
+        filter: brightness(0) sepia(0) saturate(5);
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
     .sheet-tabs {
@@ -212,7 +231,7 @@
 
     .details-container-three-columns {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: .4fr 1fr 1fr;
     }
 
     .consumable-details {

@@ -25,6 +25,10 @@
             margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
         }
         &[type='number'] {
+            height: 24px;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 1px 3px;
+            margin: 0;
             -moz-appearance: textfield;
         }
     }
