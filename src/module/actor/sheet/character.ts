@@ -28,6 +28,9 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 
         // Update traumatized icon
         sheetData.data.health.mental.traumas = C2_Utility.addDots(duplicate(sheetData.data.health.mental.traumas), sheetData.data.health.mental.traumas.max);
+        
+        // Update Actor Armor values
+        sheetData.data.health.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items);
 
         return sheetData;
     }
