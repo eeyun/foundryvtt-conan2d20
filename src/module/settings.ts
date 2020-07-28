@@ -15,4 +15,18 @@ export default function () {
         default: true,                                                               
         type: Boolean,                                                               
     });
+    game.settings.register('conan2d20', 'momentum', {                       
+        name: 'Momentum',                                    
+        scope: 'world',                                                              
+        config: false,                                                                
+        default: 0,                                                               
+        type: Number,                                                               
+    });
+    game.settings.register('conan2d20', 'doom', {                       
+        name: 'Doom',                                    
+        scope: 'world',                                                              
+        config: false,                                                                
+        default: 0,                                                               
+        type: Number,                                                               
+    });
 }

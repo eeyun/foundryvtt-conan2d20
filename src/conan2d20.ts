@@ -7,6 +7,7 @@ import ActorConan2d20 from './module/actor/actor';
 import { Conan2d20System } from './module/conan2d20-system';
 import registerActors from './module/register-actors';
 import {registerSheets} from './module/register-sheets';
+import Counter from "./module/system/counter"
 
 require('./styles/conan2d20.scss');
 
@@ -23,6 +24,7 @@ Hooks.once('init', () => {
 
     CONFIG.Item.entityClass = ItemConan2d20;
     CONFIG.Actor.entityClass = ActorConan2d20;
+    CONFIG.CONAN.Counter = new Counter();
 
     registerSettings();
     loadTemplates();
@@ -65,6 +67,10 @@ Hooks.once('setup', () => {
     }, {});
   }
 });
+
+Hooks.on("ready", () => {
+    CONFIG.CONAN.Counter.render(true)
+})
 
 Hooks.on('preCreateActor', (actor: any, dir: any) => {
     if (game.settings.get('conan2d20', 'defaultTokenSettings')) {
