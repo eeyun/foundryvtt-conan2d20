@@ -112,7 +112,7 @@
       "path": "lang/en.json"
     }
   ],
-  "socket": false,
+  "socket": true,
   "initiative": null,
   "gridDistance": 5,
   "gridUnits": "ft",

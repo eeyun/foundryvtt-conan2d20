@@ -24,7 +24,7 @@ export default class Counter extends Application {
         let data = super.getData();
         data.momentum = game.settings.get("conan2d20", "momentum")
         data.doom = game.settings.get("conan2d20", "doom")
-        data.isGM = game.user.isGM;
+        data.canEdit = game.user.isGM || game.settings.get("conan2d20", "playerCounterEdit");
 
         return data;
     }
@@ -57,25 +57,38 @@ export default class Counter extends Application {
     static async setCounter(value, type)
     {
         Counter.checkCounterUpdate(value, type);
-
         value = Math.round(value)
         
+        if (!game.user.isGM)
+        {
+            // @ts-ignore
+            game.socket.emit("system.conan2d20", 
+            {
+                type : "setCounter",
+                payload: {value, type}
+            })
+            return
+        }
+
         await game.settings.set("conan2d20", type, value)
         CONFIG.CONAN.Counter.render(true);
+
+        // Emit socket event for users to rerender their counters
+        // @ts-ignore
+        game.socket.emit("system.conan2d20", {type : "updateCounter"})
     }
 
     /**
      * Change the counter of (type) by (value)
-     * @param value How much to change the counter
+     * @param diff How much to change the counter
      * @param type  Type of counter, "momentum" or "doom"
      */
-    static async changeCounter(value, type)
+    static async changeCounter(diff, type)
     {
-        Counter.checkCounterUpdate(value, type);
-        let val = game.settings.get("conan2d20", type)
-        val += value;
-        await game.settings.set("conan2d20", type, val)
-        CONFIG.CONAN.Counter.render(true);
+        Counter.checkCounterUpdate(diff, type);
+        let value = game.settings.get("conan2d20", type)
+        value += diff;
+        Counter.setCounter(value, type);
     }
 
     // Check user entry. Rerender if error is detected to reset to the correct value

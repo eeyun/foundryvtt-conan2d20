@@ -70,6 +70,19 @@ Hooks.once('setup', () => {
 
 Hooks.on("ready", () => {
     CONFIG.CONAN.Counter.render(true)
+
+    // @ts-ignore
+    game.socket.on("system.conan2d20", event => {
+        if (event.type == "setCounter")
+        {
+            Counter.setCounter(event.payload.value, event.payload.type)
+        }
+
+        if (event.type == "updateCounter")
+        {
+            CONFIG.CONAN.Counter.render(true)
+        }
+    })
 })
 
 Hooks.on('preCreateActor', (actor: any, dir: any) => {

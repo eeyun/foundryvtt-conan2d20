@@ -2,17 +2,17 @@
     <div class="counter" data-type="momentum">
         <h2>{{localize "CONAN.momentum"}}</h2>
         <div class="input-controls" >
-            {{#if isGM}} <b><a class="decr">-</a></b> {{/if}}
-            <input type="text" value="{{momentum}}" {{#unless isGM}}disabled{{/unless}}>
-            {{#if isGM}}<b><a class="incr">+</a></b> {{/if}} 
+            {{#if canEdit}} <b><a class="decr">-</a></b> {{/if}}
+            <input type="text" value="{{momentum}}" {{#unless canEdit}}disabled{{/unless}}>
+            {{#if canEdit}}<b><a class="incr">+</a></b> {{/if}} 
         </div>
     </div>
     <div class="counter" data-type="doom">
         <h2>{{localize "CONAN.doom"}}</h2>
         <div class="input-controls" >
-            {{#if isGM}} <b><a class="decr">-</a></b> {{/if}}
-            <input type="text" value="{{doom}}" {{#unless isGM}}disabled{{/unless}}>
-            {{#if isGM}} <b><a class="incr">+</a></b> {{/if}} 
+            {{#if canEdit}} <b><a class="decr">-</a></b> {{/if}}
+            <input type="text" value="{{doom}}" {{#unless canEdit}}disabled{{/unless}}>
+            {{#if canEdit}} <b><a class="incr">+</a></b> {{/if}} 
         </div>
     </div>
 </div>

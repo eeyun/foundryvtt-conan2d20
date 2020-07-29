@@ -15,6 +15,14 @@ export default function () {
         default: true,                                                               
         type: Boolean,                                                               
     });
+    game.settings.register("conan2d20", "playerCounterEdit", {
+        name: "Allow Players To Edit Counters",
+        hint: "Players will be able to change counter values manually.",
+        scope: "world",
+        config: true,
+        default: false,
+        type: Boolean
+    })
     game.settings.register('conan2d20', 'momentum', {                       
         name: 'Momentum',                                    
         scope: 'world',                                                              
