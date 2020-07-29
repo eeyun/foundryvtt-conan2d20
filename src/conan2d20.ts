@@ -73,7 +73,7 @@ Hooks.on("ready", () => {
 
     // @ts-ignore
     game.socket.on("system.conan2d20", event => {
-        if (event.type == "setCounter")
+        if (event.type == "setCounter" && game.user.isGM)
         {
             Counter.setCounter(event.payload.value, event.payload.type)
         }
