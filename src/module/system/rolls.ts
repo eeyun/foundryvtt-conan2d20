@@ -191,16 +191,17 @@ export class Conan2d20Dice {
     }
 
     static async generateDamageRoll(rollData: any, cardData: any, actorData: any) {
-        // TODO: Wire in momentum expenditure check
         const generatorErr = {
             reload: "Conan 2D20 | Error in Damage Roll, you must enter a number of reloads to spend",
             resource: "Conan 2D20 | Error in Damage Roll, you must select a Reload to spend"
         };
+
         if (rollData.reloadItem !== '' && rollData.reloadModifier < 1) {
             throw generatorErr.reload;
         } else if (rollData.reloadModifier > 0 && rollData.reloadItem === '') {
             throw generatorErr.resource;
         }
+
         let baseDamage;
         if (rollData.optionalBaseDmg > 0) {
             baseDamage = Number(rollData.optionalBaseDmg);
@@ -209,7 +210,7 @@ export class Conan2d20Dice {
         };
         const damageType = rollData.extra.weapon.data.damage.type;
         const {attackType} = rollData;
-        let diceQty = baseDamage + rollData.momentumModifier + rollData.talentModifier + rollData.reloadModifier;
+        let diceQty = baseDamage + rollData.talentModifier + rollData.reloadModifier;
         let attribute;
         let modifier;
 
@@ -236,7 +237,29 @@ export class Conan2d20Dice {
         }
 
         diceQty += modifier;
-        if (rollData.reloadModifier > 0) {
+        if (rollData.momentumModifier > 0) {
+            try {
+                Conan2d20Actor.spendMomentum(rollData.momentumModifier);
+                diceQty += rollData.momentumModifier;
+                if (rollData.reloadModifier > 0) {
+                    try {
+                        Conan2d20Actor.spendReload(actorData, rollData.reloadModifier, rollData.reloadItem);
+                        diceQty += rollData.reloadModifier;
+                        await this.calculateDamageRoll(diceQty, damageType, cardData);
+                    }
+                    catch(e) {
+                        console.log(e);
+                        ui.notifications.error(e);
+                    }
+                } else {
+                    await this.calculateDamageRoll(diceQty, damageType, cardData);
+                }
+            }
+            catch (e) {
+                console.log(e);
+                ui.notifications.error(e);
+            }
+        } else if (rollData.reloadModifier > 0) {
             try {
                 Conan2d20Actor.spendReload(actorData, rollData.reloadModifier, rollData.reloadItem);
                 diceQty + rollData.reloadModifier;
@@ -263,8 +286,7 @@ export class Conan2d20Dice {
         } else if (rollData.diceModifierType !== "" && rollData.diceModifier === 0) {
             throw generatorErr.res_count;
         }
-        const diceQty = baseDice + rollData.diceModifier;
-        if (diceQty > 5) {
+        if ((baseDice + rollData.diceModifier) > 5) {
             throw generatorErr.bonus_count;
         } else if ((rollData.diceModifier + rollData.successModifier) > 3) {
             throw generatorErr.bonus_count
@@ -273,7 +295,34 @@ export class Conan2d20Dice {
         if (rollData.skill.trained > 0) {
              trained = true;
         }
-        if (rollData.successModifier > 0) {
+        let diceQty = baseDice;
+        if (rollData.diceModifier > 0) {
+            try {
+                if (rollData.diceModifierType === 'momentum') {
+                    Conan2d20Actor.spendMomentum(rollData.diceModifier); 
+                    diceQty += rollData.diceModifier;
+                } else if (rollData.diceModifierType === 'doom') {
+                    Conan2d20Actor.addDoom(rollData.diceModifier); 
+                    diceQty += rollData.diceModifier;
+                }
+                if (rollData.successModifier > 0) {
+                    try {
+                        Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
+                        await this.showFortuneSpendDialog(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
+                    }
+                    catch(e) {
+                        console.log(e);
+                        ui.notifications.error(e);
+                    }
+                } else {
+                    await this.calculateSkillRoll(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
+                }
+            }
+            catch(e) {
+                console.log(e);
+                ui.notifications.error(e);
+            }
+        } else if (rollData.successModifier > 0) {
             try {
                 Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
                 await this.showFortuneSpendDialog(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);

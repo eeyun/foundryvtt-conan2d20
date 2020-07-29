@@ -9,7 +9,9 @@
 <div class="roll-outcomes">
     <label>Damage </label>{{damage}} {{damageType}}
     <br>
-    <label>Hit Location </label>{{hitLocation}}
+    {{#ifEq damageType "physical"}}
+        <label>Hit Location </label>{{hitLocation}}
+    {{/ifEq}}
 </div>
 <br>
 <br>
