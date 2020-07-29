@@ -1,29 +1,67 @@
 .conan-counter {
-    background: url('../assets/parchment.jpg');
-    border-radius: 5px;
+    background: url('../assets/sheet/attribute-block-header.png');
     box-shadow:
     inset 0 0 2px 0 rgba(255,255,255,.4),
     inset 0 0 3px 0 rgba(0,0,0,.4),
     inset 0 0 3px 5px rgba(0,0,0,.05),
     2px 2px 4px 0 rgba(0,0,0,.25);
-    width: 200px;
-    height: 200px;
+    margin-top:0;
+    margin-right:auto;
+    margin-bottom:0;
+    margin-left:auto;
+    width: 400px;
+    height: 40px;
     position: relative;
-    top: 500px;
     display: flex;
-    flex-direction: column;
+    color: #C0C0C0;
+    @include inset-gold-border;
+    font-family: "Norse";
+    font-size: 23px;
 }
 
 .conan-counter > div {
     text-align: center;
-    margin:30px;
-    margin-top:10px
+    margin: 5px;
+    display: flex;
+}
+
+.vr {
+    width: 100%;
+    background-image: url('../assets/icons/phoenix-sigil.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .conan-counter .input-controls {
     display: flex;
     flex-direction: row;
+    padding-left: 10px;
+    text-align: center;
+
+    input:hover {
+        @include input-glow-brown;
+    }
+
+    input[type="number"] {
+        border: transparent;
+        width: 45px;
+        height: 80%;
+        color: #877053;
+        text-align: center;
+        background: #D2D1C8;
+        box-shadow: inset 0 0 5px #000000;
+        font-weight: 700;
+        -moz-appearance: textfield;
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
 }
 .conan-counter .input-controls > * {
-    margin: 5px
+    margin-left: 5px;
+    margin-right: 5px;
 }
+

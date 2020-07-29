@@ -1,8 +1,9 @@
 /**
  * Extend the base Actor class to implement additiona logic specialized for Conan2d20
  */
-import { CONFIG } from "../../scripts/config";
-import { Conan2d20Dice } from "../system/rolls";
+import { CONFIG } from '../../scripts/config';
+import { Conan2d20Dice } from '../system/rolls';
+import Counter from '../system/counter';
 import CharacterData from './character';
 
 export default class Conan2d20Actor extends Actor {
@@ -138,6 +139,10 @@ export default class Conan2d20Actor extends Actor {
          return data;
     }
 
+    static addDoom(doomSpend) {
+        Counter.changeCounter(+`${doomSpend}`, "doom");
+    }
+
     static spendFortune(actorData, fortuneSpend) {
         const newValue = actorData.data.resources.fortune.value - fortuneSpend;
         if (newValue < 0) {
@@ -147,6 +152,16 @@ export default class Conan2d20Actor extends Actor {
             /* eslint-disable-next-line no-param-reassign */
             actorData.data.resources.fortune.value = newValue;
             game.actors.get(actorData._id).update(actorData);
+        }
+    }
+
+    static spendMomentum(momentumSpend) {
+        const newValue = game.settings.get("conan2d20", "momentum") - momentumSpend;
+        if (newValue <  0) {
+            const error = "Momentum spend would exceed available momentum points."
+            throw error;
+        } else {
+            Counter.changeCounter(-`${momentumSpend}`, "momentum");
         }
     }
 

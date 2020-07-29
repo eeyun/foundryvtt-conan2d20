@@ -21,7 +21,7 @@ export default class Counter extends Application {
      * @type {Object}
      */
     getData() {
-        let data = super.getData();
+        const data = super.getData();
         data.momentum = game.settings.get("conan2d20", "momentum")
         data.doom = game.settings.get("conan2d20", "doom")
         data.canEdit = game.user.isGM || game.settings.get("conan2d20", "playerCounterEdit");
@@ -34,14 +34,14 @@ export default class Counter extends Application {
 
         // Call setCounter when input is used
         html.find("input").change(ev => {
-            let type = $(ev.currentTarget).parents(".counter").attr("data-type")
+            const type = $(ev.currentTarget).parents(".counter").attr("data-type")
             Counter.setCounter(ev.target.value, type);
         })
 
         // Call changeCounter when +/- is used
         html.find(".incr,.decr").click(ev => {
-            let type = $(ev.currentTarget).parents(".counter").attr("data-type")
-            let multiplier = $(ev.currentTarget).hasClass("incr") ? 1 : -1
+            const type = $(ev.currentTarget).parents(".counter").attr("data-type")
+            const multiplier = $(ev.currentTarget).hasClass("incr") ? 1 : -1
             Counter.changeCounter(1 * multiplier, type);
         })
     }
@@ -70,8 +70,16 @@ export default class Counter extends Application {
             return
         }
 
-        await game.settings.set("conan2d20", type, value)
-        CONFIG.CONAN.Counter.render(true);
+        if (value > 6 && type === 'momentum') {
+            await game.settings.set("conan2d20", type, 6)
+            CONFIG.CONAN.Counter.render(true);
+        } else if (value < 0) {
+            await game.settings.set("conan2d20", type, 0)
+            CONFIG.CONAN.Counter.render(true);
+        } else {
+            await game.settings.set("conan2d20", type, value)
+            CONFIG.CONAN.Counter.render(true);
+        }
 
         // Emit socket event for users to rerender their counters
         // @ts-ignore
@@ -87,25 +95,36 @@ export default class Counter extends Application {
     {
         Counter.checkCounterUpdate(diff, type);
         let value = game.settings.get("conan2d20", type)
-        value += diff;
-        Counter.setCounter(value, type);
+        if ((value + diff) > 6 && type === 'momentum') {
+            Counter.setCounter(6, type);
+        } else if ((value + diff) < 0) {
+            Counter.setCounter(0, type);
+        } else {
+            value += diff;
+            Counter.setCounter(value, type);
+        }
     }
 
     // Check user entry. Rerender if error is detected to reset to the correct value
     static checkCounterUpdate(value, type)
     {
-        if (type != "doom" && type !="momentum")
+        const updateError = {
+            counter: "Conan 2D20 | Error updating Counter: Invalid Counter Type",
+            value: "Conan 2D20 | Error updating Counter: Invalid Value Type"
+        }
+
+        if (type !== "doom" && type !== "momentum")
         {
             ui.notifications.error("Error updating Counter: Invalid Counter Type")
             CONFIG.CONAN.Counter.render(true);
-            throw "Error updating Counter: Invalid Counter Type"
+            throw updateError.counter
         }
 
         if (isNaN(value))
         {
             ui.notifications.error("Error updating Counter: Invalid Value Type")
             CONFIG.CONAN.Counter.render(true);
-            throw "Error updating Counter: Invalid Value Type"
+            throw updateError.value
         }
     }
    
