@@ -1,6 +1,6 @@
 <div class="form-group">
     <label>{{localize "CONAN.weaponTypeLabel"}}</label>
-    <select name="data.weaponType.value" data-dtype="{{data.weaponType.type}}">
+    <select name="data.weaponType.value" data-dtype="String">
         {{#select data.weaponType.value}}
         {{#each weaponTypes as |name type|}}
         <option value="{{type}}">{{name}}</option>
@@ -13,7 +13,7 @@
 
 <div class="form-group">
     <label>{{localize "CONAN.weaponGroupLabel"}}</label>
-    <select name="data.group.value" data-dtype="{{data.group.type}}">
+    <select name="data.group.value" data-dtype="String">
         {{#select data.group.value}}
         {{#each weaponGroups as |name type|}}
         <option value="{{type}}">{{name}}</option>
@@ -24,7 +24,7 @@
 
 <div  class="form-group">
    <label>{{localize "CONAN.weaponSizeLabel"}}</label>
-   <select name="data.size.value" data-dtype="{{data.size.type}}">
+   <select name="data.size.value" data-dtype="String">
        {{#select data.size.value}}
        {{#each weaponSizes as |name size|}}
        <option value="{{size}}">{{name}}</option>
@@ -35,7 +35,7 @@
     <div  class="form-group">                                                    
 {{#ifEq data.weaponType.value "ranged"}}                                                    
        <label>{{localize "CONAN.weaponRangeLabel"}}</label>                      
-       <select name="data.range.value" data-dtype="{{data.range.type}}">         
+       <select name="data.range.value" data-dtype="String">         
            {{#select data.range.value}}                                          
             {{#each weaponRanges as |name range|}}                               
             <option value="{{range}}">{{name}}</option>                          
@@ -45,7 +45,7 @@
     </div>                                                                       
 {{else}}                                                                        
        <label>{{localize "CONAN.weaponReachLabel"}}</label>                      
-       <select name="data.range.value" data-dtype="{{data.range.type}}">         
+       <select name="data.range.value" data-dtype="Number">         
            {{#select data.range.value}}                                          
             {{#each weaponReaches as |name reach|}}                              
             <option value="{{reach}}">{{name}}</option>                          
@@ -54,7 +54,8 @@
        </select>                                                                 
     </div>
 {{/ifEq}}                                                                        
-{{#ifEq data.weaponType.value "ranged"}}                                            <div class="form-group">
+{{#ifEq data.weaponType.value "ranged"}}
+    <div class="form-group">
         <label>{{localize "CONAN.weaponShotsLabel"}}</label>
         <input type="text" name="data.shots" value="{{data.shots}}" data-dtype="Number"/>
     </div>
@@ -79,19 +80,19 @@
                 {{/each}}
                 {{/select}}
             </select>
-            <input type="" name="damageDice" value="d6" data-dtype="String" disabled />
+            <div class='combat-dice'></div>
         </div>
     </div>
     <div class="form-group">
         <label>{{localize "CONAN.weaponBonusDamageLabel"}}</label>
-        <input type="text" name="data.bonusDamage.value" value="{{data.bonusDamage.value}}" data-dtype="Number"/>
+        <input type="Number" name="data.bonusDamage.value" value="{{data.bonusDamage.value}}" data-dtype="Number"/>
     </div>
 </ol>
 
 <ol class="form-list">
     <div class="form-group">                                                         
        <label>{{localize "CONAN.equipmentEquippedLabel"}}</label>                     
-       <input type="checkbox" name="data.equipped.value" value="1" data-dtype="{{data.equipped.type}}" {{checked data.equipped.value}}/>
+       <input type="checkbox" name="data.equipped.value" value="1" data-dtype="Boolean" {{checked data.equipped.value}}/>
     </div>
 
     <div class="form-group-stacked">

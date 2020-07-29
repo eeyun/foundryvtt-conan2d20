@@ -14,7 +14,7 @@
 
     <div class="form-group">
         <label>{{localize "CONAN.itemEncumbrance"}}</label>
-        <select name="data.encumbrance" data-dtype="{{data.encumbrance.type}}">
+        <select name="data.encumbrance" data-dtype="Number">
             {{#select data.encumbrance}}
             {{#each encumbrance as |label key|}}
             <option value="{{key}}">{{localize label}}</option>
@@ -24,6 +24,6 @@
     </div>
     <div class="form-group">
         <label>{{localize "CONAN.itemCost"}}</label>
-        <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="{{data.cost.type}}"/>
+        <input type="Number" name="data.cost" value="{{data.cost}}" data-dtype="Number"/>
     </div>
 </div>

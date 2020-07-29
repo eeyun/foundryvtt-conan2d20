@@ -1,6 +1,6 @@
 <div class="form-group">
     <label>{{localize "CONAN.actionTypeLabel"}}</label>
-    <select name="data.actionType.value" data-dtype="{{data.actionType.type}}">
+    <select name="data.actionType.value" data-dtype="Text">
         {{#select data.actionType.value}}
         {{#each actionTypes as |name type|}}
         <option value="{{type}}">{{name}}</option>
@@ -11,7 +11,7 @@
 
 <div class="form-group">
     <label>{{localize "CONAN.actionCountLabel"}}</label>
-    <select name="data.actionCount.value" data-dtype="{{data.actionCount.type}}">
+    <select name="data.actionCount.value" data-dtype="Number">
         {{#select data.actionCount.value}}
         <option value=""></option>
         {{#each actionCount as |name type|}}
@@ -23,7 +23,7 @@
 
 <div class="form-group">
     <label>{{localize "CONAN.actionCategoryLabel"}}</label>
-    <select name="data.actionCategory.value" data-dtype="String">
+    <select name="data.actionCategory.value" data-dtype="Text">
         {{#select data.actionCategory.value}}
         <option value=""></option>
         {{#each actionCategories as |name type|}}
@@ -36,7 +36,7 @@
 
 <div class="form-group">
   <label>{{localize "CONAN.actionSkillRequirementLabel"}}</label>
-  <select name="data.skillRequirement.skill.skill" data-dtype="String">
+  <select name="data.skillRequirement.skill.skill" data-dtype="Text">
     {{#select data.skillRequirement.skill.skill}}
     <option value=""></option>
     {{#each skills as |label skill|}}
@@ -44,7 +44,7 @@
     {{/each}}
     {{/select}}
   </select>
-  <select name="data.skillRequirement.skill.rank" data-dtype="data.skillRequirement.skill.type">
+  <select name="data.skillRequirement.skill.rank" data-dtype="Number">
     {{#select data.skillRequirement.skill.rank}}
     <option value=""></option>
     {{#each proficiencies as |label proficiency_value|}}
