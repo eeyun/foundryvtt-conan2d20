@@ -85,10 +85,10 @@ Hooks.on("ready", () => {
     })
 })
 
+// On rendering a chat message, if it contains item data (from a posted item), make draggable with the data transfer set to that item data.
 Hooks.on("renderChatMessage", (msg, html, data) => {
     if (hasProperty(data, "message.flags.conan2d20.itemData"))
     {
-        //html.setAttribute("draggable", true)
         html[0].addEventListener("dragstart", (ev) => {
             ev.dataTransfer.setData("text/plain", JSON.stringify({type : "item-drag", payload: data.message.flags.conan2d20.itemData}))
         })

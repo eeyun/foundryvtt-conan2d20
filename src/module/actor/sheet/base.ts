@@ -416,10 +416,12 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
     this._onSubmit(event);
   }
 
-  // @overide
   /**
+   * Takes a drop event and if a customized drop event is detected, perform the required actions (i.e. adding a dragged item from chat to the actor)
+   * otherwise, call the base actor sheet's onDrop method to preserve basic functionality
+   * Can be extended to other functionality by creating a drag's data transfer with a type (such as 'item-drag') and adding the conditional here.
    * 
-   * @param dropData 
+   * @param ev drop event 
    */
   _onDrop(ev)
   {
@@ -429,7 +431,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         this.actor.createEmbeddedEntity("OwnedItem", dropData.payload);
     }
     else 
-        return super._onDrop(dropData)
+        return super._onDrop(ev)
   }
 
 }
