@@ -62,8 +62,6 @@
             border-top: none;
             border-right: none;
             border-left: none;
-            //border-image-slice: 16;
-            //border-image-width: 20px;
             border-image-slice: 32;
             border-image-width: 10px;
             border-image-repeat: repeat;
@@ -82,8 +80,6 @@
                     text-transform: uppercase;
                 }
                 tr:nth-child(odd) {background: rgba(0, 0, 0, 0.05);}
-
-                td
 
                 input[type=text] {
                     color: #877053;

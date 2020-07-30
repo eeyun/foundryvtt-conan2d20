@@ -27,6 +27,8 @@
 
 .vr {
     width: 100%;
+    color: #E4D6A4;
+    filter: invert(.22) brightness(.8) sepia(1) saturate(1.1) contrast(1.5);
     background-image: url('../assets/icons/phoenix-sigil.svg');
     background-size: contain;
     background-repeat: no-repeat;
@@ -36,6 +38,7 @@
     display: flex;
     flex-direction: row;
     padding-left: 10px;
+    margin-top: 3px;
     text-align: center;
 
     input:hover {
@@ -43,6 +46,8 @@
     }
 
     input[type="number"] {
+        font-family: Norse;
+        font-size: 20px;
         border: transparent;
         width: 45px;
         height: 80%;

@@ -27,73 +27,90 @@ export class C2_Utility {
         return data
     }
 
-    static calculateArmor(armorItems)
+    static calculateArmor(armorItems, shieldItems = undefined)
     {
+        let shields;
+        if (shieldItems === undefined) {
+            shields = [];
+        } else {
+            shields = shieldItems;
+        };
         const armor = {
             head: {
-                soak: [],
+                soak: [0],
                 qualities: []
             },
             torso: {
-                soak: [],
+                soak: [0],
                 qualities: []
             },
             larm: {
-                soak: [],
+                soak: [0],
                 qualities: []
             },
             rarm:  {
-                soak: [],
+                soak: [0],
                 qualities: []
             },
             lleg: {
-                soak: [],
+                soak: [0],
                 qualities: []
             },
             rleg: {
-                soak: [],
+                soak: [0],
                 qualities: []
             },
+            shield: {
+                soak: [0],
+            }
         }
-
-        const qualityEffects = [];
-        armorItems.forEach(armorPiece => {
-            if (armorPiece.isEquipped.value && armorPiece.data.broken.value !== true) {
-                for (let i = 0; i < armorPiece.data.coverage.value.length; i++) {
-                    if (armorPiece.data.coverage.value[i] === "head") {
-                        armor.head.soak.push(armorPiece.data.soak) ;
-                        if (armorPiece.data.qualities.value.length > 0 ) {
-                            armor.head.qualities.push(...armorPiece.data.qualities.value);
+        
+        for (let x = 0; x < shields.length; x += 1) {
+            if (shields[x].isEquipped.value && shields[x].data.broken.value !== true) {
+                for (let i = 0; i < shields[x].data.qualities.value.length; i += 1) {
+                    if (shields[x].data.qualities.value[i].type === 'shieldx') {
+                        armor.shield.soak.push(shields[x].data.qualities.value[i].value);
+                    }
+                }
+            }
+        };
+        for (let x = 0; x < armorItems.length; x += 1) {
+            if (armorItems[x].isEquipped.value && armorItems[x].data.broken.value !== true) {
+                for (let i = 0; i < armorItems[x].data.coverage.value.length; i += 1) {
+                    if (armorItems[x].data.coverage.value[i] === "head") {
+                        armor.head.soak.push(armorItems[x].data.soak);
+                        if (armorItems[x].data.qualities.value.length > 0 ) {
+                            armor.head.qualities.push(...armorItems[x].data.qualities.value);
                         };
-                    } else if (armorPiece.data.coverage.value[i] === "torso") {
-                        armor.torso.soak.push(armorPiece.data.soak);
-                        if (armorPiece.data.qualities.value.length > 0 ) {
-                            armor.torso.qualities.push(...armorPiece.data.qualities.value);
+                    } else if (armorItems[x].data.coverage.value[i] === "torso") {
+                        armor.torso.soak.push(armorItems[x].data.soak);
+                        if (armorItems[x].data.qualities.value.length > 0 ) {
+                            armor.torso.qualities.push(...armorItems[x].data.qualities.value);
                         };
-                    } else if (armorPiece.data.coverage.value[i] === "larm") {
-                        armor.larm.soak.push(armorPiece.data.soak);
-                        if (armorPiece.data.qualities.value.length > 0 ) {
-                            armor.larm.qualities.push(...armorPiece.data.qualities.value);
+                    } else if (armorItems[x].data.coverage.value[i] === "larm") {
+                        armor.larm.soak.push(armorItems[x].data.soak);
+                        if (armorItems[x].data.qualities.value.length > 0 ) {
+                            armor.larm.qualities.push(...armorItems[x].data.qualities.value);
                         };
-                    } else if (armorPiece.data.coverage.value[i] === "rarm") {
-                        armor.rarm.soak.push(armorPiece.data.soak);
-                        if (armorPiece.data.qualities.value.length > 0 ) {
-                            armor.rarm.qualities.push(...armorPiece.data.qualities.value);
+                    } else if (armorItems[x].data.coverage.value[i] === "rarm") {
+                        armor.rarm.soak.push(armorItems[x].data.soak);
+                        if (armorItems[x].data.qualities.value.length > 0 ) {
+                            armor.rarm.qualities.push(...armorItems[x].data.qualities.value);
                         };
-                    } else if (armorPiece.data.coverage.value[i] === "lleg") {
-                        armor.lleg.soak.push(armorPiece.data.soak);
-                        if (armorPiece.data.qualities.value.length > 0 ) {
-                            armor.lleg.qualities.push(...armorPiece.data.qualities.value);
+                    } else if (armorItems[x].data.coverage.value[i] === "lleg") {
+                        armor.lleg.soak.push(armorItems[x].data.soak);
+                        if (armorItems[x].data.qualities.value.length > 0 ) {
+                            armor.lleg.qualities.push(...armorItems[x].data.qualities.value);
                         };
-                    } else if (armorPiece.data.coverage.value[i] === "rleg") {
-                        armor.rleg.soak.push(armorPiece.data.soak);
-                        if (armorPiece.data.qualities.value.length > 0 ) {
-                            armor.rleg.qualities.push(...armorPiece.data.qualities.value);
+                    } else if (armorItems[x].data.coverage.value[i] === "rleg") {
+                        armor.rleg.soak.push(armorItems[x].data.soak);
+                        if (armorItems[x].data.qualities.value.length > 0 ) {
+                            armor.rleg.qualities.push(...armorItems[x].data.qualities.value);
                         };
                     };
                 }
             }
-        });
+        };
 
         const locationCount = {
             heavy: 0,
@@ -103,6 +120,7 @@ export class C2_Utility {
         
         for (const entry in armor) {
             armor[entry].soak.sort((a, b) => a - b);
+            armor[entry].soak.reverse();
             const uniq = [...new Set(armor[entry].qualities)];
             armor[entry].qualities = uniq;
             const innerCount = armor[entry].soak.length;

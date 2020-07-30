@@ -30,7 +30,12 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         sheetData.data.health.mental.traumas = C2_Utility.addDots(duplicate(sheetData.data.health.mental.traumas), sheetData.data.health.mental.traumas.max);
         
         // Update Actor Armor values
-        sheetData.data.health.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items);
+        if (sheetData.actor.inventory.weapon.items.filter(i => i.data.group.value === "shield").length > 0) {
+            const shields = sheetData.actor.inventory.weapon.items.filter(i => i.data.group.value === "shield");
+           sheetData.data.health.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, shields);
+        } else {
+            sheetData.data.health.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, undefined);
+        };
 
         return sheetData;
     }
