@@ -1,30 +1,28 @@
 .sidebar-armor{
-    padding-top: 10px;
 
     table {
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 300;
         width: 100%;
+        border: none;
+        background: none;
         color: #675E52;
-        background: rgba(255, 255, 255, .35);
 
         .tracker-header {
-            background: #545330;
             font-size: 14px;
             text-transform: uppercase;
             color: #BDBCBB;
+            height: 25px;
         }
         .shield-header {
             text-align: left;
             color: #BDBCBB;
-            background: #545330;
             font-weight: 300;
-            padding-left: 10px;
+            padding-left: 15px;
         }
-        tr:nth-child(3), tr:nth-child(5), tr:nth-child(7) {background: rgba(0, 0, 0, 0.08);}
         input[type=number] {
             font-family: $body-serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
             text-align: center;
             color: #675E52;
@@ -32,27 +30,25 @@
             border: solid;
             border-width: 1px;
             border-color: #675E52;
-            width: 100%;
-            height: 90%;
+            width: 70%;
+            height: 100%;
         }
 
         .tracker-label {
-            padding-left: 10px;
+            padding-left: 15px;
             width: 50%;
         }
         .tracker-score {
             padding-right: 10px;
-            width: 75%;
+            height: 18px;
             float: right;
         }
         .table-footer {
             color: #BDBCBB;
-            background: #545330;
-
+            height: 24px;
         }
 
         .shield-tracker-score {
-            background: #545330;
             padding-right: 10px;
             input[type=number] {
                 font-family: $body-serif;
@@ -63,9 +59,8 @@
                 border: solid;
                 border-width: 1px;
                 border-color: #BDBCBB;
-                float: right;
                 width: 70%;
-                height: 90%;
+                height: 16px;
             }
         }
     }
@@ -73,22 +68,14 @@
 .soak-table {
     margin-right: 15px;
     margin-left: 15px;
+    background-image: url("data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJMAAACrBAMAAACQ4rPmAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAHlBMVEX////HyKnHyKnLzLTb29vExa27u7ubm3tUUzAAAADCbCUYAAAAB3RSTlMAAJ7Kc8pzjAy0AAAAAAFiS0dECfHZpewAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfkBx4MNhzX4DvWAAAAxElEQVRo3u3bsQ0CQQxEURNdvNHFd8mlBJRAAUSUQEzm7WC3bAyiAw+Skf4U8LTaZJKxmS0uiEVObZ35jNaC2g/PS75vQW3ryFOjaan4MgXl/rTep4CaswcVz8pT7m8q7XwDBQUF9T/U5SrKGQoKCgqqCnV/iHKDgoKCgqpC1WwcKCgoKKgMVbNxoKCgoKCKUDXLCwoKCgoqQ9VsHCgoKCioDFVzCAQFBQX1W0q42dYtyYX79poDfuGFgtmSlsKyT1TXHC+BnRE2q0eNGQAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
-.soak-table:before {
-    content: "";
-    position: absolute;
-    width: 158px;
-    height: 179px;
-    box-sizing: border-box;
-    border: solid;
-    border-image-slice: 40;
-    border-image-width: 15px;
-    border-image-repeat: repeat;
-    border-image-source: url("data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABpAgMAAABE7OWpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEWbm3ubm3sAAAA6b85JAAAAAXRSTlMAQObYZgAAAAFiS0dEAmYLfGQAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfkBx0TMRsDCnMRAAAAb0lEQVRIx2NgAINQFODAgAyGAI8R4m6EjCiYHwCWA6tkRMgJgPUJjMoNCTloikSRg6VSqCiKHEz34JLDlT4d0FI0MhiVG5UblRuVo6EcvnJpUJWfuOXw1Q+DqR4blSNHDk+7DgwcGJDB4OVhbV8DAFyPWnPNIdR/AAAAAElFTkSuQmCC");
-}
+
 .courage-value {
     margin: 15px;
-    margin-top: 5px;
 
     label {
         color: #BDBCBB;
@@ -124,4 +111,9 @@
         font-family: Signika;
         padding-left: 3px;
     }
+}
+
+.tracker-entry {
+    height: 20px;
+    width: 100%;
 }
