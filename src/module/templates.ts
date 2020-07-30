@@ -27,6 +27,7 @@ export default function() {
         'systems/conan2d20/templates/actors/tabs/item-line.html',
         'systems/conan2d20/templates/actors/main/actor-header.html',
         'systems/conan2d20/templates/actors/main/actor-health.html',
+        'systems/conan2d20/templates/actors/main/actor-armor.html',
         'systems/conan2d20/templates/actors/main/actor-background.html',
         'systems/conan2d20/templates/actors/main/actor-resources.html',
         'systems/conan2d20/templates/actors/main/actor-details.html'

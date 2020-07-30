@@ -95,6 +95,13 @@
        <input type="checkbox" name="data.equipped.value" value="1" data-dtype="Boolean" {{checked data.equipped.value}}/>
     </div>
 
+{{#ifEq data.group.value "shield"}}                                                    
+    <div class="form-group">                                                         
+        <label>{{localize "CONAN.armorBrokenLabel"}}</label>
+        <input type="checkbox" name="data.broken.value" value="1" data-dtype="Boolean" {{checked data.broken.value}}/>
+    </div>
+{{/ifEq}}
+
     <div class="form-group-stacked">
         <label for="data.qualities.value">
             {{localize "CONAN.qualitiesLabel"}}

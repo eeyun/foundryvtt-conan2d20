@@ -269,6 +269,7 @@
             "heavyarmor": "Heavy Armor",
             "vheavyarmor": "Very Heavy Armor"
         },
+        "armorQualitiesActiveLabel": "Active Armor Qualities",
         "attacksLabel": "Attacks",
 		"attacks": {
 			"threaten": {
