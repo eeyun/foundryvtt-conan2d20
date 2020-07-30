@@ -1,4 +1,5 @@
 import { TraitSelector } from  '../system/trait-selector';
+import Conan2d20Item from "./item";
 
 export class ItemSheetConan2d20 extends ItemSheet {
     static get defaultOptions() {
@@ -13,6 +14,22 @@ export class ItemSheetConan2d20 extends ItemSheet {
         });
 	    return options;
     }
+
+    /**
+   * Override header buttons to add custom ones.
+   */
+  _getHeaderButtons()
+  {
+    let buttons = super._getHeaderButtons();
+    // Add "Post to chat" button
+    buttons = [{
+      label : "Post",
+      class: "post",
+      icon: "fas fa-comment",
+      onclick: ev => new Conan2d20Item(this.item.data).postItem()
+    }].concat(buttons)
+    return buttons
+  }
 
 	/* -------------------------------------------- */
 	

@@ -416,6 +416,22 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
     this._onSubmit(event);
   }
 
+  // @overide
+  /**
+   * 
+   * @param dropData 
+   */
+  _onDrop(ev)
+  {
+    let dropData = JSON.parse(ev.dataTransfer.getData("text/plain"));
+    if (dropData.type == "item-drag")
+    {
+        this.actor.createEmbeddedEntity("OwnedItem", dropData.payload);
+    }
+    else 
+        return super._onDrop(dropData)
+  }
+
 }
 
 export default ActorSheetConan2d20;

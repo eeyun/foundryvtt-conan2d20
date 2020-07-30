@@ -85,6 +85,16 @@ Hooks.on("ready", () => {
     })
 })
 
+Hooks.on("renderChatMessage", (msg, html, data) => {
+    if (hasProperty(data, "message.flags.conan2d20.itemData"))
+    {
+        //html.setAttribute("draggable", true)
+        html[0].addEventListener("dragstart", (ev) => {
+            ev.dataTransfer.setData("text/plain", JSON.stringify({type : "item-drag", payload: data.message.flags.conan2d20.itemData}))
+        })
+    }
+})
+
 Hooks.on('preCreateActor', (actor: any, dir: any) => {
     if (game.settings.get('conan2d20', 'defaultTokenSettings')) {
     // Set wounds, and display name visibility
