@@ -5,7 +5,7 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
         const options = super.defaultOptions;
         mergeObject(options, {
             classes: options.classes.concat(["conan2d20", "actor", "npc-sheet"]),
-            width: 650,
+            width: 450,
             heigth: 680,
         });
         return options;
@@ -20,14 +20,15 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
     getData() {
         const sheetData = super.getData();
         sheetData.flags = sheetData.actor.flags;
-        if (sheetData.flags.conan2d20_updatednpcsheet === undefined) sheetData.flags.conan2d20_updatednpcsheet = {};
+        /*if (sheetData.flags.conan2d20_updatednpcsheet === undefined) sheetData.flags.conan2d20_updatednpcsheet = {};
         if (sheetData.flags.conan2d20_updatednpcsheet.editNPC === undefined) sheetData.flags.conan2d20_updatednpcsheet.editNPC = { value: false };
         if (sheetData.flags.conan2d20_updatednpcsheet.allSaveDetail === undefined) sheetData.flags.conan2d20_updatednpcsheet.allSaveDetail = { value: '' };
 
         sheetData.npcEliteActive = this.npcIsElite()?' active':'';
         sheetData.npcMinionActive = this.npcIsMinion()?' active':'';
-
-        return sheetData;
+        
+        return sheetData; */
+        console.log(sheetData);
     }
 
     _prepareItems(actorData) {
