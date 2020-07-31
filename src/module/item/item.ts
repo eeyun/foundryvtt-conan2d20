@@ -36,6 +36,20 @@ export default class Conan2d20Item extends Item {
         return ChatMessage.create(chatData, { displaySheet: false});
     }
 
+    postItem()
+    {
+        let chatData = {
+            name : this.data.name,
+            data : this.getChatData(),
+            img : this.data.img
+        }
+        renderTemplate("systems/conan2d20/templates/chat/post-item.html", chatData).then(html => {
+            ChatMessage.create({content : html}).then(msg => {
+                msg.setFlag("conan2d20", "itemData", this.data)
+            })
+        })
+    }
+
     getChatData(htmlOptions?) {
         const itemType = this.data.type;
         const data = this[`_${itemType}ChatData`]();

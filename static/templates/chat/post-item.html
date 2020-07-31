@@ -1,0 +1,12 @@
+<div class="conan2d20 post-item" draggable="true">
+    <h3><b>{{name}}</b></h3>
+    {{#if img}}
+    <img src="{{img}}" title="{{name}}" />
+    {{/if}}
+
+    <div class="card-content">{{{data.description.value}}}</div>
+
+    {{#each data as |property p|}}
+    <span><b>{{p}}: </b>{{{property}}}</span><br>
+    {{/each}}
+</div>
