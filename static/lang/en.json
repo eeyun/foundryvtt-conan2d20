@@ -49,6 +49,7 @@
 		"actionsMinorActionHeader": "Minor Actions",
 		"actionsReactionsHeader": "Reactions",
 		"actionsFreeActionsHeader": "Free Actions",
+        "actionSkillRequirementLabel": "Skill Requirement",
         "actionTypeLabel": "Action Type",
         "actionCategoryLabel": "Action Category",
 		"actionCountLabel": "Action Count",
