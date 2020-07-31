@@ -49,50 +49,10 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
 
         this._prepareItems(sheetData.actor);
 
-        this._prepareBackgrounds(sheetData.actor);
         return sheetData;
     }
 
     abstract _prepareItems(actor: Conan2d20Actor): void;
-
-    _prepareBackgrounds(background: any) {
-        if ( background.archetype == undefined ) return;
-
-        const map = {
-            homeland: CONFIG.CONAN.backgroundHomeland,
-            caste: CONFIG.CONAN.backgroundCaste,
-            archetype: CONFIG.CONAN.backgroundArchetype,
-        };
-        
-        for (const [t, choices] of Object.entries(map)) {
-            const bground = background[t] || { value: [], selected: []}; 
-
-            if (Array.isArray(bground)) {
-                (bground as any).selected = {};
-                for (const entry of bground) {
-                    if (typeof entry === 'object') {
-                        if ('exceptions' in entry && entry.exceptions != "") {
-                            (bground as any).selected[entry.type] = `${choices[entry.type]} (${entry.value}) [${entry.exceptions}]`;
-                        } else {
-                            let text = `${choices[entry.type]}`;
-                            if (entry.value !== "")
-                                text = `${text} (${entry.value})`;
-                                (bground as any).selected[entry.type] = text;
-                        }
-                    } else {
-                        (bground as any).selected[entry] = choices[entry] || `${entry}`;
-                    }
-                }
-            } else if (bground.value) {
-                bground.selected = bground.value.reduce((obj: any, t: any) => {
-                    obj[t] = choices[t];
-                    return obj
-                }, {});
-            }
-
-            if (bground.custom) bground.selected.custom = bground.custom;
-        }
-    }
 
     activateListeners(html: any) {
         super.activateListeners(html);
@@ -108,6 +68,8 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         html.find('.item .item-name h4').click((event) => {
           this._onItemSummary(event);
         });
+
+        html.find('[data-item-id].item .item-image-inventory').click((event) => this._onPostItem(event));
 
         // Toggle equip
         html.find('.item-toggle-equip').click((ev) => {
@@ -271,6 +233,15 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         });
     }
 
+    _onPostItem(event) {
+        event.preventDefault();
+
+        const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+        const item = this.actor.getOwnedItem(itemId);
+        // @ts-ignore
+        item.postItem(event);
+    }
+
     _onItemSummary(event) {
         event.preventDefault();
 
@@ -388,33 +359,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         }
         li.toggleClass('expanded');
     }
-
-    /**
-   * Thank you to PF2 for this code. Saved us so much time.
-   * Handle clicking of stat levels. The max level is by default 4.
-   * The max level can be set in the hidden input field with a data-max attribute. Eg: data-max="3"
-   * @private
-   */
-  _onClickStatLevel(event) {
-    event.preventDefault();
-    const field = $(event.currentTarget).siblings('input[type="hidden"]');
-    const max = (field.data('max')==undefined) ? 5 : field.data('max');
-
-    // Get the current level and the array of levels
-    const level = parseFloat(field.val()+'');
-    let newLevel;
-
-    // Toggle next level - forward on click, backwards on right
-    if (event.type === 'click') {
-      newLevel = Math.clamped( (level + 1) , 0, max );
-    } else if (event.type === 'contextmenu') {
-      newLevel = Math.clamped( (level - 1) , 0, max );
-    }
-    // Update the field value and save the form
-
-    field.val(newLevel);
-    this._onSubmit(event);
-  }
 
   /**
    * Takes a drop event and if a customized drop event is detected, perform the required actions (i.e. adding a dragged item from chat to the actor)

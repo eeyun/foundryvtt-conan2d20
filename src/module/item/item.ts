@@ -7,52 +7,43 @@ export default class Conan2d20Item extends Item {
         const item = this.data;
     }
 
-    async roll(event) {
+    async postItem(event)
+    {
         const template = `systems/conan2d20/templates/chat/${this.data.type}-card.html`;
+        if (!this.actor) return;
+        // @ts-ignore
         const { token } = this.actor;
+        const nearestItem =  event ? event.currentTarget.closest('.item') : {};
+        const contextualData = nearestItem.dataset || {};
         const templateData = {
             actor: this.actor,
             tokenId: token ? `${token.scene._id}.${token.id}` : null,
             item: this.data,
-            data: this.getChatData(),
+            data : this.getChatData(undefined, contextualData),
         };
 
         const chatData : any = {
+            // @ts-ignore
             user: game.user._id,
-	        speaker: {
-	            actor: this.actor._id,
-	            token: this.actor.token,
-	            alias: this.actor.name,
-	        },
-	        type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-	    };
-
-        const rollMode = game.settings.get('core', 'rollMode');
-        if (['gmroll', 'blindroll'].includes(rollMode)) chatData.whisper = ChatMessage.getWhisperRecipients('GM').map(u => u._id);
-        if (rollMode === 'blindroll') chatData.blind = true;
+            speaker: {
+                actor: this.actor._id,
+                token: this.actor.token,
+                alias: this.actor.name,
+            },
+            // @ts-ignore
+            type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+        };
 
         chatData.content = await renderTemplate(template, templateData);
 
-        return ChatMessage.create(chatData, { displaySheet: false});
+        return ChatMessage.create(chatData, { displaySheet: false }).then(msg => {
+            msg.setFlag("conan2d20", "itemData", this.data)
+        });
     }
 
-    postItem()
-    {
-        let chatData = {
-            name : this.data.name,
-            data : this.getChatData(),
-            img : this.data.img
-        }
-        renderTemplate("systems/conan2d20/templates/chat/post-item.html", chatData).then(html => {
-            ChatMessage.create({content : html}).then(msg => {
-                msg.setFlag("conan2d20", "itemData", this.data)
-            })
-        })
-    }
-
-    getChatData(htmlOptions?) {
+    getChatData(htmlOptions?, postOptions?: any) {
         const itemType = this.data.type;
-        const data = this[`_${itemType}ChatData`]();
+        const data = this[`_${itemType}ChatData`](postOptions);
         if (data) {
             data.description.value = TextEditor.enrichHTML(data.description.value, htmlOptions);
             return data;
@@ -61,6 +52,26 @@ export default class Conan2d20Item extends Item {
 
       /* -------------------------------------------- */
 
+    _actionChatData() {
+        const data : any = duplicate(this.data.data);
+        const ad = this.actor.data.data;
+
+        let associatedWeapon = null;
+        if (data.weapon.value) associatedWeapon = this.actor.getOwnedItem(data.weapon.value);
+
+        const props = [
+          CONFIG.CONAN.actionTypes[data.actionType.value],
+          CONFIG.CONAN.actionCount[data.actionCount.value],
+          CONFIG.CONAN.actionCategories[data.actionCategory.value],
+          associatedWeapon ? associatedWeapon.name : null,
+        ];
+
+        data.properties = props.filter((p) => p);
+
+        return data;
+    }
+
+
     _armorChatData() {
         const localize = game.i18n.localize.bind(game.i18n);
         const data : any = duplicate(this.data.data);
@@ -68,14 +79,14 @@ export default class Conan2d20Item extends Item {
         if ((data.qualities.value || []).length !== 0) {
             for (let i = 0; i < data.qualities.value.length; i+= 1) {
                 const qualitiesObject = {
-                    label: CONFIG.CONAN.armorQualities[data.qualities.value[i]] || (data.qualities.value[i].charAt(0).toUpperCase() + data.qualities.value[i].slice(1)),
-                    description: CONFIG.CONAN.qualitiesDescriptions[data.qualities.value[i]] || '',
+                    label: CONFIG.armorQualities[data.qualities.value[i]] || (data.qualities.value[i].charAt(0).toUpperCase() + data.qualities.value[i].slice(1)),
+                    description: CONFIG.qualitiesDescriptions[data.qualities.value[i]] || '',
                 };
                 qualities.push(qualitiesObject);
             }
         }
         const properties = [
-            CONFIG.CONAN.armorTypes[data.armorType.value],
+            CONFIG.armorTypes[data.armorType.value],
             `${data.soak || 0} ${localize('CONAN.armorSoakLabel')}`,
             data.equipped.value ? localize('CONAN.armorEquippedLabel') : null,
         ];
@@ -92,11 +103,37 @@ export default class Conan2d20Item extends Item {
     _kitChatData() {
         const localize = game.i18n.localize.bind(game.i18n);
         const data : any = duplicate(this.data.data);
-        data.kitTypeString = CONFIG.CONAN.kitTypes[data.kitType.value];
+        data.kitTypeString = CONFIG.kitTypes[data.kitType.value];
         data.properties = [data.kitTypeString, `${data.uses.value}/${data.uses.max} ${localize('CONAN.kitUsesLabel')}`];
         data.hasCharges = data.uses.value >= 0;
         return data;
     }
+
+    _talentChatData() {
+        const data : any = duplicate(this.data.data);
+        const ad = this.actor.data.data;
+
+        const props = [
+            `Rank ${data.rank.value || 0}`,
+            data.actionType.value ? CONFIG.CONAN.actionTypes[data.actionType.value] : null,
+        ];
+
+        data.properties = props.filter((p) => p);
+
+        const qualities = [];
+        if ((data.qualities || []).length !== 0) {
+          for (let i = 0; i < data.qualities.value.length; i++) {
+            const qualitiesObject = {
+              label: CONFIG.CONAN.talentQualities[data.qualities.value[i]] || (data.qualities.value[i].charAt(0).toUpperCase() + data.qualities.value[i].slice(1)),
+              description: CONFIG.CONAN.qualitiesDescriptions[data.qualities.value[i]] || '',
+            };
+            qualities.push(qualitiesObject);
+          }
+        }
+        data.qualities = qualities.filter((p) => p);
+        return data;
+  }
+
  
 
     _weaponChatData() {

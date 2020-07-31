@@ -1,5 +1,4 @@
 import { TraitSelector } from  '../system/trait-selector';
-import Conan2d20Item from "./item";
 
 export class ItemSheetConan2d20 extends ItemSheet {
     static get defaultOptions() {
@@ -26,7 +25,8 @@ export class ItemSheetConan2d20 extends ItemSheet {
       label : "Post",
       class: "post",
       icon: "fas fa-comment",
-      onclick: ev => new Conan2d20Item(this.item.data).postItem()
+      // @ts-ignore
+      onclick: ev => this.item.postItem(ev)
     }].concat(buttons)
     return buttons
   }
@@ -106,7 +106,6 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.actionCount = CONFIG.CONAN.actionCount;
             data.actionTypes = CONFIG.CONAN.actionTypes;
             data.actionCategories = CONFIG.CONAN.actionCategories;
-            data.skills = CONFIG.CONAN.skills;
             // TODO generate action tags
             // data.actionTags = [data.data.qualities.value].filter(t => !!t);
         } else if (type === 'kit') {

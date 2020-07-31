@@ -100,9 +100,9 @@ export default class Conan2d20Actor extends Actor {
                         (item?.data?.qualities?.value).map((quality) => {
         		        	const key = CONFIG.weaponQualities[quality] ?? quality;
                             if (key.value) {
-        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})` };
+        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})`, description: CONFIG.qualitiesDescriptions[key.type] || ''}
         		            } 	
-        		        	return { name: quality, label: `${game.i18n.localize(key.label)}` };
+        		        	return { name: quality, label: `${game.i18n.localize(key.label)}`, description: CONFIG.qualitiesDescriptions[key.type] || ''};
                         })
         		    );
                 } else if (item.type === 'display') {
@@ -111,9 +111,9 @@ export default class Conan2d20Actor extends Actor {
         		    	(item?.data?.qualities?.value).map((quality) => {
         		        	const key = CONFIG.weaponQualities[quality] ?? quality;
                             if (key.value) {
-        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})` };
+        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})`, description: CONFIG.qualitiesDescriptions[key.type] || ''};
         		            } 	
-        		        	return { name: quality, label: `${game.i18n.localize(key.label)}` };
+        		        	return { name: quality, label: `${game.i18n.localize(key.label)}`, description: CONFIG.qualitiesDescriptions[key.type] || '' };
         		      	})
                     );
                 }

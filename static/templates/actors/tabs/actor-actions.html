@@ -20,7 +20,11 @@
                 </div>
                 <div class="item-properties tags">
                     {{#each action.qualities as |quality|}}
-                    <span class="tag tag_secondary">{{quality.label}}</span>
+                    {{#if quality.description}}
+                        <span class="tag" title="{{localize quality.description}}">{{quality.label}}</span>
+                    {{else}}
+                        <span class="tag tag_secondary">{{quality.label}}</span>
+                    {{/if}}
                     {{/each}}
                 </div>
                 {{#if item.properties.qualities}}
@@ -53,7 +57,7 @@
             {{#each section.actions as |action aid|}}
             <li class="item" data-item-id="{{action._id}}">
                 <div class="item-name rollable">
-                    <div class="item-image" style="background-image: url({{action.img}})">
+                    <div class="item-image-inventory" style="background-image: url({{action.img}})">
                         <i class="fas fa-comment-alt"></i>
                     </div>
                     <h4>
