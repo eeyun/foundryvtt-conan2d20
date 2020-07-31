@@ -484,6 +484,28 @@
                 "vici": "Vicious X",
                 "voll": "Volley"
             }
-        }
+        },
+        "npc": {
+            "sections": {
+                "attributes":"Attributes",
+                "fields":"Fields of Expertise",
+                "health":"Stress and Soak",
+                "attacks":"Attacks",
+                "abilities":"Special Abilities",
+                "doomspends": "Doom Spends",
+                "notes": "Notes",
+                "optional": "Optional"
+            },
+            "skills": {
+                "combat":"Combat",
+                "move":"Movement",
+                "fort":"Fortitude",
+                "sens":"Sense",
+                "know":"Knowledge",
+                "soci":"Social"
+            }
+        },
+        "ref-book":"Book",
+        "ref-page":"p."
     }
 }

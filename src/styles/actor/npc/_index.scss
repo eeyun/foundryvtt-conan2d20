@@ -1,0 +1,9 @@
+form.npcSheet {
+    
+        display: flex;
+        flex-direction: column;
+        
+        .sheet-header {
+            height: 120px;
+        }
+}
