@@ -308,14 +308,14 @@ export class Conan2d20Dice {
                 if (rollData.successModifier > 0) {
                     try {
                         Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
-                        await this.showFortuneSpendDialog(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
+                        await this.showFortuneSpendDialog(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
                     }
                     catch(e) {
                         console.log(e);
                         ui.notifications.error(e);
                     }
                 } else {
-                    await this.calculateSkillRoll(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
+                    await this.calculateSkillRoll(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
                 }
             }
             catch(e) {
@@ -325,14 +325,14 @@ export class Conan2d20Dice {
         } else if (rollData.successModifier > 0) {
             try {
                 Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
-                await this.showFortuneSpendDialog(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
+                await this.showFortuneSpendDialog(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
             }
             catch(e) {
                 console.log(e);
                 ui.notifications.error(e);
             }
         } else {
-            await this.calculateSkillRoll(diceQty, rollData.skill.tn, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
+            await this.calculateSkillRoll(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
         }
     }
 

@@ -30,8 +30,8 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         sheetData.data.health.mental.traumas = C2_Utility.addDots(duplicate(sheetData.data.health.mental.traumas), sheetData.data.health.mental.traumas.max);
         
         // Update Actor Armor values
-        if (sheetData.actor.inventory.weapon.items.filter(i => i.data.group.value === "shield").length > 0) {
-            const shields = sheetData.actor.inventory.weapon.items.filter(i => i.data.group.value === "shield");
+        if (sheetData.actor.inventory.weapon.items.filter(i => i.data.group === "shield").length > 0) {
+            const shields = sheetData.actor.inventory.weapon.items.filter(i => i.data.group === "shield");
            sheetData.data.health.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, shields);
         } else {
             sheetData.data.health.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, undefined);
@@ -54,12 +54,6 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             kit: { label: game.i18n.localize("CONAN.inventoryKitsHeader"), items: [] }
         };                                                                           
                                                                                   
-        const backgrounds = {                                                        
-            homeland: { label: game.i18n.localize("CONAN.bgHomelandHeader"), bgs: [] },
-            archetype: { label: game.i18n.localize("CONAN.bgArchetypeHeader"), bgs: [] },
-            caste: { label: game.i18n.localize("CONAN.bgCasteHeader"), bgs: [] }
-        };
-
         const talents = {
             homeland: {label: game.i18n.localize("CONAN.talentHomelandHeader"), talents: [] },
             caste: {label: game.i18n.localize("CONAN.talentCasteHeader"), talents: [] },
@@ -108,8 +102,6 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 
             i.isEquipped = i?.data?.equipped ?? false;
 
-            
-
             // Inventory                                                               
             if (Object.keys(inventory).includes(i.type)) {                             
                 i.data.quantity = i.data.quantity || 0;                                  
@@ -139,14 +131,14 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             else if (i.type === 'talent') {
                 const talentType = i.data.talentType || 'None';
                 const actionType = i.data.actionType || 'passive';
-                talents[talentType.value].talents.push(i);
-                if (Object.keys(actions).includes(actionType.value)) {
+                talents[talentType].talents.push(i);
+                if (Object.keys(actions).includes(actionType)) {
                     i.talent = true;
-                    actions[actionType.value].actions.push(i);
+                    actions[actionType].actions.push(i);
         
                     // Read-Only Actions
-                    if(i.data.actionCategory && i.data.actionCategory.value) {
-                        switch(i.data.actionCategory.value){
+                    if(i.data.actionCategory && i.data.actionCategory) {
+                        switch(i.data.actionCategory){
                         case 'interaction':
                             readonlyActions.interaction.actions.push(i);
                             actorData.hasInteractionActions = true;
@@ -169,7 +161,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             
 			// Actions
 			if (i.type === 'action') {
-			 	const actionType = i.data.actionType.value || 'action';
+			 	const actionType = i.data.actionType || 'action';
 			  	// let actionImg: number|string = 0;
 			  	// if (actionType === 'action') {
 				// 	actionImg = parseInt(i.data.actions.value) || 1;
@@ -187,8 +179,8 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 					actions[actionType].actions.push(i);
 			
 			  		// Read-Only Actions
-			  		if(i.data.actionCategory && i.data.actionCategory.value) {
-			  		 	switch(i.data.actionCategory.value){
+			  		if(i.data.actionCategory) {
+			  		 	switch(i.data.actionCategory){
 			  		  	 case 'interaction':
 			  		  	    readonlyActions.interaction.actions.push(i);
 			  		  	    actorData.hasInteractionActions = true;
@@ -213,11 +205,6 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 			  		}
 				}
 			}
-
-
-            else if (i.type === 'background') {
-                inventory[i.type].bgs.push(i);
-            }                                                                          
         }
 
         // Assign and return                                                       
@@ -226,11 +213,6 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 		actorData.readonlyactions = readonlyActions;
         actorData.readonlyEquipment = readonlyEquipment;
         actorData.talents = talents;                          
-        actorData.backgrounds = backgrounds;                                       
-
-        const backgroundNames =  new Set(actorData.items
-            .filter(item => item.type === 'background')
-            .map(item => item.name));
     }
 
     activateListeners(html) {

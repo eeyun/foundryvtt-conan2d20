@@ -103,7 +103,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             // const actionType = data.data.actionType.value || 'action';
             // data.item.img = this._getActionImg(actionType);
             data.weapons = actorWeapons;
-            data.actionCount = CONFIG.CONAN.actionCount;
+            data.actionCounts = CONFIG.CONAN.actionCounts;
             data.actionTypes = CONFIG.CONAN.actionTypes;
             data.actionCategories = CONFIG.CONAN.actionCategories;
             // TODO generate action tags

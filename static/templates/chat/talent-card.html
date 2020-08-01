@@ -8,6 +8,12 @@
         {{{data.description.value}}}
     </div>
 
+    {{#each data.itemDetails as |k v|}}
+        <div class="card-content">
+            <b>{{localize k.label}}:</b> {{{k.detail}}}
+        </div>
+    {{/each}}
+
     <footer class="card-footer">
         {{#each data.properties}}
         <span>{{this}}</span>

@@ -41,7 +41,7 @@
             {{#if options}}
             <label>{{localize "CONAN.damageRollLoadSpendLabel"}}</label>
             <div class="form-group">
-                <select name="reloadItem" data-dtype="" id="reloadItem">
+                <select name="reloadItem" data-dtype="String" id="reloadItem">
                     {{#select options}}
                     <option value=""/>
                     {{#each options as |object index|}}

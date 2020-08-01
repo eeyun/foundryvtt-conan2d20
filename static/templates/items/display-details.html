@@ -1,7 +1,7 @@
 <div class="form-group">
     <label>{{localize "CONAN.displaySkillLabel"}}</label>
-    <select name="data.skill.value" data-dtype="{{data.skill.type}}">
-        {{#select data.skill.value}}
+    <select name="data.skill" data-dtype="String">
+        {{#select data.skill}}
         {{#each displaySkills as |name type|}}
         <option value="{{type}}">{{name}}</option>
         {{/each}}
@@ -11,8 +11,8 @@
 
 <div class="form-group">
     <label>{{localize "CONAN.displayRangeLabel"}}</label>
-    <select name="data.range.value" data-dtype="{{data.range.type}}">
-        {{#select data.range.value}}
+    <select name="data.range" data-dtype="String">
+        {{#select data.range}}
         {{#each displayRanges as |name range|}}
         <option value="{{range}}">{{name}}</option>
         {{/each}}
@@ -30,7 +30,7 @@
 <div class="form-group">
     <label>{{localize "CONAN.displayBaseDamageLabel"}}</label>
     <div class="details-container-three-columns">
-        <select name="data.damage.dice" data-dtype="Number">
+        <select name="data.damage.dice" data-dtype="String">
             {{#select data.damage.dice}}
             {{#each damageDice as |name type|}}
             <option value="{{type}}">{{name}}</option>
