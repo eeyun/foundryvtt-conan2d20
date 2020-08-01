@@ -53,7 +53,7 @@
         "actionTypeLabel": "Action Type",
         "actionCategoryLabel": "Action Category",
 		"actionCountLabel": "Action Count",
-        "actionCount": {
+        "actionCounts": {
             "1": "1",
             "2": "2",
             "1r": "1-repeatable"
@@ -379,6 +379,7 @@
         "talentSkillLabel": "Talent Skill",
         "talentCostLabel": "Talent Cost",
         "talentPrereqLabel": "Prerequisites",
+        "talentRequiresLabel": "Requires",
         "talentRankLabel": "Rank",
         "talentRankMaxLabel": "Maximum Ranks",
         "talentSummary": "Talent Summary",

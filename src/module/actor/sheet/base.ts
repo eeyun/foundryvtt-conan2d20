@@ -76,14 +76,14 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
           const f = $(ev.currentTarget);
           const itemId = f.parents('.item').attr('data-item-id');
           const active = f.hasClass('active');
-          this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.equipped.value': !active });
+          this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.equipped': !active });
         });
 
         html.find('.item-toggle-broken').click((ev) => {
             const f = $(ev.currentTarget);
             const itemId = f.parents('.item').attr('data-item-id');
             const active = f.hasClass('active');
-            this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.broken.value': !active });
+            this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.broken': !active });
           });
       
         html.find('.trait-selector').click((ev) => this._onTraitSelector(ev));

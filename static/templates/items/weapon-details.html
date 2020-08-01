@@ -1,20 +1,20 @@
 <div class="form-group">
     <label>{{localize "CONAN.weaponTypeLabel"}}</label>
-    <select name="data.weaponType.value" data-dtype="String">
-        {{#select data.weaponType.value}}
+    <select name="data.weaponType" data-dtype="String">
+        {{#select data.weaponType}}
         {{#each weaponTypes as |name type|}}
         <option value="{{type}}">{{name}}</option>
         {{/each}}
         {{/select}}
-        {{#select data.weaponType.value}}
+        {{#select data.weaponType}}
         {{/select}}
     </select>
 </div>
 
 <div class="form-group">
     <label>{{localize "CONAN.weaponGroupLabel"}}</label>
-    <select name="data.group.value" data-dtype="String">
-        {{#select data.group.value}}
+    <select name="data.group" data-dtype="String">
+        {{#select data.group}}
         {{#each weaponGroups as |name type|}}
         <option value="{{type}}">{{name}}</option>
         {{/each}}
@@ -24,8 +24,8 @@
 
 <div  class="form-group">
    <label>{{localize "CONAN.weaponSizeLabel"}}</label>
-   <select name="data.size.value" data-dtype="String">
-       {{#select data.size.value}}
+   <select name="data.size" data-dtype="String">
+       {{#select data.size}}
        {{#each weaponSizes as |name size|}}
        <option value="{{size}}">{{name}}</option>
        {{/each}}
@@ -33,10 +33,10 @@
    </select>
 </div>
     <div  class="form-group">                                                    
-{{#ifEq data.weaponType.value "ranged"}}                                                    
+{{#ifEq data.weaponType "ranged"}}                                                    
        <label>{{localize "CONAN.weaponRangeLabel"}}</label>                      
-       <select name="data.range.value" data-dtype="String">         
-           {{#select data.range.value}}                                          
+       <select name="data.range" data-dtype="String">         
+           {{#select data.range}}                                          
             {{#each weaponRanges as |name range|}}                               
             <option value="{{range}}">{{name}}</option>                          
             {{/each}}                                                            
@@ -45,8 +45,8 @@
     </div>                                                                       
 {{else}}                                                                        
        <label>{{localize "CONAN.weaponReachLabel"}}</label>                      
-       <select name="data.range.value" data-dtype="Number">         
-           {{#select data.range.value}}                                          
+       <select name="data.range" data-dtype="Number">         
+           {{#select data.range}}                                          
             {{#each weaponReaches as |name reach|}}                              
             <option value="{{reach}}">{{name}}</option>                          
             {{/each}}                                                            
@@ -54,7 +54,7 @@
        </select>                                                                 
     </div>
 {{/ifEq}}                                                                        
-{{#ifEq data.weaponType.value "ranged"}}
+{{#ifEq data.weaponType "ranged"}}
     <div class="form-group">
         <label>{{localize "CONAN.weaponShotsLabel"}}</label>
         <input type="text" name="data.shots" value="{{data.shots}}" data-dtype="Number"/>
@@ -83,22 +83,18 @@
             <div class='combat-dice'></div>
         </div>
     </div>
-    <div class="form-group">
-        <label>{{localize "CONAN.weaponBonusDamageLabel"}}</label>
-        <input type="Number" name="data.bonusDamage.value" value="{{data.bonusDamage.value}}" data-dtype="Number"/>
-    </div>
 </ol>
 
 <ol class="form-list">
     <div class="form-group">                                                         
        <label>{{localize "CONAN.equipmentEquippedLabel"}}</label>                     
-       <input type="checkbox" name="data.equipped.value" value="1" data-dtype="Boolean" {{checked data.equipped.value}}/>
+       <input type="checkbox" name="data.equipped" value="1" data-dtype="Boolean" {{checked data.equipped.value}}/>
     </div>
 
 {{#ifEq data.group.value "shield"}}                                                    
     <div class="form-group">                                                         
         <label>{{localize "CONAN.armorBrokenLabel"}}</label>
-        <input type="checkbox" name="data.broken.value" value="1" data-dtype="Boolean" {{checked data.broken.value}}/>
+        <input type="checkbox" name="data.broken" value="1" data-dtype="Boolean" {{checked data.broken.value}}/>
     </div>
 {{/ifEq}}
 

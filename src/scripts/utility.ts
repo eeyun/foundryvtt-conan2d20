@@ -66,7 +66,7 @@ export class C2_Utility {
         }
         
         for (let x = 0; x < shields.length; x += 1) {
-            if (shields[x].isEquipped.value && shields[x].data.broken.value !== true) {
+            if (shields[x].data.equipped && shields[x].data.broken !== true) {
                 for (let i = 0; i < shields[x].data.qualities.value.length; i += 1) {
                     if (shields[x].data.qualities.value[i].type === 'shieldx') {
                         armor.shield.soak.push(shields[x].data.qualities.value[i].value);
@@ -75,7 +75,7 @@ export class C2_Utility {
             }
         };
         for (let x = 0; x < armorItems.length; x += 1) {
-            if (armorItems[x].isEquipped.value && armorItems[x].data.broken.value !== true) {
+            if (armorItems[x].data.equipped && armorItems[x].data.broken !== true) {
                 for (let i = 0; i < armorItems[x].data.coverage.value.length; i += 1) {
                     if (armorItems[x].data.coverage.value[i] === "head") {
                         armor.head.soak.push(armorItems[x].data.soak);

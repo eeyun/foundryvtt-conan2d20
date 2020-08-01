@@ -52,7 +52,7 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
 
     npcIsElite() {
         const actorData = duplicate(this.actor.data);
-        let traits = getProperty(actorData.data, 'traits.traits.value') || [];
+        const traits = getProperty(actorData.data, 'traits.traits.value') || [];
         for (const trait of traits) {
             if (trait == 'elite') return true;
         }
@@ -61,7 +61,7 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
 
     npcIsMinion() {
         const actorData = duplicate(this.actor.data);
-        let traits = getProperty(actorData.data, 'traits.traits.value') || [];
+        const traits = getProperty(actorData.data, 'traits.traits.value') || [];
         for (const trait of traits) {
             if  (trait == 'minion') return true;
         }

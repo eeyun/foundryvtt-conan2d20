@@ -40,22 +40,22 @@
         <label>{{localize "CONAN.armorQualitiesActiveLabel"}}</label>
         <ul class="tags">
             {{#each data.health.armor.qualityCount as |v k|}}
-            {{#ifCond k '==' 'heavy'}}
+            {{#ifCond k '===' 'heavy'}}
             {{#ifCond v '>=' 3}}
             <li class="tag {{k}}">
                 {{k}}
             </li>
             {{/ifCond}}
             {{/ifCond}}
-            {{#ifCond k '==' 'noisy'}}
+            {{#ifCond k '===' 'noisy'}}
             {{#ifCond v '>=' 2}}
             <li class="tag {{k}}">
                 {{k}}
             </li>
             {{/ifCond}}
             {{/ifCond}}
-            {{#ifCond k '==' 'vheavy'}}
-            {{#ifCond v '>=' 0}}
+            {{#ifCond k '===' 'vheavy'}}
+            {{#ifCond v '>' 0}}
             <li class="tag {{k}}">
                 {{k}}
             </li>

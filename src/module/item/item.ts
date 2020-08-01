@@ -53,6 +53,10 @@ export default class Conan2d20Item extends Item {
       /* -------------------------------------------- */
 
     _actionChatData() {
+        if (this.data.type !== 'action') {
+          throw new Error('tried to create an action chat data for a non-action item');
+        }
+
         const data : any = duplicate(this.data.data);
         const ad = this.actor.data.data;
 
@@ -60,9 +64,9 @@ export default class Conan2d20Item extends Item {
         if (data.weapon.value) associatedWeapon = this.actor.getOwnedItem(data.weapon.value);
 
         const props = [
-          CONFIG.CONAN.actionTypes[data.actionType.value],
-          CONFIG.CONAN.actionCount[data.actionCount.value],
-          CONFIG.CONAN.actionCategories[data.actionCategory.value],
+          CONFIG.CONAN.actionTypes[data.actionType],
+          CONFIG.CONAN.actionCounts[data.actionCount],
+          CONFIG.CONAN.actionCategories[data.actionCategory],
           associatedWeapon ? associatedWeapon.name : null,
         ];
 
@@ -73,6 +77,10 @@ export default class Conan2d20Item extends Item {
 
 
     _armorChatData() {
+        if (this.data.type !== 'armor') {
+          throw new Error('tried to create an armor chat data for a non-armor item');
+        }
+        
         const localize = game.i18n.localize.bind(game.i18n);
         const data : any = duplicate(this.data.data);
         const qualities = [];
@@ -86,9 +94,9 @@ export default class Conan2d20Item extends Item {
             }
         }
         const properties = [
-            CONFIG.armorTypes[data.armorType.value],
+            CONFIG.armorTypes[data.armorType],
             `${data.soak || 0} ${localize('CONAN.armorSoakLabel')}`,
-            data.equipped.value ? localize('CONAN.armorEquippedLabel') : null,
+            data.equipped ? localize('CONAN.armorEquippedLabel') : null,
         ];
         if((data.coverage.value || []).length !== 0) {
             for (let i = 0; i < data.coverage.value.length; i+= 1 ) {
@@ -101,24 +109,42 @@ export default class Conan2d20Item extends Item {
     }
 
     _kitChatData() {
+        if (this.data.type !== 'kit') {
+          throw new Error('tried to create a kit chat data for a non-kit item');
+        }
+
         const localize = game.i18n.localize.bind(game.i18n);
         const data : any = duplicate(this.data.data);
-        data.kitTypeString = CONFIG.kitTypes[data.kitType.value];
+        data.kitTypeString = CONFIG.kitTypes[data.kitType];
         data.properties = [data.kitTypeString, `${data.uses.value}/${data.uses.max} ${localize('CONAN.kitUsesLabel')}`];
         data.hasCharges = data.uses.value >= 0;
         return data;
     }
 
     _talentChatData() {
+        if (this.data.type !== 'talent') {
+          throw new Error('tried to create a talent chat data for a non-talent item');
+        }
+
         const data : any = duplicate(this.data.data);
         const ad = this.actor.data.data;
+        const details = [];
 
         const props = [
             `Rank ${data.rank.value || 0}`,
-            data.actionType.value ? CONFIG.CONAN.actionTypes[data.actionType.value] : null,
+            CONFIG.CONAN.skills[data.skill],
+            data.actionType ? CONFIG.CONAN.actionTypes[data.actionType] : null,
         ];
 
         data.properties = props.filter((p) => p);
+
+        if (data.prerequisites) {
+            const prereqs = {
+                label: 'CONAN.talentRequiresLabel',
+                detail: data.prerequisites 
+            }
+            details.push(prereqs);
+        }
 
         const qualities = [];
         if ((data.qualities || []).length !== 0) {
@@ -130,6 +156,7 @@ export default class Conan2d20Item extends Item {
             qualities.push(qualitiesObject);
           }
         }
+        data.itemDetails = details.filter((p) => p !== null);
         data.qualities = qualities.filter((p) => p);
         return data;
   }
@@ -164,7 +191,7 @@ export default class Conan2d20Item extends Item {
 
         const weaponGroup = {
             label: 'CONAN.groupLabel',
-            detail: CONFIG.CONAN.weaponGroups[data.group.value],
+            detail: CONFIG.CONAN.weaponGroups[data.group],
         };
         details.push(weaponGroup);
 
@@ -175,28 +202,21 @@ export default class Conan2d20Item extends Item {
         details.push(weaponDamage);
         
         let weaponRange: any;
-        if (data.weaponType.value === 'ranged') {
+        if (data.weaponType === 'ranged') {
             weaponRange = {
                 label: 'CONAN.rangeLabel',
-                detail: CONFIG.CONAN.weaponRanges[data.range.value],
+                detail: CONFIG.CONAN.weaponRanges[data.range],
             };
         } else {
             weaponRange = {
                 label: 'CONAN.reachLabel',
-                detail: CONFIG.CONAN.weaponReaches[data.range.value],
+                detail: CONFIG.CONAN.weaponReaches[data.range],
             };
         }
         details.push(weaponRange);
 
-        if (data.group.value) {
-            data.critSpecialization = {
-                label: CONFIG.CONAN.weaponGroups[data.group.value],
-                description: CONFIG.CONAN.weaponDescriptions[data.group.value],
-            };
-        }
-
-        if (data.size.value) {
-            properties.push(CONFIG.CONAN.weaponSizes[data.size.value]);
+        if (data.size) {
+            properties.push(CONFIG.CONAN.weaponSizes[data.size]);
         }
 
         data.properties = properties.filter((p) => !!p);

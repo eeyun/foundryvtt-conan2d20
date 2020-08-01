@@ -176,10 +176,10 @@ CONFIG.actionCategories = {
     interaction: 'CONAN.talentCategories.int'
 };
 
-CONFIG.actionCount = {
-    1: 'CONAN.actionCount.1',
-    2: 'CONAN.actionCount.2',
-    '1r': 'CONAN.actionCount.1r'
+CONFIG.actionCounts = {
+    1: 'CONAN.actionCounts.1',
+    2: 'CONAN.actionCounts.2',
+    '1r': 'CONAN.actionCounts.1r'
 };
 
 CONFIG.kitTypes = {
