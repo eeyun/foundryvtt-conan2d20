@@ -52,35 +52,6 @@
                         },
                         "despair": 0
                     },
-                    "armor": {
-                        "head": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "torso": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "r-arm": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "l-arm": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "r-leg": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "l-leg": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "shield": {
-                            "soak": [0]
-                        }
-                    },
                     "courage": 0
                 },
                 "spells": false,
@@ -116,6 +87,35 @@
                     "value": 0,
                     "min": -2,
                     "max": 5
+                }
+            },
+            "armor": {
+                "head": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "torso": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "r-arm": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "l-arm": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "r-leg": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "l-leg": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "shield": {
+                    "soak": [0]
                 }
             },
             "resources": {
@@ -479,6 +479,7 @@
         "npc": {
             "templates": ["common"],
             "description": "physical description",
+            "armor": 0,
             "skills": {
                 "mov": {
                     "value": 0

@@ -135,8 +135,8 @@ export default class Conan2d20Actor extends Actor {
    */
     _prepareNPCData(actorData) {
          const {data} = actorData;
-        // const character = new CharacterData(data, this.items);
-         return data;
+         const npc = new CharacterData(data, this.items);
+         return npc;
     }
 
     static addDoom(doomSpend) {
