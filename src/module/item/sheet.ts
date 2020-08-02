@@ -14,6 +14,23 @@ export class ItemSheetConan2d20 extends ItemSheet {
 	    return options;
     }
 
+    /**
+   * Override header buttons to add custom ones.
+   */
+  _getHeaderButtons()
+  {
+    let buttons = super._getHeaderButtons();
+    // Add "Post to chat" button
+    buttons = [{
+      label : "Post",
+      class: "post",
+      icon: "fas fa-comment",
+      // @ts-ignore
+      onclick: ev => this.item.postItem(ev)
+    }].concat(buttons)
+    return buttons
+  }
+
 	/* -------------------------------------------- */
 	
     /**
@@ -86,10 +103,9 @@ export class ItemSheetConan2d20 extends ItemSheet {
             // const actionType = data.data.actionType.value || 'action';
             // data.item.img = this._getActionImg(actionType);
             data.weapons = actorWeapons;
-            data.actionCount = CONFIG.CONAN.actionCount;
+            data.actionCounts = CONFIG.CONAN.actionCounts;
             data.actionTypes = CONFIG.CONAN.actionTypes;
             data.actionCategories = CONFIG.CONAN.actionCategories;
-            data.skills = CONFIG.CONAN.skills;
             // TODO generate action tags
             // data.actionTags = [data.data.qualities.value].filter(t => !!t);
         } else if (type === 'kit') {

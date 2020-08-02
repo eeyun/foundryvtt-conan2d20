@@ -1,6 +1,6 @@
 <div class="form-group">
     <label>{{localize "CONAN.kitSkillLabel"}}</label>
-    <select name="data.skill" data-dtype="{{data.skill.type}}">
+    <select name="data.skill" data-dtype="String">
         {{#select data.skill}}
         {{#each kitSkills as |name type|}}
         <option value="{{type}}">{{name}}</option>
@@ -11,7 +11,7 @@
 
 <div class="form-group">
     <label>{{localize "CONAN.kitTypeLabel"}}</label>
-    <select name="data.kitType" data-dtype="{{data.kitType.type}}">
+    <select name="data.kitType" data-dtype="String">
         {{#select data.kitType}}
         {{#each kitTypes as |name type|}}
         <option value="{{type}}">{{name}}</option>

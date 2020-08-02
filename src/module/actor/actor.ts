@@ -66,7 +66,7 @@ export default class Conan2d20Actor extends Actor {
          for (const [s, skl] of Object.entries(data.skills)) {
             // @ts-expect-error
             // ^~~~~~~~~~~~~~~^ error: "Unused '@ts-expect-error' directive.(2339)"
-            skl.tn = skl.expertise.value + data.attributes[skl.attribute].value;
+            skl.tn.value = skl.expertise.value + data.attributes[skl.attribute].value;
             if (data.skills[s].expertise.value > 0) {
                 data.skills[s].trained = true;
             }
@@ -95,14 +95,14 @@ export default class Conan2d20Actor extends Actor {
                 if (item.type === 'weapon') {
         		    action.qualities = [
                         { name: 'attack', label: game.i18n.localize(CONFIG.attacks[item.type])},
-                        { name: 'weaponType', label: CONFIG.weaponTypes[item.data.weaponType.value]},
-                        { name: 'weapongroup', label: CONFIG.weaponGroups[item.data.group.value] ?? ''}].concat(
+                        { name: 'weaponType', label: CONFIG.weaponTypes[item.data.weaponType]},
+                        { name: 'weapongroup', label: CONFIG.weaponGroups[item.data.group] ?? ''}].concat(
                         (item?.data?.qualities?.value).map((quality) => {
         		        	const key = CONFIG.weaponQualities[quality] ?? quality;
                             if (key.value) {
-        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})` };
+        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})`, description: CONFIG.qualitiesDescriptions[key.type] || ''}
         		            } 	
-        		        	return { name: quality, label: `${game.i18n.localize(key.label)}` };
+        		        	return { name: quality, label: `${game.i18n.localize(key.label)}`, description: CONFIG.qualitiesDescriptions[key.type] || ''};
                         })
         		    );
                 } else if (item.type === 'display') {
@@ -111,9 +111,9 @@ export default class Conan2d20Actor extends Actor {
         		    	(item?.data?.qualities?.value).map((quality) => {
         		        	const key = CONFIG.weaponQualities[quality] ?? quality;
                             if (key.value) {
-        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})` };
+        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})`, description: CONFIG.qualitiesDescriptions[key.type] || ''};
         		            } 	
-        		        	return { name: quality, label: `${game.i18n.localize(key.label)}` };
+        		        	return { name: quality, label: `${game.i18n.localize(key.label)}`, description: CONFIG.qualitiesDescriptions[key.type] || '' };
         		      	})
                     );
                 }
@@ -321,10 +321,10 @@ export default class Conan2d20Actor extends Actor {
   	  	if ((item?.data?.qualities?.value).includes('improvised')) {
   	  	 flavor.description = 'CONAN.attacks.improvised.description';
   	  	 	flavor.success = 'CONAN.attacks.improvised.success';
-  	  	} else if (item?.data?.weaponType?.value === 'melee') {
+  	  	} else if (item?.data?.weaponType === 'melee') {
   	  		flavor.description = 'CONAN.attacks.melee.description';
   	  	  	flavor.success = 'CONAN.attacks.melee.success';
-  	  	} else if (item?.data?.weaponType?.value === 'ranged') {
+  	  	} else if (item?.data?.weaponType === 'ranged') {
   	  		flavor.description = 'CONAN.attacks.ranged.description';
   	  	  	flavor.success = 'CONAN.attacks.ranged.success';
   	  	} else if (item?.data?.damage?.type === 'mental') {
@@ -353,7 +353,7 @@ export default class Conan2d20Actor extends Actor {
             if (specifier.type === 'display') {
                 wType = 'display';
             } else if (specifier.type === 'weapon') {
-                wType = specifier.data.weaponType.value;
+                wType = specifier.data.weaponType;
             }
             mod = {
                 attackType: attackTypes,

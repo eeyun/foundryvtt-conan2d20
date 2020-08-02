@@ -48,7 +48,7 @@ Hooks.once('setup', () => {
         'armorTypes', 'armorQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes',
         'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories',
         'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'rollDifficultyLevels',
-        'rollResults', 'actionCount', 'kitTypes', 'conditionTypes'
+        'rollResults', 'actionCounts', 'kitTypes', 'conditionTypes'
     ];
 
     const noSort: any = [
@@ -83,6 +83,16 @@ Hooks.on("ready", () => {
             CONFIG.CONAN.Counter.render(true)
         }
     })
+})
+
+// On rendering a chat message, if it contains item data (from a posted item), make draggable with the data transfer set to that item data.
+Hooks.on("renderChatMessage", (msg, html, data) => {
+    if (hasProperty(data, "message.flags.conan2d20.itemData"))
+    {
+        html[0].addEventListener("dragstart", (ev) => {
+            ev.dataTransfer.setData("text/plain", JSON.stringify({type : "item-drag", payload: data.message.flags.conan2d20.itemData}))
+        })
+    }
 })
 
 Hooks.on('preCreateActor', (actor: any, dir: any) => {
