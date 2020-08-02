@@ -23,6 +23,13 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
     getData() {
         const sheetData = super.getData();
 
+        // Update skill labels
+        if (sheetData.data.skills !== undefined) {
+            for (let [s, skl] of Object.entries(sheetData.data.skills as Record<any, any>)) {
+                skl.label = CONFIG.CONAN.skills[s];
+            }
+        }
+
         // Update wounded icon
         sheetData.data.health.physical.wounds = C2_Utility.addDots(duplicate(sheetData.data.health.physical.wounds), sheetData.data.health.physical.wounds.max);
 
@@ -36,6 +43,10 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         } else {
             sheetData.data.health.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, undefined);
         };
+
+        sheetData.skills = CONFIG.CONAN.skills;
+
+        console.log(sheetData);
 
         return sheetData;
     }

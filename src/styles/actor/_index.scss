@@ -12,6 +12,17 @@ $header-height: 120px;
     overflow: hidden;
 }
 
+.conan2d20 form.npcSheet {
+        display: grid;
+        grid:
+        'header' 120px
+        'nav' minmax(min-content, max-content)
+        'content' 1fr;
+
+        .sheet-header {
+            height: 120px;
+        }
+}
 .conan2d20 form {
     display: grid;
     grid:

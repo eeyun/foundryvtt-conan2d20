@@ -125,6 +125,14 @@
             "dis": "Discipline",
             "sor": "Sorcery"
         },
+        "expertiseFields": {
+            "mov": "Movement",
+            "cmb": "Combat",
+            "frt": "Fortitude",
+            "knw": "Knowledge",
+            "scl": "Social",
+            "sns": "Senses"
+        },
         "skillShortLabel": "Skill",
         "skillExpertiseShortLabel": "Expertise",
         "skillFocusShortLabel": "Focus",

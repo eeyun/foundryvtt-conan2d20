@@ -35,7 +35,16 @@ CONFIG.skills = {
     per: 'CONAN.skills.per',
     soc: 'CONAN.skills.soc',
     dis: 'CONAN.skills.dis',
-    sor: 'CONAN.skills.sor'
+    sor: 'CONAN.skills.sor',
+};
+
+CONFIG.expertiseFields = {
+    mov: 'CONAN.expertiseFields.mov',
+    cmb: 'CONAN.expertiseFields.cmb',
+    frt: 'CONAN.expertiseFields.frt',
+    knw: 'CONAN.expertiseFields.knw',
+    scl: 'CONAN.expertiseFields.scl',
+    sns: 'CONAN.expertiseFields.sns'
 };
 
 CONFIG.rollDifficultyLevels = {

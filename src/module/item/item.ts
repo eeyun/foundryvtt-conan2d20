@@ -94,7 +94,7 @@ export default class Conan2d20Item extends Item {
             }
         }
         const properties = [
-            CONFIG.armorTypes[data.armorType],
+            `${localize(CONFIG.CONAN.armorTypes[data.armorType])}`,
             `${data.soak || 0} ${localize('CONAN.armorSoakLabel')}`,
             data.equipped ? localize('CONAN.armorEquippedLabel') : null,
         ];

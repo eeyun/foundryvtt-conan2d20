@@ -7,6 +7,9 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
             classes: options.classes.concat(["conan2d20", "actor", "npc-sheet"]),
             width: 450,
             heigth: 680,
+            scrollY: [
+                'sheet-sidebar'
+            ]
         });
         return options;
     }
@@ -20,22 +23,53 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
     getData() {
         const sheetData = super.getData();
         sheetData.flags = sheetData.actor.flags;
-        /*if (sheetData.flags.conan2d20_updatednpcsheet === undefined) sheetData.flags.conan2d20_updatednpcsheet = {};
+
+        // Update expertise fields labels
+        if (sheetData.data.skills !== undefined) {
+            for (let [s, skl] of Object.entries(sheetData.data.skills as Record<any, any>)) {
+                skl.label = CONFIG.CONAN.expertiseFields[s];
+            }
+        }
+
+        /* if (sheetData.flags.conan2d20_updatednpcsheet === undefined) sheetData.flags.conan2d20_updatednpcsheet = {};
         if (sheetData.flags.conan2d20_updatednpcsheet.editNPC === undefined) sheetData.flags.conan2d20_updatednpcsheet.editNPC = { value: false };
         if (sheetData.flags.conan2d20_updatednpcsheet.allSaveDetail === undefined) sheetData.flags.conan2d20_updatednpcsheet.allSaveDetail = { value: '' };
 
-        sheetData.npcEliteActive = this.npcIsElite()?' active':'';
         sheetData.npcMinionActive = this.npcIsMinion()?' active':'';
-        
-        return sheetData; */
-        console.log(sheetData);
+        sheetData.npcToughenedActive = this.npcIsToughened()?' active':'';
+        sheetData.npcNemesiActive = this.npcIsNemesis()?' active':'';
+        */ 
+
+        sheetData.skills = CONFIG.CONAN.expertiseFields;
+        return sheetData;
     }
 
     _prepareItems(actorData) {
         const attacks = {
-            melee: { label: 'NPC Melee Attack', items: [], type: 'melee' },
-            ranged: { label: 'NPC Ranged Attack', items: [], type: 'melee' },
-            weapon: { label: 'Compendium Weapon', items: [], type: 'weapon' },
+            melee: { 
+                label: 'NPC Melee Attack',
+                items: [],
+                damage: {
+                    type: 'physical',
+                    dice: 0
+                }
+            },
+            ranged: {
+                label: 'NPC Ranged Attack',
+                items: [],
+                damage: {
+                    type: 'physical',
+                    dice: 0
+                }
+            },
+            threaten: {
+                label: 'NPC Threaten Attack',
+                items: [],
+                damage: {
+                    type: 'physical' ,
+                    dice: 0
+                }
+            }
         };
         for (const i of actorData.items) {
             i.img = i.img || CONST.DEFAULT_TOKEN;
@@ -51,11 +85,11 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
     }
 
 
-    npcIsElite() {
+    npcIsNemesis() {
         const actorData = duplicate(this.actor.data);
         const traits = getProperty(actorData.data, 'traits.traits.value') || [];
         for (const trait of traits) {
-            if (trait == 'elite') return true;
+            if (trait == 'nemesis') return true;
         }
         return false;
     }
@@ -65,6 +99,15 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
         const traits = getProperty(actorData.data, 'traits.traits.value') || [];
         for (const trait of traits) {
             if  (trait == 'minion') return true;
+        }
+        return false;
+    }
+
+    npcIsToughened() {
+        const actorData = duplicate(this.actor.data);
+        const traits = getProperty(actorData.data, 'traits.traits.value') || [];
+        for (const trait of traits) {
+            if  (trait == 'toughened') return true;
         }
         return false;
     }

@@ -33,16 +33,8 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             }
         }
 
-        // Update skill labels
-        if (sheetData.data.skills !== undefined) {
-            for (let [s, skl] of Object.entries(sheetData.data.skills as Record<any, any>)) {
-                skl.label = CONFIG.CONAN.skills[s];
-            }
-        }
-
         // Update Skills and Attributes
         sheetData.attributes = CONFIG.CONAN.attributes;
-        sheetData.skills = CONFIG.CONAN.skills;
         sheetData.natures = CONFIG.CONAN.naturesTypes;
         sheetData.languages = CONFIG.CONAN.languages;
         sheetData.conditions = CONFIG.CONAN.conditionTypes;

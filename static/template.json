@@ -480,22 +480,22 @@
             "templates": ["common"],
             "description": "physical description",
             "skills": {
-                "move": {
+                "mov": {
                     "value": 0
                 },
-                "combat": {
+                "cmb": {
                     "value": 0
                 },
-                "fort": {
+                "frt": {
                     "value": 0
                 },
-                "know": {
+                "knw": {
                     "value": 0
                 },
-                "soci": {
+                "scl": {
                     "value": 0
                 },
-                "sens": {
+                "sns": {
                     "value": 0
                 }
             },

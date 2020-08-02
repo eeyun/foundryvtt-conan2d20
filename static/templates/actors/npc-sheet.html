@@ -1,6 +1,6 @@
-<form class="npcSheet {{cssClass}}" autocomplete="off">
+<form class="npcSheet {{cssClass}}" autocomplete="off" id="npcSheet">
 
-    {{!-- Sheet Header --}}
+    <!-- Sheet Header -->
     <header class="sheet-header">
         <div class="header-fields">
             <h1 class="charname"><input name="name" type="text" value="{{actor.name}}"
@@ -9,131 +9,93 @@
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
     </header>
 
-    {{!-- Sheet Body --}}
     <section class="sheet-body">
-        {{!-- Attributes --}}
-        <div class="npc-attribute-grid">
-            <h2>{{localize "CONAN.npc.sections.attributes"}}</h2>
+    <!-- Sheet Body -->
+        <section class="sheet-content content">
+            <!-- Attributes -->
             <div class="attributes">
-                <div class="attribute awa">
-                    <div class="attribute-label"> {{localize "CONAN.attributes.awa"}}</div>
-                    <div class="attribute-score"><input name="data.attributes.awa" type="number"
-                            value="{{data.attributes.awa}}" placeholder="7" /></div>
-                </div>
-                <div class="attribute int">
-                    <div class="attribute-label"> {{localize "CONAN.attributes.int"}}</div>
-                    <div class="attribute-score"><input name="data.attributes.int" type="number"
-                            value="{{data.attributes.int}}" placeholder="7" /></div>
-                </div>
-                <div class="attribute per">
-                    <div class="attribute-label"> {{localize "CONAN.attributes.per"}}</div>
-                    <div class="attribute-score"><input name="data.attributes.per" type="number"
-                            value="{{data.attributes.per}}" placeholder="7" /></div>
-                </div>
-                <div class="attribute wil">
-                    <div class="attribute-label"> {{localize "CONAN.attributes.wil"}}</div>
-                    <div class="attribute-score"><input name="data.attributes.wil" type="number"
-                            value="{{data.attributes.wil}}" placeholder="7" /></div>
-                </div>
-                <div class="attribute agi">
-                    <div class="attribute-label"> {{localize "CONAN.attributes.agi"}}</div>
-                    <div class="attribute-score"><input name="data.attributes.agi" type="number"
-                            value="{{data.attributes.agi}}" placeholder="7" /></div>
-                </div>
-                <div class="attribute bra">
-                    <div class="attribute-label"> {{localize "CONAN.attributes.bra"}}</div>
-                    <div class="attribute-score"><input name="data.attributes.bra" type="number"
-                            value="{{data.attributes.bra}}" placeholder="7" /></div>
-                </div>
-                <div class="attribute coo">
-                    <div class="attribute-label"> {{localize "CONAN.attributes.coo"}}</div>
-                    <div class="attribute-score"><input name="data.attributes.coo" type="number"
-                            value="{{data.attributes.coo}}" placeholder="7" /></div>
+                <h2>{{localize "CONAN.npc.sections.attributes"}}</h2>
+                <div class="npc-attr-flex">
+                    {{#each data.attributes as |attr a|}}
+                    <div class="attribute-entry">
+                        <h4 class="attribute-name" title="data.attributes.{{a}}">{{attr.label}}</h4>
+                        <input name="data.attributes.{{a}}.value" type="Number" value="{{attr.value}}" data-dtype="Number" placeholder="7" />
+                    </div>
+                    {{/each}}
                 </div>
             </div>
-        </div>
-
-        {{!-- Fields of Expertise --}}
-        <div class="npc-skills-grid">
-            <h2>{{localize "CONAN.npc.sections.fields"}}</h2>
+            <!-- Fields of Expertise -->
             <div class="skills">
-                <div class="skill combat">
-                    <div class="attribute-label"> {{localize "CONAN.npc.skills.combat"}}</div>
-                    <div class="attribute-score"><input name="data.skills.combat" type="number"
-                            value="{{data.skills.combat}}" placeholder="0" /></div>
-                </div>
-                <div class="skill move">
-                    <div class="attribute-label"> {{localize "CONAN.npc.skills.move"}}</div>
-                    <div class="attribute-score"><input name="data.skills.move" type="number"
-                            value="{{data.skills.move}}" placeholder="0" /></div>
-                </div>
-                <div class="skill fort">
-                    <div class="attribute-label"> {{localize "CONAN.npc.skills.fort"}}</div>
-                    <div class="attribute-score"><input name="data.skills.fort" type="number"
-                            value="{{data.skills.fort}}" placeholder="0" /></div>
-                </div>
-                <div class="skill sens">
-                    <div class="attribute-label"> {{localize "CONAN.npc.skills.sens"}}</div>
-                    <div class="attribute-score"><input name="data.skills.sens" type="number"
-                            value="{{data.skills.sens}}" placeholder="0" /></div>
-                </div>
-                <div class="skill know">
-                    <div class="attribute-label"> {{localize "CONAN.npc.skills.know"}}</div>
-                    <div class="attribute-score"><input name="data.skills.know" type="number"
-                            value="{{data.skills.know}}" placeholder="0" /></div>
-                </div>
-                <div class="skill soci">
-                    <div class="attribute-label"> {{localize "CONAN.npc.skills.soci"}}</div>
-                    <div class="attribute-score"><input name="data.skills.soci" type="number"
-                            value="{{data.skills.soci}}" placeholder="0" /></div>
+                <h2>{{localize "CONAN.npc.sections.fields"}}</h2>
+                <div class="npc-skills-grid">
+                    {{#each data.skills as |skill s|}}
+                    <div class="skill-entry-{{s}}">
+                        <label class="skill-label"> {{skill.label}}</label>
+                        <input name="data.skills.{{s}}.value" type="Number" value="{{skill.value}}" placeholder="0" />
+                    </div>
+                    {{/each}}
                 </div>
             </div>
-        </div>
 
-        {{!-- Health --}}
-        <div class="npc-health">
-            <h2>{{localize "CONAN.npc.sections.health"}}</h2>
+            <!-- Health -->
+            <div class="health">
+                    <h2>{{localize "CONAN.npc.sections.health"}}</h2>
+                <div class="npc-health-grid">
+                    <div class="npc-vigor">
+                        <label class="vigor-label">{{localize "CONAN.healthVigor"}}</label>
+                        <input name="data.health.physical.value" type="Number" value="{{data.health.physical.value}}" placeholder="4" />
+                    </div>
+                    <div class="npc-resolve">
+                        <label class="resolve-label">{{localize "CONAN.healthResolve"}}</label>
+                        <input name="data.health.mental.value" type="Number" value="{{data.health.mental.value}}" placeholder="4" />
+                    </div>
+                    <div class="npc-armor">
+                        <label class="armor-label">{{localize "CONAN.healthArmor"}}</label>
+                        <input name="data.health.mental.value" type="Number" value="{{data.health.mental.value}}" placeholder="4" />
+                    </div>
+                    <div class="npc-courage">
+                        <label class="courage-label">{{localize "CONAN.healthCourage"}}</label>
+                        <input name="data.health.courage" type="Number" value="{{data.health.courage}}" placeholder="4" />
+                    </div>
+                </div>
+            </div>
 
-        </div>
+            <!-- Attacks -->
+            <div class="npc-attacks">
+                <h2>{{localize "CONAN.npc.sections.attacks"}}</h2>
+            </div>
 
-        {{!-- Attacks --}}
-        <div class="npc-attacks">
-            <h2>{{localize "CONAN.npc.sections.attacks"}}</h2>
+            <!-- Abilities -->
+            <div class="npc-abilities">
+                <h2>{{localize "CONAN.npc.sections.abilities"}}</h2>
 
-        </div>
+            </div>
 
-        {{!-- Abilities --}}
-        <div class="npc-abilities">
-            <h2>{{localize "CONAN.npc.sections.abilities"}}</h2>
+            <!-- Doom Spends -->
+            <div class="npc-doomspends">
+                <h2>{{localize "CONAN.npc.sections.doomspends"}}</h2>
 
-        </div>
+            </div>
 
-        {{!-- Doom Spends --}}
-        <div class="npc-doomspends">
-            <h2>{{localize "CONAN.npc.sections.doomspends"}}</h2>
+            <!-- Notes -->
+            <div class="npc-notes">
+                <h2>{{localize "CONAN.npc.sections.notes"}}</h2>
 
-        </div>
+            </div>
 
-        {{!-- Notes --}}
-        <div class="npc-notes">
-            <h2>{{localize "CONAN.npc.sections.notes"}}</h2>
+            <!-- Optional -->
+            <div class="npc-optional">
+                <h2>{{localize "CONAN.npc.sections.optional"}}</h2>
 
-        </div>
+            </div>
 
-        {{!-- Optional --}}
-        <div class="npc-optional">
-            <h2>{{localize "CONAN.npc.sections.optional"}}</h2>
-
-        </div>
-
-        {{!-- Source --}}
-        <div class="reference">
-            <label>{{localize "CONAN.ref-book"}}
-                <input name="book" type="text" value="" placeholder="Book" /></label>
-            <label>{{localize "CONAN.ref-page"}}
-                <input name="page" type="text" value="" placeholder="0" /></label>
-        </div>
-
-
+            <!-- Source -->
+            <div class="reference">
+                <label>{{localize "CONAN.ref-book"}}
+                    <input name="book" type="text" value="" placeholder="Book" /></label>
+                <label>{{localize "CONAN.ref-page"}}
+                    <input name="page" type="text" value="" placeholder="0" /></label>
+            </div>
+        </section>
     </section>
 </form>
