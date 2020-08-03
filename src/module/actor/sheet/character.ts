@@ -119,7 +119,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                 i.data.encumbrance = i.data.encumbrance || 0;                            
                 // i.totalWeight = formatEncumbrance(approximatedEncumbrance);                          
                 i.hasCharges = (i.type === 'kit') && i.data.uses.max > 0;      
-                if (i.type === 'weapon') {                                                   
+                if (i.type === 'weapon') {
                     let item;                                                                
                     try {                                                                  
                         item = this.actor.getOwnedItem(i._id);                               

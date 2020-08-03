@@ -225,5 +225,61 @@ export default class Conan2d20Item extends Item {
 
         return data;
     }
+
+
+    _npcattackChatData() {
+        const data : any = duplicate(this.data.data);
+        const qualities = [];
+        const details = [];
+
+        if (this.data.type !== 'npcattack') {
+          throw new Error('tried to create an NPC Attack chat data for an incorrect item');
+        }
+
+        if ((data.qualities.value || []).length !== 0) {
+            let  qualitiesObject;
+            for (let i = 0; i < data.qualities.value.length; i+= 1) {
+                if (data.qualities.value[i].value) {
+                    qualitiesObject = { label: `${data.qualities.value[i].label} ${(data.qualities.value[i].value)}` || (data.qualities.value[i].label.charAt(0).toUpperCase() + data.qualities.value[i].label.slice(1)),
+                    description: CONFIG.CONAN.qualitiesDescriptions[data.qualities.value[i].label.replace(' ','').toLowerCase()] || '',
+                    };
+                } else {
+                    qualitiesObject = { label: CONFIG.CONAN.weaponQualities[data.qualities.value[i].label] || (data.qualities.value[i].label.charAt(0).toUpperCase() + data.qualities.value[i].label.slice(1)),
+                    description: CONFIG.CONAN.qualitiesDescriptions[data.qualities.value[i].label.replace(' ','').toLowerCase()] || '',
+                    };
+                }
+                qualities.push(qualitiesObject);
+            }
+        }
+
+        const attackDamage = {
+            label: 'CONAN.damageLabel',
+            detail: CONFIG.CONAN.damageDice[data.damage.dice],
+        };
+        details.push(attackDamage);
+
+        let attackRange: any;
+        if (data.attackType === 'ranged') {
+            attackRange = {
+                label: 'CONAN.rangeLabel',
+                detail: CONFIG.CONAN.weaponRanges[data.range],
+            };
+        } else if (data.attackType === 'threaten') {
+            attackRange = {
+                label: 'CONAN.rangeLabel',
+                detail: CONFIG.CONAN.weaponRanges[data.range],
+            };
+        } else {
+            attackRange = {
+                label: 'CONAN.reachLabel',
+                detail: CONFIG.CONAN.weaponReaches[data.range],
+            };
+        details.push(attackRange);
+
+        data.itemDetails = details.filter((p) => p !== null);
+        data.qualities = qualities.filter((p) => !!p);
+
+        return data;
+    }
 }
 

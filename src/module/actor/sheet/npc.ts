@@ -41,49 +41,39 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
         */ 
 
         sheetData.skills = CONFIG.CONAN.expertiseFields;
+        console.log(sheetData);
         return sheetData;
     }
 
     _prepareItems(actorData) {
-        const attacks = {
-            melee: { 
-                label: 'NPC Melee Attack',
-                items: [],
-                damage: {
-                    type: 'physical',
-                    dice: 0
-                }
-            },
-            ranged: {
-                label: 'NPC Ranged Attack',
-                items: [],
-                damage: {
-                    type: 'physical',
-                    dice: 0
-                }
-            },
-            threaten: {
-                label: 'NPC Threaten Attack',
-                items: [],
-                damage: {
-                    type: 'physical' ,
-                    dice: 0
-                }
-            }
+        const attacks = { 
+            npcattack: { label: 'NPC Attack', items: [] }
         };
+
+
+        // Get Attacks
         for (const i of actorData.items) {
             i.img = i.img || CONST.DEFAULT_TOKEN;
 
-
-            if (i.type == 'melee') {
-                const weaponType = (i.data.weaponType || {}).value || 'melee';
-                attacks[weaponType].items.push(i);
+            if (Object.keys(attacks).includes(i.type))
+            {
+                if (i.type == 'npcattack')
+                {
+                    let item;                                                                
+                    try {
+                        item = this.actor.getOwnedItem(i._id);
+                        i.chatData = item.getChatData({ secrets: this.actor.owner });
+                    }
+                    catch (err)
+                    {
+                        console.log(`Conan 2D20 System | NPC Sheet | Could not load item ${i.name}`)
+                    }
+                    attacks[i.type].items.push(i);
+                }
             };
         }
-
         actorData.attacks = attacks;
     }
-
 
     npcIsNemesis() {
         const actorData = duplicate(this.actor.data);

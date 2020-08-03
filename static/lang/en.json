@@ -58,6 +58,10 @@
             "2": "2",
             "1r": "1-repeatable"
         },
+        "attackDamageLabel": "Attack Damage",
+        "attackTypeLabel": "Attack Type",
+        "attackRangeLabel": "Attack Range",
+        "attackReachLabel": "Attack Reach",
         "availability": "Availability",
         "CHATOPT": {
             "triggerReroll": "Re-roll Selected",
@@ -160,7 +164,7 @@
         "tn": "TN",
         "targetNumber": "Target Number",
         "sectionTalents": "Talents",
-        "sectionInventory": "Inventory",
+        "sectionInventory": "Belongings",
         "sectionWeapons": "Weapons",
         "sectionSpells": "Spells",
         "sectionBackground": "Background",
@@ -298,6 +302,11 @@
             "weapon": "Weapon",
             "display": "Display of Power"
         },
+        "npcAttackTypes": {
+            "melee": "Melee",
+            "ranged": "Ranged",
+            "threaten": "Threaten"
+        },
         "baseDamageLabel": "Base Damage",
         "coverageLabel": "Coverage",
         "coverage": {
@@ -371,7 +380,7 @@
         "statusHeader": "Status",
         "tabCharacterLabel": "Character",
         "tabActionsLabel": "Actions",
-        "tabInventoryLabel": "Inventory",
+        "tabInventoryLabel": "Belongings",
         "tabSpellsLabel": "Spells",
         "tabSkillsLabel": "Skills",
         "tabTalentsLabel": "Talents",

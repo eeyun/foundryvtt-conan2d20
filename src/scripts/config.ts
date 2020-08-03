@@ -82,6 +82,12 @@ CONFIG.attacks = {
     display: 'CONAN.attackTypes.display'
 };
 
+CONFIG.npcAttackTypes = {
+    melee: "CONAN.npcAttackTypes.melee",
+    ranged: "CONAN.npcAttackTypes.ranged",
+    threaten: "CONAN.npcAttackTypes.threaten",
+};
+
 CONFIG.availabilityTypes = {
   1: 'CONAN.skillRollDifficultyLevels.1',
   2: 'CONAN.skillRollDifficultyLevels.2',

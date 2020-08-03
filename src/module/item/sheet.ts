@@ -6,7 +6,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
 	    mergeObject(options, {
 	        classes: options.classes.concat(['conan2d20', 'item', 'sheet']),
             width:  630,
-	        height: 560,
+	        height: 460,
             template: 'systems/conan2d20/templates/items/item-sheet.html',
             resizable: false,
 	        tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}]
@@ -51,7 +51,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             type,
             hasSidebar: true,
             sidebarTemplate: () => `systems/conan2d20/templates/items/${type}-sidebar.html`,
-            hasDetails: ['weapon', 'armor', 'talent', 'kit', 'action', 'display'].includes(type),
+            hasDetails: ['weapon', 'armor', 'talent', 'kit', 'action', 'display', 'npcattack'].includes(type),
             detailsTemplate: () => `systems/conan2d20/templates/items/${type}-details.html`
         });
 
@@ -73,6 +73,15 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.damageDice = CONFIG.CONAN.damageDice;
             data.weaponDamage = CONFIG.CONAN.weaponDamage;
             data.encumbrance = CONFIG.CONAN.encumbranceTypes;
+
+           this._prepareQualities(CONFIG.CONAN.weaponQualities);
+        } else if (type === 'npcattack') { 
+            data.attackTypes = CONFIG.CONAN.npcAttackTypes;
+            data.weaponQualities = CONFIG.CONAN.weaponQualities;
+            data.weaponRanges = CONFIG.CONAN.weaponRanges;
+            data.weaponReaches = CONFIG.CONAN.weaponReaches;
+            data.damageDice = CONFIG.CONAN.damageDice;
+            data.weaponDamage = CONFIG.CONAN.weaponDamage;
 
            this._prepareQualities(CONFIG.CONAN.weaponQualities);
         } else if (type === 'talent') {

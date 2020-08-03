@@ -513,6 +513,7 @@
             "armor",
             "display",
             "kit",
+            "npcattack",
             "spell",
             "talent",
             "weapon"
@@ -593,9 +594,20 @@
                 "dice": 1
             },
             "size": "",
-            "reach": "",
             "range": "",
             "shots": 1,
+            "qualities": {
+                "value": []
+            }
+        },
+        "npcattack": {
+            "templates": ["itemDescription"],
+            "attackType": "",
+            "range": "",
+            "damage": {
+                "type": "physical",
+                "dice": 1
+            },
             "qualities": {
                 "value": []
             }
