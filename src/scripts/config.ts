@@ -82,6 +82,11 @@ CONFIG.attacks = {
     display: 'CONAN.attackTypes.display'
 };
 
+CONFIG.npcActionTypes = {
+    abilities: 'CONAN.npcActionTypes.abilities',
+    doom: 'CONAN.npcActionTypes.doom'
+};
+
 CONFIG.npcAttackTypes = {
     melee: "CONAN.npcAttackTypes.melee",
     ranged: "CONAN.npcAttackTypes.ranged",

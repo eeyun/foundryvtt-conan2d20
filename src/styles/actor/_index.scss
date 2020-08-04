@@ -13,15 +13,31 @@ $header-height: 120px;
 }
 
 .conan2d20 form.npcSheet {
-        display: grid;
-        grid:
-        'header' 120px
-        'nav' minmax(min-content, max-content)
-        'content' 1fr;
+    display: grid;
+    grid:
+    'header' 120px
+    'nav' minmax(min-content, max-content)
+    'content' 1fr;
 
-        .sheet-header {
-            height: 120px;
+    .sheet-header {
+        height: 120px;
+    }
+
+    .npc-sheet-body {
+        .sheet-content,
+        .sheet-content .inventory {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            margin-right: 5px;
+            margin-left: 5px;
+            display: flex;
+            flex-direction: column;
+            width: auto;
+            padding-top: 12px;
         }
+    }
 }
 .conan2d20 form {
     display: grid;

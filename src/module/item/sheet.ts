@@ -51,7 +51,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             type,
             hasSidebar: true,
             sidebarTemplate: () => `systems/conan2d20/templates/items/${type}-sidebar.html`,
-            hasDetails: ['weapon', 'armor', 'talent', 'kit', 'action', 'display', 'npcattack'].includes(type),
+            hasDetails: ['weapon', 'armor', 'talent', 'kit', 'action', 'display', 'npcattack', 'npcaction'].includes(type),
             detailsTemplate: () => `systems/conan2d20/templates/items/${type}-details.html`
         });
 
@@ -76,6 +76,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
 
            this._prepareQualities(CONFIG.CONAN.weaponQualities);
         } else if (type === 'npcattack') { 
+            data.hasSidebar = false;
             data.attackTypes = CONFIG.CONAN.npcAttackTypes;
             data.weaponQualities = CONFIG.CONAN.weaponQualities;
             data.weaponRanges = CONFIG.CONAN.weaponRanges;
@@ -117,6 +118,9 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.actionCategories = CONFIG.CONAN.actionCategories;
             // TODO generate action tags
             // data.actionTags = [data.data.qualities.value].filter(t => !!t);
+        } else if (type === 'npcaction') {
+            data.hasSidebar = false;
+            data.actionTypes = CONFIG.CONAN.npcActionTypes;
         } else if (type === 'kit') {
             data.kitSkills = CONFIG.CONAN.skills;
             data.kitTypes = CONFIG.CONAN.kitTypes;

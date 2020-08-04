@@ -7,9 +7,7 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
             classes: options.classes.concat(["conan2d20", "actor", "npc-sheet"]),
             width: 450,
             heigth: 680,
-            scrollY: [
-                'sheet-sidebar'
-            ]
+            scrollY: [".npc-sheet-body", ".npcSheet", ".sheet-body", ".npc-actions"],
         });
         return options;
     }
@@ -50,6 +48,11 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
             npcattack: { label: 'NPC Attack', items: [] }
         };
 
+        const actions = {
+            abilities: { label: game.i18n.localize("CONAN.npcActionTypes.abilities"), actions: [] },
+            doom: { label: game.i18n.localize("CONAN.npcActionTypes.doom"), actions: [] }
+        };
+
 
         // Get Attacks
         for (const i of actorData.items) {
@@ -70,8 +73,13 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
                     }
                     attacks[i.type].items.push(i);
                 }
+            } else if (i.type === 'npcaction') {
+                console.log(i.data);
+                const actionType = i.data.actionType || 'npcaction';
+                actions[actionType].actions.push(i);
             };
         }
+        actorData.actions = actions;
         actorData.attacks = attacks;
     }
 

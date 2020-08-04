@@ -307,6 +307,11 @@
             "ranged": "Ranged",
             "threaten": "Threaten"
         },
+        "npcActionTypes": {
+            "abilities": "Special Abilities",
+            "doom": "Doom Spends"
+        },
+        "npcActionTypeLabel": "Action Type",
         "baseDamageLabel": "Base Damage",
         "coverageLabel": "Coverage",
         "coverage": {

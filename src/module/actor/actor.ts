@@ -121,11 +121,10 @@ export default class Conan2d20Actor extends Actor {
                 action.attack.id = item._id;
                 action.attack.type = item.type;
                 data.actions.push(action);
-			});
+            });
 		}
         // Experience
         data.resources.xp.value = character.exp;
-
     }
 
   /* -------------------------------------------- */

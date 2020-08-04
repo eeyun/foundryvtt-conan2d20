@@ -274,10 +274,28 @@ export default class Conan2d20Item extends Item {
                 label: 'CONAN.reachLabel',
                 detail: CONFIG.CONAN.weaponReaches[data.range],
             };
+        };
         details.push(attackRange);
 
         data.itemDetails = details.filter((p) => p !== null);
         data.qualities = qualities.filter((p) => !!p);
+
+        return data;
+    }
+
+    _npcactionChatData() {
+        if (this.data.type !== 'npcaction') {
+          throw new Error('tried to create an npcaction chat data for a non-npcaction item');
+        }
+
+        const data : any = duplicate(this.data.data);
+        const ad = this.actor.data.data;
+
+        const props = [
+          CONFIG.CONAN.npcActionTypes[data.actionType],
+        ];
+
+        data.properties = props.filter((p) => p);
 
         return data;
     }

@@ -500,9 +500,6 @@
                     "value": 0
                 }
             },
-            "attacks": [],
-            "abilities": [],
-            "doom-spends": [],
             "notes": [],
             "optional": []
         }
@@ -514,6 +511,7 @@
             "display",
             "kit",
             "npcattack",
+            "npcaction",
             "spell",
             "talent",
             "weapon"
@@ -611,6 +609,10 @@
             "qualities": {
                 "value": []
             }
+        },
+        "npcaction": {
+            "templates": ["itemDescription"],
+            "actionType": ""
         },
         "display": {
             "skill": "",

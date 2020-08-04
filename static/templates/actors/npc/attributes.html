@@ -1,0 +1,11 @@
+<div class="attributes">
+    <h2>{{localize "CONAN.npc.sections.attributes"}}</h2>
+    <div class="npc-attr-flex">
+        {{#each data.attributes as |attr a|}}
+        <div class="attribute-entry">
+            <h4 class="attribute-name" title="data.attributes.{{a}}">{{attr.label}}</h4>
+            <input name="data.attributes.{{a}}.value" type="Number" value="{{attr.value}}" data-dtype="Number" placeholder="7" />
+        </div>
+        {{/each}}
+    </div>
+</div>

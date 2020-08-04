@@ -10,6 +10,7 @@ export default function() {
         'systems/conan2d20/templates/items/display-sidebar.html',
         'systems/conan2d20/templates/items/kit-details.html',
         'systems/conan2d20/templates/items/kit-sidebar.html',
+        'systems/conan2d20/templates/items/npcaction-details.html',
         'systems/conan2d20/templates/items/npcattack-details.html',
         'systems/conan2d20/templates/items/npcattack-sidebar.html',
         'systems/conan2d20/templates/items/talent-details.html',
@@ -33,7 +34,12 @@ export default function() {
         'systems/conan2d20/templates/actors/main/actor-armor.html',
         'systems/conan2d20/templates/actors/main/actor-background.html',
         'systems/conan2d20/templates/actors/main/actor-resources.html',
-        'systems/conan2d20/templates/actors/main/actor-details.html'
+        'systems/conan2d20/templates/actors/main/actor-details.html',
+        'systems/conan2d20/templates/actors/npc/actions.html',
+        'systems/conan2d20/templates/actors/npc/attacks.html',
+        'systems/conan2d20/templates/actors/npc/attributes.html',
+        'systems/conan2d20/templates/actors/npc/fields.html',
+        'systems/conan2d20/templates/actors/npc/health.html'
     ];
     return loadTemplates(templatePaths);
 }
