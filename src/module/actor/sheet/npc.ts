@@ -5,9 +5,10 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
         const options = super.defaultOptions;
         mergeObject(options, {
             classes: options.classes.concat(["conan2d20", "actor", "npc-sheet"]),
-            width: 450,
-            heigth: 680,
-            scrollY: [".npc-sheet-body", ".npcSheet", ".sheet-body", ".npc-actions"],
+            width: 460,
+            height: 680,
+            resizable: false,
+            scrollY: [".sheet-body", ".attributes", "fields", ".actions"]
         });
         return options;
     }
@@ -39,7 +40,6 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
         */ 
 
         sheetData.skills = CONFIG.CONAN.expertiseFields;
-        console.log(sheetData);
         return sheetData;
     }
 
@@ -74,7 +74,6 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
                     attacks[i.type].items.push(i);
                 }
             } else if (i.type === 'npcaction') {
-                console.log(i.data);
                 const actionType = i.data.actionType || 'npcaction';
                 actions[actionType].actions.push(i);
             };

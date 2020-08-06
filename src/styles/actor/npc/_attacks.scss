@@ -218,3 +218,34 @@
         }
     }
 }
+        .item-buttons {
+            grid-area: btn;
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: 2px;
+            button {
+                margin: 0;
+                border: none;
+                cursor: pointer;
+                @include micro;
+                padding: 5px 4px;
+                color: white;
+                width: 70px;
+                @include button;
+                margin-top: 4px;
+                background: var(--primary);
+                border-radius: 2px;
+                flex: 1;
+
+                &:hover {
+                    @include input-glow;
+                    text-shadow: 0 0 2px white;
+                }
+            }
+
+            .weapon {
+                &_attack {
+                    background: var(--primary);
+                }
+            }
+        }

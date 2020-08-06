@@ -9,27 +9,53 @@
     </select>
 </div>
 
+<div class="form-group">
+    <label>{{localize "CONAN.damageTypeLabel"}}</label>
+    {{#ifEq data.attackType "threaten"}}
+    <select name="data.damage.type" data-dtype="String">
+        {{#select damageTypes.mental}}
+        <option value="mental" selected>{{localize "CONAN.damageTypes.mental"}}</option>
+        {{/select}}
+    </select>
+    {{else}}
+    <select name="data.damage.type" data-dtype="String">
+        {{#select damageTypes.physical}}
+        <option value="physical" selected>{{localize "CONAN.damageTypes.physical"}}</option>
+        {{/select}}
+    </select>
+    {{/ifEq}}
+</div>
 
-    <div  class="form-group">                                                    
-{{#ifEq data.attackType "ranged"}}                                                    
-       <label>{{localize "CONAN.attackRangeLabel"}}</label>                      
-       <select name="data.range" data-dtype="String">         
-           {{#select data.range}}                                          
-            {{#each weaponRanges as |name range|}}                               
-            <option value="{{range}}">{{name}}</option>                          
-            {{/each}}                                                            
-           {{/select}}                                                           
-       </select>                                                                 
-    </div>                                                                       
-{{else}}                                                                        
-       <label>{{localize "CONAN.attackReachLabel"}}</label>                      
-       <select name="data.range" data-dtype="Number">         
-           {{#select data.range}}                                          
+<div  class="form-group">
+{{#ifEq data.attackType "ranged"}}
+    <label>{{localize "CONAN.attackRangeLabel"}}</label>
+       <select name="data.range" data-dtype="String">
+            {{#select data.range}}
+            {{#each weaponRanges as |name range|}}
+            <option value="{{range}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+       </select>
+    </div>
+{{else ifEq data.attackType "threaten"}}
+        <label>{{localize "CONAN.attackRangeLabel"}}</label>
+        <select name="data.range" data-dtype="String">
+            {{#select data.range}}
+            {{#each weaponRanges as |name range|}}
+            <option value="{{range}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+{{else}}
+        <label>{{localize "CONAN.attackReachLabel"}}</label>                      
+        <select name="data.range" data-dtype="Number">         
+            {{#select data.range}}                                          
             {{#each weaponReaches as |name reach|}}                              
             <option value="{{reach}}">{{name}}</option>                          
             {{/each}}                                                            
-           {{/select}}                                                           
-       </select>                                                                 
+            {{/select}}                                                           
+        </select>                                                                 
     </div>
 {{/ifEq}}                                                                        
 <ol class="form-list">

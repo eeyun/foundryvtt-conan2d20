@@ -7,8 +7,9 @@
             justify-content: space-between;
             margin-left: 8px;
             margin-right: 8px;
+            margin-bottom: 8px;
             padding: 4px;
-            border-top: 1px solid lighten($alt-color, 40);
+            border: groove;
 
             p:empty {
                 display: none;
@@ -18,7 +19,8 @@
                 display: flex;
                 align-items: center;
                 cursor: pointer;
-                flex: 0 50%;
+                border-bottom: none;
+                flex: 0 75%;
 
                 .item-image, .item-image-inventory {
                     height: 22px;
@@ -29,6 +31,7 @@
                     margin-right: 8px;
                     font-size: 18px;
                     @include flex-center;
+                    //@include frame-icon;
 
                     &.execute-attack {
                         @include frame-icon;
@@ -44,18 +47,19 @@
             }
 
             &.action-header {
-                margin-top: 8px;
-                margin-left: 0;
+                margin-top: 0px;
+                margin-left: 0px;
+                margin-right: 0px;
                 padding: 0;
-                padding-bottom: 2px;
-                background: none;
+                //padding-bottom: 2px;
+                background: black;
+                color: white;
                 padding-left: 8px;
-                height: 32px;
-                border: none;
+                height: 25.5px;
                 flex-wrap: nowrap;
 
                 h3 {
-                    color: white;
+                    color: black;
                     cursor: default;
                 }
 
@@ -65,8 +69,8 @@
                 }
 
                 .item-controls {
-                    color: var(--primary);
-                    font-size: 12px;
+                    color: white;
+                    font-size: 10px;
                 }
 
                 &:first-child {
@@ -170,41 +174,3 @@
         }
     }
 }
-
-.action-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 8px;
-    margin-left: 0;
-    background:none;
-    padding: 0;
-    padding-bottom: 2px;
-    padding-left: 8px;
-    height: 32px;
-    border: none;
-
-    h3 {
-        flex: 1 1 100%;
-    }
-
-    .item-name,
-    .item-controls {
-        background: none;
-        @include p-reset;
-    }
-
-    .item-controls {
-        color: var(--primary);
-        font-size: 12px;
-    }
-
-    &:first-child {
-        margin-top: 0;
-    }
-
-    & + li {
-        border-top: none;
-    }
-}
-

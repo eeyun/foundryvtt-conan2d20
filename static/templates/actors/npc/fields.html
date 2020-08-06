@@ -1,10 +1,16 @@
 <div class="skills">
-    <h2>{{localize "CONAN.npc.sections.fields"}}</h2>
+    <div class="section-header">
+        <h2>{{localize "CONAN.npc.sections.fields"}}</h2>
+    </div>
     <div class="npc-skills-grid">
         {{#each data.skills as |skill s|}}
-        <div class="skill-entry-{{s}}">
-            <label class="skill-label"> {{skill.label}}</label>
+        <div class="skill-entry-{{s}} skill-entry-name" data-skill="{{s}}">
+            <div class="entry-label">
+                <h4 class="skill-name rollable" data-roll="2d20cs<=data.skills.{{s}}.value"> {{skill.label}}</h4>
+            </div>
+            <div class="entry-score">
             <input name="data.skills.{{s}}.value" type="Number" value="{{skill.value}}" placeholder="0" />
+            </div>
         </div>
         {{/each}}
     </div>

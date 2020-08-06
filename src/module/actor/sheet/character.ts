@@ -6,8 +6,8 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
     static get defaultOptions() {
         const options = super.defaultOptions;
         mergeObject(options, {
-            classes: options.classes.concat(['conan2d20', 'sheet', 'actor', 'pc', 'character-sheet']),
-            width: 700,
+            classes: options.classes.concat(['conan2d20', 'actor', 'pc', 'character-sheet']),
+            width: 650,
             height: 800,
             tabs: [{ navSelector: ".sheet-navigation", contentSelector: ".sheet-content", initial: "character" }]
         });
@@ -45,8 +45,6 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         };
 
         sheetData.skills = CONFIG.CONAN.skills;
-
-        console.log(sheetData);
 
         return sheetData;
     }

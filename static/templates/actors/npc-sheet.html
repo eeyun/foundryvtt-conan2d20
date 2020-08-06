@@ -1,4 +1,4 @@
-<form class="npcSheet {{cssClass}}" autocomplete="off" id="npcSheet">
+<form class="npc-sheet {{cssClass}}" autocomplete="off" id="npc-sheet">
     <!-- Sheet Header -->
     <header class="sheet-header">
         <div class="header-fields">
@@ -28,16 +28,28 @@
 
             <!-- Notes -->
             <div class="npc-notes">
-                <h2>{{localize "CONAN.npc.sections.notes"}}</h2>
-
+                <div class="section-header">
+                    <h2>{{localize "CONAN.npc.sections.notes"}}</h2>
+                </div>
+                <div class="notes-entry">
+                {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
+                </div>
             </div>
 
             <!-- Source -->
-            <div class="reference">
-                <label>{{localize "CONAN.ref-book"}}
-                    <input name="book" type="text" value="" placeholder="Book" /></label>
-                <label>{{localize "CONAN.ref-page"}}
-                    <input name="page" type="text" value="" placeholder="0" /></label>
+            <div class="footer">
+                <div class="entry-label">
+                    <h4>{{localize "CONAN.ref-book"}}</h4>
+                </div>
+                <div class="entry-score">
+                    <input name="book" type="text" value="" placeholder="Book" />
+                </div>
+                <div class="entry-label">
+                    <h4>{{localize "CONAN.ref-page"}}</h4>
+                </div>
+                <div class="entry-score">
+                    <input name="page" type="text" value="" placeholder="0" />
+                </div>
             </div>
         </section>
     </section>

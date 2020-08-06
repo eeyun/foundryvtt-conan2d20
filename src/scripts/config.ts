@@ -82,6 +82,11 @@ CONFIG.attacks = {
     display: 'CONAN.attackTypes.display'
 };
 
+CONFIG.damageTypes = {
+    mental: 'CONAN.damageTypes.mental',
+    physical: 'CONAN.damageTypes.physical'
+};
+
 CONFIG.npcActionTypes = {
     abilities: 'CONAN.npcActionTypes.abilities',
     doom: 'CONAN.npcActionTypes.doom'

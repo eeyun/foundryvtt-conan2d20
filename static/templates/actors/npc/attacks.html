@@ -1,22 +1,17 @@
-<div class="npc-attacks" data-tab="npc-attacks">
-    <h2>{{localize "CONAN.npc.sections.attacks"}}</h2>
-    <ol class="inventory-list directory-list inventory-pane">
+<div class="npcactions">
+    <ol class="npcactions-list inventory-list directory-list inventory-pane">
     {{#each actor.attacks as |section sid|}}
-    <div class="inventory-header">
-        <h3 class="item-name">{{section.label}}</h3>
-        <span class="attack-range">{{localize "CONAN.rangeLabel"}}</span>
-        <span class="attack-damage">{{localize "CONAN.damageLabel"}}</span>
+    <li class="section-header">
+        <h2 class="item-name pf-heading pf-actions">{{localize "CONAN.npc.sections.attacks"}}</h2>
         {{#if ../owner}}
         <div class="item-controls" style="display: flex">                    
             <a class="item-control item-create" title="{{localize "CONAN.createItemTitle"}}" data-type="{{sid}}"><i class="fas fa-plus    "></i></a>
             <a class="item-control inventory-browse" title="{{localize "CONAN.openInventoryBrowser"}}" data-type="{{sid}}"><i class="fas fa-search"></i></a>
         </div>
         {{/if}}
-    </div>
-    <ol class="item-list">
+    </li>
         {{#each section.items as |item itemId|}}
             {{> systems/conan2d20/templates/actors/tabs/npcattack-line.html item=item owner=../../owner level=1}}
         {{/each}}
-    </ol>
     {{/each}}
 </div>

@@ -307,6 +307,7 @@
             "ranged": "Ranged",
             "threaten": "Threaten"
         },
+        "npcAttackNameHeader": "Attack Name",
         "npcActionTypes": {
             "abilities": "Special Abilities",
             "doom": "Doom Spends"
@@ -323,14 +324,21 @@
             "rleg": "Right Leg"
         },
         "damageLabel": "Damage",
+        "damageTypeLabel": "Damage Type",
+        "damageTypes": {
+            "mental": "Mental",
+            "physical": "Physical"
+        },
         "damageRollLabel": "Damage",
         "damageRollAttackType": "Attack Type",
         "damageRollBonusHeader": "Damage Bonuses",
+        "damageRollDoomSpendLabel": "Doom",
         "damageRollMomentumSpendLabel": "Momentum",
         "damageRollTalentSpendLabel": "Talent",
         "damageRollLoadSpendLabel": "Reloads",
         "damageRollEffectGenLabel": "Effects generated",
         "damageRerollText": "{character} used a talent to reroll selected damage dice.",
+        "doomConversionTitle": "Each point entered here converts from 3 points of doom",
         "encumbrance1Each": "1-Each",
         "groupLabel": "Group",
         "languages": {

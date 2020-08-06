@@ -49,7 +49,7 @@ Hooks.once('setup', () => {
         'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories',
         'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'rollDifficultyLevels',
         'rollResults', 'actionCounts', 'kitTypes', 'conditionTypes', 'expertiseFields',
-        'npcAttackTypes', 'npcActionTypes'
+        'npcAttackTypes', 'npcActionTypes', 'damageTypes'
     ];
 
     const noSort: any = [

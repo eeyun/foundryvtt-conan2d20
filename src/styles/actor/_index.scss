@@ -1,26 +1,56 @@
 $header-height: 120px;
 
-.conan2d20.actor .window-content {
-    background: url('../assets/sheet/header_grey.png'), url('../assets/parchment.jpg');
-    background-repeat: repeat-x, no-repeat;
-    background-size: auto $header-height, cover;
-    background-attachment: local;
-}
+//.conan2d20.actor.character .window-content {
+//    background: url('../assets/sheet/header_grey.png'), url('../assets/parchment.jpg');
+//    background-repeat: repeat-x, no-repeat;
+//    background-size: auto $header-height, cover;
+//    background-attachment: local;
+//}
 
 .conan2d20 section.window-content {
     padding: 0;
     overflow: hidden;
 }
 
-.conan2d20 form.npcSheet {
+.conan2d20 form.npc-sheet {
+    background: url(../assets/parchment.jpg);
+    background-attachment: local;
     display: grid;
     grid:
-    'header' 120px
+    'header' 75px
     'nav' minmax(min-content, max-content)
     'content' 1fr;
 
     .sheet-header {
-        height: 120px;
+        height: 75px;
+        background-image: url(../assets/sheet/header-npc.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        .profile-img {
+            border: none;
+            @include gold-border;
+            display: block;
+            margin-right: 25px;
+            margin-top: 3px;
+            box-shadow: 0 0 0 3px rgba(black, 0.2);
+            max-height:75px;
+            max-width:75px;
+            height: auto;
+            width: auto;
+            z-index: 50;
+        }
+
+        input[type=text] {
+            font-family: crushyourenemies;
+            background: none;
+            font-size: 14px;
+            color: white;
+            padding-top: 10px;
+            margin-left: 70px;
+            margin-right: 100px;
+            width: 100%;
+        }
     }
 
     .npc-sheet-body {
@@ -36,10 +66,15 @@ $header-height: 120px;
             flex-direction: column;
             width: auto;
             padding-top: 12px;
+            overflow-y: scroll;
         }
     }
 }
 .conan2d20 form {
+    background: url(../assets/sheet/header_grey.png), url(../assets/parchment.jpg);
+    background-repeat: repeat-x, no-repeat;
+    background-size: auto 120px, cover;
+    background-attachment: local;
     display: grid;
     grid:
         'sidebar header' 120px

@@ -1,7 +1,7 @@
 <div class="npcactions">
     <ol class="npcactions-list inventory-list directory-list attacks-list">
     {{#each actor.actions as |section sid|}}
-        <li class="item action-header">
+        <li class="section-header">
             <h2 class="item-name pf-heading pf-actions">{{section.label}}</h2>
             {{#if ../owner}}
                 <div class="item-controls" style="display: flex">

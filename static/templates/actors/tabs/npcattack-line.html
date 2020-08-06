@@ -1,14 +1,12 @@
 <li class="item" data-item-id="{{item._id}}">
     <div class="item-name rollable">
-        <div class="item-image-inventory" style="background-image: url('{{item.img}}')"></div>
+        <div class="item-image-inventory" style="background-image: url('{{item.img}}')">
+            <i class="fas fa-dice-d20"></i>
+        </div>
         <h4>
             {{item.name}}
         </h4>
     </div>
-    <span class="attack-range">
-        <span>{{item.data.range}}</span>
-    </span>
-    <span class="attack-damage">{{item.data.damage.dice}}</span>
 
     {{#if owner}}
     <div class="item-controls">

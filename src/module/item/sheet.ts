@@ -83,6 +83,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.weaponReaches = CONFIG.CONAN.weaponReaches;
             data.damageDice = CONFIG.CONAN.damageDice;
             data.weaponDamage = CONFIG.CONAN.weaponDamage;
+            data.damageTypes = CONFIG.CONAN.damageTypes;
 
            this._prepareQualities(CONFIG.CONAN.weaponQualities);
         } else if (type === 'talent') {

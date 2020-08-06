@@ -1,8 +1,13 @@
+.header-fields {
+    font-family: crushyourenemies;
+}
+
 .npc-attr-flex {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 10px;
 
     input[type=number] {
         width: 100px;
@@ -11,7 +16,13 @@
 
     .attribute-entry {
         text-align: center;
-        margin-right: 10px;
+        margin: 3px;
+
+        .attribute-name {
+            background: $primary-color;
+            color: white;
+            margin-bottom: 3px;
+        }
     }
 }
 
@@ -19,9 +30,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 1px 1px;
+  gap: 3px 3px;
   grid-template-areas: "skill-entry-combat skill-entry-movement" "skill-entry-fortitude skill-entry-senses" "skill-entry-knowledge skill-entry-social";
   grid-area: npc-skill-grid;
+  margin-bottom: 10px;
 
     input[type=number] {
         width: 70px;
@@ -32,28 +44,64 @@
 
     text-align: center;
 }
+.entry-label {
+    background: $primary-color;
+    color: white;
+    width: 50%;
+    padding-top: 3px;
+    text-align: center;
 
-.skill-entry-cmb { grid-area: skill-entry-combat; }
+    h4 {
+        margin-bottom: 0px;
+    }
+}
 
-.skill-entry-mov { grid-area: skill-entry-movement; }
+.entry-score {
+    color: white;
+    width: 50%;
+}
 
-.skill-entry-frt { grid-area: skill-entry-fortitude; }
+.skill-entry-cmb { 
+    display: flex;
+    grid-area: skill-entry-combat; 
+}
 
-.skill-entry-sns { grid-area: skill-entry-senses; }
+.skill-entry-mov { 
+    display: flex;
+    grid-area: skill-entry-movement;
+}
 
-.skill-entry-knw { grid-area: skill-entry-knowledge; }
+.skill-entry-frt {
+    display: flex; 
+    grid-area: skill-entry-fortitude;
+}
 
-.skill-entry-scl { grid-area: skill-entry-social; }
+.skill-entry-sns {
+    display: flex;
+    grid-area: skill-entry-senses;
+}
+
+.skill-entry-knw {
+    display: flex;
+    grid-area: skill-entry-knowledge;
+}
+
+.skill-entry-scl {
+    display: flex;
+    grid-area: skill-entry-social;
+}
 
 .npc-health-grid {
     display: grid;
-    gap: 5px 5px;
+    gap: 3px 3px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "npc-vigor npc-resolve" "npc-armor npc-courage";
     grid-area: npc-health-grid;
+    margin-bottom: 10px;
 
     input[type=number] {
+        font-family: $body-serif;
         width: 70px;
         text-align: center;
         float: right;
@@ -61,14 +109,76 @@
     }
     text-align: center;
 }
+.section-header {
+    margin-bottom: 10px;
+    align-items: center; 
+    display: flex;
+    color: white;
+    background: black;
+    text-align: center;
 
-.npc-vigor { grid-area: npc-vigor; }
+    h2 {
+        padding-left: 8px;
+        border-bottom: none;
+        margin-bottom: 0px;
+        width: 100%;
+    }
+}
+
+.npc-vigor {
+    display: flex;
+    grid-area: npc-vigor;
+}
 
 .npc-resolve {
-    grid-area: npc-resolve; }
+    display: flex;
+    grid-area: npc-resolve;
+}
 
-.npc-courage { grid-area: npc-courage; }
+.npc-courage {
+    display: flex;
+    grid-area: npc-courage;
+}
 
-.npc-armor { grid-area: npc-armor; }
+.npc-armor {
+    display: flex;
+    grid-area: npc-armor;
+}
+
+.npc-notes {
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.notes-entry {
+    height: 100%;
+
+        .editor-content {
+            margin: 10px;
+            overflow-y: visible;
+            min-height: 100px;
+            max-height: 100%;
+        }
+        .editor {
+            height: auto;
+        }
+}
+
+.footer {
+    display: flex;
+    text-align: center;
+
+    input[type=number] {
+        font-family: $body-serif;
+        width: 70px;
+        text-align: center;
+        float: right;
+        margin-right: 20px;
+    }
+
+    .entry-score {
+        color: $primary-color;
+    }
+}
 
 @import 'attacks', 'actions';
