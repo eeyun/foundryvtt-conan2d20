@@ -30,16 +30,13 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
             }
         }
 
-        /* if (sheetData.flags.conan2d20_updatednpcsheet === undefined) sheetData.flags.conan2d20_updatednpcsheet = {};
-        if (sheetData.flags.conan2d20_updatednpcsheet.editNPC === undefined) sheetData.flags.conan2d20_updatednpcsheet.editNPC = { value: false };
-        if (sheetData.flags.conan2d20_updatednpcsheet.allSaveDetail === undefined) sheetData.flags.conan2d20_updatednpcsheet.allSaveDetail = { value: '' };
-
-        sheetData.npcMinionActive = this.npcIsMinion()?' active':'';
-        sheetData.npcToughenedActive = this.npcIsToughened()?' active':'';
-        sheetData.npcNemesiActive = this.npcIsNemesis()?' active':'';
-        */ 
-
+        sheetData.actor.data.isMinion = this.npcIsMinion();
+        sheetData.actor.data.isToughened = this.npcIsToughened();
+        sheetData.actor.data.isNemesis = this.npcIsNemesis();
+        sheetData.npcCategories = CONFIG.CONAN.npcCategories;
         sheetData.skills = CONFIG.CONAN.expertiseFields;
+
+        this.actor.update(sheetData.actor);
         return sheetData;
     }
 
@@ -84,7 +81,7 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
 
     npcIsNemesis() {
         const actorData = duplicate(this.actor.data);
-        const traits = getProperty(actorData.data, 'traits.traits.value') || [];
+        const traits = getProperty(actorData.data, 'categories.value') || [];
         for (const trait of traits) {
             if (trait == 'nemesis') return true;
         }
@@ -93,7 +90,7 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
 
     npcIsMinion() {
         const actorData = duplicate(this.actor.data);
-        const traits = getProperty(actorData.data, 'traits.traits.value') || [];
+        const traits = getProperty(actorData.data, 'categories.value') || [];
         for (const trait of traits) {
             if  (trait == 'minion') return true;
         }
@@ -102,7 +99,7 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
 
     npcIsToughened() {
         const actorData = duplicate(this.actor.data);
-        const traits = getProperty(actorData.data, 'traits.traits.value') || [];
+        const traits = getProperty(actorData.data, 'categories.value') || [];
         for (const trait of traits) {
             if  (trait == 'toughened') return true;
         }

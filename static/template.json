@@ -479,6 +479,10 @@
         "npc": {
             "templates": ["common"],
             "description": "physical description",
+            "categories": {
+                "value": [],
+                "custom": ""
+            },
             "armor": 0,
             "skills": {
                 "mov": {
@@ -500,6 +504,9 @@
                     "value": 0
                 }
             },
+            "isMinion": false,
+            "isToughened": false,
+            "isNemesis": false,
             "notes": [],
             "optional": []
         }

@@ -466,7 +466,13 @@ export class Conan2d20Dice {
                             // @ts-ignore
                             rollData.successModifier = Number(template.find('[name="successModifier"]').val() || 0)
                             try {
-                                await Conan2d20Dice.generateSkillRoll(2, rollData, cardData, actorData);
+                                let baseDice = 2;
+                                if (dialogData.modifiers.actorType === 'npc') {
+                                    if (actorData.data.isMinion) {
+                                        baseDice = 1;
+                                    } 
+                                }
+                                await Conan2d20Dice.generateSkillRoll(baseDice, rollData, cardData, actorData);
                              }
                             catch (e) {
                                 console.log(e);

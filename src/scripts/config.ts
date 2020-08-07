@@ -98,6 +98,14 @@ CONFIG.npcAttackTypes = {
     threaten: "CONAN.npcAttackTypes.threaten",
 };
 
+CONFIG.npcCategories = {
+    minion: "CONAN.npcCategories.minion",
+    toughened: "CONAN.npcCategories.toughened",
+    nemesis: "CONAN.npcCategories.nemesis",
+    horror: "CONAN.npcCategories.horror",
+    undead: "CONAN.npcCategories.undead",
+};
+
 CONFIG.availabilityTypes = {
   1: 'CONAN.skillRollDifficultyLevels.1',
   2: 'CONAN.skillRollDifficultyLevels.2',

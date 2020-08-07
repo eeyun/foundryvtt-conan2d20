@@ -313,6 +313,14 @@
             "doom": "Doom Spends"
         },
         "npcActionTypeLabel": "Action Type",
+        "npcCategoriesLabel": "Categories",
+        "npcCategories": {
+            "minion": "Minion",
+            "toughened": "Toughened",
+            "nemesis": "Nemesis",
+            "horror": "Horror",
+            "undead": "Undead"
+        },
         "baseDamageLabel": "Base Damage",
         "coverageLabel": "Coverage",
         "coverage": {
