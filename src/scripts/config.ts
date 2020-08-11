@@ -35,7 +35,7 @@ CONFIG.skills = {
     per: 'CONAN.skills.per',
     soc: 'CONAN.skills.soc',
     dis: 'CONAN.skills.dis',
-    sor: 'CONAN.skills.sor',
+    sor: 'CONAN.skills.sor'
 };
 
 CONFIG.expertiseFields = {
