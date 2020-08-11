@@ -58,6 +58,10 @@
             "2": "2",
             "1r": "1-repeatable"
         },
+        "attackDamageLabel": "Attack Damage",
+        "attackTypeLabel": "Attack Type",
+        "attackRangeLabel": "Attack Range",
+        "attackReachLabel": "Attack Reach",
         "availability": "Availability",
         "CHATOPT": {
             "triggerReroll": "Re-roll Selected",
@@ -125,6 +129,14 @@
             "dis": "Discipline",
             "sor": "Sorcery"
         },
+        "expertiseFields": {
+            "mov": "Movement",
+            "cmb": "Combat",
+            "frt": "Fortitude",
+            "knw": "Knowledge",
+            "scl": "Social",
+            "sns": "Senses"
+        },
         "skillShortLabel": "Skill",
         "skillExpertiseShortLabel": "Expertise",
         "skillFocusShortLabel": "Focus",
@@ -152,7 +164,7 @@
         "tn": "TN",
         "targetNumber": "Target Number",
         "sectionTalents": "Talents",
-        "sectionInventory": "Inventory",
+        "sectionInventory": "Belongings",
         "sectionWeapons": "Weapons",
         "sectionSpells": "Spells",
         "sectionBackground": "Background",
@@ -290,6 +302,25 @@
             "weapon": "Weapon",
             "display": "Display of Power"
         },
+        "npcAttackTypes": {
+            "melee": "Melee",
+            "ranged": "Ranged",
+            "threaten": "Threaten"
+        },
+        "npcAttackNameHeader": "Attack Name",
+        "npcActionTypes": {
+            "abilities": "Special Abilities",
+            "doom": "Doom Spends"
+        },
+        "npcActionTypeLabel": "Action Type",
+        "npcCategoriesLabel": "Categories",
+        "npcCategories": {
+            "minion": "Minion",
+            "toughened": "Toughened",
+            "nemesis": "Nemesis",
+            "horror": "Horror",
+            "undead": "Undead"
+        },
         "baseDamageLabel": "Base Damage",
         "coverageLabel": "Coverage",
         "coverage": {
@@ -301,14 +332,21 @@
             "rleg": "Right Leg"
         },
         "damageLabel": "Damage",
+        "damageTypeLabel": "Damage Type",
+        "damageTypes": {
+            "mental": "Mental",
+            "physical": "Physical"
+        },
         "damageRollLabel": "Damage",
         "damageRollAttackType": "Attack Type",
         "damageRollBonusHeader": "Damage Bonuses",
+        "damageRollDoomSpendLabel": "Doom",
         "damageRollMomentumSpendLabel": "Momentum",
         "damageRollTalentSpendLabel": "Talent",
         "damageRollLoadSpendLabel": "Reloads",
         "damageRollEffectGenLabel": "Effects generated",
         "damageRerollText": "{character} used a talent to reroll selected damage dice.",
+        "doomConversionTitle": "Each point entered here converts from 3 points of doom",
         "encumbrance1Each": "1-Each",
         "groupLabel": "Group",
         "languages": {
@@ -363,7 +401,7 @@
         "statusHeader": "Status",
         "tabCharacterLabel": "Character",
         "tabActionsLabel": "Actions",
-        "tabInventoryLabel": "Inventory",
+        "tabInventoryLabel": "Belongings",
         "tabSpellsLabel": "Spells",
         "tabSkillsLabel": "Skills",
         "tabTalentsLabel": "Talents",
@@ -486,6 +524,28 @@
                 "vici": "Vicious X",
                 "voll": "Volley"
             }
-        }
+        },
+        "npc": {
+            "sections": {
+                "attributes":"Attributes",
+                "fields":"Fields of Expertise",
+                "health":"Stress and Soak",
+                "attacks":"Attacks",
+                "abilities":"Special Abilities",
+                "doomspends": "Doom Spends",
+                "notes": "Notes",
+                "optional": "Optional"
+            },
+            "skills": {
+                "combat":"Combat",
+                "move":"Movement",
+                "fort":"Fortitude",
+                "sens":"Sense",
+                "know":"Knowledge",
+                "soci":"Social"
+            }
+        },
+        "ref-book":"Book",
+        "ref-page":"p."
     }
 }

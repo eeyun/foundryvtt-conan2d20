@@ -6,8 +6,8 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
     static get defaultOptions() {
         const options = super.defaultOptions;
         mergeObject(options, {
-            classes: options.classes.concat(['conan2d20', 'sheet', 'actor', 'pc', 'character-sheet']),
-            width: 700,
+            classes: options.classes.concat(['conan2d20', 'actor', 'pc', 'character-sheet']),
+            width: 650,
             height: 800,
             tabs: [{ navSelector: ".sheet-navigation", contentSelector: ".sheet-content", initial: "character" }]
         });
@@ -23,6 +23,13 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
     getData() {
         const sheetData = super.getData();
 
+        // Update skill labels
+        if (sheetData.data.skills !== undefined) {
+            for (let [s, skl] of Object.entries(sheetData.data.skills as Record<any, any>)) {
+                skl.label = CONFIG.CONAN.skills[s];
+            }
+        }
+
         // Update wounded icon
         sheetData.data.health.physical.wounds = C2_Utility.addDots(duplicate(sheetData.data.health.physical.wounds), sheetData.data.health.physical.wounds.max);
 
@@ -32,10 +39,12 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         // Update Actor Armor values
         if (sheetData.actor.inventory.weapon.items.filter(i => i.data.group === "shield").length > 0) {
             const shields = sheetData.actor.inventory.weapon.items.filter(i => i.data.group === "shield");
-           sheetData.data.health.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, shields);
+           sheetData.data.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, shields);
         } else {
-            sheetData.data.health.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, undefined);
+            sheetData.data.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, undefined);
         };
+
+        sheetData.skills = CONFIG.CONAN.skills;
 
         return sheetData;
     }
@@ -108,7 +117,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                 i.data.encumbrance = i.data.encumbrance || 0;                            
                 // i.totalWeight = formatEncumbrance(approximatedEncumbrance);                          
                 i.hasCharges = (i.type === 'kit') && i.data.uses.max > 0;      
-                if (i.type === 'weapon') {                                                   
+                if (i.type === 'weapon') {
                     let item;                                                                
                     try {                                                                  
                         item = this.actor.getOwnedItem(i._id);                               

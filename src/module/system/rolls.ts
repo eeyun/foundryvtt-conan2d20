@@ -208,6 +208,7 @@ export class Conan2d20Dice {
         } else {
             baseDamage = Number(rollData.extra.weapon.data.damage.dice || 1);
         };
+        const {attackerType} = rollData;
         const damageType = rollData.extra.weapon.data.damage.type;
         const {attackType} = rollData;
         let diceQty = baseDamage + rollData.talentModifier + rollData.reloadModifier;
@@ -239,7 +240,11 @@ export class Conan2d20Dice {
         diceQty += modifier;
         if (rollData.momentumModifier > 0) {
             try {
-                Conan2d20Actor.spendMomentum(rollData.momentumModifier);
+                if (attackerType === 'npc') {
+                    Conan2d20Actor.spendDoom(rollData.momentumModifier);
+                } else {
+                    Conan2d20Actor.spendMomentum(rollData.momentumModifier);
+                }
                 diceQty += rollData.momentumModifier;
                 if (rollData.reloadModifier > 0) {
                     try {
@@ -291,48 +296,78 @@ export class Conan2d20Dice {
         } else if ((rollData.diceModifier + rollData.successModifier) > 3) {
             throw generatorErr.bonus_count
         }
+
         let trained = false;
-        if (rollData.skill.trained > 0) {
-             trained = true;
-        }
-        let diceQty = baseDice;
-        if (rollData.diceModifier > 0) {
-            try {
-                if (rollData.diceModifierType === 'momentum') {
-                    Conan2d20Actor.spendMomentum(rollData.diceModifier); 
+        let diceQty;
+        let doomSpend;
+
+        if (actorData.type === "npc") {
+            diceQty = baseDice;
+            if (rollData.successModifier > 0) {
+                doomSpend = rollData.diceModifier + (rollData.successModifier * 3);
+            };
+            if (rollData.diceModifier > 0 || doomSpend > 0) {
+                try {
+                    Conan2d20Actor.spendDoom(doomSpend); 
                     diceQty += rollData.diceModifier;
-                } else if (rollData.diceModifierType === 'doom') {
-                    Conan2d20Actor.addDoom(rollData.diceModifier); 
-                    diceQty += rollData.diceModifier;
+                    await this.calculateSkillRoll(diceQty, rollData.skill.value, 0, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
                 }
-                if (rollData.successModifier > 0) {
-                    try {
-                        Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
-                        await this.showFortuneSpendDialog(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
-                    }
-                    catch(e) {
-                        console.log(e);
-                        ui.notifications.error(e);
-                    }
-                } else {
-                    await this.calculateSkillRoll(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
+                catch(e) {
+                    console.log(e);
+                    ui.notifications.error(e);
                 }
-            }
-            catch(e) {
-                console.log(e);
-                ui.notifications.error(e);
-            }
-        } else if (rollData.successModifier > 0) {
-            try {
-                Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
-                await this.showFortuneSpendDialog(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
-            }
-            catch(e) {
-                console.log(e);
-                ui.notifications.error(e);
+            } else {
+                try {
+                    await this.calculateSkillRoll(diceQty, rollData.skill.value, 0, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
+                }
+                catch(e) {
+                    console.log(e);
+                    ui.notifications.error(e);
+                }
             }
         } else {
-            await this.calculateSkillRoll(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
+            if (rollData.skill.trained > 0) {
+                 trained = true;
+            }
+            diceQty = baseDice;
+            if (rollData.diceModifier > 0) {
+                try {
+                    if (rollData.diceModifierType === 'momentum') {
+                        Conan2d20Actor.spendMomentum(rollData.diceModifier); 
+                        diceQty += rollData.diceModifier;
+                    } else if (rollData.diceModifierType === 'doom') {
+                        Conan2d20Actor.addDoom(rollData.diceModifier); 
+                        diceQty += rollData.diceModifier;
+                    }
+                    if (rollData.successModifier > 0) {
+                        try {
+                            Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
+                            await this.showFortuneSpendDialog(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
+                        }
+                        catch(e) {
+                            console.log(e);
+                            ui.notifications.error(e);
+                        }
+                    } else {
+                        await this.calculateSkillRoll(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
+                    }
+                }
+                catch(e) {
+                    console.log(e);
+                    ui.notifications.error(e);
+                }
+            } else if (rollData.successModifier > 0) {
+                try {
+                    Conan2d20Actor.spendFortune(actorData, rollData.successModifier);
+                    await this.showFortuneSpendDialog(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData);
+                }
+                catch(e) {
+                    console.log(e);
+                    ui.notifications.error(e);
+                }
+            } else {
+                await this.calculateSkillRoll(diceQty, rollData.skill.tn.value, rollData.skill.focus.value, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
+            }
         }
     }
 
@@ -391,6 +426,9 @@ export class Conan2d20Dice {
                             /* eslint no-param-reassign: "error" */
                             // @ts-ignore
                             rollData.talentModifier = Number(template.find('[name="talentModifier"]').val() || 0)
+                            /* eslint no-param-reassign: "error" */
+                            // @ts-ignore
+                            rollData.attackerType = dialogData.modifiers.attacker;
                             try {
                                 await Conan2d20Dice.generateDamageRoll(rollData, cardData, actorData);
                             }
@@ -428,7 +466,13 @@ export class Conan2d20Dice {
                             // @ts-ignore
                             rollData.successModifier = Number(template.find('[name="successModifier"]').val() || 0)
                             try {
-                                await Conan2d20Dice.generateSkillRoll(2, rollData, cardData, actorData);
+                                let baseDice = 2;
+                                if (dialogData.modifiers.actorType === 'npc') {
+                                    if (actorData.data.isMinion) {
+                                        baseDice = 1;
+                                    } 
+                                }
+                                await Conan2d20Dice.generateSkillRoll(baseDice, rollData, cardData, actorData);
                              }
                             catch (e) {
                                 console.log(e);

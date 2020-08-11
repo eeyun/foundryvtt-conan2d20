@@ -13,26 +13,28 @@
         }
     }
 
-   form {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    form {
+        background: url(../assets/parchment.jpg);
+        background-attachment: local;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
 
-    .sheet-header {
-      border-bottom: 1px solid var(--secondary-background);
-      flex: 0 0 70px;
-      width: 100%;
-      padding-bottom: 6px;
+        .sheet-header {
+            border-bottom: 1px solid var(--secondary-background);
+            flex: 0 0 70px;
+            width: 100%;
+            padding-bottom: 6px;
   
-      h1 {
+          h1 {
         font-family: CrushYourEnemies;
-      }
+          }
 
-      img {
-        flex: 0 0 64px;
-        margin-right: 6px;
-      }
-    }
+          img {
+            flex: 0 0 64px;
+            margin-right: 6px;
+          }
+        }
 
     .sheet-content {
       display: flex;

@@ -5,8 +5,10 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
         const options = super.defaultOptions;
         mergeObject(options, {
             classes: options.classes.concat(["conan2d20", "actor", "npc-sheet"]),
-            width: 650,
-            heigth: 680,
+            width: 460,
+            height: 680,
+            resizable: false,
+            scrollY: [".sheet-body", ".attributes", "fields", ".actions"]
         });
         return options;
     }
@@ -20,50 +22,86 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
     getData() {
         const sheetData = super.getData();
         sheetData.flags = sheetData.actor.flags;
-        if (sheetData.flags.conan2d20_updatednpcsheet === undefined) sheetData.flags.conan2d20_updatednpcsheet = {};
-        if (sheetData.flags.conan2d20_updatednpcsheet.editNPC === undefined) sheetData.flags.conan2d20_updatednpcsheet.editNPC = { value: false };
-        if (sheetData.flags.conan2d20_updatednpcsheet.allSaveDetail === undefined) sheetData.flags.conan2d20_updatednpcsheet.allSaveDetail = { value: '' };
 
-        sheetData.npcEliteActive = this.npcIsElite()?' active':'';
-        sheetData.npcMinionActive = this.npcIsMinion()?' active':'';
+        // Update expertise fields labels
+        if (sheetData.data.skills !== undefined) {
+            for (let [s, skl] of Object.entries(sheetData.data.skills as Record<any, any>)) {
+                skl.label = CONFIG.CONAN.expertiseFields[s];
+            }
+        }
+
+        sheetData.actor.data.isMinion = this.npcIsMinion();
+        sheetData.actor.data.isToughened = this.npcIsToughened();
+        sheetData.actor.data.isNemesis = this.npcIsNemesis();
+        sheetData.npcCategories = CONFIG.CONAN.npcCategories;
+        sheetData.skills = CONFIG.CONAN.expertiseFields;
 
         return sheetData;
     }
 
     _prepareItems(actorData) {
-        const attacks = {
-            melee: { label: 'NPC Melee Attack', items: [], type: 'melee' },
-            ranged: { label: 'NPC Ranged Attack', items: [], type: 'melee' },
-            weapon: { label: 'Compendium Weapon', items: [], type: 'weapon' },
+        const attacks = { 
+            npcattack: { label: 'NPC Attack', items: [] }
         };
+
+        const actions = {
+            abilities: { label: game.i18n.localize("CONAN.npcActionTypes.abilities"), actions: [] },
+            doom: { label: game.i18n.localize("CONAN.npcActionTypes.doom"), actions: [] }
+        };
+
+
+        // Get Attacks
         for (const i of actorData.items) {
             i.img = i.img || CONST.DEFAULT_TOKEN;
 
-
-            if (i.type == 'melee') {
-                const weaponType = (i.data.weaponType || {}).value || 'melee';
-                attacks[weaponType].items.push(i);
+            if (Object.keys(attacks).includes(i.type))
+            {
+                if (i.type == 'npcattack')
+                {
+                    let item;                                                                
+                    try {
+                        item = this.actor.getOwnedItem(i._id);
+                        i.chatData = item.getChatData({ secrets: this.actor.owner });
+                    }
+                    catch (err)
+                    {
+                        console.log(`Conan 2D20 System | NPC Sheet | Could not load item ${i.name}`)
+                    }
+                    attacks[i.type].items.push(i);
+                }
+            } else if (i.type === 'npcaction') {
+                const actionType = i.data.actionType || 'npcaction';
+                actions[actionType].actions.push(i);
             };
         }
 
+        actorData.actions = actions;
         actorData.attacks = attacks;
     }
-
-
-    npcIsElite() {
+    
+    npcIsNemesis() {
         const actorData = duplicate(this.actor.data);
-        const traits = getProperty(actorData.data, 'traits.traits.value') || [];
+        const traits = getProperty(actorData.data, 'categories.value') || [];
         for (const trait of traits) {
-            if (trait == 'elite') return true;
+            if (trait == 'nemesis') return true;
         }
         return false;
     }
 
     npcIsMinion() {
         const actorData = duplicate(this.actor.data);
-        const traits = getProperty(actorData.data, 'traits.traits.value') || [];
+        const traits = getProperty(actorData.data, 'categories.value') || [];
         for (const trait of traits) {
             if  (trait == 'minion') return true;
+        }
+        return false;
+    }
+
+    npcIsToughened() {
+        const actorData = duplicate(this.actor.data);
+        const traits = getProperty(actorData.data, 'categories.value') || [];
+        for (const trait of traits) {
+            if  (trait == 'toughened') return true;
         }
         return false;
     }

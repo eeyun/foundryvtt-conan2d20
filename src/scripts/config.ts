@@ -38,6 +38,15 @@ CONFIG.skills = {
     sor: 'CONAN.skills.sor'
 };
 
+CONFIG.expertiseFields = {
+    mov: 'CONAN.expertiseFields.mov',
+    cmb: 'CONAN.expertiseFields.cmb',
+    frt: 'CONAN.expertiseFields.frt',
+    knw: 'CONAN.expertiseFields.knw',
+    scl: 'CONAN.expertiseFields.scl',
+    sns: 'CONAN.expertiseFields.sns'
+};
+
 CONFIG.rollDifficultyLevels = {
     1: 'CONAN.skillRollDifficultyLevels.1',
     2: 'CONAN.skillRollDifficultyLevels.2',
@@ -71,6 +80,30 @@ CONFIG.encumbranceTypes = {
 CONFIG.attacks = {
     weapon: 'CONAN.attackTypes.weapon',
     display: 'CONAN.attackTypes.display'
+};
+
+CONFIG.damageTypes = {
+    mental: 'CONAN.damageTypes.mental',
+    physical: 'CONAN.damageTypes.physical'
+};
+
+CONFIG.npcActionTypes = {
+    abilities: 'CONAN.npcActionTypes.abilities',
+    doom: 'CONAN.npcActionTypes.doom'
+};
+
+CONFIG.npcAttackTypes = {
+    melee: "CONAN.npcAttackTypes.melee",
+    ranged: "CONAN.npcAttackTypes.ranged",
+    threaten: "CONAN.npcAttackTypes.threaten",
+};
+
+CONFIG.npcCategories = {
+    minion: "CONAN.npcCategories.minion",
+    toughened: "CONAN.npcCategories.toughened",
+    nemesis: "CONAN.npcCategories.nemesis",
+    horror: "CONAN.npcCategories.horror",
+    undead: "CONAN.npcCategories.undead",
 };
 
 CONFIG.availabilityTypes = {

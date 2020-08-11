@@ -121,11 +121,10 @@ export default class Conan2d20Actor extends Actor {
                 action.attack.id = item._id;
                 action.attack.type = item.type;
                 data.actions.push(action);
-			});
+            });
 		}
         // Experience
         data.resources.xp.value = character.exp;
-
     }
 
   /* -------------------------------------------- */
@@ -135,8 +134,8 @@ export default class Conan2d20Actor extends Actor {
    */
     _prepareNPCData(actorData) {
          const {data} = actorData;
-        // const character = new CharacterData(data, this.items);
-         return data;
+         const npc = new CharacterData(data, this.items);
+         return npc;
     }
 
     static addDoom(doomSpend) {
@@ -152,6 +151,16 @@ export default class Conan2d20Actor extends Actor {
             /* eslint-disable-next-line no-param-reassign */
             actorData.data.resources.fortune.value = newValue;
             game.actors.get(actorData._id).update(actorData);
+        }
+    }
+
+    static spendDoom(doomSpend) {
+        const newValue = game.settings.get("conan2d20", "doom") - doomSpend;
+        if (newValue <  0) {
+            const error = "Doom spend would exceed available doom points."
+            throw error;
+        } else {
+            Counter.changeCounter(-`${doomSpend}`, "doom");
         }
     }
 
@@ -239,16 +248,22 @@ export default class Conan2d20Actor extends Actor {
      * Skill tests are fairly simple but there are a number of validations that
      * need to be made including the handling of fortune and doom/momentum
      */
-    setupSkill(skill) {
+    setupSkill(skill, actorType) {
+        let skillList;
+        if (actorType === 'character') {
+            skillList = CONFIG.skills;
+        } else if (actorType === 'npc'){
+            skillList = CONFIG.expertiseFields;
+        };
         const dialogData = {
-            title : CONFIG.skills[skill],
-            modifiers : this._getModifiers("skill", skill),
+            title : skillList[skill],
+            modifiers : this._getModifiers("skill", actorType),
             template : "systems/conan2d20/templates/apps/skill-roll-dialogue.html",
         };
         const rollData = {
             skill : this.data.data.skills[skill],
         };
-        const cardData = this._setupCardData("systems/conan2d20/templates/chat/skill-roll-card.html", CONFIG.skills[skill])
+        const cardData = this._setupCardData("systems/conan2d20/templates/chat/skill-roll-card.html", skillList[skill])
         return {dialogData, cardData, rollData}
     }
 
@@ -343,19 +358,27 @@ export default class Conan2d20Actor extends Actor {
   	  	        difficulty: difficultyLevels,
   	  	        diceModifier : diceModSpends,
   	  	        successModifier : 0,
+                actorType: specifier,
   	  	    }
   	  	    return mod
         } ;
         if (type === 'damage') {
             const attackTypes = CONFIG.weaponTypes;
             let wType: String;
+            let attacker: String;
             let bDamage: Object;
             if (specifier.type === 'display') {
                 wType = 'display';
+                attacker = 'character';
             } else if (specifier.type === 'weapon') {
                 wType = specifier.data.weaponType;
+                attacker = 'character';
+            } else if (specifier.type === 'npcattack') {
+                wType = specifier.data.attackType;
+                attacker = 'npc';
             }
             mod = {
+                attacker,
                 attackType: attackTypes,
                 weaponType: wType,
                 momentumModifier: 0,

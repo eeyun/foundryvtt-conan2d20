@@ -1,0 +1,39 @@
+<div class="health">
+    <div class="section-header">
+        <h2>{{localize "CONAN.npc.sections.health"}}</h2>
+    </div>
+    <div class="npc-health-grid">
+        <div class="npc-vigor">
+            <div class="entry-label">
+            <h4 class="vigor-label">{{localize "CONAN.healthVigor"}}</h4>
+            </div>
+            <div class="entry-score">
+            <input name="data.health.physical.value" type="Number" value="{{data.health.physical.value}}" placeholder="4" />
+            </div>
+        </div>
+        <div class="npc-resolve">
+            <div class="entry-label">
+            <h4 class="resolve-label">{{localize "CONAN.healthResolve"}}</h4>
+            </div>
+            <div class="entry-score">
+            <input name="data.health.mental.value" type="Number" value="{{data.health.mental.value}}" placeholder="4" />
+            </div>
+        </div>
+        <div class="npc-armor">
+            <div class="entry-label">
+            <h4 class="armor-label">{{localize "CONAN.healthArmor"}}</h4>
+            </div>
+            <div class="entry-score">
+            <input name="data.armor" type="Number" value="{{data.armor}}" placeholder="4" />
+            </div>
+        </div>
+        <div class="npc-courage">
+            <div class="entry-label">
+            <h4 class="courage-label">{{localize "CONAN.healthCourage"}}</h4>
+            </div>
+            <div class="entry-score">
+            <input name="data.health.courage" type="Number" value="{{data.health.courage}}" placeholder="4" />
+            </div>
+        </div>
+    </div>
+</div>

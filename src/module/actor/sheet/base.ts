@@ -12,7 +12,8 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 '.character-pane',
                 '.talents-pane',
                 '.inventory-pane',
-                '.actions-pane'
+                '.actions-pane',
+                '.sheet-body'
             ]
         });
     }
@@ -33,16 +34,8 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             }
         }
 
-        // Update skill labels
-        if (sheetData.data.skills !== undefined) {
-            for (let [s, skl] of Object.entries(sheetData.data.skills as Record<any, any>)) {
-                skl.label = CONFIG.CONAN.skills[s];
-            }
-        }
-
         // Update Skills and Attributes
         sheetData.attributes = CONFIG.CONAN.attributes;
-        sheetData.skills = CONFIG.CONAN.skills;
         sheetData.natures = CONFIG.CONAN.naturesTypes;
         sheetData.languages = CONFIG.CONAN.languages;
         sheetData.conditions = CONFIG.CONAN.conditionTypes;
@@ -135,16 +128,18 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         });
 
         html.find(".skill-name.rollable").click(async ev => {
-            let actorData = duplicate(this.actor)
+            let actorData = duplicate(this.actor);
             let skill = $(ev.currentTarget).parents(".skill-entry-name").attr("data-skill")
-            let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
+            // @ts-ignore
+            let {dialogData, cardData, rollData} = this.actor.setupSkill(skill, actorData.type)
             await Conan2d20Dice.showSkillRollDialog({dialogData, cardData, rollData, actorData})
         });
 
         html.find(".fa-dice-d20.rollable").click(async ev => {
             let actorData = duplicate(this.actor)
             let skill = $(ev.currentTarget).parents(".skill-entry-tab-roll").attr("data-skill")
-            let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
+            // @ts-ignore
+            let {dialogData, cardData, rollData} = this.actor.setupSkill(skill, actorData.type)
             await Conan2d20Dice.showSkillRollDialog({dialogData, cardData, rollData, actorData})
         });
 
@@ -316,6 +311,8 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 break;
                 case 'kit':
                     if (chatData.hasCharges) buttons.append(`<span class="tag"><button class="consume" data-action="consume">${localize('CONAN.kitUseLabel')} ${item.name}</button></span>`);
+                case 'npcattack':
+                    buttons.append(`<button class="tag npc_damage execute-attack" data-action="npcDamage">${localize('CONAN.damageRollLabel')}</button>`);
                 break;
             }
         
@@ -340,13 +337,22 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                     ev.stopPropagation();
                     let actorData = duplicate(this.actor)
                     // @ts-ignore
-                    let weapon = duplicate(this.actor.getEmbeddedEntity("OwnedItem", itemId, true));
+                    let weapon = duplicate(this.actor.getOwnedItem(itemId));
                     const reloadIds = this.actor.data.items
                         .filter(i => i.data.kitType === "reload")
                         .map(i => ({ id: i._id, name: i.name}) ||  []);
                     let {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon, reloadIds);
                     Conan2d20Dice.showDamageRollDialog({dialogData, cardData, rollData, actorData})
                 }; 
+                break;
+                case 'npcDamage': {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    let actorData = duplicate(this.actor)
+                    let weapon = duplicate(this.actor.getOwnedItem(itemId));
+                    let {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon,);
+                    Conan2d20Dice.showDamageRollDialog({dialogData, cardData, rollData, actorData})
+                }
                 break;
               //case 'spellAttack': item.rollSpellAttack(ev); break;
               //case 'spellDamage': item.rollSpellDamage(ev); break;

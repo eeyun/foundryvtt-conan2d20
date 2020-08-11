@@ -52,35 +52,6 @@
                         },
                         "despair": 0
                     },
-                    "armor": {
-                        "head": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "torso": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "r-arm": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "l-arm": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "r-leg": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "l-leg": {
-                            "soak": [0],
-                            "qualities": []
-                        },
-                        "shield": {
-                            "soak": [0]
-                        }
-                    },
                     "courage": 0
                 },
                 "spells": false,
@@ -116,6 +87,35 @@
                     "value": 0,
                     "min": -2,
                     "max": 5
+                }
+            },
+            "armor": {
+                "head": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "torso": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "r-arm": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "l-arm": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "r-leg": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "l-leg": {
+                    "soak": [0],
+                    "qualities": []
+                },
+                "shield": {
+                    "soak": [0]
                 }
             },
             "resources": {
@@ -479,29 +479,36 @@
         "npc": {
             "templates": ["common"],
             "description": "physical description",
+            "categories": {
+                "value": [],
+                "custom": ""
+            },
+            "armor": 0,
             "skills": {
-                "move": {
+                "mov": {
                     "value": 0
                 },
-                "combat": {
+                "cmb": {
                     "value": 0
                 },
-                "fort": {
+                "frt": {
                     "value": 0
                 },
-                "know": {
+                "knw": {
                     "value": 0
                 },
-                "soci": {
+                "scl": {
                     "value": 0
                 },
-                "sens": {
+                "sns": {
                     "value": 0
                 }
             },
-            "attacks": [],
-            "abilities": [],
-            "doom-spends": []
+            "isMinion": false,
+            "isToughened": false,
+            "isNemesis": false,
+            "notes": [],
+            "optional": []
         }
     },
     "Item": {
@@ -510,6 +517,8 @@
             "armor",
             "display",
             "kit",
+            "npcattack",
+            "npcaction",
             "spell",
             "talent",
             "weapon"
@@ -590,12 +599,27 @@
                 "dice": 1
             },
             "size": "",
-            "reach": "",
             "range": "",
             "shots": 1,
             "qualities": {
                 "value": []
             }
+        },
+        "npcattack": {
+            "templates": ["itemDescription"],
+            "attackType": "",
+            "range": "",
+            "damage": {
+                "type": "physical",
+                "dice": 1
+            },
+            "qualities": {
+                "value": []
+            }
+        },
+        "npcaction": {
+            "templates": ["itemDescription"],
+            "actionType": ""
         },
         "display": {
             "skill": "",
