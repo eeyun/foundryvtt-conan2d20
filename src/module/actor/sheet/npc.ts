@@ -36,7 +36,6 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
         sheetData.npcCategories = CONFIG.CONAN.npcCategories;
         sheetData.skills = CONFIG.CONAN.expertiseFields;
 
-        this.actor.update(sheetData.actor);
         return sheetData;
     }
 
@@ -75,10 +74,11 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
                 actions[actionType].actions.push(i);
             };
         }
+
         actorData.actions = actions;
         actorData.attacks = attacks;
     }
-
+    
     npcIsNemesis() {
         const actorData = duplicate(this.actor.data);
         const traits = getProperty(actorData.data, 'categories.value') || [];
