@@ -59,6 +59,7 @@ $header-height: 120px;
         height: 24px;
         margin: 0;
         padding: 1px 3px;
+        z-index: 5;
         li {
             &.tag {
                 background-color: var(--darker);
@@ -84,8 +85,7 @@ $header-height: 120px;
     }
 
     .npc-sheet-body {
-        .sheet-content,
-        .sheet-content .inventory {
+        .sheet-content {
             position: absolute;
             top: 0;
             left: 0;

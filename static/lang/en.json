@@ -181,6 +181,8 @@
         "backgroundAge": "Age",
         "backgroundGender": "Gender",
         "sectionHealth": "Stress & Harms",
+        "despairTitle": "Despair: Each point of Despair reduces your maximum Resolve by 1, causing you to become more vulnerable to the doubts and fears that plague mortal minds. If your maximum Resolve would be reduced to 0 you give up hope entirely, and become both unwilling and unable to continue. Any further Despair beyond that, and you will become permanenantly insensate, comotose for all practical purposes",
+        "fatigueTitle": "Fatigue: Each point of Fatigue reduces your maximum Vigor by 1, causing you to tire faster in battle. If your maximum Vigor is reduced to 0, then you are exhausted beyond any ability to continue, and you will fall unconscious immediately. If you take any further Fatigue  once you have reached 0 maximum Vigor, you will die.",
         "fortuneLabel": "Fortune Points",
         "fortuneSpendLabel": "Spend Fortune",
         "healthPhysical": "Physical",
@@ -283,6 +285,7 @@
             "vheavyarmor": "Very Heavy Armor"
         },
         "armorQualitiesActiveLabel": "Active Armor Qualities",
+        "attackHeader": "Attack",
         "attacksLabel": "Attacks",
 		"attacks": {
 			"threaten": {
@@ -347,6 +350,7 @@
         "damageRollEffectGenLabel": "Effects generated",
         "damageRerollText": "{character} used a talent to reroll selected damage dice.",
         "doomConversionTitle": "Each point entered here converts from 3 points of doom",
+        "doomSpendHeader": "Doom Spend",
         "encumbrance1Each": "1-Each",
         "groupLabel": "Group",
         "languages": {
@@ -395,6 +399,7 @@
         "skillRollFortuneSpendPrompt": "You've chosen to spend fortune points for this roll. Would you like to roll your remaining dice (these can still generate complications)?",
         "skillRollMomentumSpendLabel": "Spend Momentum",
         "specialLabel": "Special",
+        "specialAbilityHeader": "Special Ability",
         "armorSoakLabel": "Armor Soak",
         "standingLabel": "Standing",
         "updateActorLabel": "Update Actor",
