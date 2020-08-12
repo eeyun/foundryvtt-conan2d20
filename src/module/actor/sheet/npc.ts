@@ -8,7 +8,7 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
             width: 460,
             height: 680,
             resizable: false,
-            scrollY: [".sheet-body", ".attributes", "fields", ".actions"]
+            scrollY: [".sheet-content"]
         });
         return options;
     }

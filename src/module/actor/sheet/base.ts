@@ -192,10 +192,19 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         } else if (data.type === 'action') {
         	data.name = `New ${data.actionType.capitalize()}`;
         	mergeObject(data, { 'data.actionType.value': data.actionType });
+        } else if (data.type === 'npcaction') {
+            if (data.actionType === 'doom') {
+                data.name = `New ${game.i18n.localize("CONAN.doomSpendHeader")}`;
+            } else if (data.actionType === 'abilities') {
+                data.name = `New ${game.i18n.localize("CONAN.specialAbilityHeader").capitalize()}`;
+            }
+            mergeObject(data, { 'data.actionType': data.actionType });
+        } else if (data.type === 'npcattack') {
+            data.name = `New ${game.i18n.localize("CONAN.attackHeader").capitalize()}`;
+            mergeObject(data, { 'data.actionType': data.actionType });
         } else {
         	data.name = `New ${data.type.capitalize()}`;
         }
-        // this.actor.createOwnedItem(data, {renderSheet: true});
         this.actor.createEmbeddedEntity('OwnedItem', data);
     }
 
@@ -272,9 +281,9 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 chatData.itemDetails.forEach((p) => {
                 let concat;
                     if(p.description) {
-                        concat = `<span class="chat-item-detail" title="${localize(p.description)}><b>${localize(p.label)}:</b> ${localize(p.detail)}</span>`;
+                        concat = `<span class="chat-item-detail" title="${localize(p.description)}><b> ${localize(p.label)}:</b> ${localize(p.detail)} </span>`;
                     } else {
-                        concat = `<span class="chat-item-detail"><b>${localize(p.label)}:</b> ${localize(p.detail)}</span>`;
+                        concat = `<span class="chat-item-detail"><b>${localize(p.label)}:</b> ${localize(p.detail)} </span>`;
                     }
                     details.append(concat);
                 });

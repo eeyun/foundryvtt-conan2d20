@@ -193,3 +193,51 @@
     }  
 }
 
+.fatigue-tracker {
+    background-image: url("../assets/icons/fd2-tracker.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 10;
+    position:absolute;
+    top: 96px;
+    left: 136px;
+    input[type='number'] {
+        background: none;
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+        color: #BDBCBB;
+        font-weight: 700;
+        font-family: Norse;
+        text-align: center;
+        border-bottom: 1px solid transparent;
+    }
+    input:hover {
+        @include input-glow;
+    }
+}
+
+.despair-tracker {
+    background-image: url("../assets/icons/fd2-tracker.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 10;
+    top: 168px;
+    left: 136px;
+    position:absolute;
+    input[type='number'] {
+        background: none;
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+        color: #BDBCBB;
+        font-weight: 700;
+        font-family: Norse;
+        text-align: center;
+        border-bottom: 1px solid transparent;
+    }
+    input:hover {
+        @include input-glow;
+    }
+}
+

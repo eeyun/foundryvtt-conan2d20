@@ -508,7 +508,12 @@
             "isToughened": false,
             "isNemesis": false,
             "notes": [],
-            "optional": []
+            "optional": {
+                "book": {
+                    "value": "",
+                    "page": ""
+                }
+            }
         }
     },
     "Item": {
