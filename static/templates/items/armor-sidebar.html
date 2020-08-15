@@ -19,7 +19,7 @@
 
     <div class="form-group">
         <label>{{localize "CONAN.itemEncumbrance"}}</label>
-        <select name="data.encumbrance" data-dtype="Number">
+        <select name="data.encumbrance" data-dtype="String">
             {{#select data.encumbrance}}
             {{#each encumbrance as |label key|}}
             <option value="{{key}}">{{localize label}}</option>
