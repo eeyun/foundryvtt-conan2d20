@@ -26,12 +26,17 @@
     {{/each}}
     </ol>
                                                                                  
-    {{#with data.attributes.encumbrance}}
+    {{#with data.encumbrance}}
     <div class="encumbrance {{#if isEncumbered}}encumbered{{/if}} {{#if isOverLimit}}over-limit{{/if}}">
-        <span class="encumbrance-bar" style="width:{{limitPercentageMax100}}%"></span>
-        <span class="encumbrance-label">{{bulk}} / {{encumberedAt}} ({{limit}})</span>
-    </div>                                                                       
-    {{/with}}                                                                    
+        <img src="systems/conan2d20/icons/equipment/backpack.jpg" alt="Encumbrance">
+        <span class="encumbrance-bar" style="width:{{limitPercentageMax}}%"></span>
+        <div class="encumbrance-label">
+            <span>{{localize 'CONAN.encumbranceShortLabel'}}: {{combinedEnc}} / {{localize encumbranceFactor.carried}} / {{localize encumbranceFactor.fatigue}}</span>
+            <span>{{localize 'CONAN.encumbranceMaxLabel'}}: {{limit}}</span>
+        </div>
+        <span class="bar-bg"></span>
+    </div>
+    {{/with}}
 </div>                                                                           
 
 

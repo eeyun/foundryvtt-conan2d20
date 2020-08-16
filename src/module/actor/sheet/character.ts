@@ -1,6 +1,7 @@
 import { data } from 'jquery';
 import ActorSheetConan2d20 from './base';
 import { C2_Utility } from '../../../scripts/utility';
+import { calculateEncumbrance } from '../../item/encumbrance';
 
 class ActorSheetConan2d20Character extends ActorSheetConan2d20 { 
     static get defaultOptions() {
@@ -29,6 +30,9 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                 skl.label = CONFIG.CONAN.skills[s];
             }
         }
+
+        // Update Encumbrance Level
+        sheetData.data.encumbrance = calculateEncumbrance(sheetData.actor.inventory, sheetData.actor.data.attributes.bra.value);
 
         // Update wounded icon
         sheetData.data.health.physical.wounds = C2_Utility.addDots(duplicate(sheetData.data.health.physical.wounds), sheetData.data.health.physical.wounds.max);
@@ -115,7 +119,6 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             if (Object.keys(inventory).includes(i.type)) {                             
                 i.data.quantity = i.data.quantity || 0;                                  
                 i.data.encumbrance = i.data.encumbrance || 0;                            
-                // i.totalWeight = formatEncumbrance(approximatedEncumbrance);                          
                 i.hasCharges = (i.type === 'kit') && i.data.uses.max > 0;      
                 if (i.type === 'weapon') {
                     let item;                                                                
