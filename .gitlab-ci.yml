@@ -3,15 +3,45 @@ image: node
 stages:
   - build
   - test
+  - package
   - deploy
+
+
+###########
+# VARIABLES
+###########
+variables: 
+  IMAGE_VERSION: ${CI_COMMIT_REF}.${CI_PIPELINE_ID}
+  IMAGE_NAME: "INSERT IMAGE NAME"
+  
+###########
+# RULES MODEL
+###########
+
+.rules_if_commit_default_branch: &rules_if_commit_default_branch
+  if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  when: on_success
+
+.rules_if_source_merge_request: &rules_if_source_merge_request
+  if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  when: on_success
+
+#TDODO : update according to th erelease regex you'd like
+.rules_if_release_tag: &rules_if_release_tag
+  if: $CI_COMMIT_REF_NAME =~ /^release-.*$/ && $CI_COMMIT_TAG
+
+
+###########
+# JOBS TEMPLATE
+###########
 
 .global_rules:
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: on_success
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: on_success
+    [*rules_if_commit_default_branch, *rules_if_source_merge_request]
 
+###########
+# PIPELINE
+###########
 lint:
   # extends: .global_rules
   stage: .pre
@@ -32,4 +62,13 @@ build:
     - echo building with webpack
     - npm run build
     # - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    
+package:
+  stage: package
+  script:
+    # - docker login  -u $USER -p $CI_BUILD_TOKEN $CI_REGISTRY
+    # - docker build ${CI_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}
+    - echo "your script here"
+  rules:
+    [*rules_if_release_tag]
 
