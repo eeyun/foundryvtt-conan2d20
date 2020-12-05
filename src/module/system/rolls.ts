@@ -60,18 +60,18 @@ export class Conan2d20Dice {
             rolls = [];
         } else {
             rollInstance = new Roll(`${diceQty}d20`);
-            rolls = rollInstance.roll().parts[0].rolls;
+            rolls = rollInstance.roll().terms[0].results;
         }
 
         let i;
         if (autoSuccess !== undefined && autoSuccess > 0) {
             for (i = 0; i < autoSuccess; i+=1) {
-                const successRoll = {roll: 1};
+                const successRoll = {result: 1};
                 rolls.push(successRoll);
             }
         } else if (fixedrolls !== undefined){
             for (i = 0; i < fixedrolls.length; i+=1) {
-                const mergeRoll = {roll: fixedrolls[i]};
+                const mergeRoll = {result: fixedrolls[i]};
                 rolls.push(mergeRoll);
             }
 
@@ -80,14 +80,14 @@ export class Conan2d20Dice {
 
         rolls.forEach(r => {
             if (!(trained)) {
-                if (r.roll === 19 || r.roll === 20)
+                if (r.result === 19 || r.result === 20)
                     complications+=1;
-            } else if (r.roll === 20) {
+            } else if (r.result === 20) {
                 complications+=1;
             };
-            if (r.roll <= focus) {
+            if (r.result <= focus) {
                 crits+=1;
-            } else if (r.roll <= tn) {
+            } else if (r.result <= tn) {
                 successes+=1
             }
         })
@@ -102,7 +102,7 @@ export class Conan2d20Dice {
                 result = "success"
             }
             else 
-            {
+           {
                 result = "failure"
             }
         }
@@ -127,7 +127,7 @@ export class Conan2d20Dice {
 
     static async calculateDamageRoll(diceQty: Number = 1, damageType: any, cardData: any, fixedrolls?: any) {
         const damageRollInstance = new Roll(`${diceQty}d6`);
-        const damageRolls = damageRollInstance.roll().parts[0].rolls;
+        const damageRolls = damageRollInstance.roll().terms[0].results;
         let reroll = false;
         let damage: number = 0;
         let effects: number = 0;
@@ -136,18 +136,18 @@ export class Conan2d20Dice {
         let i;
         if (fixedrolls !== undefined){
             for (i = 0; i < fixedrolls.length; i+=1) {
-                const mergeRoll = {roll: fixedrolls[i]};
+                const mergeRoll = {result: fixedrolls[i]};
                 damageRolls.push(mergeRoll);
             }
             reroll = true;
         }
 
         damageRolls.forEach(r => {
-            if (r.roll === 1) {
+            if (r.result === 1) {
                 damage += 1;
-            } else if (r.roll === 2) {
+            } else if (r.result === 2) {
                 damage += 2;
-            } else if (r.roll === 3 || r.roll === 4) {
+            } else if (r.result === 3 || r.result === 4) {
                 damage += 0;
             } else {
                 damage  += 1;
@@ -156,19 +156,19 @@ export class Conan2d20Dice {
         })
 
         const locationRollInstance = new Roll('1d20');
-        const locationRolls = locationRollInstance.roll().parts[0].rolls;
+        const locationRolls = locationRollInstance.roll().terms[0].results;
 
         locationRolls.forEach(r => {
             // @ts-ignore
-            if (r.roll >=1 && r.roll <=2) {
+            if (r.result >=1 && r.result <=2) {
                 hitLocation = CONFIG.coverageTypes.head;
-            } else if (r.roll >=3 && r.roll <=5) {
+            } else if (r.result >=3 && r.result <=5) {
                 hitLocation = CONFIG.coverageTypes.rarm;
-            } else if (r.roll >=6 && r.roll <=8) {
+            } else if (r.result >=6 && r.result <=8) {
                 hitLocation = CONFIG.coverageTypes.larm;
-            } else if (r.roll >=9 && r.roll <=14) {
+            } else if (r.result >=9 && r.result <=14) {
                 hitLocation = CONFIG.coverageTypes.torso;
-            } else if (r.roll >=15 && r.roll <=17) {
+            } else if (r.result >=15 && r.result <=17) {
                 hitLocation = CONFIG.coverageTypes.rleg;
             } else {
                 hitLocation = CONFIG.coverageTypes.lleg;

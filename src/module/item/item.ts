@@ -58,7 +58,6 @@ export default class Conan2d20Item extends Item {
         }
 
         const data : any = duplicate(this.data.data);
-        const ad = this.actor.data.data;
 
         let associatedWeapon = null;
         if (data.weapon.value) associatedWeapon = this.actor.getOwnedItem(data.weapon.value);
@@ -75,6 +74,184 @@ export default class Conan2d20Item extends Item {
         return data;
     }
 
+    _enchantmentChatData() {
+        if (this.data.type !== 'enchantment') {
+            throw new Error('tried to create a spell chat data for a non-spell item');
+        }
+
+        const data : any = duplicate(this.data.data);
+        const effects = data.effects.value;
+        const properties = [];
+        const  details = [];
+
+        const qualities = [];
+        if ((effects || []).length !== 0) {
+            let  effectsObject;
+            for (let i = 0; i < effects.length; i+= 1) {
+                if (effects[i].value) {
+                    effectsObject = { label: `${effects[i].label} ${(effects[i].value)}` || (effects[i].label.charAt(0).toUpperCase() + effects[i].label.slice(1)),
+                    description: CONFIG.CONAN.qualitiesDescriptions[effects[i].label.replace(' ','').toLowerCase()] || '',
+                    };
+                } else {
+                    effectsObject = { label: CONFIG.CONAN.weaponQualities[effects[i].label] || (effects[i].label.charAt(0).toUpperCase() + effects[i].label.slice(1)),
+                    description: CONFIG.CONAN.qualitiesDescriptions[effects[i].label.replace(' ','').toLowerCase()] || '',
+                    };
+                }
+                qualities.push(effectsObject);
+            }
+        }
+        const enchantmentType = {
+            label: 'CONAN.enchantmentTypeLabel',
+            detail: CONFIG.CONAN.enchantmentTypes[data.enchantmentType],
+        };
+        details.push(enchantmentType);
+        if (enchantmentType.detail === 'Exploding Powder') {
+            let enchantmentDamage = {
+                label: 'CONAN.enchantmentDamageLabel',
+                detail: CONFIG.CONAN.damageDice[data.damage.dice],
+            };
+            let enchantmentItem = {
+                label: 'CONAN.enchantmentItemLabel',
+                detail: CONFIG.CONAN.enchantmentExplodingItems[data.traits.explodingItem],
+            };
+            let enchantmentStrength = {
+                label: 'CONAN.enchantmentStrengthLabel',
+                detail: CONFIG.CONAN.enchantmentStrengths[data.traits.strength],
+            };
+            details.push(enchantmentItem);
+            details.push(enchantmentDamage);
+            details.push(enchantmentStrength);
+
+        } else if (enchantmentType.detail === 'Blinding Powder') {
+            let enchantmentDamage = {
+                label: 'CONAN.enchantmentDamageLabel',
+                detail: CONFIG.CONAN.damageDice[data.damage.dice],
+            };
+            let enchantmentStrength = {
+                label: 'CONAN.enchantmentStrengthLabel',
+                detail: CONFIG.CONAN.enchantmentBlindingStrengths[data.traits.strength],
+            }
+            details.push(enchantmentStrength);
+            details.push(enchantmentDamage);
+
+        } else if (enchantmentType.detail === 'Burning Liquid') {
+            let enchantmentDamage = {
+                label: 'CONAN.enchantmentDamageLabel',
+                detail: CONFIG.CONAN.damageDice[data.damage.dice],
+            };
+            let enchantmentStrength = {
+                label: 'CONAN.enchantmentVolatilityLabel',
+                detail: CONFIG.CONAN.enchantmentVolatilities[data.traits.volatility],
+            };
+            details.push(enchantmentDamage);
+            details.push(enchantmentStrength);
+
+        } else if (enchantmentType.detail === 'Reinforced Fabric') {
+            let enchantmentIngredients = {
+                label: 'CONAN.enchantmentIngredientsLabel',
+                detail: CONFIG.CONAN.enchantmentIngredients[data.traits.ingredients],
+            };
+            let localize = game.i18n.localize.bind(game.i18n);
+            if((data.damage.hitLocation || []).length !== 0) {
+                for (let i = 0; i < data.damage.hitLocation.value.length; i+= 1 ) {
+                    properties.push(`${data.damage.hitLocation.value[i]} ${localize('CONAN.coverageLabel')}`)
+                }
+            }
+            data.properties = properties.filter((p) => p !== null);
+            details.push(enchantmentIngredients);
+
+        } else if (enchantmentType.detail === 'Upas-Glass') {
+            let enchantmentCover = {
+                label: 'CONAN.enchantmentCoverLabel',
+                detail: CONFIG.CONAN.damageDice[data.damage.dice],
+            };
+            let enchantmentSize = {
+                label: 'CONAN.upasGlassSizeLabel',
+                detail: CONFIG.CONAN.upasGlassSizes[data.traits.size],
+            };
+            details.push(enchantmentSize);
+            details.push(enchantmentCover);
+
+        } else if (enchantmentType.detail === 'Talisman') {
+            let talismanHindrance = {
+                label: 'CONAN.enchantmentHindranceLabel',
+                detail: data.traits.hindrance,
+            };
+            let talismanType = {
+                label: 'CONAN.enchantmentTalismanLabel',
+                detail: CONFIG.CONAN.enchantmentTalismanTypes[data.traits.talismanType],
+            };
+            details.push(talismanHindrance);
+            details.push(talismanType);
+
+        } else {
+            let enchantmentUse = {
+                label: 'CONAN.lotusPollenUseLabel',
+                detail: CONFIG.CONAN.lotusPollenUses[data.traits.lotusPollenUse],
+            };
+            let enchantmentColor = {
+                label: 'CONAN.lotusPollenColorLabel',
+                detail: CONFIG.CONAN.lotusPollenColors[data.traits.lotusPollenColor],
+            };
+            let enchantmentForm = {
+                label: 'CONAN.lotusPollenFormLabel',
+                detail: CONFIG.CONAN.lotusPollenForms[data.traits.lotusPollenForm],
+            };
+            details.push(enchantmentUse);
+            details.push(enchantmentColor);
+            details.push(enchantmentForm);
+        }
+
+        data.itemDetails = details.filter((p) => p !== null);
+        data.qualities = qualities.filter((p) => !!p);
+
+        return data;
+    }
+
+    _spellChatData() {
+        if (this.data.type !== 'spell') {
+            throw new Error('tried to create a spell chat data for a non-spell item');
+        }
+
+        const data : any = duplicate(this.data.data);
+        const  details = [];
+
+        if (data.difficulty.includes) {
+            const difficultyIncludes = {
+                label: 'CONAN.difficultyIncludesLabel',
+                detail: data.difficulty.includes,
+            };
+            details.push(difficultyIncludes);
+        }
+
+        if (data.duration) {
+            const duration = {
+                label: 'CONAN.spellDurationLabel',
+                detail: data.duration,
+            };
+            details.push(duration);
+        }
+
+        if (data.cost) {
+            const cost = {
+                label: 'CONAN.spellCostLabel',
+                detail: data.cost,
+            };
+            details.push(cost);
+        }
+
+        if (data.notes) {
+            const notes = {
+                label: 'CONAN.spellNotesHeader',
+                detail: data.notes,
+            }
+            details.push(notes);
+        }
+
+        data.itemDetails = details.filter((p) => p !== null);
+
+        return data;
+    }
 
     _armorChatData() {
         if (this.data.type !== 'armor') {
@@ -127,7 +304,6 @@ export default class Conan2d20Item extends Item {
         }
 
         const data : any = duplicate(this.data.data);
-        const ad = this.actor.data.data;
         const details = [];
 
         const props = [

@@ -2,7 +2,7 @@
     <ol class="actions-list inventory-list directory-list">
         {{#each actor.talents as |section sid|}}
             <li class="item action-header">
-                <h3 class="talent-name pf-heading pf-actions">{{section.label}}</h3>
+                <h3 class="talent-name">{{section.label}}</h3>
                 {{#if ../owner}}
                 <div class="item-controls">
                     <a class="item-control item-create" title="{{localize "CONAN.createTalentTitle"}}" data-type="talent" data-talent-type="{{sid}}"><i class="fas fa-plus"></i></a>

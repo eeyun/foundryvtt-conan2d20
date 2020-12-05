@@ -190,7 +190,7 @@ export default class Conan2d20Actor extends Actor {
         const msgdata = message.data.flags.data;
         const rerolls = [];
         $(message.data.content).children('.roll.selected').each(function() {
-            rerolls.push( $( this ).text().trim() );
+            rerolls.push( Number($( this ).text().trim()) );
         });
 
         const norolls = [];

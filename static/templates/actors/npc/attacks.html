@@ -2,7 +2,7 @@
     <ol class="npcactions-list inventory-list directory-list inventory-pane">
     {{#each actor.attacks as |section sid|}}
     <li class="section-header">
-        <h2 class="item-name pf-heading pf-actions">{{localize "CONAN.npc.sections.attacks"}}</h2>
+        <h2 class="item-name">{{localize "CONAN.npc.sections.attacks"}}</h2>
         {{#if ../owner}}
         <div class="item-controls" style="display: flex">                    
             <a class="item-control item-create" title="{{localize "CONAN.createItemTitle"}}" data-type="{{sid}}"><i class="fas fa-plus    "></i></a>

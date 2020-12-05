@@ -49,7 +49,10 @@ Hooks.once('setup', () => {
         'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories',
         'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'rollDifficultyLevels',
         'rollResults', 'actionCounts', 'kitTypes', 'conditionTypes', 'expertiseFields',
-        'npcAttackTypes', 'npcActionTypes', 'damageTypes', 'npcCategories'
+        'npcAttackTypes', 'npcActionTypes', 'damageTypes', 'npcCategories', 'enchantmentTypes',
+        'enchantmentBlindingStrengths', 'enchantmentStrengths', 'enchantmentExplodingItems',
+        'enchantmentTalismanTypes', 'enchantmentVolatilities', 'lotusPollenColors', 'lotusPollenForms',
+        'lotusPollenUses'
     ];
 
     const noSort: any = [
@@ -57,7 +60,7 @@ Hooks.once('setup', () => {
     ];
 
     for ( let o of toLocalize ) {
-    const localized = Object.entries(CONFIG.CONAN[o]).map(e => {
+        const localized = Object.entries(CONFIG.CONAN[o]).map(e => {
         // @ts-ignore
         return [e[0], game.i18n.localize(e[1])];
     });
