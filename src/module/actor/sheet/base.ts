@@ -63,6 +63,8 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         });
 
         html.find('[data-item-id].item .item-image-inventory').click((event) => this._onPostItem(event));
+        html.find('item-image-inventory').click((event) => this._onPostItem(event));
+
 
         // Toggle equip
         html.find('.item-toggle-equip').click((ev) => {
@@ -91,6 +93,19 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             item.sheet.render(true)
         });
 
+        html.find('.consumable-increase').click((event) => {
+            const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+            const item = this.actor.getOwnedItem(itemId).data;
+            this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.uses.value': Number(item.data.uses.value) + 1 });
+        });
+
+        html.find('.consumable-decrease').click((event) => {
+            const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+            const item = this.actor.getOwnedItem(itemId).data;
+            if (Number(item.data.uses.value) > 0) {
+                this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.uses.value': Number(item.data.uses.value) - 1 });
+            }
+        });
         html.find('.item-increase-quantity').click((event) => {
             const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
             const item = this.actor.getOwnedItem(itemId).data;
@@ -251,9 +266,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
 
         const localize = game.i18n.localize.bind(game.i18n);
         const li = $(event.currentTarget).parent().parent();
-        const other = $(event.currentTarget).parent();
         const itemId = li.attr('data-item-id');
-        const itemType = li.attr('data-item-type');
         const actionIndex = li.attr('data-action-index');
         let item: Conan2d20Item;
 
@@ -281,19 +294,21 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 chatData.itemDetails.forEach((p) => {
                 let concat;
                     if(p.description) {
-                        concat = `<span class="chat-item-detail" title="${localize(p.description)}><b> ${localize(p.label)}:</b> ${localize(p.detail)} </span>`;
+                        concat = `<div class="chat-item-detail" title="${localize(p.description)}><b> ${localize(p.label)}:</b> ${localize(p.detail)} </div>`;
                     } else {
-                        concat = `<span class="chat-item-detail"><b>${localize(p.label)}:</b> ${localize(p.detail)} </span>`;
+                        concat = `<div class="chat-item-detail"><b>${localize(p.label)}:</b> ${localize(p.detail)} </div>`;
                     }
                     details.append(concat);
                 });
-                div.append(details); 
+                div.append(details);
             }
+            div.append(`</br>`);
             if (chatData.properties) {
                 chatData.properties.filter((p) => typeof p === 'string').forEach((p) => {
                     props.append(`<span class="tag tag_secondary">${localize(p)}</span>`);
                 });
             }
+            div.append(props);
             // append qualities (only style the tags if they contain description data)
             if (chatData.qualities && chatData.qualities.length) {
                 chatData.qualities.forEach((p) => {
@@ -304,7 +319,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                     }
                 });
             }
-            div.append(props);
         
             const buttons = $('<div class="item-buttons"></div>');
             switch (item.data.type) {

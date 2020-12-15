@@ -521,6 +521,7 @@
             "action",
             "armor",
             "display",
+            "enchantment",
             "kit",
             "npcattack",
             "npcaction",
@@ -660,14 +661,35 @@
             "weapon": "",
             "requirements": ""
         },
+        "enchantment": {
+            "templates": ["itemDescription", "consumable"],
+            "enchantmentType": "",
+            "difficulty": "",
+            "damage": {
+                "type": "physical",
+                "hitLocation": [],
+                "dice": 1
+            },
+            "traits": {
+            },
+            "effects":  {
+               "value":[]
+            }
+        },
         "spell": {
-            "templates": ["itemDescription"],
+            "templates": ["itemDescription", "consumable"],
+            "difficulty": {
+                "includes": "",
+                "value": ""
+            },
             "spellLevel": 1,
-            "costBuyResolve": 2,
-            "costCastResolve": 2,
+            "cost": "",
             "duration": "",
-            "momentumSpends": [],
-            "altEffects": []
+            "effects": {
+                "momentum": [],
+                "alternative": []
+            },
+            "notes": ""
         }
     }
 }

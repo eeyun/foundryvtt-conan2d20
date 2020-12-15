@@ -1,7 +1,7 @@
 <div class="tab actions" data-group="primary" data-tab="actions">
     <ol class="actions-list inventory-list directory-list attacks-list">
         <li class="item action-header">
-            <h3 class="item-name pf-heading pf-actions">{{localize "CONAN.attacksLabel"}}</h3>
+            <h3 class="item-name">{{localize "CONAN.attacksLabel"}}</h3>
         </li>
         {{#each actor.data.actions as |action ai|}}
         <li class="item expandable" data-action-index="{{ai}}"  data-item-id="{{action.attack.id}}">
@@ -46,7 +46,7 @@
 
         {{#each actor.actions as |section sid|}}
             <li class="item action-header">
-                <h3 class="item-name pf-heading pf-actions">{{section.label}}</h3>
+                <h3 class="item-name">{{section.label}}</h3>
                 {{#if ../owner}}
                 <div class="item-controls" style="display: flex">
                     <a class="item-control item-create" title="{{localize "CONAN.createActionTitle"}}" data-type="action" data-action-type="{{sid}}"><i class="fas fa-plus"></i></a>

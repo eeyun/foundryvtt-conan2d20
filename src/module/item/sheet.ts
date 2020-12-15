@@ -1,3 +1,4 @@
+import { data } from 'jquery';
 import { TraitSelector } from  '../system/trait-selector';
 
 export class ItemSheetConan2d20 extends ItemSheet {
@@ -6,7 +7,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
 	    mergeObject(options, {
 	        classes: options.classes.concat(['conan2d20', 'item', 'sheet']),
             width:  630,
-	        height: 460,
+	        height: 500,
             template: 'systems/conan2d20/templates/items/item-sheet.html',
             resizable: false,
 	        tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}]
@@ -51,7 +52,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             type,
             hasSidebar: true,
             sidebarTemplate: () => `systems/conan2d20/templates/items/${type}-sidebar.html`,
-            hasDetails: ['weapon', 'armor', 'talent', 'kit', 'action', 'display', 'npcattack', 'npcaction'].includes(type),
+            hasDetails: ['weapon', 'armor', 'talent', 'kit', 'action', 'display', 'enchantment', 'npcattack', 'npcaction'].includes(type),
             detailsTemplate: () => `systems/conan2d20/templates/items/${type}-details.html`
         });
 
@@ -119,6 +120,26 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.actionCategories = CONFIG.CONAN.actionCategories;
             // TODO generate action tags
             // data.actionTags = [data.data.qualities.value].filter(t => !!t);
+        } else if (type ==='enchantment') {
+            data.hasSidebar = false;
+            data.enchantmentTypes = CONFIG.CONAN.enchantmentTypes;
+            data.enchantmentStrengths = CONFIG.CONAN.enchantmentStrengths;
+            data.blindingStrengths = CONFIG.CONAN.enchantmentBlindingStrengths;
+            data.enchantmentEffects = CONFIG.CONAN.weaponQualities;
+            data.explodingItems = CONFIG.CONAN.enchantmentExplodingItems;
+            data.volatilities = CONFIG.CONAN.enchantmentVolatilities;
+            data.difficulty = CONFIG.CONAN.availabilityTypes;
+            data.damageDice = CONFIG.CONAN.damageDice;
+            data.ingredient = CONFIG.CONAN.enchantmentIngredients;
+            data.hitLocations = CONFIG.CONAN.coverageTypes;
+            data.upasGlassSizes = CONFIG.CONAN.upasGlassSizes;
+            data.talismanTypes = CONFIG.CONAN.enchantmentTalismanTypes;
+            data.lotusPollenColors = CONFIG.CONAN.lotusPollenColors;
+            data.lotusPollenForms = CONFIG.CONAN.lotusPollenForms;
+            data.lotusPollenUses = CONFIG.CONAN.lotusPollenUses;
+        } else if(type === 'spell') {
+            data.difficulty = CONFIG.CONAN.availabilityTypes;
+            data.hasSidebar = false;
         } else if (type === 'npcaction') {
             data.hasSidebar = false;
             data.actionTypes = CONFIG.CONAN.npcActionTypes;
@@ -152,6 +173,20 @@ export class ItemSheetConan2d20 extends ItemSheet {
 
         // activate trait selector
         html.find('.trait-selector').click(ev => this.onTraitSelector(ev));
+
+        // add row to spell momentum spends
+        html.find('.spend-row-add').click(ev => this.insertSpendRow(ev));
+
+        // add row to spell alternate effects
+        html.find('.alt-row-add').click(ev => this.insertAltRow(ev));
+
+        // delete row from spell alternate effects
+        html.find('.alt-row-delete').click(ev => this.deleteAltRow(ev));
+
+        // delete row from spell momentum spends
+        html.find('.spend-row-delete').click(ev => this.deleteSpendRow(ev));
+
+
     }
 
       _prepareQualities(traits) {
@@ -188,4 +223,69 @@ export class ItemSheetConan2d20 extends ItemSheet {
     _onChangeInput(event) {
         return this._onSubmit(event);                                                
     }
+
+    insertSpendRow(_event) {
+        try {
+            if ( this.item.isOwned ) {
+                const table=document.getElementById("spellSpends") as HTMLTableElement;
+                const itemId = this.item.data._id;
+                const index = table.rows.length - 1;
+                let key = "data.effects.momentum."+[index +1];
+                this.actor.updateEmbeddedEntity('OwnedItem', {_id: itemId, [key]: { type:"", spend: "", effect: ""} })
+            } else {
+                return;
+            }
+        }
+        catch(e) {
+            alert(e);
+        }
+    }
+
+    insertAltRow(_event) {
+        try {
+            if ( this.item.isOwned ) {
+                const table=document.getElementById("altEffects") as HTMLTableElement;
+                const itemId = this.item.data._id;
+                const index = table.rows.length - 1;
+                let key = "data.effects.alternative."+[index +1];
+                this.actor.updateEmbeddedEntity('OwnedItem', {_id: itemId, [key]: { type:"", difficulty: "", effect: ""} })
+            } else {
+                return;
+            }
+        }
+        catch(e) {
+            alert(e);
+        }
+    }
+
+    deleteAltRow(_event) {
+        try {
+            if ( this.item.isOwned ) {
+                const table=document.getElementById("altEffects") as HTMLTableElement;
+                const toDelete = table.rows.length - 1;
+                let key = "data.effects.alternative.-="+[toDelete];
+                this.item.update({[key]: null}, null);
+            } else {
+                return
+            }
+        }
+        catch(e) {
+		    alert(e);
+		}
+    }
+    deleteSpendRow(_event) {
+        try {
+            if ( this.item.isOwned ) {
+                const table=document.getElementById("spellSpends") as HTMLTableElement;
+                const toDelete = table.rows.length - 1;
+                let key = "data.effects.momentum.-="+[toDelete];
+                this.item.update({[key]: null}, null);
+            } else {
+                return;
+            }
+        }
+        catch(e) {
+		    alert(e);
+		}
+	}
 }

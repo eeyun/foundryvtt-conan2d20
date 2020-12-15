@@ -38,6 +38,63 @@ CONFIG.skills = {
     sor: 'CONAN.skills.sor'
 };
 
+CONFIG.enchantmentExplodingItems = {
+    flashPaper: 'CONAN.enchantmentExplodingItems.fla',
+    smallFireworks: 'CONAN.enchantmentExplodingItems.sma',
+    loudFireworks: 'CONAN.enchantmentExplodingItems.lou',
+    largeFireworks: 'CONAN.enchantmentExplodingItems.lar',
+    smallExplosives: 'CONAN.enchantmentExplodingItems.sma',
+    largeExplosives: 'CONAN.enchantmentExplodingItems.lex'
+};
+
+CONFIG.enchantmentStrengths = {
+    weak: 'CONAN.enchantmentStrengths.wea',
+    average: 'CONAN.enchantmentStrengths.ave',
+    potent: 'CONAN.enchantmentStrengths.pot',
+    dangerous: 'CONAN.enchantmentStrengths.dan',
+    extraordinary: 'CONAN.enchantmentStrengths.ext',
+    devastationg: 'CONAN.enchantmentStrengths.dev'
+};
+
+CONFIG.enchantmentBlindingStrengths = {
+    regular: 'CONAN.enchantmentBlindingStrengths.reg',
+    dry: 'CONAN.enchantmentBlindingStrengths.dry',
+    fine: 'CONAN.enchantmentBlindingStrengths.fin',
+    perfumed: 'CONAN.enchantmentBlindingStrengths.per',
+    burning: 'CONAN.enchantmentBlindingStrengths.bur'
+};
+
+CONFIG.enchantmentTalismanTypes = {
+    hamsa: 'CONAN.enchantmentTalismanTypes.ham',
+    chasme: 'CONAN.enchantmentTalismanTypes.cha',
+    pictish: 'CONAN.enchantmentTalismanTypes.pic',
+    nazar: 'CONAN.enchantmentTalismanTypes.naz',
+    animal: 'CONAN.enchantmentTalismanTypes.ani'
+};
+
+CONFIG.enchantmentTypes = {
+    explodingPowder: 'CONAN.enchantmentTypes.exp',
+    blindingPowder: 'CONAN.enchantmentTypes.bli',
+    burningLiquid: 'CONAN.enchantmentTypes.bur',
+    reinforcedFabric: 'CONAN.enchantmentTypes.rei',
+    upasGlass: 'CONAN.enchantmentTypes.upa',
+    talisman: 'CONAN.enchantmentTypes.tal',
+    lotusPollen: 'CONAN.enchantmentTypes.lot'
+};
+
+CONFIG.upasGlassSizes = {
+    resilient: 'CONAN.upasGlassSizes.res',
+    strengthened: 'CONAN.upasGlassSizes.str',
+    unbreakable: 'CONAN.upasGlassSizes.unb'
+};
+
+CONFIG.enchantmentVolatilities = {
+    burningAlcohol: 'CONAN.enchantmentVolatilities.bur',
+    explodingLiquor: 'CONAN.enchantmentVolatilities.exp',
+    volatileSpirits: 'CONAN.enchantmentVolatilities.vol',
+    hellishBrimstone: 'CONAN.enchantmentVolatilities.hel'
+};
+
 CONFIG.expertiseFields = {
     mov: 'CONAN.expertiseFields.mov',
     cmb: 'CONAN.expertiseFields.cmb',
@@ -75,6 +132,19 @@ CONFIG.encumbranceTypes = {
   6: '6',
   7: '7',
   "1each": 'CONAN.encumbrance1Each'
+};
+
+CONFIG.enchantmentIngredients = {
+  0: '0',
+  1: '1',
+  2: '2',
+  3: '3',
+  4: '4',
+  5: '5',
+  6: '6',
+  7: '7',
+  8: '8',
+  9: '9'
 };
 
 CONFIG.attacks = {
@@ -232,6 +302,35 @@ CONFIG.kitUses = {
     5: '5',
     6: '6',
     "inf": "&infin;"
+};
+
+CONFIG.lotusPollenColors = {
+    black: 'CONAN.lotusPollenColors.black',
+    purple: 'CONAN.lotusPollenColors.purple',
+    yellow: 'CONAN.lotusPollenColors.yellow',
+    green: 'CONAN.lotusPollenColors.green',
+    gray: 'CONAN.lotusPollenColors.gray',
+    golden: 'CONAN.lotusPollenColors.golden'
+};
+
+CONFIG.lotusPollenDifficulty = {
+    per: 'CONAN.lotusPollenDifficulty'
+};
+
+CONFIG.lotusPollenForms = {
+    gas: 'CONAN.lotusPollenForms.gas',
+    powder: 'CONAN.lotusPollenForms.pow',
+    liquid: 'CONAN.lotusPollenForms.liq'
+};
+
+CONFIG.lotusPollenUses = {
+    opiate: 'CONAN.lotusPollenUses.opi',
+    poison: 'CONAN.lotusPollenUses.poi',
+    paralytic: 'CONAN.lotusPollenUses.par',
+    hallucinogenic: 'CONAN.lotusPollenUses.hal',
+    enchantment: 'CONAN.lotusPollenUses.enc',
+    anger: 'CONAN.lotusPollenUses.ang',
+    madness: 'CONAN.lotusPollenUses.mad'
 };
 
 CONFIG.languages = {

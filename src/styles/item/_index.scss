@@ -2,7 +2,6 @@
 /*  Item Sheet Structure
 /* ----------------------------------------- */
 .item {
-
     .editor {
         height: 100%;
         width: 100%;
@@ -25,292 +24,355 @@
             flex: 0 0 70px;
             width: 100%;
             padding-bottom: 6px;
-  
-          h1 {
-        font-family: CrushYourEnemies;
-          }
 
-          img {
-            flex: 0 0 64px;
-            margin-right: 6px;
-          }
+            h1 {
+                font-family: CrushYourEnemies;
+            }
+
+            img {
+                flex: 0 0 64px;
+                margin-right: 6px;
+            }
         }
 
-    .sheet-content {
-      display: flex;
+        .sheet-content {
+            display: flex;
 
-      .sheet-sidebar {
-        flex: 1.25;
-        height: 350px;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        background: rgba(0, 0, 0, 0.05);
+            .sheet-sidebar {
+                flex: 1.25;
+                height: 350px;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                background: rgba(0, 0, 0, 0.05);
 
-        .sidebar-summary {
-          flex: 0 0 28px;
-          line-height: 29px;
-          margin: 0 0 0.5em;
-          text-align: center;
-          border-bottom: 1px groove;
+                .sidebar-summary {
+                    flex: 0 0 28px;
+                    line-height: 29px;
+                    margin: 0 0 0.5em;
+                    text-align: center;
+                    border-bottom: 1px groove;
+                }
+
+                .item-summary {
+                    flex: 0 0 28px;
+                    line-height: 28px;
+                    text-align: center;
+                    font-family: 'Nodesto', 'Signika', 'Palatino Linotype',
+                        serif;
+                    font-size: 18px;
+                    color: #444;
+                }
+
+                .item-tags {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    align-items: stretch;
+                    justify-content: flex-start;
+                    .tag {
+                        display: inline-flex;
+                        flex-wrap: nowrap;
+                        color: white;
+                        background-color: var(--light);
+                        @include micro;
+                        border: none;
+                        border-radius: 2px;
+                        padding: 3px 4px;
+                        margin-bottom: 2px;
+                        box-shadow: inset 0 0 0 1px rgba(black, 0.5);
+                        & + .tag,
+                        &:first-child {
+                            margin-right: 3px;
+                        }
+                        &.edit-btn {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: white;
+                            border-radius: 0;
+                            a {
+                                display: inline-flex;
+                                justify-content: center;
+                                align-items: center;
+                                color: var(--light);
+                                svg {
+                                    height: 9px;
+                                    width: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .inventory-details {
+                    flex: 0;
+
+                    label {
+                        font-weight: bold;
+                    }
+
+                    .form-group input {
+                        text-align: left;
+                        flex: 2.35;
+                        margin-right: 5px;
+                    }
+                }
+
+                .item-details {
+                    padding: 8px 8px 0;
+                    overflow-y: auto;
+
+                    label {
+                        color: #888;
+                        font-weight: bold;
+                        padding-right: 8px;
+                    }
+                }
+            }
+
+            .sheet-body {
+                flex: 2;
+                height: 350px;
+            }
         }
 
-        .item-summary {
-          flex: 0 0 28px;
-          line-height: 28px;
-          text-align: center;
-          font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-          font-size: 18px;
-          color: #444;
-        }
-
-        .item-tags {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          align-items: stretch;
-          justify-content: flex-start;
-          .tag {
-              display: inline-flex;
-              flex-wrap: nowrap;
-              color: white;
-              background-color: var(--light);
-              @include micro;
-              border: none;
-              border-radius: 2px;
-              padding: 3px 4px;
-              margin-bottom: 2px;
-              box-shadow: inset 0 0 0 1px rgba(black, 0.5);
-              & + .tag,
-              &:first-child {
-                  margin-right: 3px;
-              }
-              &.edit-btn {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  background-color: white;
-                  border-radius: 0;
-                  a {
-                      display: inline-flex;
-                      justify-content: center;
-                      align-items: center;
-                      color: var(--light);
-                      svg {
-                          height: 9px;
-                          width: auto;
-                      }
-                  }
-              }
-          }
-        }
-  
-        .inventory-details {
-          flex: 0;
-  
-          label {
-            font-weight: bold;
-          }
-  
-          .form-group input {
-            text-align: left;
-            flex: 2.35;
-            margin-right: 5px
-          }
-        }
-
-        .item-details {
-          padding: 8px 8px 0;
-          overflow-y: auto;
-  
-          label {
-            color: #888;
-            font-weight: bold;
-            padding-right: 8px;
-          }
-        }
-      }
-
-      .sheet-body {
-        flex: 2;
-        height: 350px;
-      }
-    }
-
-    .sheet-body input[type="text"] {
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid #AAA;
-      padding: 3px;
-      width: 30px;
-    }
-
-    .tab {
-      padding-left: 10px;
-    }
-
-    .tab[data-tab="description"] {
-        height: 100%;
-    }
-
-    .form-list {
-      border: 1px solid var(--secondary-background);
-      border-radius: 5px;
-      padding-left: 2px;
-      padding-right: 4px;
-    }
-
-    .form-group {
-        height: 24px;
-        margin: 2px 0;
-        input:focus {
-            border-bottom: 1px solid #644f33;
-        }
-
-        select {
-            flex: 2;
-            margin-right: 5px;
-            background-color: var(--darker);
-        }
-
-        input[type="text"] {
+        .sheet-body input[type='text'] {
             background: rgba(255, 255, 255, 0.5);
-            border: 1px solid #AAA;
+            border: 1px solid #aaa;
             padding: 3px;
-            margin-right: 5px;
+            width: 30px;
         }
 
-        input[type="number"] {
-            width: calc(100% - 2px);
-            min-width: 20px;
-            background: rgba(0, 0, 0, 0.1);
+        .spell-sheet-body {
+            flex: 2;
+            height: 350px;
+        }
+
+        .spell-sheet-body input[type='text'] {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid #aaa;
             padding: 3px;
-            margin-right: 5px;
+            width: 100%;
+        }
+
+        .spell-table {
+            height: 350px;
+            overflow: scroll;
+        }
+
+        .spell-description {
+            height: 250px;
+            padding: 5px;
+        }
+
+        .spell-details {
+            padding: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            line-height: 15px;
+            min-width: 100%;
+            max-width: 100%;
+            transition: width 0.25s;
+            resize: none;
+            font-family: inherit;
+        }
+
+        .effect-type {
+            width: 130px;
+            padding: 1.5px;
+        }
+
+        .effect-alt {
+            padding: 1.5px;
+        }
+
+        .effect-value {
+            padding: 1.5px;
+        }
+
+        .effect- .tab {
+            padding-left: 10px;
+        }
+
+        .tab[data-tab] {
+            display: none;
+            &.active {
+                display: initial;
+            }
+        }
+
+        .tab[data-tab].active {
+            display: initial;
+        }
+
+        .tab[data-tab='description'] {
+            height: 100%;
+        }
+
+        .form-list {
+            border: 1px solid var(--secondary-background);
+            border-radius: 5px;
+            padding-left: 2px;
+            padding-right: 4px;
+        }
+
+        .form-group {
+            height: 24px;
+            margin: 2px 0;
+            input:focus {
+                border-bottom: 1px solid #644f33;
+            }
+
+            select {
+                flex: 2;
+                margin-right: 5px;
+                background-color: var(--darker);
+            }
+
+            input[type='text'] {
+                background: rgba(255, 255, 255, 0.5);
+                border: 1px solid #aaa;
+                padding: 3px;
+                margin-right: 5px;
+            }
+
+            input[type='number'] {
+                width: calc(100% - 2px);
+                min-width: 20px;
+                background: rgba(0, 0, 0, 0.1);
+                padding: 3px;
+                margin-right: 5px;
+            }
+        }
+
+        .combat-dice {
+            background-image: url('../assets/icons/phoenix-sigil.svg');
+            filter: brightness(0) sepia(0) saturate(5);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .sheet-tabs {
+            border-bottom: 1px solid var(--secondary-background);
+            margin: 0px;
+
+            .active {
+                text-decoration: underline;
+            }
+        }
+
+        .editor {
+            height: 100%;
+            padding-left: 10px;
+        }
+
+        .co-value {
+            background: #fff;
+            border: 1px solid var(--tertiary-background);
+            text-align: center;
+        }
+
+        .co-large {
+            height: 40px;
+        }
+
+        .details-container {
+            display: grid;
+            grid: 'dice die type' / 40px 60px auto;
+        }
+
+        .effects-container {
+            display: grid;
+            grid: 'effect number' / auto 40px;
+        }
+
+        .details-container-two-columns {
+            display: grid;
+            grid: 'size type' / 50% 50%;
+        }
+
+        .details-container-three-columns {
+            display: grid;
+            grid-template-columns: 0.4fr 1fr 1fr;
+        }
+
+        .consumable-details {
+            flex: 0 0 24px;
+
+            label {
+                font-weight: bold;
+            }
+
+            input {
+                flex: 0 0 24px;
+                margin-right: 6px;
+                text-align: right;
+            }
+
+            span {
+                line-height: 24px;
+            }
+
+            .max-charges {
+                flex: 0 0 16px;
+                text-align: center;
+            }
+        }
+
+        .consumable-charges {
+            label {
+                flex: 0 0 144px;
+            }
+
+            input {
+                flex: 0 0 64px;
+                text-align: center;
+            }
+
+            span.flex0 {
+                line-height: 24px;
+            }
+        }
+
+        .tool-details {
+            border-top: 1px solid var(--secondary-background);
+            padding-top: 10px;
+
+            .form-group-stacked {
+                margin-bottom: 8px;
+            }
+        }
+
+        .feat-uses {
+            select {
+                flex: 2;
+                margin-right: 5px;
+            }
+
+            input {
+                flex: 1;
+                text-align: center;
+            }
+
+            span.sep {
+                flex: 0 0 16px;
+                line-height: 24px;
+                font-size: 14px;
+                text-align: center;
+            }
         }
     }
-
-    .combat-dice {
-        background-image: url('../assets/icons/phoenix-sigil.svg');
-        filter: brightness(0) sepia(0) saturate(5);
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-
-    .sheet-tabs {
-      border-bottom: 1px solid var(--secondary-background);
-
-      .active {
-        text-decoration: underline;
-      }
-    }
-
-    .editor {
-      height: 100%;
-    }
-
-    .pf-value {
-      background: #fff;
-      border: 1px solid var(--tertiary-background);
-      text-align: center;
-    }
-
-    .pf-large {
-      height: 40px;
-    }
-
-    .details-container {
-      display: grid;
-      grid: "dice die type" / 40px 60px auto;
-    }
-
-    .effects-container {
-      display: grid;
-      grid: "effect number" / auto 40px;
-    }
-
-    .details-container-two-columns {
-      display: grid;
-      grid: "size type" / 50% 50%;
-    }
-
-    .details-container-three-columns {
-      display: grid;
-      grid-template-columns: .4fr 1fr 1fr;
-    }
-
-    .consumable-details {
-      flex: 0 0 24px;
-
-      label {
-        font-weight: bold;
-      }
-
-      input {
-        flex: 0 0 24px;
-        margin-right: 6px;
-        text-align: right;
-      }
-
-      span {
-        line-height: 24px;
-      }
-
-      .max-charges {
-        flex: 0 0 16px;
-        text-align: center;
-      }
-    }
-
-    .consumable-charges {
-      label {
-        flex: 0 0 144px;
-      }
-
-      input {
-        flex: 0 0 64px;
-        text-align: center;
-      }
-
-      span.flex0 {
-        line-height: 24px;
-      }
-    }
-
-    .tool-details {
-      border-top: 1px solid var(--secondary-background);
-      padding-top: 10px;
-
-      .form-group-stacked {
-        margin-bottom: 8px;
-      }
-    }
-
-    .feat-uses {
-      select {
-        flex: 2;
-        margin-right: 5px;
-      }
-
-      input {
-        flex: 1;
-        text-align: center;
-      }
-
-      span.sep {
-        flex: 0 0 16px;
-        line-height: 24px;
-        font-size: 14px;
-        text-align: center;
-      }
-    }
-  }
 }
 
 .form > * {
-  flex: 1;
+    flex: 1;
 }
 
 .form .sheet-content > * {
-  flex: 1;
+    flex: 1;
 }
 .form .sheet-sidebar > * {
-  flex: 1;
+    flex: 1;
 }

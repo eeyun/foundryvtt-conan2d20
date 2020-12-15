@@ -129,6 +129,8 @@
             "dis": "Discipline",
             "sor": "Sorcery"
         },
+        "difficultyLabel": "Difficulty",
+        "difficultyIncludesLabel": "Difficulty Includes",
         "expertiseFields": {
             "mov": "Movement",
             "cmb": "Combat",
@@ -137,6 +139,63 @@
             "scl": "Social",
             "sns": "Senses"
         },
+        "effectsLabel": "Effects",
+        "enchantmentCoverLabel": "Cover",
+        "enchantmentCoverageLabel": "Hit Location",
+        "enchantmentDamageTitle": "Damage dealt by the petty-enchatment when used in combat.",
+        "enchantmentDamageLabel": "Damage",
+        "enchantmentHindranceLabel": "Hindrance",
+        "enchantmentIngredientsLabel": "Ingredients", 
+        "enchantmentItemLabel": "Item", 
+        "enchantmentBlindingStrengths": {
+            "reg":"Regular Sand",
+            "dry":"Dry Sand",
+            "fin":"Fine Sand",
+            "per":"Perfumed Sand",
+            "bur":"Burning Salts"
+        },
+        "enchantmentExplodingItems": {
+            "fla":"Flash Paper",
+            "sma":"Small Fireworks",
+            "lou":"Loud Fireworks",
+            "lar":"Large Fireworks",
+            "sma":"Small Explosive",
+            "lex":"Large Explosive"
+        },
+        "enchantmentStrengthLabel": "Strength",
+        "enchantmentStrengths": {
+            "wea":"Weak",
+            "ave":"Average",
+            "pot":"Potent",
+            "dan":"Dangerous",
+            "ext":"Extraordinary",
+            "dev":"Devastating"
+        },
+        "enchantmentTalismanLabel": "Talisman Type",
+        "enchantmentTalismanTypes": {
+            "ham":"Hamsa Pendant",
+            "cha":"Chasme Badoor",
+            "pic":"Pictish Woad",
+            "naz":"Nazar Battu Markings",
+            "ani":"Animal Tooth Necklace"
+        },
+        "enchantmentTypes": {
+            "exp": "Exploding Powder",
+            "bli": "Blinding Powder",
+            "bur": "Burning Liquid",
+            "rei": "Reinforced Fabric",
+            "upa": "Upas-Glass",
+            "tal": "Talisman",
+            "lot": "Lotus Pollen"
+        },
+        "enchantmentTypeLabel": "Petty Enchantment Type",
+        "enchantmentVolatilities": {
+            "bur": "Burning Alcohol",
+            "exp": "Exploding Liquor",
+            "vol": "Volatile Spirits",
+            "hel": "Hellish Brimstone"
+        },
+        "enchantmentVolatilityLabel": "Volatility",
         "skillShortLabel": "Skill",
         "skillExpertiseShortLabel": "Expertise",
         "skillFocusShortLabel": "Focus",
@@ -233,7 +292,34 @@
         "kitUsesAvailableLabel": "Available Uses",
         "kitUsesMaxLabel": "Maximum Uses",
         "kitUseLabel": "Use Kit",
+        "lotusPollenColors": {
+            "black": "Stygian Black",
+            "purple": "Khitan Purple",
+            "yellow": "Yellow",
+            "green": "Green",
+            "gray": "Gray",
+            "golden": "Golden Lotus"
+        },
+        "lotusPollenColorLabel": "Color",
+        "lotusPollenDifficulty": "1 Per Ingredient",
+        "lotusPollenForms": {
+            "gas": "Gas",
+            "pow": "Powder",
+            "liq": "Liquid"
+        },
+        "lotusPollenFormLabel": "Form",
+        "lotusPollenUses": {
+            "opi": "Opiate",
+            "poi": "Poison",
+            "par": "Paralytic",
+            "hal": "Hallucinogenic/Euphoric",
+            "enc": "Aids Enchantment",
+            "ang": "Berserk/Anger",
+            "mad": "Opiate/Cures Madness"
+        },
+        "lotusPollenUseLabel": "Use",
         "createItemTitle": "Create Item",
+        "createSpellTitle": "Create Spell",
         "editItemTitle": "Edit Item",
         "deleteItemPrompt": "Are you sure you want to delete:",
         "deleteItemTitle": "Delete Item",
@@ -243,8 +329,10 @@
         "inventoryWeaponsHeader": "Weapons",
         "inventoryArmorHeader": "Armor",
         "inventoryKitsHeader": "Kits",
+        "inventoryConsumablesHeader": "Consumables",
         "inventoryTalentsHeader": "Talents",
         "openInventoryBrowser": "Open Inventory Browser",
+        "openSpellBrowser": "Open Spell Browser",
         "addItem": "Add",
         "addTalent": "Add talent",
         "addArmor": "Add armor",
@@ -404,6 +492,14 @@
         "skillRollMomentumGenLabel": "Momentum generated",
         "skillRollFortuneSpendPrompt": "You've chosen to spend fortune points for this roll. Would you like to roll your remaining dice (these can still generate complications)?",
         "skillRollMomentumSpendLabel": "Spend Momentum",
+        "sorceryAvailableUsesLabel": "Available Uses",
+        "sorceryEnchantmentHeader": "Petty Enchantments",
+        "sorcerySpellHeader": "Spells",
+        "spellMomentumSpendHeader": "Momentum Spends",
+        "spellAltEffectsHeader": "Alternative Effects",
+        "spellNotesHeader": "Notes",
+        "spellDurationLabel": "Duration",
+        "spellCostLabel": "Cost",
         "specialLabel": "Special",
         "specialAbilityHeader": "Special Ability",
         "armorSoakLabel": "Armor Soak",
@@ -413,7 +509,7 @@
         "tabCharacterLabel": "Character",
         "tabActionsLabel": "Actions",
         "tabInventoryLabel": "Belongings",
-        "tabSpellsLabel": "Spells",
+        "tabSorceryLabel": "Sorcery",
         "tabSkillsLabel": "Skills",
         "tabTalentsLabel": "Talents",
         "qualitiesLabel": "Qualities",
@@ -452,6 +548,12 @@
         "talentOtherHeader": "Other",
         "traumasLabel": "Traumas",
         "traumasTitle": "Traumas",
+        "upasGlassSizeLabel": "Size",
+        "upasGlassSizes": {
+            "res": "Resilient Glass",
+            "str": "Strengthened Glass",
+            "unb": "Unbreakable Glass"
+        },
         "weaponDamageLabel": "Weapon Damage",
         "weaponBaseDamageLabel": "Base Weapon Damage",
         "weaponDamageTitle": "This section configures the base and bonus damage for the weapon.",
@@ -556,6 +658,7 @@
                 "soci":"Social"
             }
         },
+        "qualitiesDescriptionBlin": "Here's a nice long description of the blinding quality.",
         "ref-book":"Book",
         "ref-page":"p."
     }

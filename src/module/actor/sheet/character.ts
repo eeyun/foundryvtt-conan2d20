@@ -64,7 +64,8 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         const inventory = {                                                          
             armor: { label: game.i18n.localize("CONAN.inventoryArmorHeader"), items: [] },
             weapon: { label: game.i18n.localize("CONAN.inventoryWeaponsHeader"), items: [] },
-            kit: { label: game.i18n.localize("CONAN.inventoryKitsHeader"), items: [] }
+            kit: { label: game.i18n.localize("CONAN.inventoryKitsHeader"), items: [] },
+            consumable: { label: game.i18n.localize("CONAN.inventoryConsumablesHeader"), items: [] }
         };                                                                           
                                                                                   
         const talents = {
@@ -75,6 +76,11 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             nature: {label: game.i18n.localize("CONAN.talentNatureHeader"), talents: [] },
             archetype: {label: game.i18n.localize("CONAN.talentArchetypeHeader"), talents: [] },
             other: {label: game.i18n.localize("CONAN.talentOtherHeader"), talents: [] }            
+        };
+
+        const sorcery = {
+            enchantment: {label: game.i18n.localize("CONAN.sorceryEnchantmentHeader"), sorcery: []},
+            spell: {label: game.i18n.localize("CONAN.sorcerySpellHeader"), sorcery: []},
         };
 
             // Actions
@@ -138,9 +144,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                     i.canBeBroken = false;
                 }
 
-            }
-
-            else if (i.type === 'talent') {
+            } else if (i.type === 'talent') {
                 const talentType = i.data.talentType || 'None';
                 const actionType = i.data.actionType || 'passive';
                 talents[talentType].talents.push(i);
@@ -169,22 +173,27 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                       actorData.hasOffensiveActions = true;
                     }
                 }
+            } else if (i.type === 'spell') {
+                sorcery[i.type].sorcery.push(i);
+            } else if (i.type === 'enchantment') {
+                sorcery[i.type].sorcery.push(i);
+                if (i.data.uses.value > 0) {
+                    inventory.consumable.items.push(i);
+                }
             }
-            
+
+            // Invalid Items
+            if (i.type === 'npcaction') { 
+                alert("NPC Action is not a valid item for player characters");
+                this.actor.deleteOwnedItem(i._id);
+            } else if ( i.type === 'npcattack') {
+                alert("NPC Attack is not a valid item for player characters.");
+                this.actor.deleteOwnedItem(i._id);
+            }
+
 			// Actions
 			if (i.type === 'action') {
 			 	const actionType = i.data.actionType || 'action';
-			  	// let actionImg: number|string = 0;
-			  	// if (actionType === 'action') {
-				// 	actionImg = parseInt(i.data.actions.value) || 1;
-			  	// } else if (actionType === 'reaction') {
-				// 	actionImg = 'reaction';
-			  	// } else if (actionType === 'free') {
-				// 	actionImg = 'free';
-			  	// } else if (actionType === 'passive') {
-				// 	actionImg = 'passive';
-				// }
-			  		// i.img = this._getActionImg(actionImg);
 			  	if (actionType === 'passive') {
 					actions.free.actions.push(i);
 			  	} else {
@@ -216,7 +225,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 			  			actorData.hasOffensiveActions = true;
 			  		}
 				}
-			}
+            }
         }
 
         // Assign and return                                                       
@@ -225,6 +234,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 		actorData.readonlyactions = readonlyActions;
         actorData.readonlyEquipment = readonlyEquipment;
         actorData.talents = talents;                          
+        actorData.sorcery = sorcery;
     }
 
     activateListeners(html) {
