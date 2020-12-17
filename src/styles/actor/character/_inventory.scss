@@ -115,7 +115,9 @@
     .item-name {
         display: flex;
         align-items: center;
+        font-size: 14px;
         font-weight: 500;
+        text-transform: capitalize;
         flex: 2;
 
         h3,
@@ -188,7 +190,7 @@
             &.item-toggle-equip {
                 color: rgba(black, 0.4);
                 &.active {
-                    color: var(--lighter);
+                    color: var(--secondary);
                 }
 
                 &:hover {
@@ -294,12 +296,14 @@
         position: relative;
         overflow-y: scroll;
         height: calc(100% - 42px);
+        padding-left: 6px;
 
         .item-list {
             flex-direction: column;
             width: 100%;
             border: 1px solid var(--alt);
             border-top: none;
+            box-shadow: 5px 5px 5px gray;
 
             & > li:nth-of-type(even) {
                 background-color: rgba($alt-color, 0.1);
@@ -397,7 +401,10 @@
         justify-content: flex-end;
         align-items: center;
         width: 100%;
-        background-color: var(--alt);
+        font-family: 'Gelasio', 'Signika', Georgia, serif;
+        background-image: url('../assets/sheet/attribute-block-header.png');
+        background-size: 100% 100%;
+        box-shadow: 0 0 5px #000;
         @include button;
         margin-top: 8px;
         padding: 4px;
@@ -408,7 +415,10 @@
         }
 
         h3 {
-            font-size: 14px;
+            font-size: 16px;
+            color: #dbdbdb;
+            font-weight: 600;
+            font-family: 'Gelasio', 'Signika', Georgia, serif;
             text-transform: capitalize;
             padding-left: 2px;
             text-shadow: 0 0 2px rgba(black, 0.75);
@@ -421,6 +431,8 @@
 
         .item-quantity,
         .item-weight {
+            font-family: 'Gelasio', 'Signika', Georgia, serif;
+            font-size: 8px;
             @include flex-center;
             margin-right: -2px;
         }
