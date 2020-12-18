@@ -44,6 +44,8 @@
 }
 
 #chat-log .chat-message {
+    background-image: url('../assets/chat-message-border-1.png');
+    background-size: cover;
     img {
         width: 45px;
         height: 45px;
@@ -57,6 +59,11 @@
         flex-wrap: wrap;
         align-items: stretch;
         justify-content: flex-start;
+    }
+
+    .message-sender {
+        padding-top: 10px;
+        text-transform: uppercase;
     }
     .chat-tag {
         display: inline-flex;
