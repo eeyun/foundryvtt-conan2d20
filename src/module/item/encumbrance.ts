@@ -96,11 +96,14 @@ export function combinedEncumbrance(actorInventory, actorBrawn)
     let totalEnc = 0;
     for (const itemType in actorInventory) {
         if (actorInventory !== undefined) {
-            for (let x = 0; x < actorInventory[itemType].items.length; x += 1) {
-                if (actorInventory[itemType].items[x].data.encumbrance === '1each') {
-                    totalEnc += (Number(actorInventory[itemType].items[x].data.quantity) * Number(actorInventory[itemType].items[x].data.coverage.value.length))
-                } else {
-                    totalEnc += (Number(actorInventory[itemType].items[x].data.encumbrance) * Number(actorInventory[itemType].items[x].data.quantity))
+            console.log(actorInventory[itemType])
+            if (actorInventory[itemType].label !== 'Consumables') {
+                for (let x = 0; x < actorInventory[itemType].items.length; x += 1) {
+                    if (actorInventory[itemType].items[x].data.encumbrance === '1each') {
+                        totalEnc += (Number(actorInventory[itemType].items[x].data.quantity) * Number(actorInventory[itemType].items[x].data.coverage.value.length))
+                    } else {
+                        totalEnc += (Number(actorInventory[itemType].items[x].data.encumbrance) * Number(actorInventory[itemType].items[x].data.quantity))
+                    }
                 }
             }
         }
