@@ -1,21 +1,21 @@
 .conan-counter {
     background: url('../assets/sheet/attribute-block-header.png');
-    box-shadow:
-    inset 0 0 2px 0 rgba(255,255,255,.4),
-    inset 0 0 3px 0 rgba(0,0,0,.4),
-    inset 0 0 3px 5px rgba(0,0,0,.05),
-    2px 2px 4px 0 rgba(0,0,0,.25);
-    margin-top:0;
-    margin-right:auto;
-    margin-bottom:0;
-    margin-left:auto;
+    box-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 0.4),
+        inset 0 0 3px 0 rgba(0, 0, 0, 0.4),
+        inset 0 0 3px 5px rgba(0, 0, 0, 0.05), 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
     width: 400px;
     height: 40px;
-    position: relative;
+    position: absolute;
+    bottom: 66px;
+    left: 257px;
     display: flex;
-    color: #C0C0C0;
+    color: #c0c0c0;
     @include inset-gold-border;
-    font-family: "Norse";
+    font-family: 'Norse';
     font-size: 23px;
 }
 
@@ -27,8 +27,8 @@
 
 .vr {
     width: 100%;
-    color: #E4D6A4;
-    filter: invert(.22) brightness(.8) sepia(1) saturate(1.1) contrast(1.5);
+    color: #e4d6a4;
+    filter: invert(0.22) brightness(0.8) sepia(1) saturate(1.1) contrast(1.5);
     background-image: url('../assets/icons/phoenix-sigil.svg');
     background-size: contain;
     background-repeat: no-repeat;
@@ -45,7 +45,7 @@
         @include input-glow-brown;
     }
 
-    input[type="number"] {
+    input[type='number'] {
         font-family: Norse;
         font-size: 20px;
         border: transparent;
@@ -53,20 +53,19 @@
         height: 80%;
         color: #877053;
         text-align: center;
-        background: #D2D1C8;
+        background: #d2d1c8;
         box-shadow: inset 0 0 5px #000000;
         font-weight: 700;
         -moz-appearance: textfield;
     }
 
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 }
 .conan-counter .input-controls > * {
     margin-left: 5px;
     margin-right: 5px;
 }
-
