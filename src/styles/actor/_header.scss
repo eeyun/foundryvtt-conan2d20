@@ -3,32 +3,31 @@ header.char-header {
     justify-content: space-between;
     align-items: center;
 
+    h1.char-name {
+        margin: 0;
+        border: none;
+        margin-bottom: 4px;
+        input[type='text'] {
+            font-family: CrushYourEnemies;
+            font-weight: 400;
+            font-size: 20px;
+            height: 41px;
+            color: white;
+            line-height: 1;
+            border-bottom: 3px solid transparent;
+            &:focus {
+                box-shadow: none;
+                border-bottom: px solid black;
+            }
+        }
+    }
+
     .char-details {
         @include micro;
         color: white;
         margin-top: 0px;
         margin-left: 8px;
         margin-right: 8px;
-
-        h1.char-name {
-            margin: 0;
-            border: none;
-            margin-bottom: 4px;
-            input[type='text'] {
-                font-family: CrushYourEnemies;
-                font-weight: 400;
-                font-size: 20px;
-                padding-right:15px;
-                height: 41px;
-                color: white;
-                line-height: 1;
-                border-bottom: 3px solid transparent;
-                &:focus {
-                    box-shadow: none;
-                    border-bottom: px solid black;
-                }
-            }
-        }
 
         .dots {
             display: flex;
