@@ -149,43 +149,4 @@ export class C2_Utility {
         Object.assign(armor, {qualityCount: locationCount});
         return armor
     }
-
-    // /**
-    //  * Utility function to be used with various categories
-    //  * @param items
-    //  * @param category
-    //  */
-    // static calculateWealthForCategory(items: any, category: string) : any {
-    //     return items
-    //         .filter(item => item.type === category)
-    //         .map(item => {
-    //             return this.extractPriceFromItem(item);
-    //         }).reduce((accumulator, currentValue) => accumulator + currentValue);
-    // }
-
-    // /**
-    //  * Sums up all wealth of a character, not just the treasure, but all other equipment
-    //  * @param items
-    //  */
-    //  static calculateTotalWealth(items: any): any {
-    //     const itemTypes = [
-    //         'weapon',
-    //         'armor',
-    //         'kit',
-    //     ];
-        
-    //     return itemTypes.map(itemType => {
-    //         return this.calculateWealthForCategory(items, itemType);
-    //     }).reduce((accumulator, currentValue) => accumulator + currentValue);
-    // }
-
-    // /**
-    //  * Converts the price of an item to the Coin structure
-    //  * @param item
-    //  */
-    // static extractPriceFromItem(item: any) : any {
-    //     const value = item.data.cost;
-    //     const quantity = parseInt(item.data?.quantity ?? '0', 10);
-    //     return parseInt(value, 10) * quantity;
-    // }
 }

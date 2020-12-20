@@ -274,6 +274,7 @@
         "healthDespair": "Despair",
         "healthTreated": "Treated",
         "healthCourage": "Courage",
+        "healthCourageTitle": "Courage provides persistent Soak, serving as the character's basic mental durability.",
         "standing": "Social Standing",
         "renown": "Renown",
         "upkeep": "Upkeep",
@@ -519,6 +520,7 @@
         "specialLabel": "Special",
         "specialAbilityHeader": "Special Ability",
         "armorSoakLabel": "Armor Soak",
+        "armorSoakTitle": "The persistent Soak provided by equipped armor serves as the character's basic physical durability.",
         "standingLabel": "Standing",
         "updateActorLabel": "Update Actor",
         "statusHeader": "Status",
@@ -565,7 +567,7 @@
         "talentArchetypeHeader": "Archetype",
         "talentOtherHeader": "Other",
         "traumasLabel": "Traumas",
-        "traumasTitle": "Traumas",
+        "traumasTitle": "If a sufficient amount of mental damage is inflicted, the Harms inflicted are called Trauma. Traumas increase the Difficulty of skill tests using mental attributes: Awareness, Intelligence, Personality, and Willpower. A character suffering 4 Traumas is barely coherent, scarcely capable of rational thought or deed. A character suffering 5 Traumas is either comatose or has suffered irreperable psychological harm.",
         "upasGlassSizeLabel": "Size",
         "upasGlassSizes": {
             "res": "Resilient Glass",
@@ -622,7 +624,7 @@
         "weaponSizeLabel": "Weapon Size",
         "weaponSummary": "Weapon Summary",
         "woundsLabel": "Wounds",
-        "woundsTitle": "Wounds",
+        "woundsTitle": "If a sufficient amount of physical damage is inflicted, the Harms inflicted are called Wounds. Wounds increase the Difficulty of skill tests using physical attributes: Agility, Brawn, and Coordination. Characters suffering 4 Wounds are so badly injured that they are barely capable of moving. A character that has taken 5 Wounds is dead.",
         "qualities": {
             "armor": {
                 "heav": "Heavy",
