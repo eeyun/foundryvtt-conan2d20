@@ -93,6 +93,22 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             item.sheet.render(true)
         });
 
+        html.find('.add-gold').click((event) => {
+            const updateActorData = {};
+            updateActorData['data.resources.gold.value'] = this.actor.data.data.resources.gold.value + 1;
+            this.actor.update(updateActorData)
+        });
+
+        html.find('.subtract-gold').click((event) => {
+            const updateActorData = {};
+            if (this.actor.data.data.resources.gold.value <= 0) {
+                return
+            } else {
+                updateActorData['data.resources.gold.value'] = this.actor.data.data.resources.gold.value - 1;
+            }
+            this.actor.update(updateActorData)
+        });
+
         html.find('.consumable-increase').click((event) => {
             const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
             const item = this.actor.getOwnedItem(itemId).data;

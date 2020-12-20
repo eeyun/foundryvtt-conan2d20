@@ -40,6 +40,9 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         // Update traumatized icon
         sheetData.data.health.mental.traumas = C2_Utility.addDots(duplicate(sheetData.data.health.mental.traumas), sheetData.data.health.mental.traumas.max);
         
+        // Update Actor Gold
+        sheetData.data.gold = sheetData.actor.data.resources.gold.value;
+
         // Update Actor Armor values
         if (sheetData.actor.inventory.weapon.items.filter(i => i.data.group === "shield").length > 0) {
             const shields = sheetData.actor.inventory.weapon.items.filter(i => i.data.group === "shield");
@@ -47,7 +50,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         } else {
             sheetData.data.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, undefined);
         };
-
+        console.log(sheetData);
         sheetData.skills = CONFIG.CONAN.skills;
 
         return sheetData;

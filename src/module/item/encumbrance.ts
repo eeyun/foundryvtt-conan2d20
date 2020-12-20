@@ -96,7 +96,6 @@ export function combinedEncumbrance(actorInventory, actorBrawn)
     let totalEnc = 0;
     for (const itemType in actorInventory) {
         if (actorInventory !== undefined) {
-            console.log(actorInventory[itemType])
             if (actorInventory[itemType].label !== 'Consumables') {
                 for (let x = 0; x < actorInventory[itemType].items.length; x += 1) {
                     if (actorInventory[itemType].items[x].data.encumbrance === '1each') {
