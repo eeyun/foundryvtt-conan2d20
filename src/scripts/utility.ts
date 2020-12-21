@@ -27,6 +27,7 @@ export class C2_Utility {
         return data
     }
 
+
     static calculateArmor(armorItems, shieldItems = undefined)
     {
         let shields;

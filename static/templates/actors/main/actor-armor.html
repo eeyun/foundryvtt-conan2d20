@@ -1,11 +1,11 @@
 <div class="sidebar-armor">
     <div class="courage-value">
         <label>{{localize "CONAN.healthCourage"}}</label>
-        <input name="data.health.courage" type="Number" value="{{data.health.courage}}" data-dtype="Number" placeholder=""/>
+        <input title="{{localize "CONAN.healthCourageTitle"}}" name="data.health.courage" type="Number" value="{{data.health.courage}}" data-dtype="Number" placeholder=""/>
     </div>
     <div class="soak-table">
         <table>
-            <tr class="tracker-header"><th class="armor-header" colspan="2">Armor Soak</th></tr>
+            <tr class="tracker-header"><th title="{{localize "CONAN.armorSoakTitle"}}" class="armor-header" colspan="2">Armor Soak</th></tr>
             <tr class="tracker-entry">
                 <td class="tracker-label">{{ localize "CONAN.coverage.head" }}</td>
                 <td class="tracker-score"><input type="Number" name="data.armor.head.soak.[0]" value="{{data.armor.head.soak.[0]}}" disabled></td>
