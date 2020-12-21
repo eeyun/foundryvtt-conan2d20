@@ -138,25 +138,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
   
         html.find('.item-delete').click((ev) => this._onItemDelete(ev));
 
-        html.find('.wounds').click(ev => {
-            let actorData = duplicate(this.actor)
-            let index = Number($(ev.currentTarget).attr("data-index"));
-            let target = $(ev.currentTarget).parents(".dots-row").attr("data-target")
-        
-            let value = getProperty(actorData, target)
-            if (value == index + 1)
-              setProperty(actorData, target, index)
-            else 
-              setProperty(actorData, target, index + 1)
-
-            let woundElement = $(ev.currentTarget).parents(".health");
-            if(woundElement.length)
-            {
-                if (getProperty(actorData, target) <= 0)
-                setProperty(actorData, target, 1)
-            }
-            this.actor.update(actorData);
-        });
 
         html.find(".skill-name.rollable").click(async ev => {
             let actorData = duplicate(this.actor);
@@ -192,6 +173,42 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             let {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon, reloadIds);
             await Conan2d20Dice.showDamageRollDialog({dialogData, cardData, rollData, actorData})
         });
+
+        html.find('.wounds').on('click contextmenu', this._onClickWounded.bind(this));
+    }
+
+    _onClickWounded(event) {
+        event.preventDefault();
+        const field = $(event.currentTarget).parent().attr("data-target");
+        const icon  = $(event.currentTarget).attr("data-target");
+
+        let actorData = duplicate(this.actor);
+        let dot = getProperty(actorData, field);
+
+        if (event.type === 'click') {
+            if (dot === 'healed') {
+                setProperty(actorData, field, 'treated');
+                setProperty(actorData, icon, 'fas fa-star-of-life');
+            } else if (dot === 'treated') {
+                setProperty(actorData, field, 'wounded');
+                setProperty(actorData, icon, 'fas fa-skull');
+            } else {
+                setProperty(actorData, field, 'wounded');
+                setProperty(actorData, icon, 'fas fa-skull');
+            }
+        } else if (event.type === 'contextmenu') {
+            if (dot === 'wounded') {
+                setProperty(actorData, field, 'treated');
+                setProperty(actorData, icon, 'fas fa-star-of-life');
+            } else if (dot === 'treated') {
+                setProperty(actorData, field, 'healed');
+                setProperty(actorData, icon, 'far fa-circle');
+            } else {
+                setProperty(actorData, field, 'healed');
+                setProperty(actorData, icon, 'far fa-circle');
+            }
+        }
+        this.actor.update(actorData);
     }
 
     _onTraitSelector(event) {

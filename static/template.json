@@ -35,8 +35,14 @@
                         "wounds": {
                             "min": 0,
                             "value": 0,
-                            "treated": 0,
-                            "max": 5
+                            "max": 5,
+                            "dots": {
+                                "0": {"status": "healed", "icon": "far fa-circle"},
+                                "1": {"status": "healed", "icon": "far fa-circle"}, 
+                                "2": {"status": "healed", "icon": "far fa-circle"}, 
+                                "3": {"status": "healed", "icon": "far fa-circle"}, 
+                                "4": {"status": "healed", "icon": "far fa-circle"}  
+                            }
                         },
                         "fatigue": 0
                     },
@@ -46,9 +52,16 @@
                         "max": 7,
                         "traumas": {
                             "min": 0,
-                            "value": 0,
+                            "current": 0,
                             "treated": 0,
-                            "max": 5
+                            "max": 5,
+                            "dots": {
+                                "0": {"status": "healed", "icon": "far fa-circle"},
+                                "1": {"status": "healed", "icon": "far fa-circle"}, 
+                                "2": {"status": "healed", "icon": "far fa-circle"}, 
+                                "3": {"status": "healed", "icon": "far fa-circle"}, 
+                                "4": {"status": "healed", "icon": "far fa-circle"}  
+                            }
                         },
                         "despair": 0
                     },
