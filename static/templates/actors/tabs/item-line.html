@@ -8,20 +8,29 @@
         <span class="item-charges">({{item.data.uses.value}}/{{item.data.uses.max}})</span>
         {{/if}}
     </div>
-    {{#if item.data.enchantmentType}}
-    <span class="item-weight">{{item.data.encumbrance}}</span>
-    <span class="item-quantity">
-        <a class="item-decrease-quantity">&ndash;</a>
-        <span>{{item.data.uses.value}}</span>
-        <a class="item-increase-quantity">+</a>
-    </span>
+    {{#if item.data.transpoType}}
+        <span class="item-quantity">
+            <a class="mount-decrease-pass">&ndash;</a>
+            <span>{{item.data.passengers.current}}</span>
+            <a class="mount-increase-pass">+</a>
+        </span>
+        <span class="item-weight">{{item.data.stowage}}</span>
     {{else}}
-    <span class="item-quantity">
-        <a class="item-decrease-quantity">&ndash;</a>
-        <span>{{item.data.quantity}}</span>
-        <a class="item-increase-quantity">+</a>
-    </span>
-    <span class="item-weight">{{item.data.encumbrance}}</span>
+        {{#if item.data.enchantmentType}}
+        <span class="item-weight">{{item.data.encumbrance}}</span>
+        <span class="item-quantity">
+            <a class="item-decrease-quantity">&ndash;</a>
+            <span>{{item.data.uses.value}}</span>
+            <a class="item-increase-quantity">+</a>
+        </span>
+        {{else}}
+        <span class="item-quantity">
+            <a class="item-decrease-quantity">&ndash;</a>
+            <span>{{item.data.quantity}}</span>
+            <a class="item-increase-quantity">+</a>
+        </span>
+        <span class="item-weight">{{item.data.encumbrance}}</span>
+        {{/if}}
     {{/if}}
     {{#if owner}}
     <div class="item-controls">

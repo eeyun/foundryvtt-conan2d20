@@ -16,10 +16,28 @@
     <ol class="inventory-list directory-list inventory-pane">
     {{#each actor.inventory as |section sid|}}
         {{#ifCond section.label '!=' 'Consumables'}}
+            {{#ifCond section.label '!=' 'Transportation'}}
+                <div class="inventory-header">
+                    <h3 class="item-name">{{section.label}}</h3>
+                    <span class="item-quantity">{{localize "CONAN.quantityLabel"}}</span>
+                    <span class="item-weight">{{localize "CONAN.encumbranceShortLabel"}}</span>
+                    {{#if ../owner}}
+                    <div class="item-controls" style="display: flex">                    
+                        <a class="item-control item-create" title="{{localize "CONAN.createItemTitle"}}" data-type="{{sid}}"><i class="fas fa-plus    "></i></a>
+                        <a class="item-control inventory-browse" title="{{localize "CONAN.openInventoryBrowser"}}" data-type="{{sid}}"><i class="fas fa-search"></i></a>
+                    </div>
+                    {{/if}}
+                </div>
+                <ol class="item-list">
+                    {{#each section.items as |item itemId|}}
+                        {{> systems/conan2d20/templates/actors/tabs/item-line.html item=item owner=../../owner level=1}}
+                    {{/each}}
+                </ol>
+            {{else}}
             <div class="inventory-header">
                 <h3 class="item-name">{{section.label}}</h3>
-                <span class="item-quantity">{{localize "CONAN.quantityLabel"}}</span>
-                <span class="item-weight">{{localize "CONAN.encumbranceShortLabel"}}</span>
+                <span class="item-quantity">{{localize "CONAN.transpoPassengerLabel"}}</span>
+                <span class="item-weight">{{localize "CONAN.transpoStowageLabel"}}</span>
                 {{#if ../owner}}
                 <div class="item-controls" style="display: flex">                    
                     <a class="item-control item-create" title="{{localize "CONAN.createItemTitle"}}" data-type="{{sid}}"><i class="fas fa-plus    "></i></a>
@@ -32,6 +50,7 @@
                     {{> systems/conan2d20/templates/actors/tabs/item-line.html item=item owner=../../owner level=1}}
                 {{/each}}
             </ol>
+            {{/ifCond}}
         {{else}}
         <div class="inventory-header">
             <h3 class="item-name">{{section.label}}</h3>

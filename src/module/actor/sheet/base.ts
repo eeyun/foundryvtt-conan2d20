@@ -122,6 +122,19 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.uses.value': Number(item.data.uses.value) - 1 });
             }
         });
+        html.find('.mount-increase-pass').click((event) => {
+            const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+            const item = this.actor.getOwnedItem(itemId).data;
+            this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.passengers.current': Number(item.data.passengers.current) + 1 });
+        });
+
+        html.find('.mount-decrease-pass').click((event) => {
+            const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
+            const item = this.actor.getOwnedItem(itemId).data;
+            if (Number(item.data.passengers.current) > 0) {
+                this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.passengers.current': Number(item.data.passengers.current) - 1 });
+            }
+        });
         html.find('.item-increase-quantity').click((event) => {
             const itemId = $(event.currentTarget).parents('.item').attr('data-item-id');
             const item = this.actor.getOwnedItem(itemId).data;
@@ -225,10 +238,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         new TraitSelector(this.actor, options).render(true);
     }
 
-    /**
-     * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
-     * @private
-     */
     _onItemCreate(event) {
         event.preventDefault();
         const header = event.currentTarget;
@@ -410,9 +419,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                     Conan2d20Dice.showDamageRollDialog({dialogData, cardData, rollData, actorData})
                 }
                 break;
-              //case 'spellAttack': item.rollSpellAttack(ev); break;
-              //case 'spellDamage': item.rollSpellDamage(ev); break;
-              //case 'use': item.rollKit(ev); break;
             }
           });
         
@@ -422,13 +428,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         li.toggleClass('expanded');
     }
 
-  /**
-   * Takes a drop event and if a customized drop event is detected, perform the required actions (i.e. adding a dragged item from chat to the actor)
-   * otherwise, call the base actor sheet's onDrop method to preserve basic functionality
-   * Can be extended to other functionality by creating a drag's data transfer with a type (such as 'item-drag') and adding the conditional here.
-   * 
-   * @param ev drop event 
-   */
   _onDrop(ev)
   {
     let dropData = JSON.parse(ev.dataTransfer.getData("text/plain"));

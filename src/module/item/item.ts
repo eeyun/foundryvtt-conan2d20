@@ -298,6 +298,69 @@ export default class Conan2d20Item extends Item {
         return data;
     }
 
+    _transportationChatData() {
+        if (this.data.type !== 'transportation') {
+            throw new Error('tried to create a transportation chat data for a non-transpo item');
+        }
+
+        const  details = [];
+        const localize = game.i18n.localize.bind(game.i18n);
+        const data : any = duplicate(this.data.data);
+
+        if (data.category) {
+            const category = {
+                label: 'CONAN.transpoCategoryLabel',
+                detail: CONFIG.CONAN.transpoCategories[data.category],
+            };
+            details.push(category);
+        }
+        if (data.transpoType) {
+            let ttype;
+            if (data.category == 'mounts') {
+                ttype = {
+                    label: 'CONAN.transpoTypeLabel',
+                    detail: CONFIG.CONAN.transpoMountTypes[data.transpoType],
+                }
+            } else if (data.category == 'carts') {
+                ttype = {
+                    label: 'CONAN.transpoTypeLabel',
+                    detail: CONFIG.CONAN.transpoCartTypes[data.transpoType],
+                }
+            } else {
+                ttype = {
+                    label: 'CONAN.transpoTypeLabel',
+                    detail: CONFIG.CONAN.transpoBoatTypes[data.transpoType],
+                }
+            }
+            details.push(ttype);
+        }
+        if (data.passengers.capacity) {
+            const capacity = {
+                label: 'CONAN.transpoPassengerCapLabel',
+                detail: String(data.passengers.capacity),
+            }
+            details.push(capacity);
+        }
+        if (data.capabilities != "") {
+            const capabilities = {
+                label: 'CONAN.transpoCapabilitiesLabel',
+                detail: CONFIG.CONAN.transpoCapabilities[data.capabilities],
+            }
+            details.push(capabilities);
+        }
+        if (data.animals != "") {
+            const animals = {
+                label: 'CONAN.transpoAnimalsLabel',
+                detail: CONFIG.CONAN.transpoAnimals[data.animals],
+            }
+            details.push(animals);
+        }
+
+        data.itemDetails = details.filter((p) => p !== null);
+
+        return data;
+    }
+
     _talentChatData() {
         if (this.data.type !== 'talent') {
           throw new Error('tried to create a talent chat data for a non-talent item');
