@@ -1,17 +1,64 @@
-image: node
+image: node:14.9
 
 stages:
   - build
   - test
+  - package
+  - release
   - deploy
+  
+
+###########
+# VARIABLES
+###########
+variables: 
+  IMAGE_VERSION: ${CI_COMMIT_REF}.${CI_PIPELINE_ID}
+  IMAGE_NAME: "INSERT IMAGE NAME"
+  
+###########
+# RULES MODEL
+###########
+
+.rules_if_commit_default_branch: &rules_if_commit_default_branch
+  if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  when: on_success
+
+.rules_if_source_merge_request: &rules_if_source_merge_request
+  if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  when: on_success
+
+#TDODO : update according to th erelease regex you'd like
+.rules_if_release_tag: &rules_if_release_tag
+  if: $CI_COMMIT_REF_NAME =~ /^release-.*$/ && $CI_COMMIT_TAG
+
+
+###########
+# JOBS TEMPLATE
+###########
 
 .global_rules:
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: on_success
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: on_success
+    [*rules_if_commit_default_branch, *rules_if_source_merge_request]
+    
+##########
+# GENERAL
+#########
+before_script:
+  - apt-get update
+  - apt-get install zip
+  # Install WebPack
+  - npm i webpack
+  # Install eslint
+  - npm i eslint
 
+cache:
+  paths:
+    - node_modules/
+        
+
+###########
+# PIPELINE
+###########
 lint:
   # extends: .global_rules
   stage: .pre
@@ -30,6 +77,34 @@ build:
     - npm i webpack
   script:
     - echo building with webpack
-    - npm run build
+    - export
+    - npm ci
     # - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - node updatebuildno.js --buildno=$CI_PIPELINE_IID --branch=$CI_COMMIT_BRANCH --gitlabpath=$CI_PROJECT_PATH
+    - npm run build
+    - mv dist conan2d20
+    - zip conan2d20.zip -r conan2d20
+  artifacts:
+    paths:
+      - conan2d20.zip
+      - system.json
+      
+test:
+  stage: test
+  script: 
+    - echo tests job
+    # Run eslint
+    - node_modules/eslint/bin/eslint.js .
+    - npm test
+      
+      
+package:
+  stage: package
+  script:
+    # - docker login  -u $USER -p $CI_BUILD_TOKEN $CI_REGISTRY
+    # - docker build ${CI_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}
+    - echo "your script here"
+    ### ADD artifact
+  rules:
+    [*rules_if_release_tag]
 
