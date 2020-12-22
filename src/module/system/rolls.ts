@@ -240,11 +240,14 @@ export class Conan2d20Dice {
         diceQty += modifier;
         if (rollData.momentumModifier > 0) {
             try {
-                if (attackerType === 'npc') {
-                    Conan2d20Actor.spendDoom(rollData.momentumModifier);
-                } else {
-                    Conan2d20Actor.spendMomentum(rollData.momentumModifier);
-                }
+                //  We've disabled this codepaths to make momentum and doom spends
+                //  fully manual until we have a sane solution for momentum  handling
+                //  when momenutm is generated from a test.
+                // if (attackerType === 'npc') {
+                //     Conan2d20Actor.spendDoom(rollData.momentumModifier);
+                // } else {
+                //     Conan2d20Actor.spendMomentum(rollData.momentumModifier);
+                // }
                 diceQty += rollData.momentumModifier;
                 if (rollData.reloadModifier > 0) {
                     try {
@@ -308,7 +311,10 @@ export class Conan2d20Dice {
             };
             if (rollData.diceModifier > 0 || doomSpend > 0) {
                 try {
-                    Conan2d20Actor.spendDoom(doomSpend); 
+                    //  We've disabled this codepath to make momentum and doom spends
+                    //  fully manual until we have a sane solution for momentum  handling
+                    //  when momenutm is generated from a test.
+                    //Conan2d20Actor.spendDoom(doomSpend); 
                     diceQty += rollData.diceModifier;
                     await this.calculateSkillRoll(diceQty, rollData.skill.value, 0, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
                 }
@@ -333,10 +339,13 @@ export class Conan2d20Dice {
             if (rollData.diceModifier > 0) {
                 try {
                     if (rollData.diceModifierType === 'momentum') {
-                        Conan2d20Actor.spendMomentum(rollData.diceModifier); 
+                    //  We've disabled these codepaths to make momentum and doom spends
+                    //  fully manual until we have a sane solution for momentum  handling
+                    //  when momenutm is generated from a test.
+                    //    Conan2d20Actor.spendMomentum(rollData.diceModifier); 
                         diceQty += rollData.diceModifier;
                     } else if (rollData.diceModifierType === 'doom') {
-                        Conan2d20Actor.addDoom(rollData.diceModifier); 
+                    //    Conan2d20Actor.addDoom(rollData.diceModifier); 
                         diceQty += rollData.diceModifier;
                     }
                     if (rollData.successModifier > 0) {
