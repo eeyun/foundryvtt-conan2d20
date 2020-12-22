@@ -1,61 +1,61 @@
 .health-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  gap: 1px 1px;
-  grid-template-areas: "sidebar-health";
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 1px 1px;
+    grid-template-areas: 'sidebar-health';
 }
 
 .sidebar-health {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 40px 30px 40px 30px;
-  gap: 1px 1px;
-  grid-template-areas: "vigor-container" "vigor-wounds" "resolve-container" "resolve-traumas";
-  grid-area: sidebar-health;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 30px 40px 30px;
+    gap: 1px 1px;
+    grid-template-areas: 'vigor-container' 'vigor-wounds' 'resolve-container' 'resolve-traumas';
+    grid-area: sidebar-health;
 }
 
 .vigor-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px 1px;
-  grid-template-areas: "vigor-label vigor-value";
-  grid-area: vigor-container;
-  input[type='text'] {
-          width: 52px;
-          font-size: 32px;
-          letter-spacing: -1px;
-          height: 32px;
-  }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px 1px;
+    grid-template-areas: 'vigor-label vigor-value';
+    grid-area: vigor-container;
+    input[type='text'] {
+        width: 52px;
+        font-size: 32px;
+        letter-spacing: -1px;
+        height: 32px;
+    }
 
-  input[type='number'] {
-      width: 52px;
-      text-align: center;
-      border-bottom: 1px solid transparent;
-      &:focus {
-          border-bottom: 1px solid var(--tertiary);
-      }
-  }
+    input[type='number'] {
+        width: 52px;
+        text-align: center;
+        border-bottom: 1px solid transparent;
+        &:focus {
+            border-bottom: 1px solid var(--tertiary);
+        }
+    }
 }
 
-.vigor-label { 
-        padding-top: 20px;
-        padding-left: 17px;
+.vigor-label {
+    padding-top: 20px;
+    padding-left: 17px;
 
     h2 {
-        color: #BDBCBB;
+        color: #bdbcbb;
         font-size: 20px;
         border: transparent;
     }
-    grid-area: vigor-label; 
+    grid-area: vigor-label;
 }
 
-.vigor-value { 
-    grid-area: vigor-value; 
+.vigor-value {
+    grid-area: vigor-value;
     font-family: Norse;
     font-weight: 700;
     text-align: center;
-    background-image: url("../assets/icons/vigor-display.png");
+    background-image: url('../assets/icons/vigor-display.png');
     background-position: center;
     background-repeat: no-repeat;
     padding: 13px;
@@ -67,7 +67,7 @@
         text-align: center;
     }
     input[type='text'] {
-        color: #BDBCBB;
+        color: #bdbcbb;
         font-weight: 700;
         z-index: 1;
         text-align: center;
@@ -78,13 +78,13 @@
     }
 }
 
-.vigor-wounds { 
-    color: #BDBCBB;
-    grid-area: vigor-wounds; 
+.vigor-wounds {
+    color: #bdbcbb;
+    grid-area: vigor-wounds;
     font-size: 12px;
     float: right;
     label {
-        color: #BDBCBB;
+        color: #bdbcbb;
         padding-left: 25px;
         font-size: 10px;
     }
@@ -95,7 +95,6 @@
     .fa,
     .far,
     .fas {
-
         &:hover {
             @include input-glow;
             color: white;
@@ -108,16 +107,22 @@
             color: white;
             cursor: pointer;
         }
-    }  
+    }
+    .fa-star-of-life {
+        color: white;
+    }
+    .fa-skull {
+        color: red;
+    }
 }
 
 .resolve-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  gap: 1px 1px;
-  grid-template-areas: "resolve-label resolve-value";
-  grid-area: resolve-container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1px 1px;
+    grid-template-areas: 'resolve-label resolve-value';
+    grid-area: resolve-container;
 }
 
 .resolve-label {
@@ -126,7 +131,7 @@
     padding-left: 17px;
 
     h2 {
-        color: #BDBCBB;
+        color: #bdbcbb;
         font-size: 19px;
         border: transparent;
     }
@@ -137,7 +142,7 @@
     font-family: Norse;
     font-weight: 700;
     text-align: center;
-    background-image: url("../assets/icons/resolve-display.png");
+    background-image: url('../assets/icons/resolve-display.png');
     background-position: center;
     background-repeat: no-repeat;
     padding: 13px;
@@ -149,7 +154,7 @@
         text-align: center;
     }
     input[type='text'] {
-        color: #BDBCBB;
+        color: #bdbcbb;
         font-weight: 700;
         z-index: 1;
         text-align: center;
@@ -164,9 +169,9 @@
     grid-area: resolve-traumas;
     font-size: 12px;
     float: right;
-    color: #BDBCBB;
+    color: #bdbcbb;
     label {
-        color: #BDBCBB;
+        color: #bdbcbb;
         padding-left: 25px;
         font-size: 10px;
     }
@@ -177,7 +182,6 @@
     .fa,
     .far,
     .fas {
-
         &:hover {
             @include input-glow;
             color: white;
@@ -190,15 +194,22 @@
             color: white;
             cursor: pointer;
         }
-    }  
+    }
+
+    .fa-star-of-life {
+        color: white;
+    }
+    .fa-skull {
+        color: red;
+    }
 }
 
 .fatigue-tracker {
-    background-image: url("../assets/icons/fd2-tracker.png");
+    background-image: url('../assets/icons/fd2-tracker.png');
     background-repeat: no-repeat;
     background-size: contain;
     z-index: 10;
-    position:absolute;
+    position: absolute;
     top: 96px;
     left: 136px;
     input[type='number'] {
@@ -206,7 +217,7 @@
         width: 30px;
         height: 30px;
         font-size: 18px;
-        color: #BDBCBB;
+        color: #bdbcbb;
         font-weight: 700;
         font-family: Norse;
         text-align: center;
@@ -218,19 +229,19 @@
 }
 
 .despair-tracker {
-    background-image: url("../assets/icons/fd2-tracker.png");
+    background-image: url('../assets/icons/fd2-tracker.png');
     background-repeat: no-repeat;
     background-size: contain;
     z-index: 10;
     top: 168px;
     left: 136px;
-    position:absolute;
+    position: absolute;
     input[type='number'] {
         background: none;
         width: 30px;
         height: 30px;
         font-size: 18px;
-        color: #BDBCBB;
+        color: #bdbcbb;
         font-weight: 700;
         font-family: Norse;
         text-align: center;
@@ -240,4 +251,3 @@
         @include input-glow;
     }
 }
-

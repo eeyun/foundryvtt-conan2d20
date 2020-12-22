@@ -12,13 +12,26 @@
             <label>{{localize "CONAN.woundsLabel"}}</label>
             <span title="{{localize "CONAN.woundsTitle"}}">
                 <div class = "dots-row" data-target="data.health.physical.wounds.value">
-                    {{#each data.health.physical.wounds.dots as |wound index|}}
-                        {{#if wound.wounded}}
-                            <a class="wounds" data-index={{index}}><i class="fas fa-skull" data-index={{index}}></i></a>
-                        {{else}}
-                            <a class="wounds" data-index={{index}}><i class="far fa-circle" data-index={{index}}></i></a>
-                        {{/if}}
-                    {{/each}}
+                    <span class="wound-dot" data-target="data.health.physical.wounds.dots.0.status">
+                        <input type="hidden" data-index="0" name="data.health.physical.wounds.dots.0.status" value="{{data.health.physical.wounds.dots.0.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.physical.wounds.dots.0.icon}}" data-target="data.health.physical.wounds.dots.0.icon"></i>
+                    </span>
+                    <span class="wound-dot" data-target="data.health.physical.wounds.dots.1.status">
+                        <input type="hidden" data-index="1" name="data.health.physical.wounds.dots.1.status" value="{{data.health.physical.wounds.dots.1.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.physical.wounds.dots.1.icon}}" data-target="data.health.physical.wounds.dots.1.icon"></i>
+                    </span>
+                    <span class="wound-dot" data-target="data.health.physical.wounds.dots.2.status">
+                        <input type="hidden" data-index="2" name="data.health.physical.wounds.dots.2.status" value="{{data.health.physical.wounds.dots.2.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.physical.wounds.dots.2.icon}}" data-target="data.health.physical.wounds.dots.2.icon"></i>
+                    </span>
+                    <span class="wound-dot" data-target="data.health.physical.wounds.dots.3.status">
+                        <input type="hidden" data-index="3" name="data.health.physical.wounds.dots.3.status" value="{{data.health.physical.wounds.dots.3.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.physical.wounds.dots.3.icon}}" data-target="data.health.physical.wounds.dots.3.icon"></i>
+                    </span>
+                    <span class="wound-dot" data-target="data.health.physical.wounds.dots.4.status">
+                        <input type="hidden" data-index="4" name="data.health.physical.wounds.dots.4.status" value="{{data.health.physical.wounds.dots.4.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.physical.wounds.dots.4.icon}}" data-target="data.health.physical.wounds.dots.4.icon"></i>
+                    </span>
                 </div>
             </span>
         </div>
@@ -34,13 +47,26 @@
             <label>{{localize "CONAN.traumasLabel"}}</label>
             <span title="{{localize "CONAN.traumasTitle"}}">
                 <div class = "dots-row" data-target="data.health.mental.traumas.value">
-                    {{#each data.health.mental.traumas.dots as |trauma index|}}
-                        {{#if trauma.wounded}}
-                            <a class="wounds" data-index={{index}}><i class="fas fa-skull" data-index={{index}}></i></a>
-                        {{else}}
-                            <a class="wounds" data-index={{index}}><i class="far fa-circle" data-index={{index}}></i></a>
-                        {{/if}}
-                    {{/each}}
+                    <span class="wound-dot" data-target="data.health.mental.traumas.dots.0.status">
+                        <input type="hidden" data-index="0" name="data.health.mental.traumas.dots.0.status" value="{{data.health.mental.traumas.dots.0.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.mental.traumas.dots.0.icon}}" data-target="data.health.mental.traumas.dots.0.icon"></i>
+                    </span>
+                    <span class="wound-dot" data-target="data.health.mental.traumas.dots.1.status">
+                        <input type="hidden" data-index="1" name="data.health.mental.traumas.dots.1.status" value="{{data.health.mental.traumas.dots.1.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.mental.traumas.dots.1.icon}}" data-target="data.health.mental.traumas.dots.1.icon"></i>
+                    </span>
+                    <span class="wound-dot" data-target="data.health.mental.traumas.dots.2.status">
+                        <input type="hidden" data-index="2" name="data.health.mental.traumas.dots.2.status" value="{{data.health.mental.traumas.dots.2.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.mental.traumas.dots.2.icon}}" data-target="data.health.mental.traumas.dots.2.icon"></i>
+                    </span>
+                    <span class="wound-dot" data-target="data.health.mental.traumas.dots.3.status">
+                        <input type="hidden" data-index="3" name="data.health.mental.traumas.dots.3.status" value="{{data.health.mental.traumas.dots.3.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.mental.traumas.dots.3.icon}}"data-target="data.health.mental.traumas.dots.3.icon" ></i>
+                    </span>
+                    <span class="wound-dot" data-target="data.health.mental.traumas.dots.4.status">
+                        <input type="hidden" data-index="4" name="data.health.mental.traumas.dots.4.status" value="{{data.health.mental.traumas.dots.4.status}}" data-dtype="Number"/>
+                        <i class ="traumas wounds {{data.health.mental.traumas.dots.4.icon}}" data-target="data.health.mental.traumas.dots.4.icon"></i>
+                    </span>
                 </div>
             </span>
         </div>

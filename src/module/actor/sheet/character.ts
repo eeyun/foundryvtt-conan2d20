@@ -50,7 +50,6 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         } else {
             sheetData.data.armor = C2_Utility.calculateArmor(sheetData.actor.inventory.armor.items, undefined);
         };
-        console.log(sheetData);
         sheetData.skills = CONFIG.CONAN.skills;
 
         return sheetData;
