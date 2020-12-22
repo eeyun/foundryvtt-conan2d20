@@ -204,6 +204,7 @@
             "hel": "Hellish Brimstone"
         },
         "enchantmentVolatilityLabel": "Volatility",
+        "goldPouchTitle": "Total amount of currency carried valued as pieces of Gold",
         "skillShortLabel": "Skill",
         "skillExpertiseShortLabel": "Expertise",
         "skillFocusShortLabel": "Focus",
