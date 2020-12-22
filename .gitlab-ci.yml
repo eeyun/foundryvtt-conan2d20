@@ -80,7 +80,7 @@ build:
     - export
     - npm ci
     # - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - node updatebuildno.js --buildno=$CI_PIPELINE_IID --branch=$CI_COMMIT_BRANCH --gitlabpath=$CI_PROJECT_PATH
+    # - node updatebuildno.js --buildno=$CI_PIPELINE_IID --branch=$CI_COMMIT_BRANCH --gitlabpath=$CI_PROJECT_PATH
     - npm run build
     - mv dist conan2d20
     - zip conan2d20.zip -r conan2d20
