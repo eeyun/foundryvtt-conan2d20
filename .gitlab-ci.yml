@@ -67,6 +67,7 @@ build:
   before_script:
     # Install utils WebPack and zip
     - npm i webpack
+    - apt-get update
     - apt-get install zip
   script:
     - echo building with webpack
