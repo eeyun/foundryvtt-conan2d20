@@ -119,7 +119,7 @@ export class C2_Utility {
                 };
             } else if (innerCount > 2 && armor[entry].qualities.length === 0) {
                 armor[entry].qualities.push('heavy');
-            } 
+            }
 
             for (let i =  0; i < armor[entry].qualities.length; i += 1) {
                 if (armor[entry].qualities[i] === 'heavy') {

@@ -220,13 +220,13 @@ CONFIG.armorTypes = {
     heavyCloth: 'CONAN.armorTypes.heavycloth',
     lightArmor: 'CONAN.armorTypes.lightarmor',
     heavyArmor: 'CONAN.armorTypes.heavyarmor',
-    veryHeavyRrmor: 'CONAN.armorTypes.vheavyarmor'
+    veryHeavyArmor: 'CONAN.armorTypes.vheavyarmor'
 };
 
 CONFIG.armorQualities = {
     heavy: 'CONAN.qualities.armor.heav',
     noisy: 'CONAN.qualities.armor.nois',
-    veryHeavy: 'CONAN.qualities.armor.very'
+    vheavy: 'CONAN.qualities.armor.very'
 };
 
 CONFIG.actionTypes = {
