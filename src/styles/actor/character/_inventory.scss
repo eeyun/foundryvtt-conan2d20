@@ -19,7 +19,6 @@
         padding: 2px;
         @include button;
         background-image: url('../assets/sheet/attribute-block-header.png');
-        //background-color: var(--sub);
         margin-bottom: 8px;
         margin-left: 3px;
         width: 150px;
@@ -67,10 +66,11 @@
             }
 
             .currency-image {
-                height: 24px;
-                width: 24px;
+                height: 100%;
+                width: 100%;
                 @include gold-border;
                 background-size: cover !important;
+                background: url('../assets/icons/icon-goldp-1.png');
             }
         }
 
