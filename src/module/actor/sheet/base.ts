@@ -242,7 +242,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         event.preventDefault();
         const header = event.currentTarget;
         const data = duplicate(header.dataset);
-
         if (data.type === 'talent') {
         	data.name = `New ${data.featTalent.capitalize()} ${data.type.capitalize()}`;
         	mergeObject(data, { 'data.talentType.value': data.talentType });
