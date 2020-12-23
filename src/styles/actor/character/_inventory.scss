@@ -168,7 +168,9 @@
         font-family: $sans-serif;
 
         .item-decrease-quantity,
-        .item-increase-quantity {
+        .item-increase-quantity,
+        .mount-increase-pass,
+        .mount-decrease-pass {
             height: 100%;
             width: 18px;
             text-align: center;

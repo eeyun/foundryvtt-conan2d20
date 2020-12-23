@@ -364,6 +364,59 @@ CONFIG.talentRanks = {
     3: 3
 };
 
+CONFIG.transpoAnimals = {
+    one: 'CONAN.transpoAnimals.1',
+    onep: 'CONAN.transpoAnimals.1p',
+    two: 'CONAN.transpoAnimals.2',
+    twop: 'CONAN.transpoAnimals.2p',
+    four: 'CONAN.transpoAnimals.4',
+    fourp: 'CONAN.transpoAnimals.4p',
+};
+
+CONFIG.transpoBoatTypes = {
+    bireme: 'CONAN.transpoBoatTypes.bireme',
+    canoe: 'CONAN.transpoBoatTypes.canoe',
+    carrack: 'CONAN.transpoBoatTypes.carrack',
+    cog: 'CONAN.trasnpoBoatTypes.cog',
+    galley: 'CONAN.transpoBoatTypes.galley',
+    gondola: 'CONAN.transpoBoatTypes.Gondola',
+    kayak: 'CONAN.transpoBoatTypes.kayak',
+    longboat: 'CONAN.transpoBoatTypes.longboat',
+    longship: 'CONAN.transpoBoatTypes.longship',
+    raft: 'CONAN.transpoBoatTypes.raft'
+};
+
+CONFIG.transpoCapabilities = {
+    p: 'CONAN.transpoCapabilities.p',
+    mp: 'CONAN.transpoCapabilities.mp',
+    bmp: 'CONAN.transpoCapabilities.bmp'
+};
+
+CONFIG.transpoCartTypes = {
+    carriage: 'CONAN.transpoCartTypes.carriage',
+    cart: 'CONAN.transpoCartTypes.cart',
+    hchar: 'CONAN.transpoCartTypes.hchar',
+    lchar: 'CONAN.transpoCartTypes.lchar',
+    litter: 'CONAN.transpoCartTypes.litter',
+    wagon: 'CONAN.transpoCartTypes.wagon',
+    pwagon: 'CONAN.transpoCartTypes.pwagon'
+};
+
+CONFIG.transpoCategories = {
+    mounts: 'CONAN.transpoCategories.mounts',
+    carts: 'CONAN.transpoCategories.carts',
+    boats: 'CONAN.transpoCategories.boats'
+};
+
+CONFIG.transpoMountTypes = {
+    buffalo: 'CONAN.transpoMountTypes.buffalo',
+    camel: 'CONAN.transpoMountTypes.camel',
+    donkey: 'CONAN.transpoMountTypes.donkey',
+    dhorse: 'CONAN.transpoMountTypes.dhorse',
+    rhorse: 'CONAN.transpoMountTypes.rhorse',
+    whorse: 'CONAN.transpoMountTypes.whorse'
+};
+
 CONFIG.talentTypes = {
     homeland: 'CONAN.talentTypes.homeland',
     caste: 'CONAN.talentTypes.caste',

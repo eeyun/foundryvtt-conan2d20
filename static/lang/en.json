@@ -566,6 +566,61 @@
         "talentNatureHeader": "Nature",
         "talentArchetypeHeader": "Archetype",
         "talentOtherHeader": "Other",
+        "transpoAnimals": {
+            "1": "1",
+            "1p": "1+",
+            "2": "2",
+            "2p": "2+",
+            "4": "4",
+            "4p":"4+"
+        },
+        "transpoAnimalsLabel": "Animals",
+        "transpoBoatTypes": {
+            "bireme": "Bireme",
+            "canoe": "Canoe",
+            "carrack": "Carrack",
+            "cog": "Cog",
+            "galley": "Galley",
+            "gondola": "Gondola",
+            "kayak": "Kayak",
+            "longboat": "Longboat",
+            "longship": "Longship",
+            "raft": "Raft"
+        },
+        "transpoCapabilities": {
+            "p": "Pack",
+            "mp":  "Mount, Pack",
+            "bmp": "Battle, Mount, Pack"
+        },
+        "transpoCapabilitiesLabel": "Capabilities",
+        "transpoCartTypes": {
+            "carriage": "Carriage",
+            "cart": "Cart",
+            "hchar": "Chariot, Heavy",
+            "lchar": "Chariot, Light",
+            "litter": "Litter",
+            "wagon": "Wagon",
+            "pwagon": "Wagon, Pageant"
+        },
+        "transpoCategories": {
+            "mounts": "Mounts",
+            "carts": "Carriages, Charriots, and Wagons",
+            "boats": "Watercraft"
+        },
+        "transpoCategoryLabel": "Category",
+        "transpoHeader": "Transportation",
+        "transpoMountTypes": {
+            "buffalo": "Buffalo or Ox",
+            "camel": "Camel or Lama",
+            "donkey": "Donkey or Mule",
+            "dhorse": "Horse, Draft",
+            "rhorse": "Horse, Riding",
+            "whorse": "Horse, War"
+        },
+        "transpoPassengerLabel": "Passengers",
+        "transpoPassengerCapLabel": "Passenger Capacity",
+        "transpoStowageLabel": "Stowage",
+        "transpoTypeLabel": "Type",
         "traumasLabel": "Traumas",
         "traumasTitle": "If a sufficient amount of mental damage is inflicted, the Harms inflicted are called Trauma. Traumas increase the Difficulty of skill tests using mental attributes: Awareness, Intelligence, Personality, and Willpower. A character suffering 4 Traumas is barely coherent, scarcely capable of rational thought or deed. A character suffering 5 Traumas is either comatose or has suffered irreperable psychological harm.",
         "upasGlassSizeLabel": "Size",

@@ -98,10 +98,18 @@ export function combinedEncumbrance(actorInventory, actorBrawn)
         if (actorInventory !== undefined) {
             if (actorInventory[itemType].label !== 'Consumables') {
                 for (let x = 0; x < actorInventory[itemType].items.length; x += 1) {
-                    if (actorInventory[itemType].items[x].data.encumbrance === '1each') {
-                        totalEnc += (Number(actorInventory[itemType].items[x].data.quantity) * Number(actorInventory[itemType].items[x].data.coverage.value.length))
-                    } else {
-                        totalEnc += (Number(actorInventory[itemType].items[x].data.encumbrance) * Number(actorInventory[itemType].items[x].data.quantity))
+                    if (actorInventory[itemType].label == 'Transportation') {
+                        if (Number(actorInventory[itemType].items[x].data.passengers.current) > Number(actorInventory[itemType].items[x].data.passengers.capacity)) {
+                            const extraEnc = ((Number(actorInventory[itemType].items[x].data.passengers.current) - Number(actorInventory[itemType].items[x].data.passengers.capacity)) * 10)
+                            totalEnc += extraEnc;
+                        }
+                    }
+                    if(!actorInventory[itemType].items[x].data.equipped) {
+                        if (actorInventory[itemType].items[x].data.encumbrance === '1each') {
+                            totalEnc += (Number(actorInventory[itemType].items[x].data.quantity) * Number(actorInventory[itemType].items[x].data.coverage.value.length))
+                        } else {
+                            totalEnc += (Number(actorInventory[itemType].items[x].data.encumbrance) * Number(actorInventory[itemType].items[x].data.quantity))
+                        }
                     }
                 }
             }
@@ -119,8 +127,23 @@ export function calculateEncumbrance(
     actorBrawn,
 ): InventoryWeight {
     const combinedEnc = Math.floor((this.combinedEncumbrance(actorInventory, actorBrawn)));
-    const encumberedAt = Math.floor((actorBrawn * 2));
-    const limit = Math.floor((actorBrawn) * 5);
+    let encumberedAt;
+    let limit;
+    let stowage = 0;
+    for (const itemType in actorInventory) {
+        if (actorInventory[itemType].label == 'Transportation') {
+            for (let x = 0; x < actorInventory[itemType].items.length; x += 1) {
+                stowage += (Number(actorInventory[itemType].items[x].data.stowage));
+            }
+            encumberedAt = Math.floor((actorBrawn * 2) + stowage);
+            limit = Math.floor((actorBrawn * 5) + Number(stowage));
+            return new InventoryWeight(combinedEnc, encumberedAt, limit);
+        } else {
+            encumberedAt = Math.floor((actorBrawn * 2));
+            limit = Math.floor((actorBrawn) * 5);
+        }
+    }
+
     return new InventoryWeight(combinedEnc, encumberedAt, limit);
 }
 

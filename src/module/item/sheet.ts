@@ -52,7 +52,7 @@ export class ItemSheetConan2d20 extends ItemSheet {
             type,
             hasSidebar: true,
             sidebarTemplate: () => `systems/conan2d20/templates/items/${type}-sidebar.html`,
-            hasDetails: ['weapon', 'armor', 'talent', 'kit', 'action', 'display', 'enchantment', 'npcattack', 'npcaction'].includes(type),
+            hasDetails: ['weapon', 'armor', 'talent', 'kit', 'action', 'display', 'enchantment', 'npcattack', 'npcaction', 'transportation'].includes(type),
             detailsTemplate: () => `systems/conan2d20/templates/items/${type}-details.html`
         });
 
@@ -95,6 +95,14 @@ export class ItemSheetConan2d20 extends ItemSheet {
             data.rankMax = data.data.rank.max;
 
             data.talentTags = [data.data.rank.value].filter(t => !!t);
+        } else if (type === 'transportation') {
+            data.categories = CONFIG.CONAN.transpoCategories;
+            data.capabilities = CONFIG.CONAN.transpoCapabilities;
+            data.animals = CONFIG.CONAN.transpoAnimals;
+            data.mountType = CONFIG.CONAN.transpoMountTypes;
+            data.cartType = CONFIG.CONAN.transpoCartTypes;
+            data.boatType = CONFIG.CONAN.transpoBoatTypes;
+
         } else if (type === 'display') {
             data.displaySkills = CONFIG.CONAN.skills;
             data.displayRanges = CONFIG.CONAN.weaponRanges;

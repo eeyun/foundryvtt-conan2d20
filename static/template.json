@@ -540,6 +540,7 @@
             "npcaction",
             "spell",
             "talent",
+            "transportation",
             "weapon"
         ],
         "templates": {
@@ -703,6 +704,20 @@
                 "alternative": []
             },
             "notes": ""
+        },
+        "transportation": {
+            "templates": ["itemDescription"],
+            "category": "mounts",
+            "transpoType": "",
+            "cost": 0,
+            "availability": 0,
+            "stowage": 0,
+            "passengers": {
+                "capacity": 0,
+                "current": 0
+            },
+            "animals": "",
+            "capabilities": ""
         }
     }
 }

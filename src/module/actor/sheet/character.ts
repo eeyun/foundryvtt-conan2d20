@@ -67,7 +67,8 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             armor: { label: game.i18n.localize("CONAN.inventoryArmorHeader"), items: [] },
             weapon: { label: game.i18n.localize("CONAN.inventoryWeaponsHeader"), items: [] },
             kit: { label: game.i18n.localize("CONAN.inventoryKitsHeader"), items: [] },
-            consumable: { label: game.i18n.localize("CONAN.inventoryConsumablesHeader"), items: [] }
+            consumable: { label: game.i18n.localize("CONAN.inventoryConsumablesHeader"), items: [] },
+            transportation: { label: game.i18n.localize("CONAN.transpoHeader"), items: [] }
         };                                                                           
                                                                                   
         const talents = {
@@ -182,6 +183,8 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
                 if (i.data.uses.value > 0) {
                     inventory.consumable.items.push(i);
                 }
+            } else if (i.type === 'transportation') {
+                inventory.transportation.items.push(i)
             }
 
             // Invalid Items
