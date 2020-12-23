@@ -43,14 +43,6 @@ variables:
 ##########
 # GENERAL
 #########
-before_script:
-  - apt-get update
-  - apt-get install zip
-  # Install WebPack
-  - npm i webpack
-  # Install eslint
-  - npm i eslint
-
 cache:
   paths:
     - node_modules/
@@ -73,8 +65,9 @@ build:
   extends: .global_rules
   stage: build
   before_script:
-    # Install WebPack
+    # Install utils WebPack and zip
     - npm i webpack
+    - apt-get install zip
   script:
     - echo building with webpack
     - export
@@ -97,14 +90,4 @@ test:
     - node_modules/eslint/bin/eslint.js .
     #- npm test
       
-      
-package:
-  stage: package
-  script:
-    # - docker login  -u $USER -p $CI_BUILD_TOKEN $CI_REGISTRY
-    # - docker build ${CI_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}
-    - echo "your script here"
-    ### ADD artifact
-  rules:
-    [*rules_if_release_tag]
-
+    
