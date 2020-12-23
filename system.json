@@ -118,10 +118,10 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "health.physical.value",
   "secondaryTokenAttribute": "health.mental.value",
-  "minimumCoreVersion": "0.6.4",
-  "compatibleCoreVersion": "0.6.4",
+  "minimumCoreVersion": "1.0.0",
+  "compatibleCoreVersion": "1.0.0",
   "url": "https://gitlab.com/kayhos/foundryvtt-conan2d20",
   "manifest": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/raw/master/static/system.json",
-  "download": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/archive/master/foundryvtt-conan2d20-master.zip",
+  "download": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/jobs/artifacts/master/raw/conan2d20.zip?job=build",
   "license": "LICENSE.txt"
 }
