@@ -74,8 +74,8 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
                 actions[actionType].actions.push(i);
             };
 
-            if (i.type != 'npcattack' || i.type !== 'npcaction') {
-                            // Invalid Items
+            if (i.type != 'npcattack' && i.type != 'npcaction') {
+                // Invalid Items
                 console.log("Invalid item for non-player characters!");
                 this.actor.deleteOwnedItem(i._id);
             }
