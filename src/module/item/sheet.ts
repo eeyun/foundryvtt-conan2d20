@@ -226,15 +226,11 @@ export class ItemSheetConan2d20 extends ItemSheet {
 
     insertSpendRow(_event) {
         try {
-            if ( this.item.isOwned ) {
                 const table=document.getElementById("spellSpends") as HTMLTableElement;
                 const itemId = this.item.data._id;
                 const index = table.rows.length - 1;
                 let key = "data.effects.momentum."+[index +1];
-                this.actor.updateEmbeddedEntity('OwnedItem', {_id: itemId, [key]: { type:"", spend: "", effect: ""} })
-            } else {
-                return;
-            }
+                this.item.update({_id: itemId, [key]: { type:"", difficulty: "", effect: ""}},null);
         }
         catch(e) {
             alert(e);
@@ -243,15 +239,11 @@ export class ItemSheetConan2d20 extends ItemSheet {
 
     insertAltRow(_event) {
         try {
-            if ( this.item.isOwned ) {
-                const table=document.getElementById("altEffects") as HTMLTableElement;
-                const itemId = this.item.data._id;
-                const index = table.rows.length - 1;
-                let key = "data.effects.alternative."+[index +1];
-                this.actor.updateEmbeddedEntity('OwnedItem', {_id: itemId, [key]: { type:"", difficulty: "", effect: ""} })
-            } else {
-                return;
-            }
+            const table=document.getElementById("altEffects") as HTMLTableElement;
+            const itemId = this.item.data._id;
+            const index = table.rows.length - 1;
+            let key = "data.effects.alternative."+[index +1];
+            this.item.update({_id: itemId, [key]: { type:"", difficulty: "", effect: ""}},null);
         }
         catch(e) {
             alert(e);
@@ -260,14 +252,10 @@ export class ItemSheetConan2d20 extends ItemSheet {
 
     deleteAltRow(_event) {
         try {
-            if ( this.item.isOwned ) {
-                const table=document.getElementById("altEffects") as HTMLTableElement;
-                const toDelete = table.rows.length - 1;
-                let key = "data.effects.alternative.-="+[toDelete];
-                this.item.update({[key]: null}, null);
-            } else {
-                return
-            }
+            const table=document.getElementById("altEffects") as HTMLTableElement;
+            const toDelete = table.rows.length - 1;
+            let key = "data.effects.alternative.-="+[toDelete];
+            this.item.update({[key]: null}, null);
         }
         catch(e) {
 		    alert(e);
@@ -275,14 +263,10 @@ export class ItemSheetConan2d20 extends ItemSheet {
     }
     deleteSpendRow(_event) {
         try {
-            if ( this.item.isOwned ) {
                 const table=document.getElementById("spellSpends") as HTMLTableElement;
                 const toDelete = table.rows.length - 1;
                 let key = "data.effects.momentum.-="+[toDelete];
                 this.item.update({[key]: null}, null);
-            } else {
-                return;
-            }
         }
         catch(e) {
 		    alert(e);
