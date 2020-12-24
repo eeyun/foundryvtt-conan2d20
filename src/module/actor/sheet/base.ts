@@ -247,7 +247,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         	mergeObject(data, { 'data.talentType.value': data.talentType });
         } else if (data.type === 'action') {
         	data.name = `New ${data.actionType.capitalize()}`;
-        	mergeObject(data, { 'data.actionType.value': data.actionType });
+        	mergeObject(data, { 'data.actionType': data.actionType });
         } else if (data.type === 'npcaction') {
             if (data.actionType === 'doom') {
                 data.name = `New ${game.i18n.localize("CONAN.doomSpendHeader")}`;
