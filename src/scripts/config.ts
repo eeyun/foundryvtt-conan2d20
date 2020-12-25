@@ -355,7 +355,9 @@ CONFIG.languages = {
     stygian: 'CONAN.languages.styg',
     turanian: 'CONAN.languages.tura',
     vendhyan: 'CONAN.languages.vend',
-    zembabwein: 'CONAN.languages.zemb'
+    zamorian: 'CONAN.languages.zamo',
+    zembabwein: 'CONAN.languages.zemb',
+    zingaran: 'CONAN.languages.zing'
 };
 
 CONFIG.talentRanks = {
