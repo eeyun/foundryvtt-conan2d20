@@ -487,7 +487,9 @@
             "styg": "Stygian",
             "tura": "Turanian",
             "vend": "Vendhyan",
-            "zemb": "Zembabwein"
+            "zamo": "Zamorian",
+            "zemb": "Zembabwein",
+            "zing": "Zingaran"
         },
         "natures": {
             "cautious":"Cautious",
