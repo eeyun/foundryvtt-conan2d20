@@ -1,7 +1,7 @@
 {
   "name": "conan2d20",
   "title": "Robert E. Howard's Conan: Adventures In An Age Undreamed Of",
-  "description": "A community-contributed game system for running games of Conan in the cinematic 2D20 game system by Modiphius in the Foundry VTT environment. Please refer to the README.md file for reporting issues.",
+  "description": "A community-contributed game system for running games of CONAN in the cinematic 2D20 game system by Modiphius on the Foundry VTT environment. Please refer to the README.md file for reporting issues.",
   "version": "1.0.0",
   "author": ["Jerome Lavoie / kayhosraven#1642", "Ian Henry / eeyun#0890"],
   "scripts": [ ],
@@ -17,11 +17,11 @@
       "entity": "Actor"
     },
     {
-      "name": "items",
-      "label": "Items",
+      "name": "belongings",
+      "label": "Belongings",
       "system": "conan2d20",
       "module": "conan2d20",
-      "path": "./packs/items.db",
+      "path": "./packs/belongings.db",
       "entity": "Item"
     },
 	{
@@ -41,59 +41,11 @@
         "entity": "Item"
     },
 	{
-        "name": "archetypes",
-        "label": "Archetypes",
+        "name": "backgrounds",
+        "label": "Backgrounds",
         "system": "conan2d20",
         "module": "conan2d20",
-        "path": "./packs/archetypes.db",
-        "entity": "JournalEntry"
-    },
-    {
-        "name": "castes",
-        "label": "Castes",
-        "system": "conan2d20",
-        "module": "conan2d20",
-        "path": "./packs/castes.db",
-        "entity": "JournalEntry"
-    },
-    {
-        "name": "stories",
-        "label": "Stories",
-        "system": "conan2d20",
-        "module": "conan2d20",
-        "path": "./packs/stories.db",
-        "entity": "JournalEntry"
-    },
-    {
-        "name": "war-stories",
-        "label": "War Stories",
-        "system": "conan2d20",
-        "module": "conan2d20",
-        "path": "./packs/war-stories.db",
-        "entity": "JournalEntry"
-    },
-    {
-        "name": "educations",
-        "label": "Educations",
-        "system": "conan2d20",
-        "module": "conan2d20",
-        "path": "./packs/educations.db",
-        "entity": "JournalEntry"
-    },
-    {
-        "name": "natures",
-        "label": "Natures",
-        "system": "conan2d20",
-        "module": "conan2d20",
-        "path": "./packs/natures.db",
-        "entity": "JournalEntry"
-    },
-    {
-        "name": "homelands",
-        "label": "Homelands",
-        "system": "conan2d20",
-        "module": "conan2d20",
-        "path": "./packs/homelands.db",
+        "path": "./packs/backgrounds.db",
         "entity": "JournalEntry"
     },
     {
@@ -121,7 +73,7 @@
   "minimumCoreVersion": "0.6.4",
   "compatibleCoreVersion": "0.7.9",
   "url": "https://gitlab.com/kayhos/foundryvtt-conan2d20",
-  "manifest": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/raw/master/static/system.json",
+  "manifest": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/jobs/artifacts/master/raw/system.json?job=build",
   "download": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/jobs/artifacts/master/raw/conan2d20.zip?job=build",
   "license": "LICENSE.txt"
 }
