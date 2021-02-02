@@ -3,7 +3,7 @@
 <h3>{{localize "CONAN.diceRollsLabel"}}</h3>
 <div class="roll-card status">
     {{#each damageRolls as |roll r|}}
-        <span class="roll-list-entry damage-roll roll" id="roll">{{roll.result}}</span>
+        <span class="roll-list-entry damage-roll roll" id="roll">{{{roll}}}</span>
     {{/each}}
 </div>
 <div class="roll-outcomes">
