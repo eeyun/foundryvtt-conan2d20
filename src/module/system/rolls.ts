@@ -61,6 +61,8 @@ export class Conan2d20Dice {
         } else {
             rollInstance = new Roll(`${diceQty}d20`);
             rolls = rollInstance.roll().terms[0].results;
+            if (game.dice3d)
+                await Conan2d20Dice.showDiceSoNice(rollInstance, game.settings.get("core", "rollMode"))
         }
 
         let i;
@@ -126,36 +128,41 @@ export class Conan2d20Dice {
     }
 
     static async calculateDamageRoll(diceQty: Number = 1, damageType: any, cardData: any, fixedrolls?: any) {
-        const damageRollInstance = new Roll(`${diceQty}d6`);
-        const damageRolls = damageRollInstance.roll().terms[0].results;
+
+        const damageRollInstance = new Roll(`${diceQty}dp`);
+        // @ts-ignore
+        const damageRolls = damageRollInstance.roll().terms[0].resultValues;
+        if (game.dice3d)
+            await Conan2d20Dice.showDiceSoNice(damageRollInstance, game.settings.get("core", "rollMode"))
+
         let reroll = false;
-        let damage: number = 0;
-        let effects: number = 0;
+        let damage: number = damageRollInstance.total;
+        // @ts-ignore
+        let effects: number = damageRollInstance.terms.reduce((total, term) => {
+            return total + term.results.reduce((effects, result) => { 
+                return effects + (result.effect ? 1 : 0)
+            }, 0)
+        }, 0)
         let hitLocation: any;
 
         let i;
         if (fixedrolls !== undefined){
             for (i = 0; i < fixedrolls.length; i+=1) {
-                const mergeRoll = {result: fixedrolls[i]};
-                damageRolls.push(mergeRoll);
+                //@ts-ignore
+                if (Number.isNumeric(fixedrolls[i]))
+                    damage += parseInt(fixedrolls[i])
+                else if (fixedrolls[i].includes("img"))
+                {
+                    effects += 1
+                    damage += 1
+                }
+                damageRolls.push(fixedrolls[i]);
             }
             reroll = true;
         }
 
-        damageRolls.forEach(r => {
-            if (r.result === 1) {
-                damage += 1;
-            } else if (r.result === 2) {
-                damage += 2;
-            } else if (r.result === 3 || r.result === 4) {
-                damage += 0;
-            } else {
-                damage  += 1;
-                effects += 1;
-            }
-        })
-
         const locationRollInstance = new Roll('1d20');
+        // @ts-ignore
         const locationRolls = locationRollInstance.roll().terms[0].results;
 
         locationRolls.forEach(r => {
@@ -417,6 +424,7 @@ export class Conan2d20Dice {
                     "roll" : {
                         label : "Roll Damage",
                         callback : async (template) => {
+
                             /* eslint no-param-reassign: "error" */
                             // @ts-ignore
                             rollData.optionalBaseDmg = Number(template.find('[name="baseDamage"]').val() || 0)
@@ -534,4 +542,33 @@ export class Conan2d20Dice {
             }
         });
     }
+
+      /**
+   * Add support for the Dice So Nice module
+   * @param {Object} roll 
+   * @param {String} rollMode 
+   */
+  static async showDiceSoNice(roll, rollMode) {
+    if (game.modules.get("dice-so-nice") && game.modules.get("dice-so-nice").active) {
+      let whisper = null;
+      let blind = false;
+      switch (rollMode) {
+        case "blindroll": //GM only
+          blind = true;
+        case "gmroll": //GM + rolling player
+          let gmList = game.users.filter(user => user.isGM);
+          let gmIDList = [];
+          gmList.forEach(gm => gmIDList.push(gm.data._id));
+          whisper = gmIDList;
+          break;
+        case "roll": //everybody
+          let userList = game.users.filter(user => user.active);
+          let userIDList = [];
+          userList.forEach(user => userIDList.push(user.data._id));
+          whisper = userIDList;
+          break;
+      }
+      await game.dice3d.showForRoll(roll, game.user, true, whisper, blind);
+    }
+  }
 }
