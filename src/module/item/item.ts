@@ -400,8 +400,6 @@ export default class Conan2d20Item extends Item {
         return data;
   }
 
- 
-
     _weaponChatData() {
         const data : any = duplicate(this.data.data);
         const qualities = [];
@@ -535,6 +533,69 @@ export default class Conan2d20Item extends Item {
         ];
 
         data.properties = props.filter((p) => p);
+
+        return data;
+    }
+
+    _displayChatData() {
+        const data : any = duplicate(this.data.data);
+        const qualities = [];
+        const properties = [];
+        const  details = [];
+
+        if (this.data.type !== 'display') {
+          throw new Error('tried to create a display chat data for a non-display item');
+        }
+
+        if ((data.qualities.value || []).length !== 0) {
+            let  qualitiesObject;
+            for (let i = 0; i < data.qualities.value.length; i+= 1) {
+                if (data.qualities.value[i].value) {
+                    qualitiesObject = { label: `${data.qualities.value[i].label} ${(data.qualities.value[i].value)}` || (data.qualities.value[i].label.charAt(0).toUpperCase() + data.qualities.value[i].label.slice(1)),
+                    description: CONFIG.CONAN.qualitiesDescriptions[data.qualities.value[i].label.replace(' ','').toLowerCase()] || '',
+                    };
+                } else {
+                    qualitiesObject = { label: CONFIG.CONAN.weaponQualities[data.qualities.value[i].label] || (data.qualities.value[i].label.charAt(0).toUpperCase() + data.qualities.value[i].label.slice(1)),
+                    description: CONFIG.CONAN.qualitiesDescriptions[data.qualities.value[i].label.replace(' ','').toLowerCase()] || '',
+                    };
+                }
+                qualities.push(qualitiesObject);
+            }
+        }
+
+        const weaponGroup = {
+            label: 'CONAN.groupLabel',
+            detail: CONFIG.CONAN.weaponGroups[data.group],
+        };
+        details.push(weaponGroup);
+
+        const weaponDamage = {
+            label: 'CONAN.baseDamageLabel',
+            detail: CONFIG.CONAN.damageDice[data.damage.dice],
+        };
+        details.push(weaponDamage);
+
+        let weaponRange: any;
+        if (data.weaponType === 'ranged') {
+            weaponRange = {
+                label: 'CONAN.rangeLabel',
+                detail: CONFIG.CONAN.weaponRanges[data.range],
+            };
+        } else {
+            weaponRange = {
+                label: 'CONAN.reachLabel',
+                detail: CONFIG.CONAN.weaponReaches[data.range],
+            };
+        }
+        details.push(weaponRange);
+
+        if (data.size) {
+            properties.push(CONFIG.CONAN.weaponSizes[data.size]);
+        }
+
+        data.properties = properties.filter((p) => !!p);
+        data.itemDetails = details.filter((p) => p !== null);
+        data.qualities = qualities.filter((p) => !!p);
 
         return data;
     }

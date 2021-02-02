@@ -1,7 +1,9 @@
 import Conan2d20Actor from '../actor';
 import Conan2d20Item from '../../item/item';
-import {Conan2d20Dice} from '../../system/rolls';
+import { Conan2d20Dice } from '../../system/rolls';
 import { TraitSelector } from '../../system/trait-selector';
+import { C2_Utility } from '../../../scripts/utility';
+
 
 abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
     static get defaultOptions() {
@@ -168,10 +170,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             await Conan2d20Dice.showSkillRollDialog({dialogData, cardData, rollData, actorData})
         });
 
-        html.find('.attacks-list [data-action-index]').on('click', '.action-name', (event) => {
-            $(event.currentTarget).parents('.expandable').toggleClass('expanded');
-        });
-
         html.find('.attacks-list .execute-attack').click(async ev => {
             ev.preventDefault();
             ev.stopPropagation();
@@ -304,7 +302,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
 
     _onItemSummary(event) {
         event.preventDefault();
-
         const localize = game.i18n.localize.bind(game.i18n);
         const li = $(event.currentTarget).parent().parent();
         const itemId = li.attr('data-item-id');
@@ -315,7 +312,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             // @ts-ignore
             item = this.actor.getOwnedItem(itemId);
             if (!item.type) return;
-            if (actionIndex) return;
         } catch (err) {
             return false;
         }
@@ -325,31 +321,39 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             const summary = li.children('.item-summary');
             summary.slideUp(200, () => summary.remove());
         } else {
+            let div;
             const chatData = item.getChatData({ secrets: this.actor.owner });
-        
-            const div = $(`<div class="item-summary"><div class="item-description">${chatData.description.value}</div></div>`);
+            if (!actionIndex) {
+                div = $(`<div class="item-summary"><div class="item-description">${chatData.description.value}</div></div>`);
+            } else {
+                const flavor = C2_Utility.getAttackDescription(item.data).description;
+                div = $(`<div class="item-summary"><div class="item-description">${localize(flavor)}</div></div>`);
+            }
             const details = $('<div class="item-details"></div>')
             const props = $('<div class="item-properties tags"></div>');
 
-            if (chatData.itemDetails) {
-                chatData.itemDetails.forEach((p) => {
-                let concat;
-                    if(p.description) {
-                        concat = `<div class="chat-item-detail" title="${localize(p.description)}><b> ${localize(p.label)}:</b> ${localize(p.detail)} </div>`;
-                    } else {
-                        concat = `<div class="chat-item-detail"><b>${localize(p.label)}:</b> ${localize(p.detail)} </div>`;
-                    }
-                    details.append(concat);
-                });
-                div.append(details);
+            if (!actionIndex) {
+
+                if (chatData.itemDetails) {
+                    chatData.itemDetails.forEach((p) => {
+                    let concat;
+                        if(p.description) {
+                            concat = `<div class="chat-item-detail" title="${localize(p.description)}><b> ${localize(p.label)}:</b> ${localize(p.detail)} </div>`;
+                        } else {
+                            concat = `<div class="chat-item-detail"><b>${localize(p.label)}:</b> ${localize(p.detail)} </div>`;
+                        }
+                        details.append(concat);
+                    });
+                    div.append(details);
+                }
+                div.append(`</br>`);
             }
-            div.append(`</br>`);
-            if (chatData.properties) {
-                chatData.properties.filter((p) => typeof p === 'string').forEach((p) => {
-                    props.append(`<span class="tag tag_secondary">${localize(p)}</span>`);
-                });
-            }
-            div.append(props);
+                if (chatData.properties) {
+                    chatData.properties.filter((p) => typeof p === 'string').forEach((p) => {
+                        props.append(`<span class="tag tag_secondary">${localize(p)}</span>`);
+                    });
+                }
+                div.append(props);
             // append qualities (only style the tags if they contain description data)
             if (chatData.qualities && chatData.qualities.length) {
                 chatData.qualities.forEach((p) => {
@@ -372,6 +376,9 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 break;
                 case 'weapon':
                     buttons.append(`<button class="tag weapon_damage execute-attack" data-action="weaponDamage">${localize('CONAN.damageRollLabel')}</button>`);
+                break;
+                case 'display':
+                    buttons.append(`<button class="tag display_damage execute-attack" data-action="displayDamage">${localize('CONAN.damageRollLabel')}</button>`);
                 break;
                 case 'kit':
                     if (chatData.hasCharges) buttons.append(`<span class="tag"><button class="consume" data-action="consume">${localize('CONAN.kitUseLabel')} ${item.name}</button></span>`);

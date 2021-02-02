@@ -13,6 +13,28 @@ export class C2_Utility {
         return data
     }
 
+	static getAttackDescription(item) {
+        const flavor = {
+            description: 'CONAN.attack.default.description',
+            success: 'CONAN.attack.default.success',
+        };
+
+        console.log(item);
+        if ((item?.data?.qualities?.value).includes('improvised')) {
+            flavor.description = 'CONAN.attacks.improvised.description';
+            flavor.success = 'CONAN.attacks.improvised.success';
+        } else if (item?.data?.weaponType === 'melee') {
+            flavor.description = 'CONAN.attacks.melee.description';
+            flavor.success = 'CONAN.attacks.melee.success';
+        } else if (item?.data?.weaponType === 'ranged') {
+            flavor.description = 'CONAN.attacks.ranged.description';
+            flavor.success = 'CONAN.attacks.ranged.success';
+        } else if (item?.data?.damage?.type === 'mental') {
+            flavor.description = `${item?.data?.description?.value}`;
+            flavor.success = 'CONAN.attacks.display.success';
+      }
+          return flavor;
+    }
 
     static calculateArmor(armorItems, shieldItems = undefined)
     {

@@ -1,20 +1,21 @@
 <div class="tab talents" data-group="primary" data-tab="talents">
-    <ol class="actions-list inventory-list directory-list">
+    <ol class="actions-list inventory-list directory-list attacks-list">
         {{#each actor.talents as |section sid|}}
-            <li class="item action-header">
-                <h3 class="talent-name">{{section.label}}</h3>
+        <div class="grid-container">
+            <li class="item header-bar">
+                <h3 class="talent-name item-name">{{section.label}}</h3>
                 {{#if ../owner}}
-                <div class="item-controls">
+                <div class="item-controls" style="display: flex">
                     <a class="item-control item-create" title="{{localize "CONAN.createTalentTitle"}}" data-type="talent" data-talent-type="{{sid}}"><i class="fas fa-plus"></i></a>
                     <a class="item-control talent-browse" title="{{localize "CONAN.openTalentBrowserTitle"}}" data-type="talent"><i class="fas fa-search"></i></a>
                 </div>
                 {{/if}}
             </li>
-
+            <div class="item-table">
             {{#each section.talents as |talent fid|}}
             <li class="item talent-item" data-item-id="{{talent._id}}">
                 <div class="item-name rollable">
-                    <img class="item-image" src="{{talent.img}}" alt="{{talent.name}}">
+                    <img class="item-image execute-attack" src="{{talent.img}}" alt="{{talent.name}}">
                     <h4>
                         {{talent.name}}
                     </h4>
@@ -27,7 +28,8 @@
                 {{/if}}
             </li>
             {{/each}}
+            </div>
+        </div>
         {{/each}}
-
     </ol>
 </div>

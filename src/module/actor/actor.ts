@@ -5,6 +5,7 @@ import { CONFIG } from '../../scripts/config';
 import { Conan2d20Dice } from '../system/rolls';
 import Counter from '../system/counter';
 import CharacterData from './character';
+import { C2_Utility } from '../../scripts/utility';
 
 export default class Conan2d20Actor extends Actor {
     /**
@@ -89,7 +90,7 @@ export default class Conan2d20Actor extends Actor {
                 action.imageUrl = item.img;
                 action.name = item.name;
         		action.type = 'attack';
-        		const flavor = this.getAttackDescription(item);
+                const flavor = C2_Utility.getAttackDescription(item);
         		action.description = flavor.description;
         		action.success = flavor.success;
                 if (item.type === 'weapon') {
@@ -327,27 +328,6 @@ export default class Conan2d20Actor extends Actor {
       }
       return cardData
   }
-
-	getAttackDescription(item) {
-  		const flavor = {
-  	  		description: 'CONAN.attack.default.description',
-  	  	  	success: 'CONAN.attack.default.success',
-  	  	};
-  	  	if ((item?.data?.qualities?.value).includes('improvised')) {
-  	  	 flavor.description = 'CONAN.attacks.improvised.description';
-  	  	 	flavor.success = 'CONAN.attacks.improvised.success';
-  	  	} else if (item?.data?.weaponType === 'melee') {
-  	  		flavor.description = 'CONAN.attacks.melee.description';
-  	  	  	flavor.success = 'CONAN.attacks.melee.success';
-  	  	} else if (item?.data?.weaponType === 'ranged') {
-  	  		flavor.description = 'CONAN.attacks.ranged.description';
-  	  	  	flavor.success = 'CONAN.attacks.ranged.success';
-  	  	} else if (item?.data?.damage?.type === 'mental') {
-			flavor.description = `${item?.data?.description?.value}`;
-			flavor.success = 'CONAN.attacks.display.success';
-		}
-  	  	return flavor;
-  	}
 
   	_getModifiers(type: String, specifier: any) {
         let mod;
