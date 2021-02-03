@@ -18,8 +18,6 @@ export class C2_Utility {
             description: 'CONAN.attack.default.description',
             success: 'CONAN.attack.default.success',
         };
-
-        console.log(item);
         if ((item?.data?.qualities?.value).includes('improvised')) {
             flavor.description = 'CONAN.attacks.improvised.description';
             flavor.success = 'CONAN.attacks.improvised.success';

@@ -248,6 +248,33 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
         if (!this.options.editable) return;
 
         html.find('img[data-edit]').click(ev => this._onEditImage(ev));
+
+        html.find(".condition-value").mousedown(ev => {
+            let condKey = $(ev.currentTarget).parents(".sheet-condition").attr("data-cond-id")
+            if (ev.button == 0) {
+              this.actor.addCondition(condKey)
+            } else if (ev.button == 2) {
+              this.actor.removeCondition(condKey)
+            }
+        })
+
+          html.find(".condition-toggle").mousedown(ev => {
+            let condKey = $(ev.currentTarget).parents(".sheet-condition").attr("data-cond-id")
+
+            if (game.conan2d20.config.statusEffects.find(e => e.id == condKey).flags.conan2d20.value == null)
+            {
+                if (this.actor.hasCondition(condKey))
+                    this.actor.removeCondition(condKey)
+                else
+                    this.actor.addCondition(condKey)
+                return
+            }
+
+            if (ev.button == 0)
+                this.actor.addCondition(condKey)
+            else if (ev.button == 2)
+                this.actor.removeCondition(condKey)
+          })
     }
 }
 

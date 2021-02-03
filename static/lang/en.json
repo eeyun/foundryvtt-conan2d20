@@ -76,6 +76,7 @@
         "conditionDescriptionHind": "The character's movement is hindered, slowing them. The character cannot attempt any movement as a Free Action. Further, the character may only move to within Close range as a Minor Action move, and only to within Medium range as a Standard Action move. Finally, the Difficulty of all terrain tests is increased by one step for the character.",
         "conditionDescriptionPois": "The character's body suffers the effects of some form of vile toxin. While each poison has a specific effect, the general effect is to grant the character the Staggered condition.",
         "conditionDescriptionStag": "A staggered character can only perform a Standard Action in a turn if the player is willing to pay 1 point of Doom. A staggered character cannot perform a Reaction unless spending 1 Fortune point in addition to the reaction's normal Doom cost.",
+        "conditionsLabel": "Conditions",
         "customRollDice": "How many D20s?",
         "customRollBonus": "How many bonus successes?",
         "customRollDifficulty": "Roll difficulty?",

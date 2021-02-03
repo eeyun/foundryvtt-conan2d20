@@ -43,6 +43,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         sheetData.conditions = CONFIG.CONAN.conditionTypes;
 
         this._prepareItems(sheetData.actor);
+        this.addConditionData(sheetData);
 
         return sheetData;
     }
@@ -220,6 +221,24 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             }
         }
         this.actor.update(actorData);
+    }
+
+    addConditionData(data) {
+        data.conditions = duplicate(game.conan2d20.config.statusEffects);
+
+        for (let condition of data.conditions) {
+            let existing = this.actor.data.effects.find(e => e.flags.core.statusId == condition.id)
+            if (existing) {
+                condition.value = existing.flags.conan2d20.value;
+                condition.existing = true;
+            } else {
+                condition.value = 0;
+            };
+
+            if (condition.flags.conan2d20.value == null) {
+                condition.boolean = true;
+            }
+        }
     }
 
     _onTraitSelector(event) {

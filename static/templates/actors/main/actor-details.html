@@ -3,37 +3,25 @@
     <h3>Biography</h3>
     {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
   </div>
-  <div class="character-conditions">
-    <div class="condition-header">
-      <h3>Conditions</h3>
-    </div>
-    <div class="condition-blind">
-       <label title="{{localize "CONAN.conditionDescriptionBlin"}}">{{localize "CONAN.conditions.bli"}}</label>
-       <input type="checkbox" name="data.health.conditions.bli.value" value="1" data-dtype="bool" {{checked data.health.conditions.bli.value}}/>
-    </div>
-    <div class="condition-burningx">
-       <label title="{{localize "CONAN.conditionDescriptionBurn"}}">{{localize "CONAN.conditions.bur"}}</label>
-       <input type="checkbox" name="data.health.conditions.bur.value" value="1" data-dtype="bool" {{checked data.health.conditions.bur.value}}/>
-    </div>
-    <div class="condition-dazed">
-       <label title="{{localize "CONAN.conditionDescriptionDaze"}}">{{localize "CONAN.conditions.daz"}}</label>
-       <input type="checkbox" name="data.health.conditions.daz.value" value="1" data-dtype="bool" {{checked data.health.conditions.daz.value}}/>
-    </div>
-    <div class="condition-deaf">
-       <label title="{{localize "CONAN.conditionDescriptionDeaf"}}">{{localize "CONAN.conditions.dea"}}</label>
-       <input type="checkbox" name="data.health.conditions.dea.value" value="1" data-dtype="bool" {{checked data.health.conditions.dea.value}}/>
-    </div>
-    <div class="condition-hindered">
-       <label title="{{localize "CONAN.conditionDescriptionHind"}}">{{localize "CONAN.conditions.hin"}}</label>
-       <input type="checkbox" name="data.health.conditions.hin.value" value="1" data-dtype="bool" {{checked data.health.conditions.hin.value}}/>
-    </div>
-    <div class="condition-poisoned">
-       <label title="{{localize "CONAN.conditionDescriptionPois"}}">{{localize "CONAN.conditions.poi"}}</label>
-       <input type="checkbox" name="data.health.conditions.poi.value" value="1" data-dtype="bool" {{checked data.health.conditions.poi.value}}/>
-    </div>
-    <div class="condition-staggered">
-       <label title="{{localize "CONAN.conditionDescriptionStag"}}">{{localize "CONAN.conditions.sta"}}</label>
-       <input type="checkbox" name="data.health.conditions.sta.value" value="1" data-dtype="bool" {{checked data.health.conditions.sta.value}}/>
-    </div>
-  </div>
+  <<div class="character-conditions">
+   <div class="condition-header">
+      <h3>{{localize "CONAN.conditionsLabel"}}</h3>
+   </div>
+   {{#each conditions as |condition c|}}
+   <div class="sheet-condition" data-cond-id={{condition.id}}>
+      <label title="{{localize condition.title}}">{{condition.label}}</label>
+      {{#if condition.boolean}}
+      {{#if condition.existing}}
+         <input class="condition-toggle" type="checkbox" name="{{condition}}" value="1" data-dtype="bool" {{checked condition.existing}}/>
+      {{else}}
+         <input class="condition-toggle" type="checkbox" name="{{condition}}" value="0" data-dtype="bool" {{checked condition.existing}}/>
+      {{/if}}
+      {{else}}
+         <input class="condition-toggle" type="checkbox" name="{{condition}}" value="1" data-dtype="bool" {{checked condition.existing}}/>
+         <a class="condition-value">{{condition.value}}</a>
+      {{/if}}
+   </div>
+   {{/each}}
+ </div>
 </div>
+
