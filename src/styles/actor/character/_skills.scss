@@ -21,10 +21,10 @@
 
         .grid-container {
             display: grid;
-            grid-template-columns: 0.1fr 1fr 1fr 1fr 1fr 1fr .5fr 0.1fr;
+            grid-template-columns: 0.1fr 1fr 1fr 1fr 1fr 1fr 0.5fr 0.1fr;
             grid-template-rows: auto;
             grid-row-gap: 0px;
-            grid-template-areas: "header-bar header-bar header-bar header-bar header-bar header-bar header-bar header-bar" ". skill-table skill-table skill-table skill-table skill-table skill-table .";
+            grid-template-areas: 'header-bar header-bar header-bar header-bar header-bar header-bar header-bar header-bar' '. skill-table skill-table skill-table skill-table skill-table skill-table .';
             margin-bottom: 10px;
             margin-top: 5px;
             margin-left: 5px;
@@ -33,9 +33,9 @@
             display: grid;
             grid-template-columns: 0.1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.1fr;
             grid-template-rows: 1fr;
-            grid-template-areas: ". attribute-name attribute-name attribute-name attribute-name attribute-score attribute-roll .";
+            grid-template-areas: '. attribute-name attribute-name attribute-name attribute-name attribute-score attribute-roll .';
             grid-area: header-bar;
-            background-image: url("../assets/sheet/attribute-block-header.png");
+            background-image: url('../assets/sheet/attribute-block-header.png');
             background-size: 100% 100%;
             box-shadow: 0 0 5px #000;
             z-index: 1;
@@ -46,12 +46,12 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-template-rows: 1fr;
-            grid-template-areas: "skill-name skill-name skill-expertise skill-focus skill-tn skill-tab-roll";
+            grid-template-areas: 'skill-name skill-name skill-expertise skill-focus skill-tn skill-tab-roll';
             grid-area: skill-header-bar;
-            background-color: #675E52;
+            background-color: #675e52;
             border: solid;
-            border-color: #675E52;
-            color: #DBDBDB;
+            border-color: #675e52;
+            color: #dbdbdb;
             text-transform: uppercase;
         }
 
@@ -65,7 +65,7 @@
             border-image-slice: 32;
             border-image-width: 10px;
             border-image-repeat: repeat;
-            border-image-source: url("data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABpAgMAAABE7OWpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAADFBMVEX///9nXlJnXlIAAADHvn4rAAAAAnRSTlMAAHaTzTgAAAABYktHRAMRDEzyAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH5AcZECcNZmJamQAAANBJREFUSMftljEOwyAMRZ1KuRdLdyKVzF2y9BRcInuXLj1lawMFV8SVGpIw8KckLwhL/G8MQHoyWUhl4RIeewWrmUFxNuMntYKNru7IbvT+IIY/zWNkk8F1U2M/mfGwN+WYvJ/ReNLnZJ07Wc6CS+2JTMEY6gq1MVdxZM6f9zcjD6M+LOh/hlnrBs4G7TK5FfPhJqaSHkCso8J0SLGulWXVWFXsEE/kfb1nxjbpE0Jfqqt/LjPpfpDulRrvv8a+mTDXeQ8XnSN9tovOu6TsfP0Czk5AHbKzIVkAAAAASUVORK5CYII=");
+            border-image-source: url('data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABpAgMAAABE7OWpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAADFBMVEX///9nXlJnXlIAAADHvn4rAAAAAnRSTlMAAHaTzTgAAAABYktHRAMRDEzyAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH5AcZECcNZmJamQAAANBJREFUSMftljEOwyAMRZ1KuRdLdyKVzF2y9BRcInuXLj1lawMFV8SVGpIw8KckLwhL/G8MQHoyWUhl4RIeewWrmUFxNuMntYKNru7IbvT+IIY/zWNkk8F1U2M/mfGwN+WYvJ/ReNLnZJ07Wc6CS+2JTMEY6gq1MVdxZM6f9zcjD6M+LOh/hlnrBs4G7TK5FfPhJqaSHkCso8J0SLGulWXVWFXsEE/kfb1nxjbpE0Jfqqt/LjPpfpDulRrvv8a+mTDXeQ8XnSN9tovOu6TsfP0Czk5AHbKzIVkAAAAASUVORK5CYII=');
 
             table {
                 margin: 0px;
@@ -75,23 +75,25 @@
                 border: none;
 
                 .skill-entry-header {
-                    background-color: #675E52;
-                    color: #DBDBDB;
+                    background-color: #675e52;
+                    color: #dbdbdb;
                     text-transform: uppercase;
                 }
-                tr:nth-child(odd) {background: rgba(0, 0, 0, 0.05);}
+                tr:nth-child(odd) {
+                    background: rgba(0, 0, 0, 0.05);
+                }
 
-                input[type=text] {
+                input[type='text'] {
                     color: #877053;
                     background: none;
                     border: solid;
-                    border-width: 1px; 
-                    border-color: #A7A6A6;
+                    border-width: 1px;
+                    border-color: #a7a6a6;
                     width: 50%;
                     height: 90%;
                 }
 
-                input[type=number] {
+                input[type='number'] {
                     font-family: inherit;
                     font-size: inherit;
                     text-align: center;
@@ -99,31 +101,31 @@
                     background: none;
                     border: solid;
                     border-width: 1px;
-                    border-color: #A7A6A6;
+                    border-color: #a7a6a6;
                     width: 50%;
                     height: 90%;
                 }
             }
         }
-        
-        .attribute-name { 
-            grid-area: attribute-name; 
-            color: #C0C0C0;
+
+        .attribute-name {
+            grid-area: attribute-name;
+            color: #c0c0c0;
             padding-top: 2.5px;
         }
 
-        .attribute-score { 
-            grid-area: attribute-score; 
+        .attribute-score {
+            grid-area: attribute-score;
             height: 98%;
             text-align: center;
             padding-top: 3px;
 
-            input[type=number] {
+            input[type='number'] {
                 width: 85%;
                 height: 80%;
                 color: #877053;
                 text-align: center;
-                background: #D2D1C8;
+                background: #d2d1c8;
                 box-shadow: inset 0 0 4px #000000;
             }
 
@@ -131,12 +133,12 @@
                 @include input-glow-brown;
             }
         }
-        .attribute-roll { 
+        .attribute-roll {
             height: 98%;
             text-align: center;
             padding-top: 3px;
-            grid-area: attribute-roll; 
-            color: #AAAAAA;
+            grid-area: attribute-roll;
+            color: #aaaaaa;
 
             &:hover {
                 @include input-glow;
@@ -145,17 +147,17 @@
             }
         }
 
-        .skill-name-header { 
+        .skill-name-header {
             grid-area: skill-name-header;
             padding-left: 10px;
         }
 
-        .skill-expertise-header { 
-            grid-area: skill-expertise-header; 
+        .skill-expertise-header {
+            grid-area: skill-expertise-header;
             text-align: center;
         }
-        
-        .skill-focus-header { 
+
+        .skill-focus-header {
             grid-area: skill-focus-header;
             text-align: center;
         }
@@ -165,12 +167,12 @@
             text-align: center;
         }
 
-        .skill-tab-roll-header { 
-            grid-area: skill-tab-roll-header; 
+        .skill-tab-roll-header {
+            grid-area: skill-tab-roll-header;
             text-align: center;
         }
 
-        .skill-entry-name { 
+        .skill-entry-name {
             padding-left: 10px;
         }
 
@@ -187,8 +189,8 @@
                 @include input-glow-brown;
             }
         }
-        
-        .skill-entry-tn { 
+
+        .skill-entry-tn {
             text-align: center;
         }
 

@@ -5,13 +5,12 @@
     list-style: none;
 
     h3 {
-        font-size: 16px;
-        font-weight: 500;
-        font-family: $serif;
+        font-size: 14px;
+        font-weight: 600;
         line-height: 1;
-        color: white;
+        padding-top: 2.5px !important;
+        color: #c0c0c0;
         @include p-reset;
-        margin-left: 8px;
     }
 
     h4 {
@@ -40,10 +39,10 @@
 
         h3 {
             flex: 1 1 100%;
-            /* cursor: pointer;
+            cursor: pointer;
             &:hover {
                 text-shadow: 0 0 3px white;
-            } */
+            }
         }
 
         .item-name,

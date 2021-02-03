@@ -1,7 +1,8 @@
 <div class="tab sorcery" data-group="primary" data-tab="sorcery">
-    <ol class="actions-list sorcery-list inventory-list directory-list">
+    <ol class="actions-list sorcery-list inventory-list directory-list attacks-list">
         {{#each actor.sorcery as |section sid|}}
-            <li class="item action-header">
+        <div class="grid-container">
+            <li class="item header-bar">
                 <h3 class="item-name">{{section.label}}</h3>
                 {{#if ../owner}}
                 <div class="item-controls" style="display: flex">
@@ -10,10 +11,11 @@
                 </div>
                 {{/if}}
             </li>
+            <div class="item-table">
             {{#each section.sorcery as |spell fid|}}
             <li class="item spell-item" data-item-id="{{spell._id}}">
                 <div class="item-name rollable">
-                    <img class="item-image item-image-inventory" src="{{spell.img}}" alt="{{spell.name}}">
+                    <img class="item-image execute-attack" src="{{spell.img}}" alt="{{spell.name}}">
                     <h4>
                         {{spell.name}}
                     </h4>
@@ -26,8 +28,9 @@
                 {{/if}}
             </li>
             {{/each}}
+        </div>
+        </div>
         {{/each}}
-
     </ol>
 </div>
 

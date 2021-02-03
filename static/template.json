@@ -642,6 +642,7 @@
             "actionType": ""
         },
         "display": {
+            "templates": ["itemDescription"],
             "skill": "",
             "range": "",
             "damage": {
