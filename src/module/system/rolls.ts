@@ -247,14 +247,11 @@ export class Conan2d20Dice {
         diceQty += modifier;
         if (rollData.momentumModifier > 0) {
             try {
-                //  We've disabled this codepaths to make momentum and doom spends
-                //  fully manual until we have a sane solution for momentum  handling
-                //  when momenutm is generated from a test.
-                // if (attackerType === 'npc') {
-                //     Conan2d20Actor.spendDoom(rollData.momentumModifier);
-                // } else {
-                //     Conan2d20Actor.spendMomentum(rollData.momentumModifier);
-                // }
+                if (attackerType === 'npc') {
+                    Conan2d20Actor.spendDoom(rollData.momentumModifier);
+                } else {
+                    Conan2d20Actor.spendMomentum(rollData.momentumModifier);
+                }
                 diceQty += rollData.momentumModifier;
                 if (rollData.reloadModifier > 0) {
                     try {
@@ -318,10 +315,7 @@ export class Conan2d20Dice {
             };
             if (rollData.diceModifier > 0 || doomSpend > 0) {
                 try {
-                    //  We've disabled this codepath to make momentum and doom spends
-                    //  fully manual until we have a sane solution for momentum  handling
-                    //  when momenutm is generated from a test.
-                    //Conan2d20Actor.spendDoom(doomSpend); 
+                    Conan2d20Actor.spendDoom(doomSpend); 
                     diceQty += rollData.diceModifier;
                     await this.calculateSkillRoll(diceQty, rollData.skill.value, 0, trained, rollData.difficulty, rollData.successModifier, cardData, undefined);
                 }
@@ -346,13 +340,10 @@ export class Conan2d20Dice {
             if (rollData.diceModifier > 0) {
                 try {
                     if (rollData.diceModifierType === 'momentum') {
-                    //  We've disabled these codepaths to make momentum and doom spends
-                    //  fully manual until we have a sane solution for momentum  handling
-                    //  when momenutm is generated from a test.
-                    //    Conan2d20Actor.spendMomentum(rollData.diceModifier); 
+                        Conan2d20Actor.spendMomentum(rollData.diceModifier); 
                         diceQty += rollData.diceModifier;
                     } else if (rollData.diceModifierType === 'doom') {
-                    //    Conan2d20Actor.addDoom(rollData.diceModifier); 
+                        Conan2d20Actor.addDoom(rollData.diceModifier); 
                         diceQty += rollData.diceModifier;
                     }
                     if (rollData.successModifier > 0) {
@@ -399,14 +390,14 @@ export class Conan2d20Dice {
         return renderTemplate(template, dialogData).then((html) => {
             new Dialog({
               content: html,
-              title: "Roll remaining dice?",
+              title: game.i18n.localize('CONAN.rollRemainingLabel'),
               buttons: {
                 yes: {
-                  label: 'Yes',
+                  label: game.i18n.localize("CONAN.rollYesLabel"),
                   callback: () => this.calculateSkillRoll(diceQty, tn, focus, trained, difficulty, autoSuccess, cardData, undefined),
                 },
                 no: {
-                  label: 'No',
+                  label: game.i18n.localize("CONAN.rollNoLabel"),
                   callback: () => this.calculateSkillRoll(0, tn, focus, trained, difficulty, autoSuccess, cardData, undefined),
                 }
               },
@@ -422,7 +413,7 @@ export class Conan2d20Dice {
                 title: dialogData.title,
                 buttons: {
                     "roll" : {
-                        label : "Roll Damage",
+                        label : game.i18n.localize("CONAN.rollDamageLabel"),
                         callback : async (template) => {
 
                             /* eslint no-param-reassign: "error" */
@@ -468,7 +459,7 @@ export class Conan2d20Dice {
                 title : dialogData.title,
                 buttons : {
                     "roll" : {
-                        label : "Roll Skill",
+                        label : game.i18n.localize("CONAN.rollSkillLabel"),
                         callback : async (template) => {
                             /* eslint no-param-reassign: "error" */
                             // @ts-ignore
@@ -502,6 +493,48 @@ export class Conan2d20Dice {
         })
     }
 
+    static async spendRollMomentum(generated: number, spendAmount: number) {
+        const generatorErr = {
+            momentum: "Selection would spend more momentum than you generated."
+        };
+        if ((generated - spendAmount) < 0) {
+            throw generatorErr.momentum
+        }
+        const bankAmount = (generated - spendAmount);
+        Conan2d20Actor.addMomentum(bankAmount); 
+    }
+
+    static async showRollMomentumSpendDialog(generated: number)
+    {
+        let dialogData;
+        let spendAmount;
+        const template = 'systems/conan2d20/templates/apps/roll-momentum-spend-dialog.html';
+        return renderTemplate(template, dialogData).then((html) => {
+            new Dialog({
+                content: html,
+                title: game.i18n.localize("CONAN.rollMomentumSpendTitle"),
+                buttons: {
+                    "spend": {
+                        label: game.i18n.localize("CONAN.rollMomentumSpendAssert"),
+                        callback: async (template) => {
+                            /* eslint no-param-reassign: "error" */
+                            // @ts-ignore
+                            spendAmount = Number(template.find('[name="momentumspend"]').val() || 0)
+
+                            try {
+                                await this.spendRollMomentum(generated, spendAmount); 
+                             }
+                            catch (e) {
+                                console.log(e);
+                                ui.notifications.error(e);
+                            }
+                        }
+                    }
+                }
+            }).render(true);
+        });
+    }
+
     /**
     * Activate event listeners using the chat log html.
     * @param html {HTML}  Chat log html
@@ -520,7 +553,7 @@ export class Conan2d20Dice {
             $(message.data.content).children('.roll').each(function() {
                 rolls.push( $( this ).text().trim() );
             });
-        })
+        });
         html.on("click", ".roll-list-entry", ev =>
         {
             const target = $(ev.currentTarget);

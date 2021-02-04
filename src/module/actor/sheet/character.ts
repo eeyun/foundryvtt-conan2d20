@@ -249,7 +249,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
 
         html.find('img[data-edit]').click(ev => this._onEditImage(ev));
 
-        html.find(".condition-value").mousedown(ev => {
+        html.find(".condition-value").mouseup(ev => {
             let condKey = $(ev.currentTarget).parents(".sheet-condition").attr("data-cond-id")
             if (ev.button == 0) {
               this.actor.addCondition(condKey)
@@ -258,7 +258,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
             }
         })
 
-          html.find(".condition-toggle").mousedown(ev => {
+          html.find(".condition-toggle").mouseup(ev => {
             let condKey = $(ev.currentTarget).parents(".sheet-condition").attr("data-cond-id")
 
             if (game.conan2d20.config.statusEffects.find(e => e.id == condKey).flags.conan2d20.value == null)

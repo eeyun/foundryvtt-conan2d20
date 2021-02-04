@@ -143,6 +143,10 @@ export default class Conan2d20Actor extends Actor {
         Counter.changeCounter(+`${doomSpend}`, "doom");
     }
 
+    static addMomentum(momentumSpend) {
+        Counter.changeCounter(+`${momentumSpend}`, "momentum");
+    }
+
     static spendFortune(actorData, fortuneSpend) {
         const newValue = actorData.data.resources.fortune.value - fortuneSpend;
         if (newValue < 0) {
@@ -155,7 +159,7 @@ export default class Conan2d20Actor extends Actor {
         }
     }
 
-    static spendDoom(doomSpend) {
+    static async spendDoom(doomSpend) {
         const newValue = game.settings.get("conan2d20", "doom") - doomSpend;
         if (newValue <  0) {
             const error = "Doom spend would exceed available doom points."
@@ -165,7 +169,7 @@ export default class Conan2d20Actor extends Actor {
         }
     }
 
-    static spendMomentum(momentumSpend) {
+    static async spendMomentum(momentumSpend) {
         const newValue = game.settings.get("conan2d20", "momentum") - momentumSpend;
         if (newValue <  0) {
             const error = "Momentum spend would exceed available momentum points."
@@ -239,8 +243,8 @@ export default class Conan2d20Actor extends Actor {
     }
 
     momentumSpendImmediate(message, type) {
-        const {data} = message.data.flags;
-        console.log("Placeholder Immediate momentum spend");
+        const generated = message.data.flags.data.resultData.momentumGenerated;
+        Conan2d20Dice.showRollMomentumSpendDialog(generated)
     }
 
     /**
