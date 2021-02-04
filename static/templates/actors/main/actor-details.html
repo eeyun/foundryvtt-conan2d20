@@ -9,7 +9,7 @@
    </div>
    {{#each conditions as |condition c|}}
    <div class="sheet-condition" data-cond-id={{condition.id}}>
-      <label title="{{localize condition.title}}">{{condition.label}}</label>
+      <label title="{{localize condition.title}}">{{localize condition.label}}</label>
       {{#if condition.boolean}}
       {{#if condition.existing}}
          <input class="condition-toggle" type="checkbox" name="{{condition}}" value="1" data-dtype="bool" {{checked condition.existing}}/>

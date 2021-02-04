@@ -364,7 +364,7 @@ CONFIG.statusEffects = [
     {
         icon: 'systems/conan2d20/assets/icons/conditions/blind.png',
         id: 'blind',
-        label: 'Blind',
+        label: 'CONAN.conditions.bli',
         title: 'CONAN.conditionDescriptionBlin',
         flags: {
                 conan2d20: {
@@ -376,7 +376,7 @@ CONFIG.statusEffects = [
     {
         icon: 'systems/conan2d20/assets/icons/conditions/burningx.png',
         id: 'burningx',
-        label: 'Burning X',
+        label: 'CONAN.conditions.bur',
         title: 'CONAN.conditionDescriptionBurn',
         flags: {
             conan2d20: {
@@ -388,7 +388,7 @@ CONFIG.statusEffects = [
     {
         icon: 'systems/conan2d20/assets/icons/conditions/dazed.png',
         id: 'dazed',
-        label: 'Dazed',
+        label: 'CONAN.conditions.daz',
         title: 'CONAN.conditionDescriptionDaze',
         flags: {
             conan2d20: {
@@ -400,7 +400,7 @@ CONFIG.statusEffects = [
     {
         icon: 'systems/conan2d20/assets/icons/conditions/deaf.png',
         id: 'deaf',
-        label: 'Deaf',
+        label: 'CONAN.conditions.dea',
         title: 'CONAN.conditionDescriptionDeaf',
         flags: {
             conan2d20: {
@@ -412,7 +412,7 @@ CONFIG.statusEffects = [
     {
         icon: 'systems/conan2d20/assets/icons/conditions/hindered.png',
         id: 'hindered',
-        label: 'Hindered',
+        label: 'CONAN.conditions.hin',
         title: 'CONAN.conditionDescriptionHind',
         flags: {
             conan2d20: {
@@ -424,7 +424,7 @@ CONFIG.statusEffects = [
     {
         icon: 'systems/conan2d20/assets/icons/conditions/poisoned.png',
         id: 'poisoned',
-        label: 'Poisoned',
+        label: 'CONAN.conditions.poi',
         title: 'CONAN.conditionDescriptionPois',
         flags: {
             conan2d20: {
@@ -436,7 +436,7 @@ CONFIG.statusEffects = [
     {
         icon: 'systems/conan2d20/assets/icons/conditions/staggered.png',
         id: 'staggered',
-        label: 'Staggered',
+        label: 'CONAN.conditions.sta',
         title: 'CONAN.conditionDescriptionStag',
         flags: {
             conan2d20: {

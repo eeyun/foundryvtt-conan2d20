@@ -56,12 +56,11 @@ Hooks.on('getChatLogEntryContext', (html: HTMLDocument, options: Array<Object>) 
     const canSpendMomentum = function(li) {
         let result = false;
         const message = game.messages.get(li.attr('data-message-id'));
-
         if (message.data.speaker.actor || game.user.isGM) {
             const actor = game.actors.get(message.data.speaker.actor);
             // @ts-ignore
             if (actor.permission === ENTITY_PERMISSIONS.OWNER && actor.data.type === "character") {
-                const skillcard = li.find(".skill-roll-card");
+                const skillcard = li.find(".roll-card");
                 if (skillcard.length && message.data.flags.data.resultData.momentumGenerated)
                     result = true;
             }
