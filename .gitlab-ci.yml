@@ -1,94 +1,176 @@
-image: node
+# This CI file has the intent of:
+# Have 2 pipelines: Merges and Releases
+# Check if we've got the version number
+# Every commit is linted
+# Every Commit & Merge Request is  linted and tested against the resulting repo
+# Every Commit & Merge Request updates the LATEST BUILD
+# TODO -- Every Merge Request increases the Patch level
+# Every Tagged commit with v* tag creates a new release if the previous steps have been successful with a new major or minor level.
+# See https://gitlab.com/guided-explorations/cfg-data/write-ci-cd-variables-in-pipeline/-/blob/master/.gitlab-ci.yml
+# See for writing to a file https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/npm.gitlab-ci.yml
+# See for github help with foundry and packaging: https://github.com/janssen-io/foundry-github-workflow#alternative-versioning
 
 stages:
-  - build
   - test
-  - package
+  - build
+  - prepare
   - release
   - deploy
-  
 
 ###########
 # VARIABLES
 ###########
 variables: 
   IMAGE_VERSION: ${CI_COMMIT_REF}.${CI_PIPELINE_ID}
-  IMAGE_NAME: "INSERT IMAGE NAME"
-  
+  IMAGE_NAME: "CONAN-2D20"
+  FVTT_SYSTEM_NAME: $(node -p "require('./system.json').name")
+  FVTT_SYSTEM_VERSION: $(node -p "require('./system.json').version")
+  # /^v(\d+)\.(\d+)\.(\d+)$/
+  RELEASE_VERSION_NEW_MAJOR: /^v(\d+)\.\d+\.\d+$/ && $CI_COMMIT_TAG
+  RELEASE_VERSION_NEW_MINOR: /^v\d+\.(\d+)\.\d+$/ && $CI_COMMIT_TAG
+  RELEASE_VERSION_NEW_PATCH: /^v\d+\.\d+\.(\d+)$/ && $CI_COMMIT_TAG
+  VERSIONCOMPONENTTOINCREMENT: '-p'
+  # -M = Major (first position), -m = minor (second position), -p = patch (third position)
+ 
 ###########
 # RULES MODEL
 ###########
-
-.rules_if_commit_default_branch: &rules_if_commit_default_branch
-  if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+# COMMITS TO A BRANCH 
+.rules_if_commit_branch: &rules_if_commit_branch
+  if: $CI_COMMIT_BRANCH
   when: on_success
 
+# MERGES
 .rules_if_source_merge_request: &rules_if_source_merge_request
   if: $CI_PIPELINE_SOURCE == "merge_request_event"
   when: on_success
 
-#TDODO : update according to th erelease regex you'd like
+# RELEASES should be named v1.0.0 // Relying on Gitlab Protected Tags
 .rules_if_release_tag: &rules_if_release_tag
-  if: $CI_COMMIT_REF_NAME =~ /^release-.*$/ && $CI_COMMIT_TAG
-
+  if: $CI_COMMIT_TAG =~ /^v(\d+)\.(\d+)\.(\d+)$/ && $CI_PIPELINE_SOURCE == "merge_request_event"
+  when: on_success
 
 ###########
 # JOBS TEMPLATE
 ###########
-
 .global_rules:
   rules:
-    [*rules_if_commit_default_branch, *rules_if_source_merge_request]
-    
-##########
-# GENERAL
-#########
-cache:
-  paths:
-    - node_modules/
-        
+    [*rules_if_commit_branch, *rules_if_source_merge_request]
 
+.release_rules:
+  rules:
+    [*rules_if_release_tag]
+    
 ###########
-# PIPELINE
+# GLOBAL PIPELINE  # TRIGGER: COMMITS TO NON DEFAULT BRANCH && A MERGE REQUEST
 ###########
 lint:
-  # extends: .global_rules
-  stage: .pre
-  script: 
-    - echo preliminary job
-    # Install eslint
+  image: node
+  extends: .global_rules
+  stage: test
+  before_script:
+      # npm stores cache data in the home folder ~/.npm but you can’t cache things outside of the project directory (.npm/).
+    - npm ci --cache .npm --prefer-offline
+    - echo "preliminary script -- Installing eslint"
     - npm i eslint
+  script: 
     # Run eslint
+    - echo "preliminary script -- Linting Code."
     - node_modules/eslint/bin/eslint.js .
+  ###########
+  # CACHE  # Cache modules & librairies in between jobs
+  ###########
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .npm/
+      - node_modules/
+      - vendor/
 
 build:
+  image: node
   extends: .global_rules
   stage: build
   before_script:
-    # Install utils WebPack and zip
-    - npm i webpack
+      # npm stores cache data in the home folder ~/.npm but you can’t cache things outside of the project directory (.npm/).
+    - npm ci --cache .npm --prefer-offline
+    - echo "preliminary script -- Updating APT-Get & Installing zip and webpack"
     - apt-get update
     - apt-get install zip
+    - npm i webpack
   script:
-    - echo building with webpack
-    - export
-    - npm ci
-    # - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    # - node updatebuildno.js --buildno=$CI_PIPELINE_IID --branch=$CI_COMMIT_BRANCH --gitlabpath=$CI_PROJECT_PATH
+    - echo "build execution -- Building with webpack."
     - npm run build
     - mv dist conan2d20
+    - echo "build execution -- Zipping files."
     - zip conan2d20.zip -r conan2d20
+  ###########
+  # CACHE  # Cache modules & librairies in between jobs
+  ###########
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .npm/
+      - node_modules/
+      - vendor/
+  ###########
+  # ARTIFACTS  # Items to keep beyond the pipeline execution
+  ###########
   artifacts:
+    name: conan2d20
+    expire_in: never
+    when: on_success
     paths:
       - conan2d20.zip
       - system.json
       
-test:
-  stage: test
+#################################
+# RELEASE PIPELINE  # TRIGGER: ON TAGGED COMMIT IN A MERGE REQUEST
+#################################
+prepare_job:
+  image: curlimages/curl:latest
+  extends: .release_rules
+  stage: prepare
+  script:
+    - echo "preparing release -- tagging package with version."
+    - cp conan2d20.zip conan2d20-${CI_COMMIT_TAG}.zip
+    - echo "preparing release -- uploading package"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file conan2d20-${CI_COMMIT_TAG}.zip ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/conan2d20release/${CI_COMMIT_TAG}/conan2d20-${CI_COMMIT_TAG}.zip
+  artifacts:
+    name: conan2d20-${CI_COMMIT_TAG}
+    expire_in: never
+    when: on_success
+    paths:
+      - conan2d20-${CI_COMMIT_TAG}.zip
+
+release_job:
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  extends: .release_rules
+  stage: release
   script: 
-    - echo tests job
-    # Run eslint
-    - node_modules/eslint/bin/eslint.js .
-    #- npm test
-      
+    - echo 'executing release -- creating release'
+    - release-cli create --name "Release $CI_COMMIT_TAG" --description "CHANGELOG.md" --tag-name $CI_COMMIT_TAG \
+        --assets-link "{\"name\":\"conan2d20-${CI_COMMIT_TAG}.zip\",\"url\":\"${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/conan2d20release/${CI_COMMIT_TAG}/conan2d20-${CI_COMMIT_TAG}.zip\"}"
+  #release: # SUPERSEEDED BY THE SCRIPT CALL TO RELEASE-CLI
+  #  name: 'Release $CI_COMMIT_TAG'
+  #  description: 'CHANGELOG.md'
+  #  tag_name: '$CI_COMMIT_TAG'
+  #  ref: '$CI_COMMIT_TAG'
+  #  asset-link: "{\"name\":\"conan2d20-${CI_COMMIT_TAG}.zip\",\"url\":\"${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/conan2d20release/${CI_COMMIT_TAG}/conan2d20-${CI_COMMIT_TAG}.zip\"}"
     
+pages:
+  image: python:3-alpine
+  extends: .release_rules
+  stage: deploy
+  dependencies:
+    - build
+    - prepare_job
+    - release_job
+  script:
+    - mv conan2d20-${CI_COMMIT_TAG}.zip public/
+  artifacts:
+    paths:
+    - public
+
+

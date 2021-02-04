@@ -29,6 +29,8 @@ Following things are greatly appreciated and speed up the resolution time:
 
 ## Community Contributions
 
+[![pipeline status](https://gitlab.com/kayhos/foundryvtt-conan2d20/badges/master/pipeline.svg)](https://gitlab.com/kayhos/foundryvtt-conan2d20/-/commits/master)
+
 Code and content contributions are welcome. Please feel free to submit issues to the issue tracker or submit merge requests for code changes. 
 
 Review the [Contributing Guilelines](https://gitlab.com/kayhos/foundryvtt-conan2d20/-/blob/master/CONTRIBUTING.md) to know how we would prefer receiving your help.
