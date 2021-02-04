@@ -372,10 +372,6 @@ export default class Conan2d20Actor extends Actor {
         };
   	}
 
-     /**
-     * @param {string[]} rollNames
-     * @return {string[]}
-     */
     getRollOptions(rollNames) {
         const flag = this.getFlag(game.system.id, 'rollOptions') ?? {};
         return rollNames.flatMap(rollName =>
@@ -387,6 +383,68 @@ export default class Conan2d20Actor extends Actor {
         }, []);
     }
 
-    
+    async addCondition(effect, value=1) {
+        if (typeof(effect) === "string")
+          effect = duplicate(game.conan2d20.config.statusEffects.find(e => e.id == effect))
+        if (!effect)
+          return "No Effect Found"
 
+        if (!effect.id)
+          return "Conditions require an id field"
+
+        let existing = this.hasCondition(effect.id)
+
+        if(existing && existing.flags.conan2d20.value == null) {
+            return existing
+        } else if (existing) {
+            existing = duplicate(existing)
+            existing.flags.conan2d20.value += value;
+            return this.updateEmbeddedEntity("ActiveEffect", existing)
+        } else if (!existing) {
+            if (effect.id == "poisoned") {
+                this.addCondition("staggered");
+            };
+
+            //@ts-ignore
+            if (Number.isNumeric(effect.flags.conan2d20.value))
+                effect.flags.conan2d20.value = value;
+                effect["flags.core.statusId"] = effect.id;
+            delete effect.id
+            return this.createEmbeddedEntity("ActiveEffect", effect)
+        }
+    }
+
+    async removeCondition(effect, value=1) {
+        if (typeof(effect) === "string") {
+            effect = duplicate(game.conan2d20.config.statusEffects.find(e => e.id == effect))
+        }
+        if (!effect) {
+            return "No Effect Found"
+        }
+        if (!effect.id) {
+            return "Conditions require an id field"
+        }
+
+        let existing = this.hasCondition(effect.id);
+    
+        if (existing)
+        {
+            existing.flags.conan2d20.value -= value;
+
+            if (existing.flags.conan2d20.value == 0 && (effect.id == "poisoned")) {
+                await this.removeCondition("staggered")
+            }
+
+            if (existing.flags.conan2d20.value <= 0) {
+                return this.deleteEmbeddedEntity("ActiveEffect", existing._id)
+            } else {
+                return this.updateEmbeddedEntity("ActiveEffect", existing)
+            }
+        }
+    }
+
+    hasCondition(conditionKey) {
+        let existing = this.data.effects.find(i => getProperty(i, "flags.core.statusId") == conditionKey);
+        return existing
+    }
 }

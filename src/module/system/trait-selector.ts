@@ -25,9 +25,9 @@ export class TraitSelector extends FormApplication {
     static get defaultOptions() {
         const options = super.defaultOptions;
         options.id = 'trait-selector';
-	    options.classes = ['conan2d20'];
-	    options.title = 'Actor Trait Selection';
-	    options.template = 'systems/conan2d20/templates/actors/trait-selector.html';
+	      options.classes = ['conan2d20'];
+	      options.title = 'Actor Trait Selection';
+	      options.template = 'systems/conan2d20/templates/actors/trait-selector.html';
         options.width = "auto";
         options.height = 700;
         options.scrollY = [".trait-list"];

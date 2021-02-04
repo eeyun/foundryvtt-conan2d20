@@ -360,6 +360,93 @@ CONFIG.languages = {
     zingaran: 'CONAN.languages.zing'
 };
 
+CONFIG.statusEffects = [
+    {
+        icon: 'systems/conan2d20/assets/icons/conditions/blind.png',
+        id: 'blind',
+        label: 'Blind',
+        title: 'CONAN.conditionDescriptionBlin',
+        flags: {
+                conan2d20: {
+                    'trigger': 'endRound',
+                    'value': null
+                }
+            }
+        },
+    {
+        icon: 'systems/conan2d20/assets/icons/conditions/burningx.png',
+        id: 'burningx',
+        label: 'Burning X',
+        title: 'CONAN.conditionDescriptionBurn',
+        flags: {
+            conan2d20: {
+                'trigger': 'endRound',
+                'value': 1
+            }
+        }
+    },
+    {
+        icon: 'systems/conan2d20/assets/icons/conditions/dazed.png',
+        id: 'dazed',
+        label: 'Dazed',
+        title: 'CONAN.conditionDescriptionDaze',
+        flags: {
+            conan2d20: {
+                'trigger': 'endRound',
+                'value': null
+            }
+        }
+    },
+    {
+        icon: 'systems/conan2d20/assets/icons/conditions/deaf.png',
+        id: 'deaf',
+        label: 'Deaf',
+        title: 'CONAN.conditionDescriptionDeaf',
+        flags: {
+            conan2d20: {
+                'trigger': 'endRound',
+                'value': null
+            }
+        },
+    },
+    {
+        icon: 'systems/conan2d20/assets/icons/conditions/hindered.png',
+        id: 'hindered',
+        label: 'Hindered',
+        title: 'CONAN.conditionDescriptionHind',
+        flags: {
+            conan2d20: {
+                'trigger': 'endRound',
+                'value': null
+            }
+        }
+    },
+    {
+        icon: 'systems/conan2d20/assets/icons/conditions/poisoned.png',
+        id: 'poisoned',
+        label: 'Poisoned',
+        title: 'CONAN.conditionDescriptionPois',
+        flags: {
+            conan2d20: {
+                'trigger': 'endRound',
+                'value': null
+            }
+        },
+    },
+    {
+        icon: 'systems/conan2d20/assets/icons/conditions/staggered.png',
+        id: 'staggered',
+        label: 'Staggered',
+        title: 'CONAN.conditionDescriptionStag',
+        flags: {
+            conan2d20: {
+                'trigger': 'endRound',
+                'value': null
+            }
+        }
+    }
+]
+
 CONFIG.talentRanks = {
     1: 1,
     2: 2,

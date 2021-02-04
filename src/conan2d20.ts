@@ -33,6 +33,10 @@ Hooks.once('init', () => {
     registerActors();
     registerSheets();
     registerHandlebarsHelpers();
+
+    game.conan2d20 = {
+        config : CONANCONFIG,
+    };
 });
 
 /* -------------------------------------------- */
@@ -42,36 +46,13 @@ Hooks.once('init', () => {
  * This function runs after game data has been requested and loaded from the servers, so entities exist
  */
 Hooks.once('setup', () => {
-
-   (window as any).Conan2d20 = new Conan2d20System();
-
-    const toLocalize: any = [
-        'attributes', 'skills', 'encumbranceTypes', 'availabilityTypes', 'coverageTypes',
-        'armorTypes', 'armorQualities', 'weaponGroups', 'weaponTypes', 'weaponSizes',
-        'weaponRanges', 'weaponReaches', 'weaponQualities', 'actionTypes', 'actionCategories',
-        'naturesTypes', 'languages', 'talentTypes', 'skillRollResourceSpends', 'rollDifficultyLevels',
-        'rollResults', 'actionCounts', 'kitTypes', 'conditionTypes', 'expertiseFields',
-        'npcAttackTypes', 'npcActionTypes', 'damageTypes', 'npcCategories', 'enchantmentTypes',
-        'enchantmentBlindingStrengths', 'enchantmentStrengths', 'enchantmentExplodingItems',
-        'enchantmentTalismanTypes', 'enchantmentVolatilities', 'lotusPollenColors', 'lotusPollenForms',
-        'lotusPollenUses'
-    ];
-
-    const noSort: any = [
-        'availabilityTypes', 'rollDifficultyLevels', 'weaponSizes'
-    ];
-
-    for ( let o of toLocalize ) {
-        const localized = Object.entries(CONFIG.CONAN[o]).map(e => {
-        // @ts-ignore
-        return [e[0], game.i18n.localize(e[1])];
-    });
-    if ( !noSort.includes(o) ) localized.sort((a, b) => a[1].localeCompare(b[1]));
-    CONFIG.CONAN[o] = localized.reduce((obj, e) => {
-        obj[e[0]] = e[1];
-        return obj;
-    }, {});
-  }
+    for (let obj in  game.conan2d20.config) {
+        for (let el in  game.conan2d20.config[obj]) {
+            if (typeof  game.conan2d20.config[obj][el] === "string") {
+                 game.conan2d20.config[obj][el] = game.i18n.localize( game.conan2d20.config[obj][el])
+            }
+        }
+    }
 });
 
 Hooks.on("ready", () => {
@@ -109,7 +90,6 @@ Hooks.on("preCreateChatMessage", (data, options, user) => {
 
 })
 
-
 // On rendering a chat message, if it contains item data (from a posted item), make draggable with the data transfer set to that item data.
 Hooks.on("renderChatMessage", (msg, html, data) => {
     if (hasProperty(data, "message.flags.conan2d20.itemData"))
@@ -144,7 +124,6 @@ Hooks.on('preCreateActor', (actor: any, dir: any) => {
         }
     }
 });
-
 
 Hooks.once('diceSoNiceReady', (dice3d) => {
     dice3d.addSystem({ id: "conan2d20black", name: "Conan 2d20 - Black" }, "default");
