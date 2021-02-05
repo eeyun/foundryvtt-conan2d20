@@ -1,9 +1,8 @@
 import Conan2d20Actor from '../actor';
 import Conan2d20Item from '../../item/item';
-import { Conan2d20Dice } from '../../system/rolls';
+import Conan2d20Dice from '../../system/rolls';
 import { TraitSelector } from '../../system/trait-selector';
-import { C2_Utility } from '../../../scripts/utility';
-
+import C2Utility from '../../../scripts/utility';
 
 abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
     static get defaultOptions() {
@@ -20,18 +19,13 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         });
     }
 
-    // Return the type of the current actor
-    get actorType() {
-        return this.actor.data.type;
-    }
-
     // Add some extra data when rendering sheet to reduce logic in html template
     getData() {
         const sheetData : any = super.getData();
 
         // Update Attribute labels
         if (sheetData.data.attributes !== undefined) {
-            for ( let [a, atr] of Object.entries(sheetData.data.attributes as Record<any, any>)) {
+            for ( const [a, atr] of Object.entries(sheetData.data.attributes as Record<any, any>)) {
                 atr.label = CONFIG.CONAN.attributes[a];
             }
         }
@@ -56,7 +50,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         // Pad field width
         html.find('[data-wpad]').each((i, e) => {
             const text = e.tagName === 'INPUT' ? e.value : e.innerText;
-            const w = text.length * parseInt(e.getAttribute('data-wpad')) / 2;
+            const w = text.length * parseInt(e.getAttribute('data-wpad'), 10) / 2;
             e.setAttribute('style', `flex: 0 0 ${w}px`);
         });
 
@@ -83,7 +77,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             const active = f.hasClass('active');
             this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.broken': !active });
           });
-      
+
         html.find('.trait-selector').click((ev) => this._onTraitSelector(ev));
 
         html.find('.item-create').click((ev) => this._onItemCreate(ev));
@@ -106,9 +100,8 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             const updateActorData = {};
             if (this.actor.data.data.resources.gold.value <= 0) {
                 return
-            } else {
-                updateActorData['data.resources.gold.value'] = this.actor.data.data.resources.gold.value - 1;
             }
+            updateActorData['data.resources.gold.value'] = this.actor.data.data.resources.gold.value - 1;
             this.actor.update(updateActorData)
         });
 
@@ -151,38 +144,35 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                 this.actor.updateEmbeddedEntity('OwnedItem', { _id: itemId, 'data.quantity': Number(item.data.quantity) - 1 });
             }
         });
-  
+
         html.find('.item-delete').click((ev) => this._onItemDelete(ev));
 
 
         html.find(".skill-name.rollable").click(async ev => {
-            let actorData = duplicate(this.actor);
-            let skill = $(ev.currentTarget).parents(".skill-entry-name").attr("data-skill")
-            // @ts-ignore
-            let {dialogData, cardData, rollData} = this.actor.setupSkill(skill, actorData.type)
+            const actorData = duplicate(this.actor);
+            const skill = $(ev.currentTarget).parents(".skill-entry-name").attr("data-skill")
+            const {dialogData, cardData, rollData} = this.actor.setupSkill(skill, actorData.actorType())
             await Conan2d20Dice.showSkillRollDialog({dialogData, cardData, rollData, actorData})
         });
 
         html.find(".fa-dice-d20.rollable").click(async ev => {
-            let actorData = duplicate(this.actor)
-            let skill = $(ev.currentTarget).parents(".skill-entry-tab-roll").attr("data-skill")
-            // @ts-ignore
-            let {dialogData, cardData, rollData} = this.actor.setupSkill(skill, actorData.type)
+            const actorData = duplicate(this.actor)
+            const skill = $(ev.currentTarget).parents(".skill-entry-tab-roll").attr("data-skill")
+            const {dialogData, cardData, rollData} = this.actor.setupSkill(skill, actorData.actorType())
             await Conan2d20Dice.showSkillRollDialog({dialogData, cardData, rollData, actorData})
         });
 
         html.find('.attacks-list .execute-attack').click(async ev => {
             ev.preventDefault();
             ev.stopPropagation();
-            let actorData = duplicate(this.actor)
+            const actorData = duplicate(this.actor)
             const attackIndex = $(ev.currentTarget).parents('[data-action-index]').attr('data-action-index');
             const itemId = this.actor.data.data.actions[Number(attackIndex)]?.attack.id;
             const reloadIds = this.actor.data.items
                 .filter(i => i.data.kitType === "reload")
                 .map(i => ({ id: i._id, name: i.name}) ||  []);
-            // @ts-ignore
-            let weapon = duplicate(this.actor.getEmbeddedEntity("OwnedItem", itemId, true));
-            let {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon, reloadIds);
+            const weapon = duplicate(this.actor.getEmbeddedEntity("OwnedItem", itemId, { strict: true } ));
+            const {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon, reloadIds);
             await Conan2d20Dice.showDamageRollDialog({dialogData, cardData, rollData, actorData})
         });
 
@@ -194,8 +184,8 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         const field = $(event.currentTarget).parent().attr("data-target");
         const icon  = $(event.currentTarget).attr("data-target");
 
-        let actorData = duplicate(this.actor);
-        let dot = getProperty(actorData, field);
+        const actorData = duplicate(this.actor);
+        const dot = getProperty(actorData, field);
 
         if (event.type === 'click') {
             if (dot === 'healed') {
@@ -226,14 +216,14 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
     addConditionData(data) {
         data.conditions = duplicate(game.conan2d20.config.statusEffects);
 
-        for (let condition of data.conditions) {
-            let existing = this.actor.data.effects.find(e => e.flags.core.statusId == condition.id)
+        for (const condition of data.conditions) {
+            const existing = this.actor.data.effects.find(e => e.flags.core.statusId === condition.id)
             if (existing) {
                 condition.value = existing.flags.conan2d20.value;
                 condition.existing = true;
             } else {
                 condition.value = 0;
-            };
+            }
 
             if (condition.flags.conan2d20.value == null) {
                 condition.boolean = true;
@@ -291,7 +281,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             new Dialog({
                 title: 'Confirm Deletion',
                 content: html,
-                buttons: { 
+                buttons: {
                     Yes: {
                         icon: '<i class="fa fa-check"></i>',
                         label: 'Yes',
@@ -332,9 +322,9 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             item = this.actor.getOwnedItem(itemId);
             if (!item.type) return;
         } catch (err) {
-            return false;
+            return;
         }
-        
+
         // Toggle summary
         if (li.hasClass('expanded')) {
             const summary = li.children('.item-summary');
@@ -345,7 +335,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             if (!actionIndex) {
                 div = $(`<div class="item-summary"><div class="item-description">${chatData.description.value}</div></div>`);
             } else {
-                const flavor = C2_Utility.getAttackDescription(item.data).description;
+                const flavor = C2Utility.getAttackDescription(item.data).description;
                 div = $(`<div class="item-summary"><div class="item-description">${localize(flavor)}</div></div>`);
             }
             const details = $('<div class="item-details"></div>')
@@ -383,7 +373,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                     }
                 });
             }
-        
+
             const buttons = $('<div class="item-buttons"></div>');
             switch (item.data.type) {
                 case 'action':
@@ -392,78 +382,82 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
                             buttons.append(`<button class="tag weapon_damage" data-action="weaponDamage">${localize('CONAN.damageRollLabel')}</button>`);
                         }
                     }
-                break;
+                    break;
                 case 'weapon':
                     buttons.append(`<button class="tag weapon_damage execute-attack" data-action="weaponDamage">${localize('CONAN.damageRollLabel')}</button>`);
-                break;
+                    break;
                 case 'display':
                     buttons.append(`<button class="tag display_damage execute-attack" data-action="displayDamage">${localize('CONAN.damageRollLabel')}</button>`);
-                break;
+                    break;
                 case 'kit':
                     if (chatData.hasCharges) buttons.append(`<span class="tag"><button class="consume" data-action="consume">${localize('CONAN.kitUseLabel')} ${item.name}</button></span>`);
+                    break;
                 case 'npcattack':
                     buttons.append(`<button class="tag npc_damage execute-attack" data-action="npcDamage">${localize('CONAN.damageRollLabel')}</button>`);
-                break;
+                    break;
+                default:
+                    break;
             }
-        
+
           div.append(buttons);
-        
+
           buttons.find('button').click((ev) => {
             ev.preventDefault();
             ev.stopPropagation();
-        
+
             // which function gets called depends on the type of button stored in the dataset attribute action
             switch (ev.target.dataset.action) {
-              case 'toggleHands':
-                if (item.data.type == 'weapon') {
-                  item.data.data.hands.value = !item.data.data.hands.value;
-                  this.actor.updateEmbeddedEntity('OwnedItem', item.data);
-                  this._render();
+                case 'toggleHands': {
+                    if (item.data.type === 'weapon') {
+                    item.data.data.hands.value = !item.data.data.hands.value;
+                    this.actor.updateEmbeddedEntity('OwnedItem', item.data);
+                    this._render();
+                    }
+                    break;
                 }
-        
-                break;
                 case 'weaponDamage': {
                     ev.preventDefault();
                     ev.stopPropagation();
-                    let actorData = duplicate(this.actor)
+                    const actorData = duplicate(this.actor)
                     // @ts-ignore
-                    let weapon = duplicate(this.actor.getOwnedItem(itemId));
+                    const weapon = duplicate(this.actor.getOwnedItem(itemId));
                     const reloadIds = this.actor.data.items
                         .filter(i => i.data.kitType === "reload")
                         .map(i => ({ id: i._id, name: i.name}) ||  []);
-                    let {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon, reloadIds);
+                    const {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon, reloadIds);
                     Conan2d20Dice.showDamageRollDialog({dialogData, cardData, rollData, actorData})
-                }; 
-                break;
+                    break;
+                }
                 case 'npcDamage': {
                     ev.preventDefault();
                     ev.stopPropagation();
-                    let actorData = duplicate(this.actor)
-                    let weapon = duplicate(this.actor.getOwnedItem(itemId));
-                    let {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon,);
+                    const actorData = duplicate(this.actor)
+                    const weapon = duplicate(this.actor.getOwnedItem(itemId));
+                    const {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon,);
                     Conan2d20Dice.showDamageRollDialog({dialogData, cardData, rollData, actorData})
+                    break;
                 }
-                break;
+                default:
+                    break;
             }
-          });
-        
+        });
+
           li.append(div.hide());
           div.slideDown(200);
         }
         li.toggleClass('expanded');
     }
 
+    /* eslint-disable-next-line consistent-return */
   _onDrop(ev)
-  {
-    let dropData = JSON.parse(ev.dataTransfer.getData("text/plain"));
-    if (dropData.type == "item-drag")
     {
-        this.actor.createEmbeddedEntity("OwnedItem", dropData.payload);
-    }
-    else 
+        const dropData = JSON.parse(ev.dataTransfer.getData("text/plain"));
+        if (dropData.type === "item-drag")
+        {
+            return this.actor.createEmbeddedEntity("OwnedItem", dropData.payload);
+        }
         return super._onDrop(ev)
-  }
-
+    }
 }
 
 export default ActorSheetConan2d20;

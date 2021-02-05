@@ -1,12 +1,13 @@
 import { CONFIG } from "../../scripts/config";
-import { Conan2d20Dice } from "./rolls";
+import Conan2d20Dice from "./rolls";
+import Conan2d20Actor from "../actor/actor";
 
-export class ConanChat {
+class ConanChat {
 
     static renderRollCard(rollResult, rollData, cardData, type) {
         if (type === 'skill') {
             rollResult.result = CONFIG.rollResults[rollResult.result]
-        };
+        }
 
         cardData["flags.data"] = {
             resultData: rollResult,
@@ -16,26 +17,25 @@ export class ConanChat {
             rollData
         }
 
-        // TODO: add 3d dice with dice-so-nice
         renderTemplate(cardData.template, rollResult).then(html => {
             ChatMessage.create({
                 title: cardData.title,
                 content : html,
                 "flags.data": cardData["flags.data"],
-                // sound : CONFIG.sounds.dice,
                 speaker : cardData.speaker,
                 flavor : cardData.title
             })
         })
     }
 }
+export default ConanChat;
 
 // Activate chat listeners defined in rolls
 Hooks.on('renderChatLog', (log, html: HTMLDocument, data) => {
     Conan2d20Dice.chatListeners(html)
 });
 
-Hooks.on('getChatLogEntryContext', (html: HTMLDocument, options: Array<Object>) => {
+Hooks.on('getChatLogEntryContext', (html: HTMLDocument, options: Array<Record<string, unknown>>) => {
     const canApply = li => li.find('.skill-roll-card').length && game.user.isGM;
     const canReroll = function(li) {
         let result = false;
@@ -43,8 +43,7 @@ Hooks.on('getChatLogEntryContext', (html: HTMLDocument, options: Array<Object>) 
 
         if (message.data.speaker.actor || game.user.isGM) {
             const actor = game.actors.get(message.data.speaker.actor);
-            // @ts-ignore
-            if (actor.permission === ENTITY_PERMISSIONS.OWNER && actor.data.type === "character") {
+            if (actor.permission === CONST.ENTITY_PERMISSIONS.OWNER && actor.data.type === "character") {
                 const card = li.find(".roll-card");
                 if (card.length && message.data.flags.data.rollData.reroll === false) {
                     result = true;
@@ -58,8 +57,7 @@ Hooks.on('getChatLogEntryContext', (html: HTMLDocument, options: Array<Object>) 
         const message = game.messages.get(li.attr('data-message-id'));
         if (message.data.speaker.actor || game.user.isGM) {
             const actor = game.actors.get(message.data.speaker.actor);
-            // @ts-ignore
-            if (actor.permission === ENTITY_PERMISSIONS.OWNER && actor.data.type === "character") {
+            if (actor.permission === CONST.ENTITY_PERMISSIONS.OWNER && actor.data.type === "character") {
                 const skillcard = li.find(".roll-card");
                 if (skillcard.length && message.data.flags.data.resultData.momentumGenerated)
                     result = true;
@@ -74,8 +72,8 @@ Hooks.on('getChatLogEntryContext', (html: HTMLDocument, options: Array<Object>) 
             condition: canReroll,
             callback: li =>  {
                 const message = game.messages.get(li.attr("data-message-id"));
-                // @ts-ignore
-                game.actors.get(message.data.speaker.actor).triggerReroll(message, message.data.flags.data.type);
+                const actor = game.actors.get(message.data.speaker.actor) as Conan2d20Actor;
+                actor.triggerReroll(message, message.data.flags.data.type);
             }
         },
         {
@@ -84,8 +82,8 @@ Hooks.on('getChatLogEntryContext', (html: HTMLDocument, options: Array<Object>) 
             condition: canSpendMomentum,
             callback: li =>  {
               const message = game.messages.get(li.attr("data-message-id"));
-            // @ts-ignore
-              game.actors.get(message.data.speaker.actor).momentumSpendImmediate(message,"spendMomentum");
+              const actor = game.actors.get(message.data.speaker.actor) as Conan2d20Actor;
+              actor.momentumSpendImmediate(message,"spendMomentum");
             }
         }
     )

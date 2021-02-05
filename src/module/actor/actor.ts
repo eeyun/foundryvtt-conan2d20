@@ -2,10 +2,18 @@
  * Extend the base Actor class to implement additiona logic specialized for Conan2d20
  */
 import { CONFIG } from '../../scripts/config';
-import { Conan2d20Dice } from '../system/rolls';
+import Conan2d20Dice from '../system/rolls';
 import Counter from '../system/counter';
 import CharacterData from './character';
-import { C2_Utility } from '../../scripts/utility';
+import C2Utility from '../../scripts/utility';
+import { Conan2d20System } from '../conan2d20-system';
+
+
+declare module './actor' {
+    interface Conan2d20Actor {
+        triggerReroll();
+    }
+}
 
 export default class Conan2d20Actor extends Actor {
     /**
@@ -17,7 +25,7 @@ export default class Conan2d20Actor extends Actor {
         // Get the Actor's data object
         const actorData = this.data;
         const { data } = actorData;
-        
+
         // Prepare Character data
         if (actorData.type === 'character') this._prepareCharacterData(actorData);
         else if (actorData.type === 'npc') this._prepareNPCData(data);
@@ -29,7 +37,7 @@ export default class Conan2d20Actor extends Actor {
                 if (quality === undefined) continue;
             }
         }
-        
+
     // Return the prepared Actor data
         return actorData;
   }
@@ -52,7 +60,7 @@ export default class Conan2d20Actor extends Actor {
         } else if (data.health.physical.value < 0) {
             data.health.physical.value = 0;
         }
-        
+
         // Calculate Resolve
         data.health.mental.max = data.attributes.wil.value + data.skills.dis.expertise.value - data.health.mental.despair;
         if (data.health.mental.value === null) {
@@ -85,12 +93,12 @@ export default class Conan2d20Actor extends Actor {
 		// Attacks
 		{
 			(actorData.items ?? []).filter(
-                (item) => item.type === 'weapon' || item.type === 'display').forEach((item) => {			
+                (item) => item.type === 'weapon' || item.type === 'display').forEach((item) => {
 				const action : any =  {};
                 action.imageUrl = item.img;
                 action.name = item.name;
         		action.type = 'attack';
-                const flavor = C2_Utility.getAttackDescription(item);
+                const flavor = C2Utility.getAttackDescription(item);
         		action.description = flavor.description;
         		action.success = flavor.success;
                 if (item.type === 'weapon') {
@@ -102,7 +110,7 @@ export default class Conan2d20Actor extends Actor {
         		        	const key = CONFIG.weaponQualities[quality] ?? quality;
                             if (key.value) {
         		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})`, description: CONFIG.qualitiesDescriptions[key.type] || ''}
-        		            } 	
+        		            }
         		        	return { name: quality, label: `${game.i18n.localize(key.label)}`, description: CONFIG.qualitiesDescriptions[key.type] || ''};
                         })
         		    );
@@ -113,7 +121,7 @@ export default class Conan2d20Actor extends Actor {
         		        	const key = CONFIG.weaponQualities[quality] ?? quality;
                             if (key.value) {
         		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})`, description: CONFIG.qualitiesDescriptions[key.type] || ''};
-        		            } 	
+        		            }
         		        	return { name: quality, label: `${game.i18n.localize(key.label)}`, description: CONFIG.qualitiesDescriptions[key.type] || '' };
         		      	})
                     );
@@ -153,7 +161,6 @@ export default class Conan2d20Actor extends Actor {
             const error = "Fortune spend would exceed available fortune points."
             throw error;
         } else {
-            /* eslint-disable-next-line no-param-reassign */
             actorData.data.resources.fortune.value = newValue;
             game.actors.get(actorData._id).update(actorData);
         }
@@ -185,13 +192,12 @@ export default class Conan2d20Actor extends Actor {
             const error = "Resource spend would exceed available reloads."
             throw error;
         } else {
-            /* eslint-disable-next-line no-param-reassign */
             actorData.items.find(i => i._id === reloadItem).data.uses.value = newValue;
             game.actors.get(actorData._id).update(actorData);
         }
     }
 
-    triggerReroll(message: any, type) {
+    public triggerReroll(message: any, type) {
         const msgdata = message.data.flags.data;
         const rerolls = [];
         $(message.data.content).children('.roll.selected').each(function() {
@@ -242,7 +248,12 @@ export default class Conan2d20Actor extends Actor {
         }
     }
 
-    momentumSpendImmediate(message, type) {
+    /**
+     *
+     * @param message: Message content from chat card
+     * @param type
+     */
+    public momentumSpendImmediate(message, type) {
         const generated = message.data.flags.data.resultData.momentumGenerated;
         Conan2d20Dice.showRollMomentumSpendDialog(generated)
     }
@@ -274,7 +285,7 @@ export default class Conan2d20Actor extends Actor {
 
     /**
      * Setup a Weapons Test.
-     * 
+     *
      * Probably the most complex test in the game.
      */
     setupWeapon(weapon: any, options: [] = []) {
@@ -376,7 +387,7 @@ export default class Conan2d20Actor extends Actor {
         };
   	}
 
-    getRollOptions(rollNames) {
+    public async getRollOptions(rollNames) {
         const flag = this.getFlag(game.system.id, 'rollOptions') ?? {};
         return rollNames.flatMap(rollName =>
         // convert flag object to array containing the names of all fields with a truthy value
@@ -430,7 +441,7 @@ export default class Conan2d20Actor extends Actor {
         }
 
         let existing = this.hasCondition(effect.id);
-    
+
         if (existing)
         {
             existing.flags.conan2d20.value -= value;
@@ -451,4 +462,58 @@ export default class Conan2d20Actor extends Actor {
         let existing = this.data.effects.find(i => getProperty(i, "flags.core.statusId") == conditionKey);
         return existing
     }
+
+    // Return the type of the current actor
+    get actorType() {
+        return this.data.type;
+    }
 }
+
+Conan2d20Actor.prototype.triggerReroll = function(message, type) {
+    const msgdata = message.data.flags.data;
+    const rerolls = [];
+    $(message.data.content).children('.roll.selected').each(function() {
+        rerolls.push(this.innerHTML.trim());
+    });
+
+    const norolls = [];
+    $(message.data.content).children('.roll:not(.selected)').each(function() {
+        norolls.push(this.innerHTML.trim());
+    });
+
+    const diceQty = rerolls.length;
+
+    let html = `<h3 class="center"><b>${game.i18n.localize("CONAN.skillRerollActivate")}</b></h3>`;
+    if ( type === 'skill') {
+        /* eslint-disable-next-line prefer-template */
+        html += `${game.i18n.format("CONAN.skillRerollText",{character:`<b>${this.name}</b>`})}<br>`;
+    } else if (type === 'damage') {
+        /* eslint-disable-next-line prefer-template */
+        html += `${game.i18n.format("CONAN.damageRerollText",{character:`<b>${this.name}</b>`})}<br>`;
+    }
+
+    const chatData = {
+        user: game.user._id,
+        rollMode: "reroll",
+        content: html
+    };
+
+    // @ts-ignore
+    ChatMessage.create(chatData);
+
+    const cardData = {
+        title: `${msgdata.title} Re-Roll`,
+        speaker: {
+            alias: message.data.speaker.alias,
+            actor: message.data.speaker.actor
+        },
+        template: msgdata.template,
+        flags: {img: this.data.token.randomImg ? this.data.img : this.data.token.img}
+    };
+
+    if (type === 'skill') {
+        Conan2d20Dice.calculateSkillRoll(diceQty, msgdata.rollData.tn, msgdata.rollData.focus, msgdata.rollData.trained, msgdata.resultData.difficulty, undefined, cardData, norolls);
+    } else if (type === 'damage') {
+        Conan2d20Dice.calculateDamageRoll(diceQty, msgdata.resultData.damageType, cardData, norolls);
+    }
+};
