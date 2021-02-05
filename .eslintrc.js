@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
     'jest/globals': true,
   },
-  extends: ['airbnb-base', 'prettier'],
+  extends: ['airbnb-base', 'prettier', 'plugin:@typescript-eslint/recommended'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -26,7 +26,7 @@ module.exports = {
     fetchSpell: 'readonly',
   },
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   rules: {
@@ -35,8 +35,9 @@ module.exports = {
     'no-new': 0,
     'no-underscore-dangle': 0,
     'no-console': 0,
-    'import/extensions': [1, 'always'],
+    'import/extensions': 1,
     'class-methods-use-this': 0,
+    'no-param-reassign': 0,
   },
   settings: {
     'import/resolver': {
@@ -46,7 +47,7 @@ module.exports = {
       },
     },
   },
-  plugins: ['jest', 'prettier'],
+  plugins: ['jest', 'prettier', '@typescript-eslint'],
   overrides: [
     {
       files: 'tests/**/*',
@@ -55,6 +56,5 @@ module.exports = {
       },
     },
   ],
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
 };
-
