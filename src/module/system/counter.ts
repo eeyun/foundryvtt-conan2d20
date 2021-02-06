@@ -113,7 +113,7 @@ export default class Counter extends Application {
       throw updateError.counter;
     }
 
-    if (isNaN(value)) {
+    if (Number.isNaN(value)) {
       ui.notifications.error('Error updating Counter: Invalid Value Type');
       CONFIG.CONAN.Counter.render(true);
       throw updateError.value;

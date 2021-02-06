@@ -1,66 +1,71 @@
 <script>
-    $(document).ready(function(){
-        $('#diceModifierType').on('change', function() {
-            if ( this.value == 'doom' || this.value == 'momentum')
-            {
-                $("#dice-modifier-value").show();
-            }
-            else if (this.value == '')
-            {
-                $("#dice-modifier-value").hide();
-            }
-        });
+  $(document).ready(function () {
+    $('#diceModifierType').on('change', function () {
+      if (this.value == 'doom' || this.value == 'momentum') {
+        $('#dice-modifier-value').show();
+      } else if (this.value == '') {
+        $('#dice-modifier-value').hide();
+      }
     });
+  });
 </script>
 <ol class="form-list">
-    <div class = "dialog-inputs">
-        <div class="form-group">
-            <label>{{localize "CONAN.skillRollDifficultyLabel"}}</label>
-            <select name="difficulty" data-dtype="String">
-                {{#select modifiers.difficulty}}
-                {{#each modifiers.difficulty as |name type|}}
-                <option value="{{type}}">{{name}}</option>
-                {{/each}}
-                {{/select}}
-            </select>
-        </div>
-        {{#ifEq modifiers.actorType "character"}}
-            <div class="form-group">
-                <label>{{localize "CONAN.skillRollOpportunityLabel"}}</label>
-                <div class="diceMods"></div>
-                    <select name="diceModifierType" data-dtype="" id="diceModifierType">
-                        {{#select modifiers.diceModifier}}
-                        <option value=""/>
-                        {{#each modifiers.diceModifier as |name type|}}
-                        <option value="{{type}}">{{name}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                    <input type="" name="diceModifier" value="" data-dtype="Number" id="dice-modifier-value"/>
-                </div>
-                <label>{{modifiers.diceModifierType}}</label>
-            </div>    
-            <label>{{localize "CONAN.fortuneSpendLabel"}}</label>
-                <input name="successModifier" value=""/>
-            </div>
-        </div>
-        {{else ifEq modifiers.actorType "npc"}}
-            <div class="form-group">
-                <label>{{localize "CONAN.skillRollOpportunityLabel"}}</label>
-                <div class="diceMods"></div>
-                    <select name="diceModifierType" data-dtype="" id="diceModifierType">
-                        <option value=""/>
-                        <option value="doom">{{localize "CONAN.doom"}}</option>
-                    </select>
-                    <input type="" name="diceModifier" value="" data-dtype="Number" id="dice-modifier-value"/>
-                </div>
-                <label>{{modifiers.diceModifierType}}</label>
-            </div>    
-            <label title="{{localize "CONAN.doomConversionTitle"}}">
-                {{localize "CONAN.fortuneSpendLabel"}}
-                <i class="fas fa-info-circle"></i>
-            </label>
-                <input name="successModifier" value=""/>
-            </div>
-        {{/ifEq}}
+  <div class="dialog-inputs">
+    <div class="form-group">
+      <label>{{localize "CONAN.skillRollDifficultyLabel"}}</label>
+      <select name="difficulty" data-dtype="String">
+        {{#select modifiers.difficulty}} {{#each modifiers.difficulty as |name
+        type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}} {{/select}}
+      </select>
+    </div>
+    {{#ifEq modifiers.actorType "character"}}
+    <div class="form-group">
+      <label>{{localize "CONAN.skillRollOpportunityLabel"}}</label>
+      <div class="diceMods">
+        <select name="diceModifierType" data-dtype="" id="diceModifierType">
+          {{#select modifiers.diceModifier}}
+          <option value="" />
+          {{#each modifiers.diceModifier as |name type|}}
+          <option value="{{type}}">{{name}}</option>
+          {{/each}} {{/select}}
+        </select>
+        <input
+          type=""
+          name="diceModifier"
+          value=""
+          data-dtype="Number"
+          id="dice-modifier-value"
+        />
+      </div>
+      <label>{{modifiers.diceModifierType}}</label>
+    </div>
+    <label>{{localize "CONAN.fortuneSpendLabel"}}</label>
+    <input name="successModifier" value="" />
+    {{else ifEq modifiers.actorType "npc"}}
+    <div class="form-group">
+      <label>{{localize "CONAN.skillRollOpportunityLabel"}}</label>
+      <div class="diceMods">
+        <select name="diceModifierType" data-dtype="" id="diceModifierType">
+          <option value="" />
+          <option value="doom">{{localize "CONAN.doom"}}</option>
+        </select>
+        <input
+          type=""
+          name="diceModifier"
+          value=""
+          data-dtype="Number"
+          id="dice-modifier-value"
+        />
+      </div>
+      <label>{{modifiers.diceModifierType}}</label>
+    </div>
+    <label title="{{localize CONAN.doomConversionTitle}}">
+      {{localize "CONAN.fortuneSpendLabel"}}
+      <i class="fas fa-info-circle"></i>
+    </label>
+    <input name="successModifier" value="" />
+    {{/ifEq}}
+  </div>
 </ol>

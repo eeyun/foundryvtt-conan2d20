@@ -1,184 +1,184 @@
 aside {
-    grid-area: sidebar;
-    color: white;
-    font-family: $serif;
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    background: url('../assets/sheet/sidebar_green.png') no-repeat top center;
-    background-size: 200px;
-    height: 770px;
-    width: 247px;
+  grid-area: sidebar;
+  color: white;
+  font-family: $serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: url('../assets/sheet/sidebar_green.png') no-repeat top center;
+  background-size: 200px;
+  height: 770px;
+  width: 247px;
+  position: relative;
+  overflow: hidden;
+  .logo {
+    margin-top: 15px;
+    padding-bottom: 5px;
+    border: none;
     position: relative;
-    overflow: hidden;
-    .logo {
-        margin-top: 15px;
-        padding-bottom: 5px;
+    z-index: 10;
+  }
+  .sidebar {
+    margin: -10px 23px 0 30px;
+    overflow: auto;
+    overflow-x: hidden;
+    height: 650px;
+    @include scrollbar;
+
+    &::-webkit-scrollbar-track {
+      box-shadow: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: white;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+    }
+    h4,
+    label {
+      color: white;
+      @include micro;
+      white-space: nowrap;
+    }
+
+    &_title {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin: 1em 0 0.5em;
+      h2,
+      h4,
+      a {
+        @include micro;
         border: none;
-        position: relative;
-        z-index: 10;
+        margin: 0;
+        line-height: 1.5;
+      }
+      h2 {
+        color: white;
+        border-bottom: 1px solid $sidebar-title-color;
+        flex: 1;
+
+        &.hover {
+          line-height: 1;
+          padding: 2px 3px;
+          background: rgba(white, 0.75);
+          color: var(--sidebar-title-color);
+          border-radius: 2px 2px 0 0;
+          border: none;
+          cursor: pointer;
+          flex: 0;
+          white-space: nowrap;
+          &:hover {
+            background: white;
+            box-shadow: inset 0 0 0 1px white;
+          }
+        }
+      }
+      h4 {
+        margin-right: auto;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+      }
+      i {
+        &:hover {
+          @include input-glow;
+          color: white;
+          cursor: pointer;
+        }
+      }
     }
-    .sidebar {
-        margin: -10px 23px 0 30px;
-        overflow: auto;
-        overflow-x: hidden;
-        height: 650px;
-        @include scrollbar;
-
-        &::-webkit-scrollbar-track {
-            box-shadow: none;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            color: white;
-            margin: 0;
-            padding: 0;
-            line-height: 1;
-        }
-        h4,
-        label {
-            color: white;
-            @include micro;
-            white-space: nowrap;
-        }
-
-        &_title {
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin: 1em 0 0.5em;
-            h2,
-            h4,
-            a {
-                @include micro;
-                border: none;
-                margin: 0;
-                line-height: 1.5;
-            }
-            h2 {
-                color: white;
-                border-bottom: 1px solid $sidebar-title-color;
-                flex: 1;
-
-                &.hover {
-                    line-height: 1;
-                    padding: 2px 3px;
-                    background: rgba(white, 0.75);
-                    color: var(--sidebar-title-color);
-                    border-radius: 2px 2px 0 0;
-                    border: none;
-                    cursor: pointer;
-                    flex: 0;
-                    white-space: nowrap;
-                    &:hover {
-                        background: white;
-                        box-shadow: inset 0 0 0 1px white;
-                    }
-                }
-            }
-            h4 {
-                margin-right: auto;
-            }
-            a {
-                color: white;
-                text-decoration: none;
-            }
-            i {
-                &:hover {
-                    @include input-glow;
-                    color: white;
-                    cursor: pointer;
-                }
-            }
-        }
-        .dots {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .data-value {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0; /* Removes whitespace for inputs */
-
-            & > * {
-                flex-basis: 1;
-            }
-            input[type='number'],
-            h2 {
-                color: white;
-                text-align: center;
-                font-size: 26px;
-                line-height: 1;
-                font-weight: 500;
-                font-family: $serif;
-                width: 45px;
-                border: none;
-                @include text-gold;
-            }
-            input[type='number'] {
-                background: none;
-                -moz-appearance: textfield;
-                color: white;
-                &:focus {
-                    box-shadow: none;
-                }
-                &::-webkit-outer-spin-button,
-                &::-webkit-inner-spin-button {
-                    -webkit-appearance: none;
-                    margin: 0;
-                }
-            }
-        }
-        a.roll-icon {
-            display: inline-flex;
-            align-items: center;
-            padding-bottom: 2px;
-
-            svg {
-                animation-play-state: paused;
-                &:hover {
-                    animation-play-state: running;
-                    @include rotate;
-                }
-            }
-        }
-        select {
-            font-family: $serif;
-            font-size: 16px;
-            color: white;
-            background-color: var(--primary);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 0;
-            padding: 4px 8px;
-            width: 100%;
-            max-width: 100%;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.075);
-            @include input-border;
-        }
-        ol {
-            display: flex;
-            flex-direction: column;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            li {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-
-        /* prettier-ignore */
-        @import 'health';
-        @import 'armor';
+    .dots {
+      display: flex;
+      flex-direction: column;
     }
+
+    .data-value {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0; /* Removes whitespace for inputs */
+
+      & > * {
+        flex-basis: 1;
+      }
+      input[type='number'],
+      h2 {
+        color: white;
+        text-align: center;
+        font-size: 26px;
+        line-height: 1;
+        font-weight: 500;
+        font-family: $serif;
+        width: 45px;
+        border: none;
+        @include text-gold;
+      }
+      input[type='number'] {
+        background: none;
+        -moz-appearance: textfield;
+        color: white;
+        &:focus {
+          box-shadow: none;
+        }
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+    }
+    a.roll-icon {
+      display: inline-flex;
+      align-items: center;
+      padding-bottom: 2px;
+
+      svg {
+        animation-play-state: paused;
+        &:hover {
+          animation-play-state: running;
+          @include rotate;
+        }
+      }
+    }
+    select {
+      font-family: $serif;
+      font-size: 16px;
+      color: white;
+      background-color: var(--primary);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 0;
+      padding: 4px 8px;
+      width: 100%;
+      max-width: 100%;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.075);
+      @include input-border;
+    }
+    ol {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    /* prettier-ignore */
+    @import 'health';
+    @import 'armor';
+  }
 }

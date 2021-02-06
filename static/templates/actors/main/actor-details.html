@@ -1,27 +1,53 @@
 <div class="character-extras-container">
   <div class="character-biography">
     <h3>Biography</h3>
-    {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
+    {{editor content=data.details.biography.value
+    target="data.details.biography.value" button=true owner=owner
+    editable=editable}}
   </div>
-  <<div class="character-conditions">
-   <div class="condition-header">
+  <
+  <div class="character-conditions">
+    <div class="condition-header">
       <h3>{{localize "CONAN.conditionsLabel"}}</h3>
-   </div>
-   {{#each conditions as |condition c|}}
-   <div class="sheet-condition" data-cond-id={{condition.id}}>
-      <label title="{{localize condition.title}}">{{localize condition.label}}</label>
-      {{#if condition.boolean}}
-      {{#if condition.existing}}
-         <input class="condition-toggle" type="checkbox" name="{{condition}}" value="1" data-dtype="bool" {{checked condition.existing}}/>
+    </div>
+    {{#each conditions as |condition c|}}
+    <div class="sheet-condition" data-cond-id="{{condition.id}}">
+      <label title="{{localize condition.title}}"
+        >{{localize condition.label}}</label
+      >
+      {{#if condition.boolean}} {{#if condition.existing}}
+      <input
+        class="condition-toggle"
+        type="checkbox"
+        name="{{condition}}"
+        value="1"
+        data-dtype="bool"
+        {{checked
+        condition.existing}}
+      />
       {{else}}
-         <input class="condition-toggle" type="checkbox" name="{{condition}}" value="0" data-dtype="bool" {{checked condition.existing}}/>
+      <input
+        class="condition-toggle"
+        type="checkbox"
+        name="{{condition}}"
+        value="0"
+        data-dtype="bool"
+        {{checked
+        condition.existing}}
+      />
+      {{/if}} {{else}}
+      <input
+        class="condition-toggle"
+        type="checkbox"
+        name="{{condition}}"
+        value="1"
+        data-dtype="bool"
+        {{checked
+        condition.existing}}
+      />
+      <a class="condition-value">{{condition.value}}</a>
       {{/if}}
-      {{else}}
-         <input class="condition-toggle" type="checkbox" name="{{condition}}" value="1" data-dtype="bool" {{checked condition.existing}}/>
-         <a class="condition-value">{{condition.value}}</a>
-      {{/if}}
-   </div>
-   {{/each}}
- </div>
+    </div>
+    {{/each}}
+  </div>
 </div>
-

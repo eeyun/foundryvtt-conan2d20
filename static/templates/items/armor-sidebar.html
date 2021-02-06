@@ -1,44 +1,48 @@
 <h4 class="sidebar-summary">{{localize "CONAN.armorSummary"}}</h4>
 
 <div class="inventory-details">
-    <div class="form-group">
-        <label>{{localize "CONAN.quantityLabel"}}</label>
-        <input type="Number" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
-    </div>
+  <div class="form-group">
+    <label>{{localize "CONAN.quantityLabel"}}</label>
+    <input
+      type="Number"
+      name="data.quantity"
+      value="{{data.quantity}}"
+      data-dtype="Number"
+    />
+  </div>
 
-    <div class="form-group">
-        <label>{{localize "CONAN.availability"}}</label>
-        <select name="data.availability" data-dtype="String">
-            {{#select data.availability}}
-            {{#each availability as |label key|}}
-            <option value="{{key}}">{{localize label}}</option>
-            {{/each}}
-            {{/select}}
-        </select>
-    </div>
+  <div class="form-group">
+    <label>{{localize "CONAN.availability"}}</label>
+    <select name="data.availability" data-dtype="String">
+      {{#select data.availability}} {{#each availability as |label key|}}
+      <option value="{{key}}">{{localize label}}</option>
+      {{/each}} {{/select}}
+    </select>
+  </div>
 
-    <div class="form-group">
-        <label>{{localize "CONAN.itemEncumbrance"}}</label>
-        <select name="data.encumbrance" data-dtype="String">
-            {{#select data.encumbrance}}
-            {{#each encumbrance as |label key|}}
-            <option value="{{key}}">{{localize label}}</option>
-            {{/each}}
-            {{/select}}
-        </select>
-    </div>
-    <div class="form-group">
-        <label>{{localize "CONAN.itemCost"}}</label>
-        <input type="Number" name="data.cost" value="{{data.cost}}" data-dtype="Number"/>
-    </div>
+  <div class="form-group">
+    <label>{{localize "CONAN.itemEncumbrance"}}</label>
+    <select name="data.encumbrance" data-dtype="String">
+      {{#select data.encumbrance}} {{#each encumbrance as |label key|}}
+      <option value="{{key}}">{{localize label}}</option>
+      {{/each}} {{/select}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label>{{localize "CONAN.itemCost"}}</label>
+    <input
+      type="Number"
+      name="data.cost"
+      value="{{data.cost}}"
+      data-dtype="Number"
+    />
+  </div>
 </div>
 
 <ol class="item-tags">
-    {{#if data.equipped}}
-    <li class="tag">{{localize "CONAN.equipmentEquippedLabel"}}</li>
-    {{/if}}
-    {{#if data.broken}}
-    <li class="tag">{{localize "CONAN.armorBrokenLabel"}}</li>
-    {{/if}}
+  {{#if data.equipped}}
+  <li class="tag">{{localize "CONAN.equipmentEquippedLabel"}}</li>
+  {{/if}} {{#if data.broken}}
+  <li class="tag">{{localize "CONAN.armorBrokenLabel"}}</li>
+  {{/if}}
 </ol>
-

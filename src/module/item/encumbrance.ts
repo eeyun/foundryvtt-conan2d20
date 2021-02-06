@@ -121,13 +121,13 @@ export class InventoryWeight {
     return this.combinedEnc;
   }
 }
-export function combinedEncumbrance(actorInventory, actorBrawn) {
+export function combinedEncumbrance(actorInventory) {
   let totalEnc = 0;
   for (const itemType in actorInventory) {
     if (actorInventory !== undefined) {
       if (actorInventory[itemType].label !== 'Consumables') {
         for (let x = 0; x < actorInventory[itemType].items.length; x += 1) {
-          if (actorInventory[itemType].label == 'Transportation') {
+          if (actorInventory[itemType].label === 'Transportation') {
             if (
               Number(
                 actorInventory[itemType].items[x].data.passengers.current
@@ -175,23 +175,23 @@ export function calculateEncumbrance(
   actorInventory,
   actorBrawn
 ): InventoryWeight {
-  const combinedEnc = Math.floor(
-    this.combinedEncumbrance(actorInventory, actorBrawn)
-  );
+  const combinedEnc = Math.floor(this.combinedEncumbrance(actorInventory));
   let encumberedAt;
   let limit;
   let stowage = 0;
   for (const itemType in actorInventory) {
-    if (actorInventory[itemType].label == 'Transportation') {
-      for (let x = 0; x < actorInventory[itemType].items.length; x += 1) {
-        stowage += Number(actorInventory[itemType].items[x].data.stowage);
+    if ({}.hasOwnProperty.call(actorInventory, itemType)) {
+      if (actorInventory[itemType].label === 'Transportation') {
+        for (let x = 0; x < actorInventory[itemType].items.length; x += 1) {
+          stowage += Number(actorInventory[itemType].items[x].data.stowage);
+        }
+        encumberedAt = Math.floor(actorBrawn * 2 + stowage);
+        limit = Math.floor(actorBrawn * 5 + Number(stowage));
+        return new InventoryWeight(combinedEnc, encumberedAt, limit);
       }
-      encumberedAt = Math.floor(actorBrawn * 2 + stowage);
-      limit = Math.floor(actorBrawn * 5 + Number(stowage));
-      return new InventoryWeight(combinedEnc, encumberedAt, limit);
+      encumberedAt = Math.floor(actorBrawn * 2);
+      limit = Math.floor(actorBrawn * 5);
     }
-    encumberedAt = Math.floor(actorBrawn * 2);
-    limit = Math.floor(actorBrawn * 5);
   }
 
   return new InventoryWeight(combinedEnc, encumberedAt, limit);

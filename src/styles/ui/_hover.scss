@@ -1,248 +1,248 @@
 .hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .hover-content {
-    display: none;
+  display: none;
 }
 
 .hover {
-    .tooltipster-box {
-        background-color: rgba(black, 0.9);
-        overflow: visible;
+  .tooltipster-box {
+    background-color: rgba(black, 0.9);
+    overflow: visible;
 
-        .tooltipster-content {
-            @include p-reset;
+    .tooltipster-content {
+      @include p-reset;
 
-            .hover-content {
-                display: flex;
-                min-width: 120px;
-                max-width: 180px;
-                padding: 4px;
-                line-height: 1;
-                flex-direction: column;
+      .hover-content {
+        display: flex;
+        min-width: 120px;
+        max-width: 180px;
+        padding: 4px;
+        line-height: 1;
+        flex-direction: column;
 
-                p {
-                    font-size: 14px;
-                    font-family: $body-serif;
-                    font-weight: 400;
-                }
-
-                h1,
-                h2,
-                h3 {
-                    font-size: 12px;
-                    font-weight: 500;
-                    text-align: left;
-                }
-
-                .sidebar_title {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: baseline;
-                    border-bottom: 1px solid $sidebar-title-color;
-                    margin: 0.25em 0 0.5em;
-                    flex: 1 auto;
-                    h2,
-                    a {
-                        @include micro;
-                        border: none;
-                        margin: 0;
-                        line-height: 1.5;
-                        color: $sidebar-title-color;
-
-                        & + h2 {
-                            font-size: 11px;
-                        }
-                    }
-                    a {
-                        color: white;
-                        text-decoration: none;
-                    }
-                }
-
-                ul {
-                    list-style: none;
-                    @include p-reset;
-                    flex: 1 auto;
-                    input {
-                        color: white;
-                        border: none;
-                        border-radius: 0;
-                        background: transparent;
-                        font-family: $body-serif;
-                        width: 100%;
-                        border-bottom: 1px solid rgba(white, 0.5);
-                        &:focus {
-                            box-shadow: none;
-                            border-bottom: 1px solid white;
-                            &::placeholder {
-                                color: transparent;
-                            }
-                        }
-                        &::placeholder {
-                            color: rgba(white, 0.8);
-                        }
-                        &::-webkit-outer-spin-button,
-                        &::-webkit-inner-spin-button {
-                            -webkit-appearance: none;
-                            appearance: none;
-                            margin: 0;
-                        }
-                        &[type='number'] {
-                            -moz-appearance: textfield;
-                        }
-                    }
-
-                    select {
-                        border-radius: 2px;
-                        height: 18px;
-                        border: 1px solid white;
-                        background: transparent;
-                        cursor: pointer;
-
-                        option {
-                            font-size: 0.8rem;
-                            min-height: 1rem;
-                            color: var(--body);
-                            text-transform: capitalize;
-                        }
-                    }
-
-                    label {
-                        display: flex;
-                        align-items: center;
-                        text-align: left;
-                        font-family: $serif;
-                        font-weight: 500;
-                    }
-
-                    .label,
-                    .data {
-                        font-size: 12px;
-                        font-family: $serif;
-                        font-weight: 400;
-                        color: white;
-                        @include p-reset;
-                    }
-
-                    .item {
-                        display: grid;
-                        grid:
-                            'data label close' min-content
-                            'data type close' min-content
-                            / 30px 1fr;
-                        margin: 8px 0;
-                        align-items: center;
-                        column-gap: 8px;
-                        justify-items: start;
-
-                        &:first-child {
-                            border: none;
-                        }
-
-                        &.no-effect {
-                            filter: opacity(0.5);
-                            position: relative;
-                        }
-
-                        .tag {
-                            grid-area: type;
-                            @include micro;
-                            @include flex-center;
-                            color: var(--tertiary);
-                            width: min-content;
-                            .remove-modifier {
-                                white-space: nowrap;
-                            }
-                        }
-
-                        .label {
-                            grid-area: label;
-                        }
-
-                        .data {
-                            grid-area: data;
-                            text-align: right;
-                            font-size: 21px;
-                            justify-self: right;
-                            width: min-content;
-                            padding-top: 2px;
-                        }
-
-                        .remove-modifier {
-                          grid-area: close;
-                          font-size: 0.8rem;
-                          cursor: pointer;
-                        }
-
-                        &.add-modifier {
-                            border-top: 1px solid $sidebar-title-color;
-                            padding-top: 5px;
-                            grid:
-                                'value name name' 1fr
-                                'type type btn' 1fr
-                                /42px 1fr 1fr;
-                            font-size: 0.8rem;
-                            gap: 0.25rem 0.5rem;
-                            align-items: baseline;
-
-                            .add-modifier-value {
-                                grid-area: value;
-                                font-size: 1rem;
-                                text-align: right;
-                                display: grid;
-                                grid:
-                                    'input plus' 1fr
-                                    'input minus' 1fr
-                                    /1fr 10px;
-                                column-gap: 4px;
-                                align-items: center;
-
-                                input {
-                                    grid-area: input;
-                                }
-
-                                .fas {
-                                    font-size: 9px;
-                                    cursor: pointer;
-                                    margin-top: 2px;
-
-                                    &.fa-plus-circle {
-                                        grid-area: plus;
-                                    }
-
-                                    &.fa-minus-circle {
-                                        grid-area: minus;
-                                    }
-                                }
-                            }
-
-                            .add-modifier-name {
-                                grid-area: name;
-                            }
-
-                            .add-modifier-submit {
-                                grid-area: btn;
-                                @include micro;
-                                white-space: nowrap;
-                                text-align: right;
-                            }
-                        }
-                    }
-
-                    .disabled {
-                        .label,
-                        .data,
-                        .data::placeholder {
-                            color: rgba(white, 0.5);
-                        }
-                        .label {
-                            text-decoration: line-through;
-                        }
-                    }
-                }
-            }
+        p {
+          font-size: 14px;
+          font-family: $body-serif;
+          font-weight: 400;
         }
+
+        h1,
+        h2,
+        h3 {
+          font-size: 12px;
+          font-weight: 500;
+          text-align: left;
+        }
+
+        .sidebar_title {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          border-bottom: 1px solid $sidebar-title-color;
+          margin: 0.25em 0 0.5em;
+          flex: 1 auto;
+          h2,
+          a {
+            @include micro;
+            border: none;
+            margin: 0;
+            line-height: 1.5;
+            color: $sidebar-title-color;
+
+            & + h2 {
+              font-size: 11px;
+            }
+          }
+          a {
+            color: white;
+            text-decoration: none;
+          }
+        }
+
+        ul {
+          list-style: none;
+          @include p-reset;
+          flex: 1 auto;
+          input {
+            color: white;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            font-family: $body-serif;
+            width: 100%;
+            border-bottom: 1px solid rgba(white, 0.5);
+            &:focus {
+              box-shadow: none;
+              border-bottom: 1px solid white;
+              &::placeholder {
+                color: transparent;
+              }
+            }
+            &::placeholder {
+              color: rgba(white, 0.8);
+            }
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              appearance: none;
+              margin: 0;
+            }
+            &[type='number'] {
+              -moz-appearance: textfield;
+            }
+          }
+
+          select {
+            border-radius: 2px;
+            height: 18px;
+            border: 1px solid white;
+            background: transparent;
+            cursor: pointer;
+
+            option {
+              font-size: 0.8rem;
+              min-height: 1rem;
+              color: var(--body);
+              text-transform: capitalize;
+            }
+          }
+
+          label {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            font-family: $serif;
+            font-weight: 500;
+          }
+
+          .label,
+          .data {
+            font-size: 12px;
+            font-family: $serif;
+            font-weight: 400;
+            color: white;
+            @include p-reset;
+          }
+
+          .item {
+            display: grid;
+            grid:
+              'data label close' min-content
+              'data type close' min-content
+              / 30px 1fr;
+            margin: 8px 0;
+            align-items: center;
+            column-gap: 8px;
+            justify-items: start;
+
+            &:first-child {
+              border: none;
+            }
+
+            &.no-effect {
+              filter: opacity(0.5);
+              position: relative;
+            }
+
+            .tag {
+              grid-area: type;
+              @include micro;
+              @include flex-center;
+              color: var(--tertiary);
+              width: min-content;
+              .remove-modifier {
+                white-space: nowrap;
+              }
+            }
+
+            .label {
+              grid-area: label;
+            }
+
+            .data {
+              grid-area: data;
+              text-align: right;
+              font-size: 21px;
+              justify-self: right;
+              width: min-content;
+              padding-top: 2px;
+            }
+
+            .remove-modifier {
+              grid-area: close;
+              font-size: 0.8rem;
+              cursor: pointer;
+            }
+
+            &.add-modifier {
+              border-top: 1px solid $sidebar-title-color;
+              padding-top: 5px;
+              grid:
+                'value name name' 1fr
+                'type type btn' 1fr
+                /42px 1fr 1fr;
+              font-size: 0.8rem;
+              gap: 0.25rem 0.5rem;
+              align-items: baseline;
+
+              .add-modifier-value {
+                grid-area: value;
+                font-size: 1rem;
+                text-align: right;
+                display: grid;
+                grid:
+                  'input plus' 1fr
+                  'input minus' 1fr
+                  /1fr 10px;
+                column-gap: 4px;
+                align-items: center;
+
+                input {
+                  grid-area: input;
+                }
+
+                .fas {
+                  font-size: 9px;
+                  cursor: pointer;
+                  margin-top: 2px;
+
+                  &.fa-plus-circle {
+                    grid-area: plus;
+                  }
+
+                  &.fa-minus-circle {
+                    grid-area: minus;
+                  }
+                }
+              }
+
+              .add-modifier-name {
+                grid-area: name;
+              }
+
+              .add-modifier-submit {
+                grid-area: btn;
+                @include micro;
+                white-space: nowrap;
+                text-align: right;
+              }
+            }
+          }
+
+          .disabled {
+            .label,
+            .data,
+            .data::placeholder {
+              color: rgba(white, 0.5);
+            }
+            .label {
+              text-decoration: line-through;
+            }
+          }
+        }
+      }
     }
+  }
 }

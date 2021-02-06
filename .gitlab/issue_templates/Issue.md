@@ -1,4 +1,5 @@
 # Issue report
+
 ## Description of the issue
 
 _Please describe the problem behavior in as much details as possible so we can understand the issue_
@@ -13,14 +14,13 @@ _Please identify in which book and at what page is this rule documented or where
 
 ## Steps to reproduce the issue
 
-1. 
-1. 
-1. 
-1. 
+1.
+1.
+1.
+1.
 
 ## Environment
 
-* Browser with the issue: 
-* Foundry VTT version: 
-* CONAN 2D20 version: 
-
+- Browser with the issue:
+- Foundry VTT version:
+- CONAN 2D20 version:

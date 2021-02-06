@@ -1,83 +1,77 @@
 <div class="form-group">
-    <label>{{localize "CONAN.transpoCategoryLabel"}}</label>
-    <select name="data.categories" data-dtype="String">
-        {{#select data.categories}}
-        {{#each categories as |label key|}}
-        <option value="{{key}}">{{localize label}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.transpoCategoryLabel"}}</label>
+  <select name="data.categories" data-dtype="String">
+    {{#select data.categories}} {{#each categories as |label key|}}
+    <option value="{{key}}">{{localize label}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
 
 {{#ifCond data.categories '==' 'mounts' }}
 <div class="form-group">
-    <label>{{localize "CONAN.transpoTypeLabel"}}</label>
-    <select name="data.transpoType" data-dtype="String">
-        {{#select data.transpoType}}
-        {{#each mountType as |label key|}}
-        <option value="{{key}}">{{localize label}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.transpoTypeLabel"}}</label>
+  <select name="data.transpoType" data-dtype="String">
+    {{#select data.transpoType}} {{#each mountType as |label key|}}
+    <option value="{{key}}">{{localize label}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
-{{/ifCond}}
-{{#ifCond data.categories '==' 'carts' }}
+{{/ifCond}} {{#ifCond data.categories '==' 'carts' }}
 <div class="form-group">
-    <label>{{localize "CONAN.transpoTypeLabel"}}</label>
-    <select name="data.transpoType" data-dtype="String">
-        {{#select data.transpoType}}
-        {{#each cartType as |label key|}}
-        <option value="{{key}}">{{localize label}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.transpoTypeLabel"}}</label>
+  <select name="data.transpoType" data-dtype="String">
+    {{#select data.transpoType}} {{#each cartType as |label key|}}
+    <option value="{{key}}">{{localize label}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
-{{/ifCond}}
-{{#ifCond data.categories '==' 'boats' }}
+{{/ifCond}} {{#ifCond data.categories '==' 'boats' }}
 <div class="form-group">
-    <label>{{localize "CONAN.transpoTypeLabel"}}</label>
-    <select name="data.transpoType" data-dtype="String">
-        {{#select data.transpoType}}
-        {{#each boatType as |label key|}}
-        <option value="{{key}}">{{localize label}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
-{{/ifCond}}
+  <label>{{localize "CONAN.transpoTypeLabel"}}</label>
+  <select name="data.transpoType" data-dtype="String">
+    {{#select data.transpoType}} {{#each boatType as |label key|}}
+    <option value="{{key}}">{{localize label}}</option>
+    {{/each}} {{/select}}
+  </select>
+  {{/ifCond}}
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.transpoStowageLabel"}}</label>
-    <input type="Number" name="data.stowage" value="{{data.stowage}}" data-dtype="Number"/>
+  <label>{{localize "CONAN.transpoStowageLabel"}}</label>
+  <input
+    type="Number"
+    name="data.stowage"
+    value="{{data.stowage}}"
+    data-dtype="Number"
+  />
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.transpoPassengerCapLabel"}}</label>
-    <input type="Number" name="data.passengers.capacity" value="{{data.passengers.capacity}}" data-dtype="Number"/>
+  <label>{{localize "CONAN.transpoPassengerCapLabel"}}</label>
+  <input
+    type="Number"
+    name="data.passengers.capacity"
+    value="{{data.passengers.capacity}}"
+    data-dtype="Number"
+  />
 </div>
 
 {{#ifCond data.categories '==' 'mounts' }}
 <div class="form-group">
-    <label>{{localize "CONAN.transpoCapabilitiesLabel"}}</label>
-    <select name="data.capabilities" data-dtype="String">
-        {{#select data.capabilities}}
-        {{#each capabilities as |label key|}}
-        <option value="{{key}}">{{localize label}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.transpoCapabilitiesLabel"}}</label>
+  <select name="data.capabilities" data-dtype="String">
+    {{#select data.capabilities}} {{#each capabilities as |label key|}}
+    <option value="{{key}}">{{localize label}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
-{{/ifCond}}
-
-{{#ifCond data.categories '==' 'carts' }}
+{{/ifCond}} {{#ifCond data.categories '==' 'carts' }}
 <div class="form-group">
-    <label>{{localize "CONAN.transpoAnimalsLabel"}}</label>
-    <select name="data.animals" data-dtype="String">
-        {{#select data.animals}}
-        {{#each animals as |label key|}}
-        <option value="{{key}}">{{localize label}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.transpoAnimalsLabel"}}</label>
+  <select name="data.animals" data-dtype="String">
+    {{#select data.animals}} {{#each animals as |label key|}}
+    <option value="{{key}}">{{localize label}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
 {{/ifCond}}

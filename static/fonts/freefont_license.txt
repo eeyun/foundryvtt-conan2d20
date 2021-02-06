@@ -23,8 +23,8 @@ You may not modifiy the font files.
 
 You may not sell this font or licenses for this font.
 
-You may not redistribute or share this font without written permission of Joël Carrouché. 
-This means you cannot make the font available for download on your website without prior consent. 
+You may not redistribute or share this font without written permission of Joël Carrouché.
+This means you cannot make the font available for download on your website without prior consent.
 
 
 
@@ -50,6 +50,3 @@ www.joelcarrouche.com
 
 
 If you use this font for something cool, let me know !
-
-
-

@@ -1,1 +1,3 @@
-export const DB = {};
+const DB = {};
+
+export default DB;
