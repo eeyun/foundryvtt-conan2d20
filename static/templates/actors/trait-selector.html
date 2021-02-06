@@ -3,7 +3,7 @@
   autocomplete="off"
   onsubmit="event.preventDefault();"
 >
-  {{#unless has_values}}
+  {{#unless hasValues}}
   <header class="trait-header flexrow">
     <div class="header-search">
       <i class="fas fa-search"></i>
@@ -18,7 +18,7 @@
   </header>
   {{/unless}}
   <ol class="trait-list">
-    {{#each ordered_choices as |choice key|}}
+    {{#each orderedChoices as |choice key|}}
     <li class="trait-item">
       <div class="form-group form-fields">
         <input
@@ -31,7 +31,7 @@
         <label class="trait-label" style="margin-left: 5px; margin-right: 5px"
           >{{choice.label}}</label
         >
-        {{#if ../has_values}}
+        {{#if ../hasValues}}
         <input
           type="text"
           id="input_value_{{key}}"
@@ -40,7 +40,7 @@
           placeholder="e.g. 5"
           data-dtype="Number"
         />
-        {{/if}} {{#if ../has_exceptions}}
+        {{/if}} {{#if ../hasExceptions}}
         <label style="margin-left: 5px">Exceptions:</label>
         <input type="text" id="input_exception_{{key}}" name="{{key}}"
         value="{{choice.exceptions}}" placeholder="e.g. except {{localize
@@ -49,7 +49,7 @@
     </li>
     {{/each}}
   </ol>
-  {{#unless has_values}}
+  {{#unless hasValues}}
   <div class="form-group-stacked trait-footer">
     <label>{{localize "CONAN.specialLabel"}}:</label>
     <input type="text" name="custom" value="{{custom}}" data-dtype="String" />

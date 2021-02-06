@@ -1,4 +1,4 @@
-import {DB} from './system/db';
+import DB from './system/db';
 
 type Conan2d20Localization = Localization & {fallback: any};
 
