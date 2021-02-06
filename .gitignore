@@ -10,6 +10,7 @@ foundryconfig.json
 
 # Built Artifacts
 dist/*
+builds
 
 # Node Modules
 npm-debug.log
