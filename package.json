@@ -7,14 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
-    "build:dev": "webpack",
-    "lint": "gts lint",
-    "clean": "gts clean",
-    "compile": "tsc",
-    "fix": "gts fix",
-    "prepare": "npm run compile",
-    "pretest": "npm run compile",
-    "posttest": "npm run lint"
+    "build:dev": "webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
