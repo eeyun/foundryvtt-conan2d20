@@ -4,7 +4,12 @@ module.exports = {
     es6: true,
     'jest/globals': true,
   },
-  extends: ['airbnb-base', 'prettier', 'plugin:@typescript-eslint/recommended'],
+  extends: [
+    'airbnb-base',
+    'prettier',
+    'plugin:@typescript-eslint/recommended',
+    './node_modules/gts',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -38,6 +43,7 @@ module.exports = {
     'import/extensions': 1,
     'class-methods-use-this': 0,
     'no-param-reassign': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
   },
   settings: {
     'import/resolver': {
