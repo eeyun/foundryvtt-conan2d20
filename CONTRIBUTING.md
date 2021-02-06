@@ -49,7 +49,9 @@ Before major code commits, ensure all standard entities remain functional:
 
 1. Open an [Issue](https://gitlab.com/kayhos/foundryvtt-conan2d20/-/issues/new) to document the fix or the feature proposed if no other exists.
 1. **Create merge request and branch** from your [Issue](https://gitlab.com/kayhos/foundryvtt-conan2d20/-/issues/).
-1. Create atomic commits to your branch. (one feature per commit)
+1. **We require a [DCO](https://developercertificate.org/) on each commit**. We cannot accept any merge requests that are not submitted with a DCO.
+1. Larger PRs should be broken into logical commits. Smaller PRs should be submitted as a single commit.
+1. Run the bundled [Pre-commit Checks] before opening a Merge Request.
 1. Once your proposal is complete, Flag your Merge Request as Ready to merge.
 
 Read more about [merge requests](https://docs.gitlab.com/ee/user/project/merge_requests/).
@@ -70,3 +72,7 @@ Start reading our code and you'll get the hang of it. We optimize for readabilit
 > Closes #4, #6 and #12
 
 - This is open source software. Consider the people who will read your code, and make it look nice for them. It's sort of like driving a car: Perhaps you love doing donuts when you're alone, but with passengers the goal is to make the ride as smooth as possible.
+
+## Pre-commit Checks
+
+In order to ensure some standards of quality we use [pre-commit](https://pre-commit.com/) to execute a series of lints and checks on the code. Be sure to [install the pre-commit CLI](https://pre-commit.com/#installation). To validate your branch after install just run `pre-commit run`
