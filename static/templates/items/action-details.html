@@ -1,34 +1,30 @@
 <div class="form-group">
-    <label>{{localize "CONAN.actionTypeLabel"}}</label>
-    <select name="data.actionType" data-dtype="String">
-        {{#select data.actionType}}
-        {{#each actionTypes as |name type|}}
-        <option value="{{type}}">{{name}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.actionTypeLabel"}}</label>
+  <select name="data.actionType" data-dtype="String">
+    {{#select data.actionType}} {{#each actionTypes as |name type|}}
+    <option value="{{type}}">{{name}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.actionCountLabel"}}</label>
-    <select name="data.actionCount" data-dtype="Number">
-        {{#select data.actionCount}}
-        <option value=""></option>
-        {{#each actionCounts as |name type|}}
-        <option value="{{type}}">{{name}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.actionCountLabel"}}</label>
+  <select name="data.actionCount" data-dtype="Number">
+    {{#select data.actionCount}}
+    <option value=""></option>
+    {{#each actionCounts as |name type|}}
+    <option value="{{type}}">{{name}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.actionCategoryLabel"}}</label>
-    <select name="data.actionCategory" data-dtype="String">
-        {{#select data.actionCategory}}
-        <option value=""></option>
-        {{#each actionCategories as |name type|}}
-        <option value="{{type}}">{{name}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.actionCategoryLabel"}}</label>
+  <select name="data.actionCategory" data-dtype="String">
+    {{#select data.actionCategory}}
+    <option value=""></option>
+    {{#each actionCategories as |name type|}}
+    <option value="{{type}}">{{name}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>

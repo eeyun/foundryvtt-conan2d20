@@ -1,4 +1,3 @@
-
 # v1.0.0 -- Initial Release
 
 Initial release to public, the intent of this release is to provide an initial version so we can get feedback and allow others to contribute.

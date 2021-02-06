@@ -1,454 +1,552 @@
 /**
  * Extend the base Actor class to implement additiona logic specialized for Conan2d20
  */
-import { CONFIG } from '../../scripts/config';
-import { Conan2d20Dice } from '../system/rolls';
+import {CONFIG} from '../../scripts/config';
+import Conan2d20Dice from '../system/rolls';
 import Counter from '../system/counter';
 import CharacterData from './character';
-import { C2_Utility } from '../../scripts/utility';
+import C2Utility from '../../scripts/utility';
 
 export default class Conan2d20Actor extends Actor {
-    /**
-     * Augment the basic actor data with additional dynamic data
-     */
-    prepareData() {
-        super.prepareData();
-
-        // Get the Actor's data object
-        const actorData = this.data;
-        const { data } = actorData;
-        
-        // Prepare Character data
-        if (actorData.type === 'character') this._prepareCharacterData(actorData);
-        else if (actorData.type === 'npc') this._prepareNPCData(data);
-
-        if (data.qualities !== undefined) {
-            const map = {};
-            for (const [t,] of Object.entries(map)) {
-                const quality = data.qualities[t];
-                if (quality === undefined) continue;
-            }
-        }
-        
-    // Return the prepared Actor data
-        return actorData;
-  }
-
-  /* -------------------------------------------- */
-
   /**
-  * Prepare Character type specific data
-  */
-    _prepareCharacterData(actorData) {
-        const {data} = actorData;
-        const character = new CharacterData(data, this.items);
+   * Augment the basic actor data with additional dynamic data
+   */
+  prepareData() {
+    super.prepareData();
 
-        // Calculate Vigor
-        data.health.physical.max = data.attributes.bra.value + data.skills.res.expertise.value - data.health.physical.fatigue;
-        if (data.health.physical.value === null) {
-            data.health.physical.value = data.attributes.bra.value + data.skills.res.expertise.value;
-        } else if (data.health.physical.value > data.health.physical.max) {
-            data.health.physical.value = data.health.physical.max;
-        } else if (data.health.physical.value < 0) {
-            data.health.physical.value = 0;
+    // Get the Actor's data object
+    const actorData = this.data;
+    const {data} = actorData;
+
+    // Prepare Character data
+    if (actorData.type === 'character') this._prepareCharacterData(actorData);
+    else if (actorData.type === 'npc') this._prepareNPCData(data);
+
+    if (data.qualities !== undefined) {
+      const map = {};
+      for (const [t] of Object.entries(map)) {
+        const quality = data.qualities[t];
+        if (quality === undefined) {
+          /* eslint-disable-next-line no-continue */
+          continue;
         }
-        
-        // Calculate Resolve
-        data.health.mental.max = data.attributes.wil.value + data.skills.dis.expertise.value - data.health.mental.despair;
-        if (data.health.mental.value === null) {
-            data.health.mental.value = data.attributes.wil.value + data.skills.dis.expertise.value;
-        } else if (data.health.mental.value > data.health.mental.max) {
-            data.health.mental.value = data.health.mental.max;
-        } else if (data.health.mental.value < 0) {
-            data.health.mental.value = 0;
-        }
-
-        // Set TN for Skills
-         for (const [s, skl] of Object.entries(data.skills)) {
-            // @ts-expect-error
-            // ^~~~~~~~~~~~~~~^ error: "Unused '@ts-expect-error' directive.(2339)"
-            skl.tn.value = skl.expertise.value + data.attributes[skl.attribute].value;
-            if (data.skills[s].expertise.value > 0) {
-                data.skills[s].trained = true;
-            }
-        }
-
-        // Prepare Upkeep Cost
-        data.resources.upkeep.value = 3 + data.background.standing.value - data.background.renown;
-        if (data.resources.upkeep.value < 0 ) {
-            data.resources.upkeep.value = 0;
-        }
-
-		// Automatic Actions
-		data.actions = [];
-
-		// Attacks
-		{
-			(actorData.items ?? []).filter(
-                (item) => item.type === 'weapon' || item.type === 'display').forEach((item) => {			
-				const action : any =  {};
-                action.imageUrl = item.img;
-                action.name = item.name;
-        		action.type = 'attack';
-                const flavor = C2_Utility.getAttackDescription(item);
-        		action.description = flavor.description;
-        		action.success = flavor.success;
-                if (item.type === 'weapon') {
-        		    action.qualities = [
-                        { name: 'attack', label: game.i18n.localize(CONFIG.attacks[item.type])},
-                        { name: 'weaponType', label: CONFIG.weaponTypes[item.data.weaponType]},
-                        { name: 'weapongroup', label: CONFIG.weaponGroups[item.data.group] ?? ''}].concat(
-                        (item?.data?.qualities?.value).map((quality) => {
-        		        	const key = CONFIG.weaponQualities[quality] ?? quality;
-                            if (key.value) {
-        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})`, description: CONFIG.qualitiesDescriptions[key.type] || ''}
-        		            } 	
-        		        	return { name: quality, label: `${game.i18n.localize(key.label)}`, description: CONFIG.qualitiesDescriptions[key.type] || ''};
-                        })
-        		    );
-                } else if (item.type === 'display') {
-        		    action.qualities = [
-                        { name: 'attack', label: game.i18n.localize(CONFIG.attacks[item.type])}].concat(
-        		    	(item?.data?.qualities?.value).map((quality) => {
-        		        	const key = CONFIG.weaponQualities[quality] ?? quality;
-                            if (key.value) {
-        		        	    return { name: quality, label: `${game.i18n.localize(key.label)}(${key.value})`, description: CONFIG.qualitiesDescriptions[key.type] || ''};
-        		            } 	
-        		        	return { name: quality, label: `${game.i18n.localize(key.label)}`, description: CONFIG.qualitiesDescriptions[key.type] || '' };
-        		      	})
-                    );
-                }
-                action.attack = {};
-                action.attack.id = item._id;
-                action.attack.type = item.type;
-                data.actions.push(action);
-            });
-		}
-        // Experience
-        data.resources.xp.value = character.exp;
+      }
     }
+
+    // Return the prepared Actor data
+    return actorData;
+  }
 
   /* -------------------------------------------- */
 
   /**
    * Prepare Character type specific data
    */
-    _prepareNPCData(actorData) {
-         const {data} = actorData;
-         const npc = new CharacterData(data, this.items);
-         return npc;
+  _prepareCharacterData(actorData) {
+    const {data} = actorData;
+    const character = new CharacterData(data, this.items);
+
+    // Calculate Vigor
+    data.health.physical.max =
+      data.attributes.bra.value +
+      data.skills.res.expertise.value -
+      data.health.physical.fatigue;
+    if (data.health.physical.value === null) {
+      data.health.physical.value =
+        data.attributes.bra.value + data.skills.res.expertise.value;
+    } else if (data.health.physical.value > data.health.physical.max) {
+      data.health.physical.value = data.health.physical.max;
+    } else if (data.health.physical.value < 0) {
+      data.health.physical.value = 0;
     }
 
-    static addDoom(doomSpend) {
-        Counter.changeCounter(+`${doomSpend}`, "doom");
+    // Calculate Resolve
+    data.health.mental.max =
+      data.attributes.wil.value +
+      data.skills.dis.expertise.value -
+      data.health.mental.despair;
+    if (data.health.mental.value === null) {
+      data.health.mental.value =
+        data.attributes.wil.value + data.skills.dis.expertise.value;
+    } else if (data.health.mental.value > data.health.mental.max) {
+      data.health.mental.value = data.health.mental.max;
+    } else if (data.health.mental.value < 0) {
+      data.health.mental.value = 0;
     }
 
-    static addMomentum(momentumSpend) {
-        Counter.changeCounter(+`${momentumSpend}`, "momentum");
+    // Set TN for Skills
+    for (const [s, skl] of Object.entries(data.skills)) {
+      // @ts-ignore
+      skl.tn.value = skl.expertise.value + data.attributes[skl.attribute].value;
+      if (data.skills[s].expertise.value > 0) {
+        data.skills[s].trained = true;
+      }
     }
 
-    static spendFortune(actorData, fortuneSpend) {
-        const newValue = actorData.data.resources.fortune.value - fortuneSpend;
-        if (newValue < 0) {
-            const error = "Fortune spend would exceed available fortune points."
-            throw error;
-        } else {
-            /* eslint-disable-next-line no-param-reassign */
-            actorData.data.resources.fortune.value = newValue;
-            game.actors.get(actorData._id).update(actorData);
-        }
+    // Prepare Upkeep Cost
+    data.resources.upkeep.value =
+      3 + data.background.standing.value - data.background.renown;
+    if (data.resources.upkeep.value < 0) {
+      data.resources.upkeep.value = 0;
     }
 
-    static async spendDoom(doomSpend) {
-        const newValue = game.settings.get("conan2d20", "doom") - doomSpend;
-        if (newValue <  0) {
-            const error = "Doom spend would exceed available doom points."
-            throw error;
-        } else {
-            Counter.changeCounter(-`${doomSpend}`, "doom");
-        }
-    }
+    // Automatic Actions
+    data.actions = [];
 
-    static async spendMomentum(momentumSpend) {
-        const newValue = game.settings.get("conan2d20", "momentum") - momentumSpend;
-        if (newValue <  0) {
-            const error = "Momentum spend would exceed available momentum points."
-            throw error;
-        } else {
-            Counter.changeCounter(-`${momentumSpend}`, "momentum");
-        }
-    }
-
-    static spendReload(actorData,  reloadSpend, reloadItem) {
-        const newValue = actorData.items.find(i => i._id === reloadItem).data.uses.value - reloadSpend;
-        if (newValue < 0) {
-            const error = "Resource spend would exceed available reloads."
-            throw error;
-        } else {
-            /* eslint-disable-next-line no-param-reassign */
-            actorData.items.find(i => i._id === reloadItem).data.uses.value = newValue;
-            game.actors.get(actorData._id).update(actorData);
-        }
-    }
-
-    triggerReroll(message: any, type) {
-        const msgdata = message.data.flags.data;
-        const rerolls = [];
-        $(message.data.content).children('.roll.selected').each(function() {
-            rerolls.push(this.innerHTML.trim());
-        });
-
-        const norolls = [];
-        $(message.data.content).children('.roll:not(.selected)').each(function() {
-            norolls.push(this.innerHTML.trim());
-        });
-
-        const diceQty = rerolls.length;
-
-        let html = `<h3 class="center"><b>${game.i18n.localize("CONAN.skillRerollActivate")}</b></h3>`;
-        if ( type === 'skill') {
-            /* eslint-disable-next-line prefer-template */
-            // @ts-ignore
-            html += `${game.i18n.format("CONAN.skillRerollText",{character:`<b>${this.name}</b>`})}<br>`;
-        } else if (type === 'damage') {
-            /* eslint-disable-next-line prefer-template */
-            // @ts-ignore
-            html += `${game.i18n.format("CONAN.damageRerollText",{character:`<b>${this.name}</b>`})}<br>`;
-        }
-
-        const chatData = {
-            user: game.user._id,
-            rollMode: "reroll",
-            content: html
-        };
-
-        // @ts-ignore
-        ChatMessage.create(chatData);
-
-        const cardData = {
-            title: `${msgdata.title} Re-Roll`,
-            speaker: {
-                alias: message.data.speaker.alias,
-                actor: message.data.speaker.actor
+    // Attacks
+    (actorData.items ?? [])
+      .filter(item => item.type === 'weapon' || item.type === 'display')
+      .forEach(item => {
+        const action: any = {};
+        action.imageUrl = item.img;
+        action.name = item.name;
+        action.type = 'attack';
+        const flavor = C2Utility.getAttackDescription(item);
+        action.description = flavor.description;
+        action.success = flavor.success;
+        if (item.type === 'weapon') {
+          action.qualities = [
+            {
+              name: 'attack',
+              label: game.i18n.localize(CONFIG.attacks[item.type]),
             },
-            template: msgdata.template,
-            flags: {img: this.data.token.randomImg ? this.data.img : this.data.token.img}
-        };
-
-        if (type === 'skill') {
-            Conan2d20Dice.calculateSkillRoll(diceQty, msgdata.rollData.tn, msgdata.rollData.focus, msgdata.rollData.trained, msgdata.resultData.difficulty, undefined, cardData, norolls);
-        } else if (type === 'damage') {
-            Conan2d20Dice.calculateDamageRoll(diceQty, msgdata.resultData.damageType, cardData, norolls);
-        }
-    }
-
-    momentumSpendImmediate(message, type) {
-        const generated = message.data.flags.data.resultData.momentumGenerated;
-        Conan2d20Dice.showRollMomentumSpendDialog(generated)
-    }
-
-    /**
-     * Setup a Skill Test.
-     *
-     * Skill tests are fairly simple but there are a number of validations that
-     * need to be made including the handling of fortune and doom/momentum
-     */
-    setupSkill(skill, actorType) {
-        let skillList;
-        if (actorType === 'character') {
-            skillList = CONFIG.skills;
-        } else if (actorType === 'npc'){
-            skillList = CONFIG.expertiseFields;
-        };
-        const dialogData = {
-            title : skillList[skill],
-            modifiers : this._getModifiers("skill", actorType),
-            template : "systems/conan2d20/templates/apps/skill-roll-dialogue.html",
-        };
-        const rollData = {
-            skill : this.data.data.skills[skill],
-        };
-        const cardData = this._setupCardData("systems/conan2d20/templates/chat/skill-roll-card.html", skillList[skill])
-        return {dialogData, cardData, rollData}
-    }
-
-    /**
-     * Setup a Weapons Test.
-     * 
-     * Probably the most complex test in the game.
-     */
-    setupWeapon(weapon: any, options: [] = []) {
-        const title = `${game.i18n.localize("Damage Roll")} - ${weapon.name}`;
-        const dialogData = {
-            title,
-            modifiers : this._getModifiers("damage", weapon),
-            template : "systems/conan2d20/templates/apps/damage-roll-dialogue.html",
-        };
-        if (options.length) {
-            // @ts-ignore
-            dialogData.options = options
-        }
-        const cardData = this._setupCardData("systems/conan2d20/templates/chat/damage-roll-card.html", title);
-
-        const rollData = {
-            target : 0,
-            hitLocation : true,
-            extra : {
-                weapon,
-            }
-        };
-        return {dialogData, cardData, rollData}
-    }
-
-  _setupCardData(template: string, title: string) {
-      const cardData = {
-          title: `${title} Test`,
-          speaker: {
-              alias: this.data.token.name,
-              actor: this.data._id
-          },
-          template,
-          flags: {img: this.data.token.randomImg ? this.data.img : this.data.token.img}
-      }
-
-      if (this.token) {
-              cardData.speaker.alias = this.token.data.name;
-                  // @ts-ignore
-              cardData.speaker.token = this.token.data._id;
-                  // @ts-ignore
-              cardData.speaker.scene = canvas.scene._id
-              cardData.flags.img = this.token.data.img;
-      } else {
-          const speaker = ChatMessage.getSpeaker()
-          if (speaker.actor === this.data._id)
-              {
-                  cardData.speaker.alias = speaker.alias
-                  // @ts-ignore
-                  cardData.speaker.token = speaker.token
-                  // @ts-ignore
-                  cardData.speaker.scene = speaker.scene
-                  cardData.flags.img = speaker.token ? canvas.tokens.get(speaker.token).data.img : cardData.flags.img
+            {
+              name: 'weaponType',
+              label: CONFIG.weaponTypes[item.data.weaponType],
+            },
+            {
+              name: 'weapongroup',
+              label: CONFIG.weaponGroups[item.data.group] ?? '',
+            },
+          ].concat(
+            (item?.data?.qualities?.value).map(quality => {
+              const key = CONFIG.weaponQualities[quality] ?? quality;
+              if (key.value) {
+                return {
+                  name: quality,
+                  label: `${game.i18n.localize(key.label)}(${key.value})`,
+                  description: CONFIG.qualitiesDescriptions[key.type] || '',
+                };
               }
-      }
-      return cardData
+              return {
+                name: quality,
+                label: `${game.i18n.localize(key.label)}`,
+                description: CONFIG.qualitiesDescriptions[key.type] || '',
+              };
+            })
+          );
+        } else if (item.type === 'display') {
+          action.qualities = [
+            {
+              name: 'attack',
+              label: game.i18n.localize(CONFIG.attacks[item.type]),
+            },
+          ].concat(
+            (item?.data?.qualities?.value).map(quality => {
+              const key = CONFIG.weaponQualities[quality] ?? quality;
+              if (key.value) {
+                return {
+                  name: quality,
+                  label: `${game.i18n.localize(key.label)}(${key.value})`,
+                  description: CONFIG.qualitiesDescriptions[key.type] || '',
+                };
+              }
+              return {
+                name: quality,
+                label: `${game.i18n.localize(key.label)}`,
+                description: CONFIG.qualitiesDescriptions[key.type] || '',
+              };
+            })
+          );
+        }
+        action.attack = {};
+        action.attack.id = item._id;
+        action.attack.type = item.type;
+        data.actions.push(action);
+      });
+    // Experience
+    data.resources.xp.value = character.exp;
   }
 
-  	_getModifiers(type: String, specifier: any) {
-        let mod;
-        if (type === 'skill') {
-  	  	    const difficultyLevels = CONFIG.rollDifficultyLevels;
-  	  	    const diceModSpends = CONFIG.skillRollResourceSpends;
-  	  	    mod = {
-  	  	        difficulty: difficultyLevels,
-  	  	        diceModifier : diceModSpends,
-  	  	        successModifier : 0,
-                actorType: specifier,
-  	  	    }
-  	  	    return mod
-        } ;
-        if (type === 'damage') {
-            const attackTypes = CONFIG.weaponTypes;
-            let wType: String;
-            let attacker: String;
-            let bDamage: Object;
-            if (specifier.type === 'display') {
-                wType = 'display';
-                attacker = 'character';
-            } else if (specifier.type === 'weapon') {
-                wType = specifier.data.weaponType;
-                attacker = 'character';
-            } else if (specifier.type === 'npcattack') {
-                wType = specifier.data.attackType;
-                attacker = 'npc';
-            }
-            mod = {
-                attacker,
-                attackType: attackTypes,
-                weaponType: wType,
-                momentumModifier: 0,
-                reloadModifier: 0,
-                talentModifier: 0,
-            }
-            if (specifier.data.damage.dice === 'x') {
-                mod = mergeObject(mod, {baseDamage: specifier.data.damage.dice});
-            };
-            return mod
-        };
-  	}
+  /* -------------------------------------------- */
 
-    getRollOptions(rollNames) {
-        const flag = this.getFlag(game.system.id, 'rollOptions') ?? {};
-        return rollNames.flatMap(rollName =>
+  /**
+   * Prepare Character type specific data
+   */
+  _prepareNPCData(actorData) {
+    const {data} = actorData;
+    const npc = new CharacterData(data, this.items);
+    return npc;
+  }
+
+  static addDoom(doomSpend) {
+    Counter.changeCounter(+`${doomSpend}`, 'doom');
+  }
+
+  static addMomentum(momentumSpend) {
+    Counter.changeCounter(+`${momentumSpend}`, 'momentum');
+  }
+
+  static spendFortune(actorData, fortuneSpend) {
+    const newValue = actorData.data.resources.fortune.value - fortuneSpend;
+    if (newValue < 0) {
+      const error = 'Fortune spend would exceed available fortune points.';
+      throw error;
+    } else {
+      actorData.data.resources.fortune.value = newValue;
+      game.actors.get(actorData._id).update(actorData);
+    }
+  }
+
+  static async spendDoom(doomSpend) {
+    const newValue = game.settings.get('conan2d20', 'doom') - doomSpend;
+    if (newValue < 0) {
+      const error = 'Doom spend would exceed available doom points.';
+      throw error;
+    } else {
+      Counter.changeCounter(-`${doomSpend}`, 'doom');
+    }
+  }
+
+  static async spendMomentum(momentumSpend) {
+    const newValue = game.settings.get('conan2d20', 'momentum') - momentumSpend;
+    if (newValue < 0) {
+      const error = 'Momentum spend would exceed available momentum points.';
+      throw error;
+    } else {
+      Counter.changeCounter(-`${momentumSpend}`, 'momentum');
+    }
+  }
+
+  static spendReload(actorData, reloadSpend, reloadItem) {
+    const newValue =
+      actorData.items.find(i => i._id === reloadItem).data.uses.value -
+      reloadSpend;
+    if (newValue < 0) {
+      const error = 'Resource spend would exceed available reloads.';
+      throw error;
+    } else {
+      actorData.items.find(
+        i => i._id === reloadItem
+      ).data.uses.value = newValue;
+      game.actors.get(actorData._id).update(actorData);
+    }
+  }
+
+  public triggerReroll(message: any, type) {
+    const msgdata = message.data.flags.data;
+    const rerolls = [];
+    $(message.data.content)
+      .children('.roll.selected')
+      .each(function () {
+        rerolls.push(this.innerHTML.trim());
+      });
+
+    const norolls = [];
+    $(message.data.content)
+      .children('.roll:not(.selected)')
+      .each(function () {
+        norolls.push(this.innerHTML.trim());
+      });
+
+    const diceQty = rerolls.length;
+
+    let html = `<h3 class="center"><b>${game.i18n.localize(
+      'CONAN.skillRerollActivate'
+    )}</b></h3>`;
+    if (type === 'skill') {
+      /* eslint-disable-next-line prefer-template */
+      // @ts-ignore
+      html += `${game.i18n.format('CONAN.skillRerollText', {
+        character: `<b>${this.name}</b>`,
+      })}<br>`;
+    } else if (type === 'damage') {
+      /* eslint-disable-next-line prefer-template */
+      // @ts-ignore
+      html += `${game.i18n.format('CONAN.damageRerollText', {
+        character: `<b>${this.name}</b>`,
+      })}<br>`;
+    }
+
+    const chatData = {
+      user: game.user._id,
+      rollMode: 'reroll',
+      content: html,
+    };
+
+    // @ts-ignore
+    ChatMessage.create(chatData);
+
+    const cardData = {
+      title: `${msgdata.title} Re-Roll`,
+      speaker: {
+        alias: message.data.speaker.alias,
+        actor: message.data.speaker.actor,
+      },
+      template: msgdata.template,
+      flags: {
+        img: this.data.token.randomImg ? this.data.img : this.data.token.img,
+      },
+    };
+
+    if (type === 'skill') {
+      Conan2d20Dice.calculateSkillRoll(
+        diceQty,
+        msgdata.rollData.tn,
+        msgdata.rollData.focus,
+        msgdata.rollData.trained,
+        msgdata.resultData.difficulty,
+        undefined,
+        cardData,
+        norolls
+      );
+    } else if (type === 'damage') {
+      Conan2d20Dice.calculateDamageRoll(
+        diceQty,
+        msgdata.resultData.damageType,
+        cardData,
+        norolls
+      );
+    }
+  }
+
+  /**
+   *
+   * @param message: Message content from chat card
+   * @param type
+   */
+  public momentumSpendImmediate(message, type) {
+    const generated = message.data.flags.data.resultData.momentumGenerated;
+    Conan2d20Dice.showRollMomentumSpendDialog(generated);
+  }
+
+  /**
+   * Setup a Skill Test.
+   *
+   * Skill tests are fairly simple but there are a number of validations that
+   * need to be made including the handling of fortune and doom/momentum
+   */
+  setupSkill(skill, actorType) {
+    let skillList;
+    if (actorType === 'character') {
+      skillList = CONFIG.skills;
+    } else if (actorType === 'npc') {
+      skillList = CONFIG.expertiseFields;
+    }
+    const dialogData = {
+      title: skillList[skill],
+      modifiers: this._getModifiers('skill', actorType),
+      template: 'systems/conan2d20/templates/apps/skill-roll-dialogue.html',
+    };
+    const rollData = {
+      skill: this.data.data.skills[skill],
+    };
+    const cardData = this._setupCardData(
+      'systems/conan2d20/templates/chat/skill-roll-card.html',
+      skillList[skill]
+    );
+    return {dialogData, cardData, rollData};
+  }
+
+  /**
+   * Setup a Weapons Test.
+   *
+   * Probably the most complex test in the game.
+   */
+  setupWeapon(weapon: any, options: [] = []) {
+    const title = `${game.i18n.localize('Damage Roll')} - ${weapon.name}`;
+    const dialogData = {
+      title,
+      modifiers: this._getModifiers('damage', weapon),
+      template: 'systems/conan2d20/templates/apps/damage-roll-dialogue.html',
+    };
+    if (options.length) {
+      // @ts-ignore
+      dialogData.options = options;
+    }
+    const cardData = this._setupCardData(
+      'systems/conan2d20/templates/chat/damage-roll-card.html',
+      title
+    );
+
+    const rollData = {
+      target: 0,
+      hitLocation: true,
+      extra: {
+        weapon,
+      },
+    };
+    return {dialogData, cardData, rollData};
+  }
+
+  _setupCardData(template: string, title: string) {
+    const cardData = {
+      title: `${title} Test`,
+      speaker: {
+        alias: this.data.token.name,
+        actor: this.data._id,
+      },
+      template,
+      flags: {
+        img: this.data.token.randomImg ? this.data.img : this.data.token.img,
+      },
+    };
+
+    if (this.token) {
+      cardData.speaker.alias = this.token.data.name;
+      // @ts-ignore
+      cardData.speaker.token = this.token.data._id;
+      // @ts-ignore
+      cardData.speaker.scene = canvas.scene._id;
+      cardData.flags.img = this.token.data.img;
+    } else {
+      const speaker = ChatMessage.getSpeaker();
+      if (speaker.actor === this.data._id) {
+        cardData.speaker.alias = speaker.alias;
+        // @ts-ignore
+        cardData.speaker.token = speaker.token;
+        // @ts-ignore
+        cardData.speaker.scene = speaker.scene;
+        cardData.flags.img = speaker.token
+          ? canvas.tokens.get(speaker.token).data.img
+          : cardData.flags.img;
+      }
+    }
+    return cardData;
+  }
+
+  _getModifiers(type: String, specifier: any) {
+    let mod;
+    if (type === 'skill') {
+      const difficultyLevels = CONFIG.rollDifficultyLevels;
+      const diceModSpends = CONFIG.skillRollResourceSpends;
+      mod = {
+        difficulty: difficultyLevels,
+        diceModifier: diceModSpends,
+        successModifier: 0,
+        actorType: specifier,
+      };
+      return mod;
+    }
+    if (type === 'damage') {
+      const attackTypes = CONFIG.weaponTypes;
+      let wType: String;
+      let attacker: String;
+      let bDamage: Object;
+      if (specifier.type === 'display') {
+        wType = 'display';
+        attacker = 'character';
+      } else if (specifier.type === 'weapon') {
+        wType = specifier.data.weaponType;
+        attacker = 'character';
+      } else if (specifier.type === 'npcattack') {
+        wType = specifier.data.attackType;
+        attacker = 'npc';
+      }
+      mod = {
+        attacker,
+        attackType: attackTypes,
+        weaponType: wType,
+        momentumModifier: 0,
+        reloadModifier: 0,
+        talentModifier: 0,
+      };
+      if (specifier.data.damage.dice === 'x') {
+        mod = mergeObject(mod, {baseDamage: specifier.data.damage.dice});
+      }
+    }
+    return mod;
+  }
+
+  public async getRollOptions(rollNames) {
+    const flag = this.getFlag(game.system.id, 'rollOptions') ?? {};
+    return rollNames
+      .flatMap(rollName =>
         // convert flag object to array containing the names of all fields with a truthy value
-        Object.entries(flag[rollName] ?? {}).reduce((opts, [key, value]) => opts.concat(value ? key : []), [])
-            ).reduce((unique, option) => {
-            // ensure option entries are unique
-            return unique.includes(option) ? unique : unique.concat(option);
-        }, []);
+        Object.entries(flag[rollName] ?? {}).reduce(
+          (opts, [key, value]) => opts.concat(value ? key : []),
+          []
+        )
+      )
+      .reduce((unique, option) => {
+        // ensure option entries are unique
+        return unique.includes(option) ? unique : unique.concat(option);
+      }, []);
+  }
+
+  async addCondition(effect, value = 1) {
+    if (typeof effect === 'string')
+      effect = duplicate(
+        game.conan2d20.config.statusEffects.find(e => e.id === effect)
+      );
+    if (!effect) return 'No Effect Found';
+
+    if (!effect.id) return 'Conditions require an id field';
+
+    let existing = this.hasCondition(effect.id);
+
+    if (existing && existing.flags.conan2d20.value === null) {
+      return existing;
     }
 
-    async addCondition(effect, value=1) {
-        if (typeof(effect) === "string")
-          effect = duplicate(game.conan2d20.config.statusEffects.find(e => e.id == effect))
-        if (!effect)
-          return "No Effect Found"
-
-        if (!effect.id)
-          return "Conditions require an id field"
-
-        let existing = this.hasCondition(effect.id)
-
-        if(existing && existing.flags.conan2d20.value == null) {
-            return existing
-        } else if (existing) {
-            existing = duplicate(existing)
-            existing.flags.conan2d20.value += value;
-            return this.updateEmbeddedEntity("ActiveEffect", existing)
-        } else if (!existing) {
-            if (effect.id == "poisoned") {
-                this.addCondition("staggered");
-            };
-
-            //@ts-ignore
-            if (Number.isNumeric(effect.flags.conan2d20.value))
-                effect.flags.conan2d20.value = value;
-                effect["flags.core.statusId"] = effect.id;
-            delete effect.id
-            return this.createEmbeddedEntity("ActiveEffect", effect)
-        }
+    if (existing) {
+      existing = duplicate(existing);
+      existing.flags.conan2d20.value += value;
+      return this.updateEmbeddedEntity('ActiveEffect', existing);
     }
 
-    async removeCondition(effect, value=1) {
-        if (typeof(effect) === "string") {
-            effect = duplicate(game.conan2d20.config.statusEffects.find(e => e.id == effect))
-        }
-        if (!effect) {
-            return "No Effect Found"
-        }
-        if (!effect.id) {
-            return "Conditions require an id field"
-        }
+    if (!existing) {
+      if (effect.id === 'poisoned') {
+        this.addCondition('staggered');
+      }
 
-        let existing = this.hasCondition(effect.id);
-    
-        if (existing)
-        {
-            existing.flags.conan2d20.value -= value;
-
-            if (existing.flags.conan2d20.value == 0 && (effect.id == "poisoned")) {
-                await this.removeCondition("staggered")
-            }
-
-            if (existing.flags.conan2d20.value <= 0) {
-                return this.deleteEmbeddedEntity("ActiveEffect", existing._id)
-            } else {
-                return this.updateEmbeddedEntity("ActiveEffect", existing)
-            }
-        }
+      // @ts-ignore
+      if (Number.isNumeric(effect.flags.conan2d20.value))
+        effect.flags.conan2d20.value = value;
+      effect['flags.core.statusId'] = effect.id;
+      delete effect.id;
     }
 
-    hasCondition(conditionKey) {
-        let existing = this.data.effects.find(i => getProperty(i, "flags.core.statusId") == conditionKey);
-        return existing
+    return this.createEmbeddedEntity('ActiveEffect', effect);
+  }
+
+  async removeCondition(effect, value = 1) {
+    if (typeof effect === 'string') {
+      effect = duplicate(
+        game.conan2d20.config.statusEffects.find(e => e.id === effect)
+      );
     }
+    if (!effect) {
+      return 'No Effect Found';
+    }
+    if (!effect.id) {
+      return 'Conditions require an id field';
+    }
+
+    const existing = this.hasCondition(effect.id);
+
+    existing.flags.conan2d20.value -= value;
+
+    if (existing.flags.conan2d20.value === 0 && effect.id === 'poisoned') {
+      await this.removeCondition('staggered');
+    }
+
+    if (existing.flags.conan2d20.value <= 0) {
+      return this.deleteEmbeddedEntity('ActiveEffect', existing._id);
+    }
+
+    return this.updateEmbeddedEntity('ActiveEffect', existing);
+  }
+
+  hasCondition(conditionKey) {
+    const existing = this.data.effects.find(
+      i => getProperty(i, 'flags.core.statusId') === conditionKey
+    );
+    return existing;
+  }
+
+  // Return the type of the current actor
+  get actorType() {
+    return this.data.type;
+  }
 }

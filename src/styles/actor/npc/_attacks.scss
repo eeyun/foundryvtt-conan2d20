@@ -1,251 +1,251 @@
 .npc-attacks {
-    height: calc(100% - 40px);
+  height: calc(100% - 40px);
 
-    ol {
-        @include p-reset;
-        list-style: none;
+  ol {
+    @include p-reset;
+    list-style: none;
+    display: flex;
+
+    &:last-child {
+      margin-bottom: 10px;
+    }
+  }
+  div[style*='float'] {
+    display: none;
+  }
+
+  .item-name {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    flex: 2;
+
+    h3,
+    h4 {
+      margin-right: auto;
+      line-height: 10px;
+      padding: 2px;
+      cursor: pointer;
+
+      &:hover {
+        @include input-glow;
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    span {
+      margin: 0 4px;
+    }
+    .item-image-inventory {
+      height: 24px;
+      width: 24px;
+      box-shadow: inset 0 0 0 1px var(--tertiary);
+      background-size: cover;
+      padding: 1px;
+      cursor: pointer;
+      margin-right: 4px;
+    }
+  }
+
+  .attack-range,
+  .attack-damage,
+  .item-controls {
+    @include flex-center;
+    border-left: 1px solid var(--alt);
+  }
+
+  .attack-range {
+    flex: 0 0 60px;
+    font-family: $sans-serif;
+  }
+
+  .attack-damage {
+    flex: 0 0 60px;
+  }
+
+  .item-controls {
+    flex: 0 0 75px;
+    justify-content: flex-end;
+
+    .item-control {
+      margin-right: 4px;
+      color: rgba(black, 0.75);
+
+      &:hover {
+        @include input-glow;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .item-summary {
+    flex: 100%;
+    padding: 4px;
+    border-top: 1px solid var(--alt);
+    border-bottom: 1px solid var(--alt);
+    background: var(--bg);
+    display: grid;
+    grid:
+      'content btn' min-content
+      'details btn' min-content
+      'tags btn' min-content
+      / 1fr min-content;
+    column-gap: 8px;
+    align-items: center;
+    padding: 4px 8px 8px;
+
+    .item-description {
+      grid-area: content;
+    }
+
+    .item-details {
+      grid-area: details;
+      align-self: start;
+      margin-bottom: 4px;
+    }
+
+    .item-properties {
+      grid-area: tags;
+      align-self: start;
+    }
+
+    .item-buttons {
+      grid-area: btn;
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: 2px;
+      button {
+        margin: 0;
+        border: none;
+        cursor: pointer;
+        @include micro;
+        padding: 5px 4px;
+        color: white;
+        width: 70px;
+        @include button;
+        margin-top: 4px;
+        background: var(--primary);
+        border-radius: 2px;
+        flex: 1;
+
+        &:hover {
+          @include input-glow;
+          text-shadow: 0 0 2px white;
+        }
+      }
+
+      .weapon {
+        &_attack {
+          background: var(--primary);
+        }
+      }
+    }
+
+    .chat-item-detail {
+      margin: 4px;
+      font-size: 14px;
+    }
+  }
+
+  .inventory-list {
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    overflow-y: scroll;
+    height: calc(100% - 42px);
+
+    .item-list {
+      flex-direction: column;
+      width: 100%;
+      border: 1px solid var(--alt);
+      border-top: none;
+
+      & > li:nth-of-type(even) {
+        background-color: rgba($alt-color, 0.1);
+      }
+
+      .item {
         display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        width: 100%;
+        font-size: 12px;
+        padding: 0;
 
         &:last-child {
-            margin-bottom: 10px;
+          .item-summary {
+            border-bottom: none;
+          }
         }
+      }
     }
-    div[style*='float'] {
-        display: none;
+  }
+  .inventory-header {
+    @include micro;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    background-color: var(--dark);
+    @include button;
+    margin-top: 8px;
+    padding: 4px;
+    color: white;
+
+    &:first-child {
+      margin-top: 0;
     }
 
-    .item-name {
-        display: flex;
-        align-items: center;
-        font-weight: 500;
-        flex: 2;
-
-        h3,
-        h4 {
-            margin-right: auto;
-            line-height: 10px;
-            padding: 2px;
-            cursor: pointer;
-
-            &:hover {
-                @include input-glow;
-                color: white;
-                cursor: pointer;
-            }
-        }
-
-        span {
-            margin: 0 4px;
-        }
-        .item-image-inventory {
-            height: 24px;
-            width: 24px;
-            box-shadow: inset 0 0 0 1px var(--tertiary);
-            background-size: cover;
-            padding: 1px;
-            cursor: pointer;
-            margin-right: 4px;
-        }
+    h3 {
+      font-size: 14px;
+      text-transform: capitalize;
+      padding-left: 2px;
+      text-shadow: 0 0 2px rgba(black, 0.75);
+      margin-left: 0;
+      text-align: left;
+      cursor: default;
+      &:hover {
+        color: white;
+      }
     }
 
     .attack-range,
-    .attack-damage,
-    .item-controls {
-        @include flex-center;
-        border-left: 1px solid var(--alt);
-    }
-
-    .attack-range {
-        flex: 0 0 60px;
-        font-family:  $sans-serif;
-    }
-
     .attack-damage {
-        flex: 0 0 60px;
+      @include flex-center;
+      margin-right: -2px;
     }
-
-    .item-controls {
-        flex: 0 0 75px;
-        justify-content: flex-end;
-
-        .item-control {
-            margin-right: 4px;
-            color: rgba(black, 0.75);
-
-            &:hover {
-                @include input-glow;
-                color: white;
-                cursor: pointer;
-            }
-        }
-    }
-
-    .item-summary {
-        flex: 100%;
-        padding: 4px;
-        border-top: 1px solid var(--alt);
-        border-bottom: 1px solid var(--alt);
-        background: var(--bg);
-        display: grid;
-        grid:
-            'content btn' min-content
-            'details btn' min-content
-            'tags btn' min-content
-            / 1fr min-content;
-        column-gap: 8px;
-        align-items: center;
-        padding: 4px 8px 8px;
-
-        .item-description {
-            grid-area: content;
-        }
-
-        .item-details {
-            grid-area: details;
-            align-self: start;
-            margin-bottom: 4px;
-        }
-
-        .item-properties {
-            grid-area: tags;
-            align-self: start;
-        }
-
-        .item-buttons {
-            grid-area: btn;
-            display: flex;
-            flex-wrap: wrap;
-            margin-right: 2px;
-            button {
-                margin: 0;
-                border: none;
-                cursor: pointer;
-                @include micro;
-                padding: 5px 4px;
-                color: white;
-                width: 70px;
-                @include button;
-                margin-top: 4px;
-                background: var(--primary);
-                border-radius: 2px;
-                flex: 1;
-
-                &:hover {
-                    @include input-glow;
-                    text-shadow: 0 0 2px white;
-                }
-            }
-
-            .weapon {
-                &_attack {
-                    background: var(--primary);
-                }
-            }
-        }
-
-        .chat-item-detail {
-            margin: 4px;
-            font-size: 14px;
-        }
-    }
-
-    .inventory-list {
-        align-items: center;
-        justify-content: flex-start;
-        position: relative;
-        overflow-y: scroll;
-        height: calc(100% - 42px);
-
-        .item-list {
-            flex-direction: column;
-            width: 100%;
-            border: 1px solid var(--alt);
-            border-top: none;
-
-            & > li:nth-of-type(even) {
-                background-color: rgba($alt-color, 0.1);
-            }
-
-            .item {
-                display: flex;
-                justify-content: flex-end;
-                flex-wrap: wrap;
-                width: 100%;
-                font-size: 12px;
-                padding: 0;
-
-                &:last-child {
-                    .item-summary {
-                        border-bottom: none;
-                    }
-                }
-            }
-        }
-    }
-    .inventory-header {
-        @include micro;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        width: 100%;
-        background-color: var(--dark);
-        @include button;
-        margin-top: 8px;
-        padding: 4px;
-        color: white;
-
-        &:first-child {
-            margin-top: 0;
-        }
-
-        h3 {
-            font-size: 14px;
-            text-transform: capitalize;
-            padding-left: 2px;
-            text-shadow: 0 0 2px rgba(black, 0.75);
-            margin-left: 0;
-            text-align: left;
-            cursor: default;
-            &:hover {
-                color: white;
-            }
-        }
-
-        .attack-range,
-        .attack-damage {
-            @include flex-center;
-            margin-right: -2px;
-        }
-    }
+  }
 }
-        .item-buttons {
-            grid-area: btn;
-            display: flex;
-            flex-wrap: wrap;
-            margin-right: 2px;
-            button {
-                margin: 0;
-                border: none;
-                cursor: pointer;
-                @include micro;
-                padding: 5px 4px;
-                color: white;
-                width: 70px;
-                @include button;
-                margin-top: 4px;
-                background: var(--primary);
-                border-radius: 2px;
-                flex: 1;
+.item-buttons {
+  grid-area: btn;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 2px;
+  button {
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    @include micro;
+    padding: 5px 4px;
+    color: white;
+    width: 70px;
+    @include button;
+    margin-top: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+    flex: 1;
 
-                &:hover {
-                    @include input-glow;
-                    text-shadow: 0 0 2px white;
-                }
-            }
+    &:hover {
+      @include input-glow;
+      text-shadow: 0 0 2px white;
+    }
+  }
 
-            .weapon {
-                &_attack {
-                    background: var(--primary);
-                }
-            }
-        }
+  .weapon {
+    &_attack {
+      background: var(--primary);
+    }
+  }
+}

@@ -1,69 +1,78 @@
 <div class="form-group">
-    <label>{{localize "CONAN.talentSkillLabel"}}</label>
-    <select name="data.skill" data-dtype="String">
-        {{#select data.skill}}
-        {{#each talentSkills as |name type|}}
-        <option value="{{type}}">{{name}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.talentSkillLabel"}}</label>
+  <select name="data.skill" data-dtype="String">
+    {{#select data.skill}} {{#each talentSkills as |name type|}}
+    <option value="{{type}}">{{name}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.talentTypeLabel"}}</label>
-    <select name="data.talentType" data-dtype="String">
-        {{#select data.talentType}}
-        {{#each talentTypes as |name type|}}
-        <option value="{{type}}">{{name}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
-</div>
-
-
-<div class="form-group">
-    <label>{{localize "CONAN.talentActionTypeLabel"}}</label>
-    <select name="data.actionType" data-dtype="String">
-        {{#select data.actionType}}
-        <option value=""></option>
-        {{#each talentActionTypes as |name type|}}
-        <option value="{{type}}">{{name}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.talentTypeLabel"}}</label>
+  <select name="data.talentType" data-dtype="String">
+    {{#select data.talentType}} {{#each talentTypes as |name type|}}
+    <option value="{{type}}">{{name}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.talentActionCategoryLabel"}}</label>
-    <select name="data.actionCategory" data-dtype="String">
-        {{#select data.actionCategory}}
-        <option value=""></option>
-        {{#each categories as |name type|}}
-        <option value="{{type}}">{{name}}</option>
-        {{/each}}
-        {{/select}}
-    </select>
+  <label>{{localize "CONAN.talentActionTypeLabel"}}</label>
+  <select name="data.actionType" data-dtype="String">
+    {{#select data.actionType}}
+    <option value=""></option>
+    {{#each talentActionTypes as |name type|}}
+    <option value="{{type}}">{{name}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.talentPrereqLabel"}}</label>
-    <input type="Text" name="data.prerequisites" value="{{data.prerequisites}}"
-           data-dtype="String"/>
+  <label>{{localize "CONAN.talentActionCategoryLabel"}}</label>
+  <select name="data.actionCategory" data-dtype="String">
+    {{#select data.actionCategory}}
+    <option value=""></option>
+    {{#each categories as |name type|}}
+    <option value="{{type}}">{{name}}</option>
+    {{/each}} {{/select}}
+  </select>
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.talentRankLabel"}}</label>
-    <input type="Number" name="data.rank.value" value="{{data.rank.value}}"
-            data-dtype="Number"/>
+  <label>{{localize "CONAN.talentPrereqLabel"}}</label>
+  <input
+    type="Text"
+    name="data.prerequisites"
+    value="{{data.prerequisites}}"
+    data-dtype="String"
+  />
 </div>
 
 <div class="form-group">
-    <label>{{localize "CONAN.talentRankMaxLabel"}}</label>
-    <input type="Number" name="data.rank.max" value="{{data.rank.max}}"
-            data-dtype="Number"/>
+  <label>{{localize "CONAN.talentRankLabel"}}</label>
+  <input
+    type="Number"
+    name="data.rank.value"
+    value="{{data.rank.value}}"
+    data-dtype="Number"
+  />
+</div>
+
+<div class="form-group">
+  <label>{{localize "CONAN.talentRankMaxLabel"}}</label>
+  <input
+    type="Number"
+    name="data.rank.max"
+    value="{{data.rank.max}}"
+    data-dtype="Number"
+  />
 </div>
 <div class="form-group">
-    <label>{{localize "CONAN.talentCostLabel"}} xp</label>
-    <input type="Number" name="data.cost" value="{{data.cost}}"
-            data-dtype="Number"/>
+  <label>{{localize "CONAN.talentCostLabel"}} xp</label>
+  <input
+    type="Number"
+    name="data.cost"
+    value="{{data.cost}}"
+    data-dtype="Number"
+  />
 </div>

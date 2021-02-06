@@ -4,9 +4,9 @@
   "description": "A community-contributed game system for running games of CONAN in the cinematic 2D20 game system by Modiphius on the Foundry VTT environment. Please refer to the README.md file for reporting issues.",
   "version": "1.0.0",
   "author": ["Jerome Lavoie / kayhosraven#1642", "Ian Henry / eeyun#0890"],
-  "scripts": [ ],
-  "esmodules": [ "main.bundle.js" ],
-  "styles": [ "styles/conan2d20.css" ],
+  "scripts": [],
+  "esmodules": ["main.bundle.js"],
+  "styles": ["styles/conan2d20.css"],
   "packs": [
     {
       "name": "npcs",
@@ -24,7 +24,7 @@
       "path": "./packs/belongings.db",
       "entity": "Item"
     },
-	{
+    {
       "name": "spells",
       "label": "Spells",
       "system": "conan2d20",
@@ -33,20 +33,20 @@
       "entity": "Item"
     },
     {
-        "name": "talents",
-        "label": "Talents",
-        "system": "conan2d20",
-        "module": "conan2d20",
-        "path": "./packs/talents.db",
-        "entity": "Item"
+      "name": "talents",
+      "label": "Talents",
+      "system": "conan2d20",
+      "module": "conan2d20",
+      "path": "./packs/talents.db",
+      "entity": "Item"
     },
-	{
-        "name": "backgrounds",
-        "label": "Backgrounds",
-        "system": "conan2d20",
-        "module": "conan2d20",
-        "path": "./packs/backgrounds.db",
-        "entity": "JournalEntry"
+    {
+      "name": "backgrounds",
+      "label": "Backgrounds",
+      "system": "conan2d20",
+      "module": "conan2d20",
+      "path": "./packs/backgrounds.db",
+      "entity": "JournalEntry"
     },
     {
       "name": "rollable-tables",

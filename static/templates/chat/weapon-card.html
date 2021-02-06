@@ -1,23 +1,25 @@
-<div class="conan2d20 chat-card item-card" data-actor-id="{{actor._id}}" data-item-id="{{item._id}}" draggable="true" {{#if tokenId}}data-token-id="{{tokenId}}"{{/if}}>
-    <header class="card-header flexrow">
-        <img src="{{item.img}}" title="{{item.name}}" width="36" height="36"/>
-        <h3>{{item.name}}</h3>
-    </header>
+<div
+  class="conan2d20 chat-card item-card"
+  data-actor-id="{{actor._id}}"
+  data-item-id="{{item._id}}"
+  draggable="true"
+>
+  <header class="card-header flexrow">
+    <img src="{{item.img}}" title="{{item.name}}" width="36" height="36" />
+    <h3>{{item.name}}</h3>
+  </header>
 
-    <div class="card-content">{{{data.description.value}}}</div>
+  <div class="card-content">{{{data.description.value}}}</div>
 
-    {{#each data.itemDetails as |k v|}}
-        <div class="card-content">
-            <b>{{localize k.label}}:</b> {{{k.detail}}}
-        </div>
+  {{#each data.itemDetails as |k v|}}
+  <div class="card-content"><b>{{localize k.label}}:</b> {{{k.detail}}}</div>
+  {{/each}}
+  <br />
+  <footer class="card-footer">
+    {{#each data.properties}}
+    <span class="tag chat-tag">{{this}}</span>
+    {{/each}} {{#each data.qualities}}
+    <span class="tag" title="{{this.description}}">{{this.label}}</span>
     {{/each}}
-    <br>
-    <footer class="card-footer">
-        {{#each data.properties}}
-        <span class="tag chat-tag">{{this}}</span>
-        {{/each}}
-        {{#each data.qualities}}
-        <span class="tag" title="{{this.description}}">{{this.label}}</span>
-        {{/each}}
-    </footer>
+  </footer>
 </div>

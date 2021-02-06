@@ -1,54 +1,61 @@
 <form class="{{cssClass}}" autocomplete="off">
+  <!-- ITEM SHEET HEADER -->
+  <header class="sheet-header">
+    <img
+      src="{{item.img}}"
+      data-edit="img"
+      title="{{item.name}}"
+      height="64"
+      width="64"
+    />
+    <h1>
+      <input name="name" type="text" value="{{item.name}}"
+      placeholder="{{localize "CONAN.itemNamePlaceholder"}}"/>
+    </h1>
+  </header>
+  {{#ifEq item.type 'spell'}} {{>
+  systems/conan2d20/templates/items/spell-sheet.html}} {{else}}
+  <!-- ITEM SHEET CONTENT -->
+  <article class="sheet-content">
+    <!-- ITEM SHEET SIDEBAR -->
+    {{#if hasSidebar}}
+    <section class="item sheet-sidebar">{{> (sidebarTemplate)}}</section>
+    {{/if}}
 
-    <!-- ITEM SHEET HEADER -->
-    <header class="sheet-header">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "CONAN.itemNamePlaceholder"}}"/></h1>
-    </header>
-    {{#ifEq item.type 'spell'}} 
-        {{> systems/conan2d20/templates/items/spell-sheet.html}}
-    {{else}}
-    <!-- ITEM SHEET CONTENT -->
-    <article class="sheet-content">
+    <!-- ITEM SHEET BODY -->
+    <section class="sheet-body">
+      <!-- ITEM SHEET NAV -->
+      <nav class="sheet-tabs tabs" data-tab-container="primary">
+        {{#if detailsActive}}
+        <a class="item" data-tab="description"
+          >{{localize "CONAN.itemDescription"}}</a
+        >
+        {{#if hasDetails}}
+        <a class="item active" data-tab="details"
+          >{{localize "CONAN.itemDetails"}}</a
+        >
+        {{/if}} {{/if}} {{#unless detailsActive}}
+        <a class="item active" data-tab="description"
+          >{{localize "CONAN.itemDescription"}}</a
+        >
+        {{#if hasDetails}}
+        <a class="item" data-tab="details">{{localize "CONAN.itemDetails"}}</a>
+        {{/if}} {{/unless}}
+      </nav>
 
-        <!-- ITEM SHEET SIDEBAR -->
-        {{#if hasSidebar}}
-        <section class="item sheet-sidebar">
-            {{> (sidebarTemplate)}}
-        </section>
-        {{/if}}
+      <!-- ITEM DESCRIPTION -->
+      <div class="tab item-description" data-tab="description">
+        {{editor content=data.description.value target="data.description.value"
+        button=true owner=owner editable=editable}}
+      </div>
 
-        <!-- ITEM SHEET BODY -->
-        <section class="sheet-body">
-
-        <!-- ITEM SHEET NAV -->
-            <nav class="sheet-tabs tabs" data-tab-container="primary">           
-            {{#if detailsActive}}
-                 <a class="item" data-tab="description">{{localize "CONAN.itemDescription"}}</a>
-                 {{#if hasDetails}}
-                 <a class="item active" data-tab="details">{{localize "CONAN.itemDetails"}}</a>
-                 {{/if}}                                                      
-            {{/if}}
-            {{#unless detailsActive}}
-                 <a class="item active" data-tab="description">{{localize "CONAN.itemDescription"}}</a>
-                 {{#if hasDetails}}
-                 <a class="item" data-tab="details">{{localize "CONAN.itemDetails"}}</a>
-                 {{/if}}                                                      
-            {{/unless}}
-            </nav>
-        
-            <!-- ITEM DESCRIPTION -->
-            <div class="tab item-description" data-tab="description">
-                {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
-            </div>
-
-            <!-- ITEM DETAILS -->
-            {{#if hasDetails}}
-            <div class="tab item-details" data-tab="details">
-                {{> (detailsTemplate)}}
-            </div>
-            {{/if}}
-        </section>
-    </article>
-    {{/ifEq}}
+      <!-- ITEM DETAILS -->
+      {{#if hasDetails}}
+      <div class="tab item-details" data-tab="details">
+        {{> (detailsTemplate)}}
+      </div>
+      {{/if}}
+    </section>
+  </article>
+  {{/ifEq}}
 </form>

@@ -1,114 +1,187 @@
 <form class="{{cssClass}}" autocomplete="off">
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">{{localize "CONAN.itemDescription"}}</a>
-        <a class="item" data-tab="momentum">{{localize "CONAN.spellMomentumSpendHeader"}}</a>
-        <a class="item" data-tab="alternative">{{localize "CONAN.spellAltEffectsHeader"}}</a>
-        <a class="item" data-tab="notes">{{localize "CONAN.spellNotesHeader"}}</a>
-    </nav>
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description"
+      >{{localize "CONAN.itemDescription"}}</a
+    >
+    <a class="item" data-tab="momentum"
+      >{{localize "CONAN.spellMomentumSpendHeader"}}</a
+    >
+    <a class="item" data-tab="alternative"
+      >{{localize "CONAN.spellAltEffectsHeader"}}</a
+    >
+    <a class="item" data-tab="notes">{{localize "CONAN.spellNotesHeader"}}</a>
+  </nav>
 
-    {{!-- Sheet Body --}}
-    <section class="spell-sheet-body sheet-body">
-
-        {{!-- Description Tab --}}
-        <div class="tab" data-group="primary" data-tab="description">
-            <div class="spell-details">
-                <div class="form-group">
-                    <label>{{localize "CONAN.difficultyLabel"}}</label>
-                    <select name="data.difficulty.value" data-dtype="String">
-                        {{#select data.difficulty.value}}
-                        {{#each difficulty as |label key|}}
-                        <option value="{{key}}">{{localize label}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>{{localize "CONAN.difficultyIncludesLabel"}}</label>
-                    <input type="text" name="data.difficulty.includes" value="{{data.difficulty.includes}}" data-dtype="String"/>
-                </div>
-                <div class="form-group">
-                    <label>{{localize "CONAN.spellDurationLabel"}}</label>
-                    <input type="text" name="data.duration" value="{{data.duration}}" data-dtype="String"/>
-                </div>
-                <div class="form-group">
-                    <label>{{localize "CONAN.spellCostLabel"}}</label>
-                    <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="String"/>
-                </div>
-            </div>
-            <div class="spell-description">
-                <label></label>
-                {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
-            </div>
+  {{!-- Sheet Body --}}
+  <section class="spell-sheet-body sheet-body">
+    {{!-- Description Tab --}}
+    <div class="tab" data-group="primary" data-tab="description">
+      <div class="spell-details">
+        <div class="form-group">
+          <label>{{localize "CONAN.difficultyLabel"}}</label>
+          <select name="data.difficulty.value" data-dtype="String">
+            {{#select data.difficulty.value}} {{#each difficulty as |label
+            key|}}
+            <option value="{{key}}">{{localize label}}</option>
+            {{/each}} {{/select}}
+          </select>
         </div>
-
-        {{!-- Momentum Spends Tab --}}
-        <div class="tab momentum" data-group="primary" data-tab="momentum">
-            <div class="spell-table">
-                <table id="spellSpends">
-                    <th>Type</th>
-                    <th>Momentum</th>
-                    <th>Effect</th>
-                    {{#each data.effects.momentum as |v k|}}
-                    <tr>
-                        <td class="effect-type">
-                            <textarea name="data.effects.momentum.{{k}}.type" value="{{v.type}}"  data-dtype="String" data-autosize-input='{ "space": 40 }'>{{v.type}}</textarea>
-                        </td>
-                        <td class="effect-alt"> 
-                            <textarea name="data.effects.momentum.{{k}}.spend" value="{{v.spend}}" data-dtype="String" data-autosize-input='{ "space": 40 }'>{{v.spend}}</textarea>
-                        </td>
-                        <td class="effect-value">
-                            <textarea name="data.effects.momentum.{{k}}.effect" value="{{v.effect}}"  data-dtype="String" data-autosize-input='{ "space": 40 }'>{{v.effect}}</textarea>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </table>
-                <input type="button" class="spend-row-add" value="add"/>
-                <input type="button" class="spend-row-delete" value="delete"/>
-            </div>
+        <div class="form-group">
+          <label>{{localize "CONAN.difficultyIncludesLabel"}}</label>
+          <input
+            type="text"
+            name="data.difficulty.includes"
+            value="{{data.difficulty.includes}}"
+            data-dtype="String"
+          />
         </div>
-
-        {{!-- Alternative Effects Tab --}}
-        <div class="tab alternative" data-group="primary" data-tab="alternative">
-            <div class="spell-table">
-                <table id="altEffects">
-                    <th>Type</th>
-                    <th>Difficulty</th>
-                    <th>Effect</th>
-                    {{#each data.effects.alternative as |v k|}}
-                        <tr>
-                            <td class="effect-type">
-                                <textarea class="autofit" name="data.effects.alternative.{{k}}.type" value="{{v.type}}"  data-dtype="String" data-autosize-input='{ "space": 40 }'>{{v.type}}</textarea>
-                            </td>
-                            <td class="effect-alt">
-                                <textarea class="autofit" name="data.effects.alternative.{{k}}.difficulty" value="{{v.difficulty}}" data-dtype="String" data-autosize-input='{ "space": 40 }'>{{v.difficulty}}</textarea>
-                            </td>
-                            <td class="effect-value">
-                                <textarea class="autofit" name="data.effects.alternative.{{k}}.effect" value="{{v.effect}}"  data-dtype="String" data-autosize-input='{ "space": 40 }'>{{v.effect}}</textarea>
-                            </td>
-                        </tr>
-                    {{/each}}
-                </table>
-                <input type="button" class="alt-row-add" value="add"/>
-                <input type="button" class="alt-row-delete" value="delete"/>
-            </div>
+        <div class="form-group">
+          <label>{{localize "CONAN.spellDurationLabel"}}</label>
+          <input
+            type="text"
+            name="data.duration"
+            value="{{data.duration}}"
+            data-dtype="String"
+          />
         </div>
-
-        {{!-- Alternative Effects Tab --}}
-        <div class="tab notes" data-group="primary" data-tab="notes">
-            <div class="spell-description">
-                {{editor content=data.notes target="data.notes" button=true owner=owner editable=editable}}
-            </div>
+        <div class="form-group">
+          <label>{{localize "CONAN.spellCostLabel"}}</label>
+          <input
+            type="text"
+            name="data.cost"
+            value="{{data.cost}}"
+            data-dtype="String"
+          />
         </div>
-    </section>
+      </div>
+      <div class="spell-description">
+        <label></label>
+        {{editor content=data.description.value target="data.description.value"
+        button=true owner=owner editable=editable}}
+      </div>
+    </div>
+
+    {{!-- Momentum Spends Tab --}}
+    <div class="tab momentum" data-group="primary" data-tab="momentum">
+      <div class="spell-table">
+        <table id="spellSpends">
+          <th>Type</th>
+          <th>Momentum</th>
+          <th>Effect</th>
+          {{#each data.effects.momentum as |v k|}}
+          <tr>
+            <td class="effect-type">
+              <textarea
+                name="data.effects.momentum.{{k}}.type"
+                value="{{v.type}}"
+                data-dtype="String"
+                data-autosize-input='{ "space": 40 }'
+              >
+{{v.type}}</textarea
+              >
+            </td>
+            <td class="effect-alt">
+              <textarea
+                name="data.effects.momentum.{{k}}.spend"
+                value="{{v.spend}}"
+                data-dtype="String"
+                data-autosize-input='{ "space": 40 }'
+              >
+{{v.spend}}</textarea
+              >
+            </td>
+            <td class="effect-value">
+              <textarea
+                name="data.effects.momentum.{{k}}.effect"
+                value="{{v.effect}}"
+                data-dtype="String"
+                data-autosize-input='{ "space": 40 }'
+              >
+{{v.effect}}</textarea
+              >
+            </td>
+          </tr>
+          {{/each}}
+        </table>
+        <input type="button" class="spend-row-add" value="add" />
+        <input type="button" class="spend-row-delete" value="delete" />
+      </div>
+    </div>
+
+    {{!-- Alternative Effects Tab --}}
+    <div class="tab alternative" data-group="primary" data-tab="alternative">
+      <div class="spell-table">
+        <table id="altEffects">
+          <th>Type</th>
+          <th>Difficulty</th>
+          <th>Effect</th>
+          {{#each data.effects.alternative as |v k|}}
+          <tr>
+            <td class="effect-type">
+              <textarea
+                class="autofit"
+                name="data.effects.alternative.{{k}}.type"
+                value="{{v.type}}"
+                data-dtype="String"
+                data-autosize-input='{ "space": 40 }'
+              >
+{{v.type}}</textarea
+              >
+            </td>
+            <td class="effect-alt">
+              <textarea
+                class="autofit"
+                name="data.effects.alternative.{{k}}.difficulty"
+                value="{{v.difficulty}}"
+                data-dtype="String"
+                data-autosize-input='{ "space": 40 }'
+              >
+{{v.difficulty}}</textarea
+              >
+            </td>
+            <td class="effect-value">
+              <textarea
+                class="autofit"
+                name="data.effects.alternative.{{k}}.effect"
+                value="{{v.effect}}"
+                data-dtype="String"
+                data-autosize-input='{ "space": 40 }'
+              >
+{{v.effect}}</textarea
+              >
+            </td>
+          </tr>
+          {{/each}}
+        </table>
+        <input type="button" class="alt-row-add" value="add" />
+        <input type="button" class="alt-row-delete" value="delete" />
+      </div>
+    </div>
+
+    {{!-- Alternative Effects Tab --}}
+    <div class="tab notes" data-group="primary" data-tab="notes">
+      <div class="spell-description">
+        {{editor content=data.notes target="data.notes" button=true owner=owner
+        editable=editable}}
+      </div>
+    </div>
+  </section>
 </form>
 
 <script>
-    $('textarea').on('keydown', function(e){
-    if(e.which == 13) {e.preventDefault();}
-}).on('input', function(){
-    $(this).height(1);
-    var totalHeight = $(this).prop('scrollHeight') - parseInt($(this).css('padding-top')) - parseInt($(this).css('padding-bottom'));
-    $(this).height(totalHeight);
-});
+  $('textarea')
+    .on('keydown', function (e) {
+      if (e.which == 13) {
+        e.preventDefault();
+      }
+    })
+    .on('input', function () {
+      $(this).height(1);
+      var totalHeight =
+        $(this).prop('scrollHeight') -
+        parseInt($(this).css('padding-top')) -
+        parseInt($(this).css('padding-bottom'));
+      $(this).height(totalHeight);
+    });
 </script>

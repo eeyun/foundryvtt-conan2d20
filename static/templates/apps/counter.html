@@ -1,19 +1,19 @@
 <div class="conan2d20 conan-counter">
-    <div class="counter" data-type="momentum">
-        <h3>{{localize "CONAN.momentum"}}</h3>
-        <div class="input-controls" >
-            {{#if canEdit}} <b><a class="decr">-</a></b> {{/if}}
-            <input type="number" value="{{momentum}}" {{#unless canEdit}}disabled{{/unless}}>
-            {{#if canEdit}}<b><a class="incr">+</a></b> {{/if}} 
-        </div>
+  <div class="counter" data-type="momentum">
+    <h3>{{localize "CONAN.momentum"}}</h3>
+    <div class="input-controls">
+      {{#if canEdit}} <b><a class="decr">-</a></b> {{/if}} <input type="number"
+      value="{{momentum}}" {{#unless canEdit}}disabled{{/unless}}> {{#if
+      canEdit}}<b><a class="incr">+</a></b> {{/if}}
     </div>
-    <div class="vr"></div>
-    <div class="counter" data-type="doom">
-        <h3>{{localize "CONAN.doom"}}</h3>
-        <div class="input-controls" >
-            {{#if canEdit}} <b><a class="decr">-</a></b> {{/if}}
-            <input type="number" value="{{doom}}" {{#unless canEdit}}disabled{{/unless}}>
-            {{#if canEdit}} <b><a class="incr">+</a></b> {{/if}} 
-        </div>
+  </div>
+  <div class="vr"></div>
+  <div class="counter" data-type="doom">
+    <h3>{{localize "CONAN.doom"}}</h3>
+    <div class="input-controls">
+      {{#if canEdit}} <b><a class="decr">-</a></b> {{/if}} <input type="number"
+      value="{{doom}}" {{#unless canEdit}}disabled{{/unless}}> {{#if canEdit}}
+      <b><a class="incr">+</a></b> {{/if}}
     </div>
+  </div>
 </div>

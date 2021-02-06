@@ -1,206 +1,206 @@
 .skills {
-    .skills-pane {
-        @include p-reset;
+  .skills-pane {
+    @include p-reset;
 
-        h1,
-        h4,
-        h6 {
-            @include p-reset;
-            line-height: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        h1 {
-            font-family: $serif;
-            border: none;
-            color: var(--primary);
-            text-align: center;
-            justify-content: center;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: 0.1fr 1fr 1fr 1fr 1fr 1fr 0.5fr 0.1fr;
-            grid-template-rows: auto;
-            grid-row-gap: 0px;
-            grid-template-areas: 'header-bar header-bar header-bar header-bar header-bar header-bar header-bar header-bar' '. skill-table skill-table skill-table skill-table skill-table skill-table .';
-            margin-bottom: 10px;
-            margin-top: 5px;
-            margin-left: 5px;
-        }
-        .header-bar {
-            display: grid;
-            grid-template-columns: 0.1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.1fr;
-            grid-template-rows: 1fr;
-            grid-template-areas: '. attribute-name attribute-name attribute-name attribute-name attribute-score attribute-roll .';
-            grid-area: header-bar;
-            background-image: url('../assets/sheet/attribute-block-header.png');
-            background-size: 100% 100%;
-            box-shadow: 0 0 5px #000;
-            z-index: 1;
-            text-transform: uppercase;
-        }
-
-        .skill-header-bar {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-            grid-template-rows: 1fr;
-            grid-template-areas: 'skill-name skill-name skill-expertise skill-focus skill-tn skill-tab-roll';
-            grid-area: skill-header-bar;
-            background-color: #675e52;
-            border: solid;
-            border-color: #675e52;
-            color: #dbdbdb;
-            text-transform: uppercase;
-        }
-
-        .skill-table {
-            display: grid;
-            grid-area: skill-table;
-            border-style: solid;
-            border-top: none;
-            border-right: none;
-            border-left: none;
-            border-image-slice: 32;
-            border-image-width: 10px;
-            border-image-repeat: repeat;
-            border-image-source: url('data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABpAgMAAABE7OWpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAADFBMVEX///9nXlJnXlIAAADHvn4rAAAAAnRSTlMAAHaTzTgAAAABYktHRAMRDEzyAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH5AcZECcNZmJamQAAANBJREFUSMftljEOwyAMRZ1KuRdLdyKVzF2y9BRcInuXLj1lawMFV8SVGpIw8KckLwhL/G8MQHoyWUhl4RIeewWrmUFxNuMntYKNru7IbvT+IIY/zWNkk8F1U2M/mfGwN+WYvJ/ReNLnZJ07Wc6CS+2JTMEY6gq1MVdxZM6f9zcjD6M+LOh/hlnrBs4G7TK5FfPhJqaSHkCso8J0SLGulWXVWFXsEE/kfb1nxjbpE0Jfqqt/LjPpfpDulRrvv8a+mTDXeQ8XnSN9tovOu6TsfP0Czk5AHbKzIVkAAAAASUVORK5CYII=');
-
-            table {
-                margin: 0px;
-                width: 100%;
-                color: #877053;
-                background: none;
-                border: none;
-
-                .skill-entry-header {
-                    background-color: #675e52;
-                    color: #dbdbdb;
-                    text-transform: uppercase;
-                }
-                tr:nth-child(odd) {
-                    background: rgba(0, 0, 0, 0.05);
-                }
-
-                input[type='text'] {
-                    color: #877053;
-                    background: none;
-                    border: solid;
-                    border-width: 1px;
-                    border-color: #a7a6a6;
-                    width: 50%;
-                    height: 90%;
-                }
-
-                input[type='number'] {
-                    font-family: inherit;
-                    font-size: inherit;
-                    text-align: center;
-                    color: #877053;
-                    background: none;
-                    border: solid;
-                    border-width: 1px;
-                    border-color: #a7a6a6;
-                    width: 50%;
-                    height: 90%;
-                }
-            }
-        }
-
-        .attribute-name {
-            grid-area: attribute-name;
-            color: #c0c0c0;
-            padding-top: 2.5px;
-        }
-
-        .attribute-score {
-            grid-area: attribute-score;
-            height: 98%;
-            text-align: center;
-            padding-top: 3px;
-
-            input[type='number'] {
-                width: 85%;
-                height: 80%;
-                color: #877053;
-                text-align: center;
-                background: #d2d1c8;
-                box-shadow: inset 0 0 4px #000000;
-            }
-
-            input:hover {
-                @include input-glow-brown;
-            }
-        }
-        .attribute-roll {
-            height: 98%;
-            text-align: center;
-            padding-top: 3px;
-            grid-area: attribute-roll;
-            color: #aaaaaa;
-
-            &:hover {
-                @include input-glow;
-                color: white;
-                cursor: pointer;
-            }
-        }
-
-        .skill-name-header {
-            grid-area: skill-name-header;
-            padding-left: 10px;
-        }
-
-        .skill-expertise-header {
-            grid-area: skill-expertise-header;
-            text-align: center;
-        }
-
-        .skill-focus-header {
-            grid-area: skill-focus-header;
-            text-align: center;
-        }
-
-        .skill-tn-header {
-            grid-area: skill-tn-header;
-            text-align: center;
-        }
-
-        .skill-tab-roll-header {
-            grid-area: skill-tab-roll-header;
-            text-align: center;
-        }
-
-        .skill-entry-name {
-            padding-left: 10px;
-        }
-
-        .skill-entry-expertise {
-            text-align: center;
-            input:hover {
-                @include input-glow-brown;
-            }
-        }
-
-        .skill-entry-focus {
-            text-align: center;
-            input:hover {
-                @include input-glow-brown;
-            }
-        }
-
-        .skill-entry-tn {
-            text-align: center;
-        }
-
-        .skill-entry-tab-roll {
-            text-align: center;
-            &:hover {
-                @include input-glow;
-                color: white;
-                cursor: pointer;
-            }
-        }
+    h1,
+    h4,
+    h6 {
+      @include p-reset;
+      line-height: 1;
+      display: flex;
+      align-items: center;
     }
+
+    h1 {
+      font-family: $serif;
+      border: none;
+      color: var(--primary);
+      text-align: center;
+      justify-content: center;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 0.1fr 1fr 1fr 1fr 1fr 1fr 0.5fr 0.1fr;
+      grid-template-rows: auto;
+      grid-row-gap: 0px;
+      grid-template-areas: 'header-bar header-bar header-bar header-bar header-bar header-bar header-bar header-bar' '. skill-table skill-table skill-table skill-table skill-table skill-table .';
+      margin-bottom: 10px;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+    .header-bar {
+      display: grid;
+      grid-template-columns: 0.1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: '. attribute-name attribute-name attribute-name attribute-name attribute-score attribute-roll .';
+      grid-area: header-bar;
+      background-image: url('../assets/sheet/attribute-block-header.png');
+      background-size: 100% 100%;
+      box-shadow: 0 0 5px #000;
+      z-index: 1;
+      text-transform: uppercase;
+    }
+
+    .skill-header-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: 'skill-name skill-name skill-expertise skill-focus skill-tn skill-tab-roll';
+      grid-area: skill-header-bar;
+      background-color: #675e52;
+      border: solid;
+      border-color: #675e52;
+      color: #dbdbdb;
+      text-transform: uppercase;
+    }
+
+    .skill-table {
+      display: grid;
+      grid-area: skill-table;
+      border-style: solid;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-image-slice: 32;
+      border-image-width: 10px;
+      border-image-repeat: repeat;
+      border-image-source: url('data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAABpAgMAAABE7OWpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAADFBMVEX///9nXlJnXlIAAADHvn4rAAAAAnRSTlMAAHaTzTgAAAABYktHRAMRDEzyAAAACXBIWXMAAAsSAAALEgHS3X78AAAAB3RJTUUH5AcZECcNZmJamQAAANBJREFUSMftljEOwyAMRZ1KuRdLdyKVzF2y9BRcInuXLj1lawMFV8SVGpIw8KckLwhL/G8MQHoyWUhl4RIeewWrmUFxNuMntYKNru7IbvT+IIY/zWNkk8F1U2M/mfGwN+WYvJ/ReNLnZJ07Wc6CS+2JTMEY6gq1MVdxZM6f9zcjD6M+LOh/hlnrBs4G7TK5FfPhJqaSHkCso8J0SLGulWXVWFXsEE/kfb1nxjbpE0Jfqqt/LjPpfpDulRrvv8a+mTDXeQ8XnSN9tovOu6TsfP0Czk5AHbKzIVkAAAAASUVORK5CYII=');
+
+      table {
+        margin: 0px;
+        width: 100%;
+        color: #877053;
+        background: none;
+        border: none;
+
+        .skill-entry-header {
+          background-color: #675e52;
+          color: #dbdbdb;
+          text-transform: uppercase;
+        }
+        tr:nth-child(odd) {
+          background: rgba(0, 0, 0, 0.05);
+        }
+
+        input[type='text'] {
+          color: #877053;
+          background: none;
+          border: solid;
+          border-width: 1px;
+          border-color: #a7a6a6;
+          width: 50%;
+          height: 90%;
+        }
+
+        input[type='number'] {
+          font-family: inherit;
+          font-size: inherit;
+          text-align: center;
+          color: #877053;
+          background: none;
+          border: solid;
+          border-width: 1px;
+          border-color: #a7a6a6;
+          width: 50%;
+          height: 90%;
+        }
+      }
+    }
+
+    .attribute-name {
+      grid-area: attribute-name;
+      color: #c0c0c0;
+      padding-top: 2.5px;
+    }
+
+    .attribute-score {
+      grid-area: attribute-score;
+      height: 98%;
+      text-align: center;
+      padding-top: 3px;
+
+      input[type='number'] {
+        width: 85%;
+        height: 80%;
+        color: #877053;
+        text-align: center;
+        background: #d2d1c8;
+        box-shadow: inset 0 0 4px #000000;
+      }
+
+      input:hover {
+        @include input-glow-brown;
+      }
+    }
+    .attribute-roll {
+      height: 98%;
+      text-align: center;
+      padding-top: 3px;
+      grid-area: attribute-roll;
+      color: #aaaaaa;
+
+      &:hover {
+        @include input-glow;
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    .skill-name-header {
+      grid-area: skill-name-header;
+      padding-left: 10px;
+    }
+
+    .skill-expertise-header {
+      grid-area: skill-expertise-header;
+      text-align: center;
+    }
+
+    .skill-focus-header {
+      grid-area: skill-focus-header;
+      text-align: center;
+    }
+
+    .skill-tn-header {
+      grid-area: skill-tn-header;
+      text-align: center;
+    }
+
+    .skill-tab-roll-header {
+      grid-area: skill-tab-roll-header;
+      text-align: center;
+    }
+
+    .skill-entry-name {
+      padding-left: 10px;
+    }
+
+    .skill-entry-expertise {
+      text-align: center;
+      input:hover {
+        @include input-glow-brown;
+      }
+    }
+
+    .skill-entry-focus {
+      text-align: center;
+      input:hover {
+        @include input-glow-brown;
+      }
+    }
+
+    .skill-entry-tn {
+      text-align: center;
+    }
+
+    .skill-entry-tab-roll {
+      text-align: center;
+      &:hover {
+        @include input-glow;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
 }

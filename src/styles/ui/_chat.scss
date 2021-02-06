@@ -1,149 +1,148 @@
 .roll-card {
-    width: 100%;
+  width: 100%;
 
-    .roll.selected {
-        box-shadow: inset 0px 0px 10px #ff0000;
-    }
+  .roll.selected {
+    box-shadow: inset 0px 0px 10px #ff0000;
+  }
 }
 
 .roll-list-entry {
-    width: 22px;
-    height: 22px;
-    line-height: 24px;
-    float: left;
-    margin-right: 1px;
-    background-repeat: no-repeat;
-    background-size: 24px 24px;
-    font-size: 16px;
-    color: #000;
-    font-weight: bold;
-    text-align: center;
+  width: 22px;
+  height: 22px;
+  line-height: 24px;
+  float: left;
+  margin-right: 1px;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+  text-align: center;
 }
 
 .skill-roll {
-    background-image: url('../assets/icons/d20-grey.svg');
+  background-image: url('../assets/icons/d20-grey.svg');
 }
 
 .damage-roll {
-    background-image: url('../assets/icons/d6-grey.svg');
+  background-image: url('../assets/icons/d6-grey.svg');
 }
 
 .roll-outcomes {
-    padding-top: 30px;
-    width: 100%;
+  padding-top: 30px;
+  width: 100%;
 
-    label {
-        font-weight: 600;
-    }
+  label {
+    font-weight: 600;
+  }
 }
 
 .post-item img {
-    max-width: 100px;
-    max-height: 100px;
-    border: none;
+  max-width: 100px;
+  max-height: 100px;
+  border: none;
 }
 
 #chat-log .chat-message {
-    background-image: url('../assets/chat-message-border-1.png');
-    background-size: cover;
-    img {
-        width: 45px;
-        height: 45px;
+  background-image: url('../assets/chat-message-border-1.png');
+  background-size: cover;
+  img {
+    width: 45px;
+    height: 45px;
+  }
+  .roll.combatdie img,
+  .damage-roll img {
+    width: 24px;
+    height: 24px;
+  }
+  .dice-total {
+    img.effect-total {
+      width: 30px;
+      height: 30px;
+      border: none;
+      margin: -6px;
     }
-    .roll.combatdie img,
-        .damage-roll img {
-        width: 24px;
-        height: 24px;
-    }
-    .dice-total {
-        img.effect-total{
-            width: 30px;
-            height:30px;
-            border: none; 
-            margin: -6px;
-    
-        }
-    }
+  }
 
-    .dice-tooltip .dice-rolls .roll.d6.max,
-    .dice-tooltip .dice-rolls .roll.d6.min {
-        color: unset;
-        filter: unset;
-    }
-    .dice-tooltip .dice-rolls .roll.d20.min {
-        color: #18520b;
-        filter: sepia(0.5) hue-rotate(60deg);
-    }
-    .dice-tooltip .dice-rolls .roll.d20.max {
-        color: #aa0200;
-        filter: sepia(0.5) hue-rotate(-60deg);
-    }
-    .dice-tooltip .dice-rolls .roll.d20.min {
-        content: url('../assets/dice/phoenix/phoenix-black.png');
-        width: 24px;
-        height: 24px;
-    }
-    .flexrow {
-        display: block;
-    }
-    .message-body {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: stretch;
-        justify-content: flex-start;
-    }
+  .dice-tooltip .dice-rolls .roll.d6.max,
+  .dice-tooltip .dice-rolls .roll.d6.min {
+    color: unset;
+    filter: unset;
+  }
+  .dice-tooltip .dice-rolls .roll.d20.min {
+    color: #18520b;
+    filter: sepia(0.5) hue-rotate(60deg);
+  }
+  .dice-tooltip .dice-rolls .roll.d20.max {
+    color: #aa0200;
+    filter: sepia(0.5) hue-rotate(-60deg);
+  }
+  .dice-tooltip .dice-rolls .roll.d20.min {
+    content: url('../assets/dice/phoenix/phoenix-black.png');
+    width: 24px;
+    height: 24px;
+  }
+  .flexrow {
+    display: block;
+  }
+  .message-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
 
-    .message-sender {
-        padding-top: 10px;
-        text-transform: uppercase;
+  .message-sender {
+    padding-top: 10px;
+    text-transform: uppercase;
+  }
+  .chat-tag {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    color: white;
+    background-color: var(--primary);
+    @include micro;
+    border: none;
+    border-radius: 2px;
+    padding: 3px 4px;
+    box-shadow: inset 0 0 0 1px rgba(black, 0.5);
+    & + .tag,
+    &:first-child {
+      margin-right: 3px;
     }
-    .chat-tag {
+    &.edit-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      border-radius: 0;
+      a {
         display: inline-flex;
-        flex-wrap: nowrap;
-        color: white;
-        background-color: var(--primary);
-        @include micro;
-        border: none;
-        border-radius: 2px;
-        padding: 3px 4px;
-        box-shadow: inset 0 0 0 1px rgba(black, 0.5);
-        & + .tag,
-        &:first-child {
-            margin-right: 3px;
+        justify-content: center;
+        align-items: center;
+        color: var(--primary);
+        svg {
+          height: 9px;
+          width: auto;
         }
-        &.edit-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            border-radius: 0;
-            a {
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                color: var(--primary);
-                svg {
-                    height: 9px;
-                    width: auto;
-                }
-            }
-        }
-
-        &_primary {
-            background-color: var(--primary);
-        }
-
-        &_secondary {
-            background-color: var(--secondary);
-        }
-
-        &_tertiary {
-            background-color: var(--tertiary);
-        }
-
-        &_alt {
-            background-color: var(--alt);
-        }
+      }
     }
+
+    &_primary {
+      background-color: var(--primary);
+    }
+
+    &_secondary {
+      background-color: var(--secondary);
+    }
+
+    &_tertiary {
+      background-color: var(--tertiary);
+    }
+
+    &_alt {
+      background-color: var(--alt);
+    }
+  }
 }

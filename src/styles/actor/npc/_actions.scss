@@ -1,176 +1,177 @@
 .npcactions {
-    .npcactions-list {
-        .item {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            margin-left: 8px;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            padding: 4px;
-            border: groove;
+  .npcactions-list {
+    .item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: 8px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 4px;
+      border: groove;
 
-            p:empty {
-                display: none;
-            }
+      p:empty {
+        display: none;
+      }
 
-            .item-name {
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                border-bottom: none;
-                flex: 0 75%;
+      .item-name {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: none;
+        flex: 0 75%;
 
-                .item-image, .item-image-inventory {
-                    height: 22px;
-                    width: 22px;
-                    color: transparent;
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                    margin-right: 8px;
-                    font-size: 18px;
-                    @include flex-center;
-                    //@include frame-icon;
+        .item-image,
+        .item-image-inventory {
+          height: 22px;
+          width: 22px;
+          color: transparent;
+          background-repeat: no-repeat;
+          background-size: contain;
+          margin-right: 8px;
+          font-size: 18px;
+          @include flex-center;
+          //@include frame-icon;
 
-                    &.execute-attack {
-                        @include frame-icon;
-                        height: 32px;
-                        width: 32px;
-                    }
+          &.execute-attack {
+            @include frame-icon;
+            height: 32px;
+            width: 32px;
+          }
 
-                    &:hover {
-                        background: none !important;
-                        color: var(--primary);
-                    }
-                }
-            }
-
-            &.action-header {
-                margin-top: 0px;
-                margin-left: 0px;
-                margin-right: 0px;
-                padding: 0;
-                //padding-bottom: 2px;
-                background: black;
-                color: white;
-                padding-left: 8px;
-                height: 25.5px;
-                flex-wrap: nowrap;
-
-                h3 {
-                    color: black;
-                    cursor: default;
-                }
-
-                .item-controls {
-                    background: none;
-                    @include p-reset;
-                }
-
-                .item-controls {
-                    color: white;
-                    font-size: 10px;
-                }
-
-                &:first-child {
-                    margin-top: 0;
-                }
-
-                & + li {
-                    border-top: none;
-                }
-            }
-
-            .item-controls {
-                white-space: nowrap;
-                font-size: 10px;
-
-                a + a {
-                    margin-left: 4px;
-                }
-            }
-
-            .item-summary {
-                flex-basis: 100%;
-                margin-bottom: 8px;
-
-                .title,
-                .framing {
-                    color: var(--primary);
-                    @include p-reset;
-                    margin-top: 1em;
-                }
-
-                .framing {
-                    color: var(--secondary);
-                    margin: 1em 0 0.25em;
-                    strong {
-                        font-weight: 500;
-                    }
-                    & + p {
-                        margin-top: 0;
-                    }
-                }
-
-                img {
-                    border: none;
-                    vertical-align: middle;
-
-                    &.actionlight {
-                        background: var(--alt);
-                        vertical-align: middle;
-                        border: 1px solid var(--body);
-                    }
-                }
-            }
-
-            &.expandable {
-                .item-summary {
-                    display: none;
-                }
-            }
-
-            &.expanded {
-                h4 {
-                    color: var(--primary);
-                    font-weight: 700;
-                }
-
-                .item-summary {
-                    display: block;
-                }
-            }
-
-            .button-group {
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-                flex-wrap: nowrap;
-                width: 50%;
-                flex: 0;
-                button {
-                    margin: 0;
-                    border: none;
-                    cursor: pointer;
-                    @include micro;
-                    padding: 5px;
-                    color: white;
-                    width: 70px;
-                    @include button;
-                    background: var(--secondary);
-                    border-radius: 2px;
-                    flex: 0;
-                    white-space: nowrap;
-                    margin-left: 4px;
-                    flex: 0;
-
-                    &:hover {
-                        box-shadow: none;
-                        text-shadow: 0 0 2px white;
-                    }
-                }
-            }
+          &:hover {
+            background: none !important;
+            color: var(--primary);
+          }
         }
+      }
+
+      &.action-header {
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 0;
+        //padding-bottom: 2px;
+        background: black;
+        color: white;
+        padding-left: 8px;
+        height: 25.5px;
+        flex-wrap: nowrap;
+
+        h3 {
+          color: black;
+          cursor: default;
+        }
+
+        .item-controls {
+          background: none;
+          @include p-reset;
+        }
+
+        .item-controls {
+          color: white;
+          font-size: 10px;
+        }
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        & + li {
+          border-top: none;
+        }
+      }
+
+      .item-controls {
+        white-space: nowrap;
+        font-size: 10px;
+
+        a + a {
+          margin-left: 4px;
+        }
+      }
+
+      .item-summary {
+        flex-basis: 100%;
+        margin-bottom: 8px;
+
+        .title,
+        .framing {
+          color: var(--primary);
+          @include p-reset;
+          margin-top: 1em;
+        }
+
+        .framing {
+          color: var(--secondary);
+          margin: 1em 0 0.25em;
+          strong {
+            font-weight: 500;
+          }
+          & + p {
+            margin-top: 0;
+          }
+        }
+
+        img {
+          border: none;
+          vertical-align: middle;
+
+          &.actionlight {
+            background: var(--alt);
+            vertical-align: middle;
+            border: 1px solid var(--body);
+          }
+        }
+      }
+
+      &.expandable {
+        .item-summary {
+          display: none;
+        }
+      }
+
+      &.expanded {
+        h4 {
+          color: var(--primary);
+          font-weight: 700;
+        }
+
+        .item-summary {
+          display: block;
+        }
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 50%;
+        flex: 0;
+        button {
+          margin: 0;
+          border: none;
+          cursor: pointer;
+          @include micro;
+          padding: 5px;
+          color: white;
+          width: 70px;
+          @include button;
+          background: var(--secondary);
+          border-radius: 2px;
+          flex: 0;
+          white-space: nowrap;
+          margin-left: 4px;
+          flex: 0;
+
+          &:hover {
+            box-shadow: none;
+            text-shadow: 0 0 2px white;
+          }
+        }
+      }
     }
+  }
 }

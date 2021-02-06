@@ -1,27 +1,26 @@
 {{#if result}}
-<H2>{{result}}</H2>
+<h2>{{result}}</h2>
 {{/if}}
 
 <h3>{{localize "CONAN.diceRollsLabel"}}</h3>
 <div class="roll-card status">
-    {{#each rolls as |roll r|}}
-        <span class="roll-list-entry skill-roll roll" id="roll">{{roll.result}}</span>
-    {{/each}}
+  {{#each rolls as |roll r|}}
+  <span class="roll-list-entry skill-roll roll" id="roll">{{roll.result}}</span>
+  {{/each}}
 </div>
 <div class="roll-outcomes">
-    <label>Difficulty </label>{{difficulty}}
-    <br>
-    <label>Successes </label>{{successes}}
+  <label>Difficulty </label>{{difficulty}}
+  <br />
+  <label>Successes </label>{{successes}}
 </div>
-<br>
-<br>
+<br />
+<br />
 <div class="roll-card buttons">
-    {{#if complications}}
-        <div class="roll-complications">
-            <H3>{{complications}} {{localize "CONAN.skillRollComplicationsLabel"}}</h3>
-        </div>
-    {{/if}}
-    {{#if momentumGenerated}}
-    <h3>+{{momentumGenerated}} {{localize "CONAN.skillRollMomentumGenLabel"}}</h3>
-    {{/if}}
+  {{#if complications}}
+  <div class="roll-complications">
+    <h3>{{complications}} {{localize "CONAN.skillRollComplicationsLabel"}}</h3>
+  </div>
+  {{/if}} {{#if momentumGenerated}}
+  <h3>+{{momentumGenerated}} {{localize "CONAN.skillRollMomentumGenLabel"}}</h3>
+  {{/if}}
 </div>
