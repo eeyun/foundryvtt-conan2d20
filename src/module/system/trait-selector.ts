@@ -51,17 +51,13 @@ export default class TraitSelector extends FormApplication {
    */
   getData() {
     // Get current values
-    console.log(this.object.data);
-    console.log(this.attribute);
     const attr = getProperty(this.object.data, this.attribute);
-    console.log(attr);
     if (typeof attr.value === 'string')
       attr.value = TraitSelector._backCompat(attr.value, this.options.choices);
     if (!attr.value) attr.value = '';
     const {hasValues} = this.options;
     const {hasExceptions} = this.options;
     const choices = duplicate(this.options.choices);
-    console.log(choices);
 
     // Populate choices
     if (hasValues) {
