@@ -14,9 +14,7 @@ stages:
   - dco
   - test
   - build
-  - prepare
   - release
-  - deploy
 
 ###########
 # VARIABLES
@@ -113,51 +111,18 @@ build:
 #################################
 # RELEASE PIPELINE  # TRIGGER: ON TAGGED COMMIT IN A MERGE REQUEST
 #################################
-prepare_job:
-  image: curlimages/curl:latest
-  stage: prepare
-  only:
-    - tags
-  except:
-    - /^(?!(^v[0-9]+(?:.[0-9]+)+$)$).*$/
-  script:
-    - echo "preparing release -- tagging package with version."
-    - cp conan2d20.zip conan2d20-${CI_COMMIT_TAG}.zip
-    - echo "preparing release -- uploading package"
-    - |
-      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file conan2d20-${CI_COMMIT_TAG}.zip ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/conan2d20release/${CI_COMMIT_TAG}/conan2d20-${CI_COMMIT_TAG}.zip
-  artifacts:
-    name: conan2d20-${CI_COMMIT_TAG}
-    expire_in: never
-    when: on_success
-    paths:
-      - conan2d20-${CI_COMMIT_TAG}.zip
-
-release_job:
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
+release:
+  image: node
   stage: release
-  only:
-    - tags
-  except:
-    - /^(?!(^v[0-9]+(?:.[0-9]+)+$)$).*$/
-  script:
-    - echo 'executing release -- creating release'
-    - release-cli create --name "Release $CI_COMMIT_TAG" --description "CHANGELOG.md" --tag-name $CI_COMMIT_TAG \
-      --assets-link "{\"name\":\"conan2d20-${CI_COMMIT_TAG}.zip\",\"url\":\"${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/conan2d20release/${CI_COMMIT_TAG}/conan2d20-${CI_COMMIT_TAG}.zip\"}"
-
-pages:
-  image: python:3-alpine
-  stage: deploy
   only:
     - tags
   except:
     - /^(?!(^v[0-9]+(?:.[0-9]+)+$)$).*$/
   dependencies:
     - build
-    - prepare_job
-    - release_job
   script:
-    - mv conan2d20-${CI_COMMIT_TAG}.zip public/
+    - echo 'executing release -- creating release'
+    - npx semantic-release
   artifacts:
     paths:
       - public
