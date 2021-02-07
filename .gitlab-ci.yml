@@ -11,7 +11,6 @@
 # See for github help with foundry and packaging: https://github.com/janssen-io/foundry-github-workflow#alternative-versioning
 
 stages:
-  - dco
   - test
   - build
   - release
@@ -38,6 +37,8 @@ variables:
 dco:
   image: ubuntu
   stage: test
+  except:
+    - tags
   before_script:
     - apt update -y
     - apt install -y python3 git wget
@@ -49,6 +50,8 @@ dco:
 lint:
   image: node
   stage: test
+  except:
+    - tags
   before_script:
     # npm stores cache data in the home folder ~/.npm but you can’t cache things outside of the project directory (.npm/).
     - npm ci --cache .npm --prefer-offline
@@ -85,7 +88,6 @@ build:
     - echo "build execution -- Building with webpack."
     - npm run build
     - mv dist conan2d20
-    - ls -la conan2d20
     - echo "build execution -- Zipping files."
     - zip -9 -u -r -q conan2d20.zip conan2d20
   ###########
