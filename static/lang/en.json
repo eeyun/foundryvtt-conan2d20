@@ -168,7 +168,7 @@
       "sma": "Small Fireworks",
       "lou": "Loud Fireworks",
       "lar": "Large Fireworks",
-      "sma": "Small Explosive",
+      "sme": "Small Explosive",
       "lex": "Large Explosive"
     },
     "enchantmentStrengthLabel": "Strength",
@@ -437,6 +437,7 @@
       "horror": "Horror",
       "undead": "Undead"
     },
+    "npcSkillRollAttributeLabel": "Attribute",
     "baseDamageLabel": "Base Damage",
     "coverageLabel": "Coverage",
     "coverage": {

@@ -100,8 +100,6 @@ export default class TraitSelector extends FormApplication {
       .forEach(key => {
         orderedChoices[key] = choices[key];
       });
-    console.log(orderedChoices);
-    console.log(this.searchString);
     // Return data
     return {
       orderedChoices,

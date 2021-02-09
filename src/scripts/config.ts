@@ -44,7 +44,7 @@ CONFIG.enchantmentExplodingItems = {
   smallFireworks: 'CONAN.enchantmentExplodingItems.sma',
   loudFireworks: 'CONAN.enchantmentExplodingItems.lou',
   largeFireworks: 'CONAN.enchantmentExplodingItems.lar',
-  smallExplosives: 'CONAN.enchantmentExplodingItems.sma',
+  smallExplosives: 'CONAN.enchantmentExplodingItems.sme',
   largeExplosives: 'CONAN.enchantmentExplodingItems.lex',
 };
 

@@ -340,6 +340,8 @@ export default class Conan2d20Dice {
     let doomSpend;
 
     if (actorData.type === 'npc') {
+      const expertise = actorData.data.attributes[rollData.npcAttributes].value;
+      const tn = rollData.skill.value + expertise;
       diceQty = baseDice;
       if (rollData.successModifier > 0) {
         doomSpend = rollData.diceModifier + rollData.successModifier * 3;
@@ -350,8 +352,8 @@ export default class Conan2d20Dice {
           diceQty += rollData.diceModifier;
           await this.calculateSkillRoll(
             diceQty,
+            tn,
             rollData.skill.value,
-            0,
             trained,
             rollData.difficulty,
             rollData.successModifier,
@@ -366,8 +368,8 @@ export default class Conan2d20Dice {
         try {
           await this.calculateSkillRoll(
             diceQty,
+            tn,
             rollData.skill.value,
-            0,
             trained,
             rollData.difficulty,
             rollData.successModifier,
@@ -601,6 +603,9 @@ export default class Conan2d20Dice {
                   // @ts-ignore
                   template.find('[name="successModifier"]').val() || 0
                 );
+                rollData.npcAttributes =
+                  // @ts-ignore
+                  template.find('[name="npcAttributes"]').val() || '';
                 try {
                   let baseDice = 2;
                   if (dialogData.modifiers.actorType === 'npc') {

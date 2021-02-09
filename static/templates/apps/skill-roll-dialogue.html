@@ -20,7 +20,17 @@
         {{/each}} {{/select}}
       </select>
     </div>
-    {{#ifEq modifiers.actorType "character"}}
+    {{#ifEq modifiers.actorType "npc"}}
+    <div class="form-group">
+      <label>{{localize "CONAN.npcSkillRollAttributeLabel"}}</label>
+      <select name="npcAttributes" data-dtype="String">
+        {{#select modifiers.npcAttributes}} {{#each modifiers.npcAttributes as
+        |name type|}}
+        <option value="{{type}}">{{name}}</option>
+        {{/each}} {{/select}}
+      </select>
+    </div>
+    {{/ifEq}} {{#ifEq modifiers.actorType "character"}}
     <div class="form-group">
       <label>{{localize "CONAN.skillRollOpportunityLabel"}}</label>
       <div class="diceMods">
@@ -61,9 +71,12 @@
       </div>
       <label>{{modifiers.diceModifierType}}</label>
     </div>
-    <label title="{{localize CONAN.doomConversionTitle}}">
+    <label>
       {{localize "CONAN.fortuneSpendLabel"}}
-      <i class="fas fa-info-circle"></i>
+      <i
+        class="fas fa-info-circle"
+        title="{{localize CONAN.doomConversionTitle}}"
+      ></i>
     </label>
     <input name="successModifier" value="" />
     {{/ifEq}}
