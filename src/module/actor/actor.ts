@@ -420,6 +420,16 @@ export default class Conan2d20Actor extends Actor {
     if (type === 'skill') {
       const difficultyLevels = CONFIG.rollDifficultyLevels;
       const diceModSpends = CONFIG.skillRollResourceSpends;
+      if (specifier === 'npc') {
+        mod = {
+          difficulty: difficultyLevels,
+          diceModifier: diceModSpends,
+          successModifier: 0,
+          npcAttributes: CONFIG.attributes,
+          actorType: specifier,
+        };
+        return mod;
+      }
       mod = {
         difficulty: difficultyLevels,
         diceModifier: diceModSpends,

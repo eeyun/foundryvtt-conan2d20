@@ -192,7 +192,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
 
     html.find('.skill-name.rollable').click(async ev => {
       const actorData = duplicate(this.actor);
-      console.log(actorData);
       const skill = $(ev.currentTarget)
         .parents('.skill-entry-name')
         .attr('data-skill');
