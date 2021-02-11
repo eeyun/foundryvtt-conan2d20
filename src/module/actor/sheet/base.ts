@@ -224,33 +224,6 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
       });
     });
 
-    html.find('.attacks-list .execute-attack').click(async ev => {
-      ev.preventDefault();
-      ev.stopPropagation();
-      const actorData = duplicate(this.actor);
-      const attackIndex = $(ev.currentTarget)
-        .parents('[data-action-index]')
-        .attr('data-action-index');
-      const itemId = this.actor.data.data.actions[Number(attackIndex)]?.attack
-        .id;
-      const reloadIds = this.actor.data.items
-        .filter(i => i.data.kitType === 'reload')
-        .map(i => ({id: i._id, name: i.name} || []));
-      const weapon = duplicate(
-        this.actor.getEmbeddedEntity('OwnedItem', itemId, {strict: true})
-      );
-      const {dialogData, cardData, rollData} = this.actor.setupWeapon(
-        weapon,
-        reloadIds
-      );
-      await Conan2d20Dice.showDamageRollDialog({
-        dialogData,
-        cardData,
-        rollData,
-        actorData,
-      });
-    });
-
     html
       .find('.wounds')
       .on('click contextmenu', this._onClickWounded.bind(this));
@@ -434,25 +407,16 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
       const details = $('<div class="item-details"></div>');
       const props = $('<div class="item-properties tags"></div>');
 
-      if (!actionIndex) {
-        if (chatData.itemDetails) {
-          chatData.itemDetails.forEach(p => {
-            let concat;
-            if (p.description) {
-              concat = `<div class="chat-item-detail" title="${localize(
-                p.description
-              )}><b> ${localize(p.label)}:</b> ${localize(p.detail)} </div>`;
-            } else {
-              concat = `<div class="chat-item-detail"><b>${localize(
-                p.label
-              )}:</b> ${localize(p.detail)} </div>`;
-            }
-            details.append(concat);
-          });
-          div.append(details);
-        }
-        div.append('</br>');
+      if (chatData.itemDetails) {
+        chatData.itemDetails.forEach(p => {
+          const concat = `<div class="chat-item-detail"><b>${localize(
+            p.label
+          )}:</b> ${localize(p.detail)} </div>`;
+          details.append(concat);
+        });
+        div.append(details);
       }
+      div.append('</br>');
       if (chatData.properties) {
         chatData.properties
           .filter(p => typeof p === 'string')
@@ -495,14 +459,24 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
           break;
         case 'weapon':
           buttons.append(
-            `<button class="tag weapon_damage execute-attack" data-action="weaponDamage">${localize(
+            `<button class="tag weapon_damage execute-attack" data-action="weaponAttack">${localize(
+              'CONAN.attackRollLabel'
+            )}</button>`
+          );
+          buttons.append(
+            `<button class="tag weapon_damage execute-damage" data-action="weaponDamage">${localize(
               'CONAN.damageRollLabel'
             )}</button>`
           );
           break;
         case 'display':
           buttons.append(
-            `<button class="tag display_damage execute-attack" data-action="displayDamage">${localize(
+            `<button class="tag weapon_damage execute-attack" data-action="weaponAttack">${localize(
+              'CONAN.attackRollLabel'
+            )}</button>`
+          );
+          buttons.append(
+            `<button class="tag display_damage execute-damage" data-action="weaponDamage">${localize(
               'CONAN.damageRollLabel'
             )}</button>`
           );
@@ -543,24 +517,11 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
             break;
           }
           case 'weaponDamage': {
-            ev.preventDefault();
-            ev.stopPropagation();
-            const actorData = duplicate(this.actor);
-            // @ts-ignore
-            const weapon = duplicate(this.actor.getOwnedItem(itemId));
-            const reloadIds = this.actor.data.items
-              .filter(i => i.data.kitType === 'reload')
-              .map(i => ({id: i._id, name: i.name} || []));
-            const {dialogData, cardData, rollData} = this.actor.setupWeapon(
-              weapon,
-              reloadIds
-            );
-            Conan2d20Dice.showDamageRollDialog({
-              dialogData,
-              cardData,
-              rollData,
-              actorData,
-            });
+            this._executeDamage(ev, itemId);
+            break;
+          }
+          case 'weaponAttack': {
+            this._executeAttack(ev, itemId);
             break;
           }
           case 'npcDamage': {
@@ -588,6 +549,54 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
       div.slideDown(200);
     }
     li.toggleClass('expanded');
+  }
+
+  _executeAttack(ev, itemId) {
+    ev.preventDefault();
+    ev.stopPropagation();
+    const actorData = duplicate(this.actor);
+    const weapon = duplicate(this.actor.getOwnedItem(itemId));
+
+    let weaponSkill;
+    if (weapon.data.weaponType === 'melee') {
+      weaponSkill = 'mel';
+    } else if (weapon.data.weaponType === 'ranged') {
+      weaponSkill = 'ran';
+    } else if (weapon.type === 'display') {
+      weaponSkill = weapon.data.skill;
+    }
+
+    const {dialogData, cardData, rollData} = this.actor.setupSkill(
+      weaponSkill,
+      actorData.type
+    );
+
+    Conan2d20Dice.showSkillRollDialog({
+      dialogData,
+      cardData,
+      rollData,
+      actorData,
+    });
+  }
+
+  _executeDamage(ev, itemId) {
+    ev.preventDefault();
+    ev.stopPropagation();
+    const actorData = duplicate(this.actor);
+    const weapon = duplicate(this.actor.getOwnedItem(itemId));
+    const reloadIds = this.actor.data.items
+      .filter(i => i.data.kitType === 'reload')
+      .map(i => ({id: i._id, name: i.name} || []));
+    const {dialogData, cardData, rollData} = this.actor.setupWeapon(
+      weapon,
+      reloadIds
+    );
+    Conan2d20Dice.showDamageRollDialog({
+      dialogData,
+      cardData,
+      rollData,
+      actorData,
+    });
   }
 
   /* eslint-disable-next-line consistent-return */

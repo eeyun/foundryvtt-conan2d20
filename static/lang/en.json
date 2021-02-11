@@ -63,6 +63,7 @@
     "attackTypeLabel": "Attack Type",
     "attackRangeLabel": "Attack Range",
     "attackReachLabel": "Attack Reach",
+    "attackRollLabel": "Attack",
     "availability": "Availability",
     "CHATOPT": {
       "triggerReroll": "Re-roll Selected",

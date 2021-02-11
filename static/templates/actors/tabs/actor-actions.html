@@ -13,10 +13,10 @@
         >
           <div class="item-name rollable">
             <div
-              class="item-image execute-attack"
+              class="item-image-inventory execute-attack"
               style="background-image: url({{action.imageUrl}})"
             >
-              <i class="fas fa-dice-d20"></i>
+              <i class="fas fa-comment-alt"></i>
             </div>
             <h4 class="action-name">
               {{action.name}}
@@ -26,7 +26,7 @@
           {{#if ../owner}} {{#ifEq action.attack.type "display"}}
           <div class="item-controls" style="display: flex">
             <a
-              class="item-control item-inline-delete"
+              class="item-control item-delete"
               title="{{localize CONAN.deleteItemTitle}}"
               data-type="action"
               data-action-type="{{sid}}"
@@ -65,7 +65,7 @@
         <li class="item" data-item-id="{{action._id}}">
           <div class="item-name rollable">
             <div
-              class="item-image execute-attack"
+              class="item-image item-image-inventory execute-attack"
               style="background-image: url({{action.img}})"
             >
               <i class="fas fa-comment-alt"></i>
