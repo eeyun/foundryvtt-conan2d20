@@ -643,35 +643,23 @@ export default class Conan2d20Item extends Item {
       }
     }
 
-    const weaponGroup = {
-      label: 'CONAN.groupLabel',
-      detail: CONFIG.CONAN.weaponGroups[data.group],
+    const displaySkill = {
+      label: 'CONAN.displaySkillLabel',
+      detail: CONFIG.CONAN.skills[data.skill],
     };
-    details.push(weaponGroup);
+    details.push(displaySkill);
 
-    const weaponDamage = {
+    const displayDamage = {
       label: 'CONAN.baseDamageLabel',
       detail: CONFIG.CONAN.damageDice[data.damage.dice],
     };
-    details.push(weaponDamage);
+    details.push(displayDamage);
 
-    let weaponRange: any;
-    if (data.weaponType === 'ranged') {
-      weaponRange = {
-        label: 'CONAN.rangeLabel',
-        detail: CONFIG.CONAN.weaponRanges[data.range],
-      };
-    } else {
-      weaponRange = {
-        label: 'CONAN.reachLabel',
-        detail: CONFIG.CONAN.weaponReaches[data.range],
-      };
-    }
-    details.push(weaponRange);
-
-    if (data.size) {
-      properties.push(CONFIG.CONAN.weaponSizes[data.size]);
-    }
+    const displayRange = {
+      label: 'CONAN.rangeLabel',
+      detail: CONFIG.CONAN.weaponRanges[data.range],
+    };
+    details.push(displayRange);
 
     data.properties = properties.filter(p => !!p);
     data.itemDetails = details.filter(p => p !== null);

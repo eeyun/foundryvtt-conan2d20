@@ -719,6 +719,62 @@ export default class Conan2d20Dice {
         }
       }
     });
+    html.on('click', '.chat-execute-attack', ev => {
+      const target = $(ev.currentTarget);
+      const messageId = target.parents('.message').attr('data-message-id');
+      const message = game.messages.get(messageId);
+      const actor = game.actors.get(message.data.speaker.actor);
+      const actorData = actor.data;
+      const weapon = duplicate(
+        actor.getOwnedItem(message.data.flags.conan2d20.itemData._id)
+      );
+
+      let weaponSkill;
+      if (weapon.data.weaponType === 'melee') {
+        weaponSkill = 'mel';
+      } else if (weapon.data.weaponType === 'ranged') {
+        weaponSkill = 'ran';
+      } else if (weapon.type === 'display') {
+        weaponSkill = weapon.data.skill;
+      }
+
+      // @ts-ignore
+      const {dialogData, cardData, rollData} = actor.setupSkill(
+        weaponSkill,
+        actor.data.type
+      );
+
+      Conan2d20Dice.showSkillRollDialog({
+        dialogData,
+        cardData,
+        rollData,
+        actorData,
+      });
+    });
+    html.on('click', '.chat-execute-damage', ev => {
+      const target = $(ev.currentTarget);
+      const messageId = target.parents('.message').attr('data-message-id');
+      const message = game.messages.get(messageId);
+      const actor = game.actors.get(message.data.speaker.actor);
+      const actorData = actor.data;
+      const weapon = duplicate(
+        actor.getOwnedItem(message.data.flags.conan2d20.itemData._id)
+      );
+      const reloadIds = actor.data.items
+        .filter(i => i.data.kitType === 'reload')
+        .map(i => ({id: i._id, name: i.name} || []));
+      // @ts-ignore
+      const {dialogData, cardData, rollData} = actor.setupWeapon(
+        weapon,
+        reloadIds
+      );
+      Conan2d20Dice.showDamageRollDialog({
+        dialogData,
+        cardData,
+        rollData,
+        actorData,
+      });
+    });
   }
 
   /**

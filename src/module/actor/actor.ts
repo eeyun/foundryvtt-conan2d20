@@ -326,7 +326,7 @@ export default class Conan2d20Actor extends Actor {
    * Skill tests are fairly simple but there are a number of validations that
    * need to be made including the handling of fortune and doom/momentum
    */
-  setupSkill(skill, actorType) {
+  public setupSkill(skill, actorType) {
     let skillList;
     if (actorType === 'character') {
       skillList = CONFIG.skills;
@@ -353,7 +353,7 @@ export default class Conan2d20Actor extends Actor {
    *
    * Probably the most complex test in the game.
    */
-  setupWeapon(weapon: any, options: [] = []) {
+  public setupWeapon(weapon: any, options: [] = []) {
     const title = `${game.i18n.localize('Damage Roll')} - ${weapon.name}`;
     const dialogData = {
       title,
@@ -379,7 +379,7 @@ export default class Conan2d20Actor extends Actor {
     return {dialogData, cardData, rollData};
   }
 
-  _setupCardData(template: string, title: string) {
+  public _setupCardData(template: string, title: string) {
     const cardData = {
       title: `${title} Test`,
       speaker: {
