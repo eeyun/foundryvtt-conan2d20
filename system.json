@@ -75,5 +75,6 @@
   "url": "https://gitlab.com/kayhos/foundryvtt-conan2d20",
   "manifest": "https://gitlab.com/kayhos/foundryvtt-conan2d20/-/raw/master/system.json",
   "download": "https://gitlab.com/api/v4/projects/19641366/packages/generic/conan2d20/1.0.0/conan2d20-v1.0.0.zip",
-  "license": "LICENSE.txt"
+  "license": "LICENSE.txt",
+  "background": "./assets/conan-login-background.webp"
 }
