@@ -11,6 +11,16 @@ CONFIG.attributes = {
   per: 'CONAN.attributes.per',
 };
 
+CONFIG.attributeTitles = {
+  bra: 'CONAN.attributeTitles.bra',
+  agi: 'CONAN.attributeTitles.agi',
+  awa: 'CONAN.attributeTitles.awa',
+  coo: 'CONAN.attributeTitles.coo',
+  int: 'CONAN.attributeTitles.int',
+  wil: 'CONAN.attributeTitles.wil',
+  per: 'CONAN.attributeTitles.per',
+};
+
 CONFIG.skills = {
   acr: 'CONAN.skills.acr',
   mel: 'CONAN.skills.mel',

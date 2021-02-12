@@ -29,6 +29,7 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
         sheetData.data.attributes as Record<any, any>
       )) {
         atr.label = CONFIG.CONAN.attributes[a];
+        atr.title = CONFIG.CONAN.attributeTitles[a];
       }
     }
 
