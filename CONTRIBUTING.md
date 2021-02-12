@@ -59,6 +59,18 @@ Read more about [merge requests](https://docs.gitlab.com/ee/user/project/merge_r
 Always write a clear log message for your commits. One-line messages are fine for small changes, but bigger changes should look like this:
 $ git commit -m "A brief summary of the commit > > A paragraph describing what changed and its impact."
 
+## DCO (Signing Your Commits)
+
+This project utilizes a Developer Certificate of Origin (DCO) to ensure that each commit was written by the author or that the author has the appropriate rights necessary to contribute the change. The project utilizes [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/)
+
+Each commit must include a DCO which looks like this:
+
+`Signed-off-by: Joe Smith <joe.smith@email.com>`
+
+The project requires that the name used is your real name. Neither anonymous contributors nor those utilizing pseudonyms will be accepted.
+
+Git makes it easy to add this line to your commit messages. Make sure the `user.name` and `user.email` are set in your git configs. Use `-s` or `--signoff` to add the Signed-off-by line to the end of the commit message.
+
 ## Coding conventions
 
 Start reading our code and you'll get the hang of it. We optimize for readability:
