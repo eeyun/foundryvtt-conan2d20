@@ -169,6 +169,8 @@ export default class ItemSheetConan2d20 extends ItemSheet {
     } else if (type === 'spell') {
       data.difficulty = CONFIG.CONAN.availabilityTypes;
       data.hasSidebar = false;
+    } else if (type === 'miscellaneous') {
+      data.hasSidebar = false;
     } else if (type === 'npcaction') {
       data.hasSidebar = false;
       data.actionTypes = CONFIG.CONAN.npcActionTypes;

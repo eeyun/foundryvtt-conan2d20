@@ -536,6 +536,7 @@
       "display",
       "enchantment",
       "kit",
+      "miscellaneous",
       "npcattack",
       "npcaction",
       "spell",
@@ -624,6 +625,9 @@
       "qualities": {
         "value": []
       }
+    },
+    "miscellaneous": {
+      "templates": ["itemDescription"]
     },
     "npcattack": {
       "templates": ["itemDescription"],
