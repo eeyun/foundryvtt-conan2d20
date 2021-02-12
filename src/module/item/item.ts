@@ -584,6 +584,16 @@ export default class Conan2d20Item extends Item {
     return data;
   }
 
+  _miscellaneousChatData() {
+    if (this.data.type !== 'miscellaneous') {
+      throw new Error(
+        'tried to create an npcaction chat data for a non-npcaction item'
+      );
+    }
+    const data: any = duplicate(this.data.data);
+    return data;
+  }
+
   _npcactionChatData() {
     if (this.data.type !== 'npcaction') {
       throw new Error(
