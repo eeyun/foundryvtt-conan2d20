@@ -69,6 +69,7 @@
       "triggerReroll": "Re-roll Selected",
       "momentumSpendImmediate": "Spend generated Momentum"
     },
+    "biographyLabel": "Biography",
     "movement": "Movement",
     "conditionDescriptionBlin": "The character's vision is severly damaged. Upon being blinded, a character suffers 3 d6 mental damage, and any skill test reliant on vision (normally Observation, Insight, Ranged Weapons, Sailing, etc.) increases in DIfficulty by two steps.",
     "conditionDescriptionBurn": "The target is set on fire. This condition lasts for a number of rounds equal to the number of Effects rolled on the attack that inflicted it. If no d6 were rolled, the cause of the Burning effect will list a duration. At the end of the target's turn, the target suffers X d6 physical and mental damage (roll once, apply for both), ignoring Armor Soak. Any physical damage caused by Burning X has the Incendiary attack Quality, and Effects rolled increase the number of rounds that the character remains aflame. A character may attempt a Clear Minor Action to remove this effect, while a prone character can spend a Standard Action rolling around, extinguishing the flames. The latter works as a Clear Action but reduces the Difficulty by two steps. If the character is hit by another Burning attack or effect while already ablaze, the existing status is extended by a number of rounds equal to the number of Effects rolled.",
@@ -101,6 +102,15 @@
       "int": "Int",
       "per": "Per",
       "wil": "Wil"
+    },
+    "attributeTitles": {
+      "agi": "Agility: The measure of your physical and manual dexterity, sense of balance, and body control. This attribute governs the Acrobatics, Melee, and Stealth Skills.",
+      "awa": "Awareness: Perception and sense acuity across all five of the key senses: vision, hearing, feeling, taste, and smell. Awareness governs Insight, Observation, Survival and Thievery, and determines your bonus damage with ranged weapons.",
+      "bra": "Brawn: A measure of might, endurance, toughness, and the physical force you can exert, Brawn governs Athletics and Resistance, and determines your close combat damage bonus and the Vigor reserve, the amount of physical injury or stress that you can withstand.",
+      "coo": "Coordination: Hand-Eye coordination, aim, and the ability to navigate within one's own surroundings, both physically and mentally. Coordnation governs the Parry, Ranged Weapons, and Sailing skills.",
+      "int": "Intelligence: The measure of your wit, intellect, and a combination of studies and cunning learned on the streets. Intelligence governs Craft, Healing, Linguistics, and Lore, as well as less-common skills like Alchemy and Warfare.",
+      "per": "Personality: A measure of your charisma, ease of social interaction, and ability to be charming or deceptive as needed. Personality governs skills such as Animal Handling , Command, Counsel, Persuade, and Society. Personality also detemines your bonus for Threaten actions.",
+      "wil": "A person's force of will, and mental resolve, the Willpower attribute governs Discipline and Sorcery. Equally as important, Willpower determines your Resolve capacity, the reserve of sanity that prevents mental trauma."
     },
     "conditions": {
       "bli": "Blind",
