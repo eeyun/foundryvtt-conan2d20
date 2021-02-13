@@ -15,8 +15,8 @@ class ActorSheetConan2d20NPC extends ActorSheetConan2d20 {
 
   get template() {
     const path = 'systems/conan2d20/templates/actors/';
-    if (this.actor.getFlag('conan2d20', 'editNPC.value'))
-      return '{path}npc-sheet.html';
+    if (!game.user.isGM && this.actor.limited)
+      return `${path}readonly-npc-sheet.html`;
     return `${path}npc-sheet.html`;
   }
 
