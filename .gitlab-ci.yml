@@ -38,8 +38,11 @@ variables:
 dco:
   image: ubuntu
   stage: test
+  only:
+    - branches
   except:
     - tags
+    - master
   before_script:
     - apt update -y
     - apt install -y python3 git wget
@@ -51,8 +54,11 @@ dco:
 lint:
   image: node
   stage: test
+  only:
+    - branches
   except:
     - tags
+    - master
   before_script:
     # npm stores cache data in the home folder ~/.npm but you can’t cache things outside of the project directory (.npm/).
     - npm ci --cache .npm --prefer-offline
