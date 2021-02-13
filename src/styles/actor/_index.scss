@@ -98,6 +98,36 @@ $header-height: 120px;
       padding-top: 12px;
       overflow-y: scroll;
     }
+
+    .readonly-sheet-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      margin-right: 5px;
+      margin-left: 5px;
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      padding-top: 12px;
+      overflow-y: scroll;
+    }
+
+    .section-header {
+      margin-bottom: 10px;
+      align-items: center;
+      display: flex;
+      color: white;
+      background: black;
+      text-align: center;
+
+      h2 {
+        padding-left: 8px;
+        border-bottom: none;
+        margin-bottom: 0px;
+        width: 100%;
+      }
+    }
   }
 }
 .conan2d20 form {

@@ -1,0 +1,63 @@
+<form class="npc-sheet {{cssClass}}" autocomplete="off" id="npc-sheet">
+  <header class="sheet-header">
+    <div class="header-fields">
+      <h1 class="charname">
+        <input
+          name="name"
+          type="text"
+          value="{{actor.name}}"
+          placeholder="{{localize CONAN.characterNamePlaceholder}}"
+        />
+      </h1>
+      <div class="npc npc_categories">
+        <ul class="tags">
+          {{#each data.categories.value as |v k|}}
+          <li class="tag {{k}}">{{v}}</li>
+          {{/each}}
+          <li class="tag edit-btn" for="data.categories">
+            <a data-options="npcCategories">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-plus"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <img
+      class="profile-img"
+      src="{{actor.img}}"
+      data-edit="img"
+      title="{{actor.name}}"
+      height="100"
+      width="100"
+    />
+  </header>
+  <section class="npc-sheet-body sheet-body">
+    <!-- Sheet Body -->
+    <section class="readonly-sheet-content content">
+      <div class="npc-notes">
+        <div class="section-header">
+          <h2>{{localize "CONAN.npc.sections.notes"}}</h2>
+        </div>
+        <div class="notes-entry">
+          {{editor content=data.details.biography.value
+          target="data.details.biography.value" button=true owner=owner
+          editable=editable}}
+        </div>
+      </div>
+    </section>
+  </section>
+</form>

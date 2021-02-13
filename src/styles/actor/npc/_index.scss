@@ -44,6 +44,7 @@
 
   text-align: center;
 }
+
 .entry-label {
   background: $primary-color;
   color: white;
@@ -109,6 +110,7 @@
   }
   text-align: center;
 }
+
 .section-header {
   margin-bottom: 10px;
   align-items: center;
@@ -178,6 +180,22 @@
 
   .entry-score {
     color: $primary-color;
+  }
+}
+
+.section-header {
+  margin-bottom: 10px;
+  align-items: center;
+  display: flex;
+  color: white;
+  background: black;
+  text-align: center;
+
+  h2 {
+    padding-left: 8px;
+    border-bottom: none;
+    margin-bottom: 0px;
+    width: 100%;
   }
 }
 

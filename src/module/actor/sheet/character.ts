@@ -29,7 +29,7 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
     const path = 'systems/conan2d20/templates/actors/';
     if (!game.user.isGM && this.actor.limited)
       return `${path}readonly-sheet.html`;
-    return `${path}actor-sheet.html`;
+    return `${path}character-sheet.html`;
   }
 
   getData() {
