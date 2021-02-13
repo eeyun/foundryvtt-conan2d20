@@ -446,14 +446,25 @@ export default class Conan2d20Actor extends Actor {
       let wType: String;
       let attacker: String;
       let bDamage: Object;
+      let attributeBonus = 0;
       if (specifier.type === 'display') {
         wType = 'display';
+        attributeBonus = this._attributeBonus('per');
         attacker = 'character';
       } else if (specifier.type === 'weapon') {
         wType = specifier.data.weaponType;
+        if (wType === 'melee') attributeBonus = this._attributeBonus('bra');
+        else if (wType === 'ranged')
+          attributeBonus = this._attributeBonus('awa');
         attacker = 'character';
       } else if (specifier.type === 'npcattack') {
         wType = specifier.data.attackType;
+        if (wType === 'melee') attributeBonus = this._attributeBonus('bra');
+        else if (wType === 'ranged')
+          attributeBonus = this._attributeBonus('awa');
+        else if (wType === 'threaten')
+          attributeBonus = this._attributeBonus('per');
+
         attacker = 'npc';
       }
       mod = {
@@ -463,6 +474,7 @@ export default class Conan2d20Actor extends Actor {
         momentumModifier: 0,
         reloadModifier: 0,
         talentModifier: 0,
+        attributeBonus,
       };
       if (specifier.data.damage.dice === 'x') {
         mod = mergeObject(mod, {baseDamage: specifier.data.damage.dice});
@@ -538,6 +550,18 @@ export default class Conan2d20Actor extends Actor {
       tooltipText = tooltip.map(i => `${i.name}: +${i.value}`).join('\n');
 
     return {difficulty, tooltipText};
+  }
+
+  _attributeBonus(attribute: string) {
+    const attributeValue = this.data.data.attributes[attribute].value;
+    let bonus;
+    if (attributeValue <= 8) bonus = 0;
+    else if (attributeValue === 9) bonus = 1;
+    else if (attributeValue <= 11) bonus = 2;
+    else if (attributeValue <= 13) bonus = 3;
+    else if (attributeValue <= 15) bonus = 4;
+    else bonus = 5;
+    return bonus;
   }
 
   public async getRollOptions(rollNames) {
