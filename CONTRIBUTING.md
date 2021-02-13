@@ -63,13 +63,13 @@ $ git commit -m "A brief summary of the commit > > A paragraph describing what c
 
 This project utilizes a Developer Certificate of Origin (DCO) to ensure that each commit was written by the author or that the author has the appropriate rights necessary to contribute the change. The project utilizes [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/)
 
-Each commit must include a DCO which looks like this:
+Each commit must include a DCO signature which looks like this:
 
 `Signed-off-by: Joe Smith <joe.smith@email.com>`
 
 The project requires that the name used is your real name. Neither anonymous contributors nor those utilizing pseudonyms will be accepted.
 
-Git makes it easy to add this line to your commit messages. Make sure the `user.name` and `user.email` are set in your git configs. Use `-s` or `--signoff` to add the Signed-off-by line to the end of the commit message.
+Git makes it easy to add this line to your commit messages. Make sure the `user.name` and `user.email` are set in your git configs. Use `-s` or `--signoff` to add the Signed-off-by line to the end of the commit message. Note that this **does not require GPG**. The singatures applied to these commits are your aggreed upon signature of the DCO.
 
 ## Coding conventions
 
@@ -87,4 +87,14 @@ Start reading our code and you'll get the hang of it. We optimize for readabilit
 
 ## Pre-commit Checks
 
-In order to ensure some standards of quality we use [pre-commit](https://pre-commit.com/) to execute a series of lints and checks on the code. Be sure to [install the pre-commit CLI](https://pre-commit.com/#installation). To validate your branch after install just run `pre-commit run`
+In order to ensure some standards of quality we use [pre-commit](https://pre-commit.com/) to execute a series of lints and checks on the code. Be sure to [install the pre-commit CLI](https://pre-commit.com/#installation). **There is no obligation to install pre-commit into your local repo (`$ pre-commit install`) and doing so will trigger pre-commit checks to run every time you run `git commit`.**
+
+What _is_ required is to validate your branch locally before you commit your code. Just run `pre-commit run --all-files`. Often, these will fail on the first run for formatting. `Pre-commit` will try to fix any simple formatting/style issues and leave them un-staged on the branch. So your next step is to run `git add -A` (assuming you don't have any files you don't want to commit) and then `pre-commit run --all-files` once more to verify everything comes through fine.
+
+### Eslint Checks
+
+We do some linting with `eslint` as part of our pre-commit checks. For now, **you can ignore warnings**. What needs to be corrected are **errors**. In some cases you may need to add a lint suppression but please check with the maintainers before doing so. These situations should be fairly uncommon.
+
+### Webpack
+
+Our CI will run a webpack build of your branch after it completes the linting. Be sure to check that your branch can build before opening a PR. We are planning some major overhaul to the codebase which will alter a lot of our typing. Right now this is kind of a mess.
