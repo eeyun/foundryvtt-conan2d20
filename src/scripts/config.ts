@@ -49,6 +49,34 @@ CONFIG.skills = {
   sor: 'CONAN.skills.sor',
 };
 
+CONFIG.skillAttributeMap = {
+  acr: 'agi',
+  mel: 'agi',
+  ste: 'agi',
+  ins: 'awa',
+  obs: 'awa',
+  sur: 'awa',
+  thi: 'awa',
+  ath: 'bra',
+  res: 'bra',
+  par: 'coo',
+  ran: 'coo',
+  sai: 'coo',
+  alc: 'int',
+  cra: 'int',
+  hea: 'int',
+  lin: 'int',
+  lor: 'int',
+  war: 'int',
+  ani: 'per',
+  com: 'per',
+  cou: 'per',
+  per: 'per',
+  soc: 'per',
+  dis: 'wil',
+  sor: 'wil',
+};
+
 CONFIG.enchantmentExplodingItems = {
   flashPaper: 'CONAN.enchantmentExplodingItems.fla',
   smallFireworks: 'CONAN.enchantmentExplodingItems.sma',

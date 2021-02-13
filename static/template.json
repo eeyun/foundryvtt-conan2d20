@@ -4,6 +4,7 @@
     "templates": {
       "common": {
         "skilldice": 2,
+        "difficultyModifier": 0,
         "attributes": {
           "agi": {
             "value": 7

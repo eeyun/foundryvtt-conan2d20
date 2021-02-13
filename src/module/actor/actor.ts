@@ -335,7 +335,7 @@ export default class Conan2d20Actor extends Actor {
     }
     const dialogData = {
       title: skillList[skill],
-      modifiers: this._getModifiers('skill', actorType),
+      modifiers: this._getModifiers('skill', {skill, actorType}),
       template: 'systems/conan2d20/templates/apps/skill-roll-dialogue.html',
     };
     const rollData = {
@@ -420,21 +420,24 @@ export default class Conan2d20Actor extends Actor {
     if (type === 'skill') {
       const difficultyLevels = CONFIG.rollDifficultyLevels;
       const diceModSpends = CONFIG.skillRollResourceSpends;
-      if (specifier === 'npc') {
+      const prefilledData = this._getPrefilledDifficulty(specifier.skill);
+      if (specifier.actorType === 'npc') {
         mod = {
           difficulty: difficultyLevels,
           diceModifier: diceModSpends,
           successModifier: 0,
           npcAttributes: CONFIG.attributes,
-          actorType: specifier,
+          actorType: specifier.actorType,
         };
         return mod;
       }
       mod = {
         difficulty: difficultyLevels,
+        prefilledDifficulty: prefilledData.difficulty,
+        difficultyTooltip: prefilledData.tooltipText,
         diceModifier: diceModSpends,
         successModifier: 0,
-        actorType: specifier,
+        actorType: specifier.actorType,
       };
       return mod;
     }
@@ -466,6 +469,75 @@ export default class Conan2d20Actor extends Actor {
       }
     }
     return mod;
+  }
+
+  /**
+   * Uses contextual data like conditions or harms to determine how much to increase test difficulty by
+   * @param skill Skill being used
+   */
+  _getPrefilledDifficulty(skill: string) {
+    const tooltip = [];
+    let difficulty = 1;
+    if (this.hasCondition('dazed')) {
+      difficulty += 1;
+      tooltip.push({name: CONFIG.conditionTypes.dazed, value: 1});
+    }
+
+    // Open to change here, as what is affected and what isn't is up in the air
+    const blindedAffected = ['obs', 'ins', 'ran', 'mel', 'sai', 'par'];
+    if (this.hasCondition('blind') && blindedAffected.includes(skill)) {
+      difficulty += 2;
+      tooltip.push({name: CONFIG.conditionTypes.blind, value: 2});
+    }
+
+    const deafAffected = ['obs', 'ins', 'com', 'per'];
+    if (this.hasCondition('deaf') && deafAffected.includes(skill)) {
+      difficulty += 2;
+      tooltip.push({name: CONFIG.conditionTypes.deaf, value: 2});
+    }
+
+    if (this.actorType === 'character') {
+      const physicalTests = ['agi', 'bra', 'coo'];
+      const mentalTests = ['awa', 'int', 'per', 'wil'];
+
+      const wounds = Object.values(
+        this.data.data.health.physical.wounds.dots
+      ).reduce((acc: number, w: any) => {
+        acc += w.status === 'wounded' ? 1 : 0;
+        return acc;
+      }, 0);
+
+      if (
+        wounds > 0 &&
+        physicalTests.includes(CONFIG.skillAttributeMap[skill])
+      ) {
+        // @ts-ignore
+        difficulty += wounds;
+        tooltip.push({name: 'Wounds', value: wounds});
+      }
+
+      const trauma = Object.values(
+        this.data.data.health.mental.traumas.dots
+      ).reduce((acc: number, w: any) => {
+        acc += w.status === 'wounded' ? 1 : 0;
+        return acc;
+      }, 0);
+      if (trauma > 0 && mentalTests.includes(CONFIG.skillAttributeMap[skill])) {
+        // @ts-ignore
+        difficulty += trauma;
+        tooltip.push({name: 'Trauma', value: trauma});
+      }
+    }
+
+    difficulty += this.data.data.difficultyModifier || 0;
+
+    if (difficulty > 5) difficulty = 5;
+
+    let tooltipText = '';
+    if (tooltip.length)
+      tooltipText = tooltip.map(i => `${i.name}: +${i.value}`).join('\n');
+
+    return {difficulty, tooltipText};
   }
 
   public async getRollOptions(rollNames) {
