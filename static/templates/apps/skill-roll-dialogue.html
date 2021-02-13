@@ -13,9 +13,13 @@
   <div class="dialog-inputs">
     <div class="form-group">
       <label>{{localize "CONAN.skillRollDifficultyLabel"}}</label>
-      <select name="difficulty" data-dtype="String">
-        {{#select modifiers.difficulty}} {{#each modifiers.difficulty as |name
-        type|}}
+      <select
+        name="difficulty"
+        data-dtype="String"
+        title="{{modifiers.difficultyTooltip}}"
+      >
+        {{#select modifiers.prefilledDifficulty}} {{#each modifiers.difficulty
+        as |name type|}}
         <option value="{{type}}">{{name}}</option>
         {{/each}} {{/select}}
       </select>
