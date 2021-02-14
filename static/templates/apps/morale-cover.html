@@ -1,0 +1,30 @@
+<form class="soak-form">
+  <div class="form-group">
+    <label>{{localize "CONAN.soakCover"}}</label>
+    <div class="form-fields">
+      <select name="flags.conan2d20.soak.cover">
+        {{#select object.flags.conan2d20.soak.cover}}
+        <option value="">{{localize "CONAN.soakNone"}}</option>
+        <option value="light">{{localize "CONAN.soakLight"}}</option>
+        <option value="heavy">{{localize "CONAN.soakHeavy"}}</option>
+        {{/select}}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize "CONAN.soakMorale"}}</label>
+    <div class="form-fields">
+      <select name="flags.conan2d20.soak.morale">
+        {{#select object.flags.conan2d20.soak.morale}}
+        <option value="">{{localize "CONAN.soakNone"}}</option>
+        <option value="light">{{localize "CONAN.soakLight"}}</option>
+        <option value="heavy">{{localize "CONAN.soakHeavy"}}</option>
+        {{/select}}
+      </select>
+    </div>
+  </div>
+  <button type="submit" name="submit" value="1">
+    <i class="far fa-save"></i>Update
+  </button>
+</form>

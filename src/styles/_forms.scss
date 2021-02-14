@@ -121,3 +121,12 @@
 .conan2d20.sheet form .tag {
   font-weight: 700;
 }
+
+.conan2d20 form.soak-form {
+  background: none;
+  display: flex;
+  height: auto;
+  width: 300px;
+  flex-direction: column;
+  padding: 10px;
+}
