@@ -232,35 +232,12 @@ export default class Conan2d20Dice {
     }
     const {attackerType} = rollData;
     const damageType = rollData.extra.weapon.data.damage.type;
-    const {attackType} = rollData;
     let diceQty =
-      baseDamage + rollData.talentModifier + rollData.reloadModifier;
-    let attribute;
-    let modifier: number;
+      baseDamage +
+      rollData.talentModifier +
+      rollData.reloadModifier +
+      rollData.otherModifier;
 
-    if (attackType === 'melee') {
-      attribute = 'bra';
-    } else if (attackType === 'ranged') {
-      attribute = 'awa';
-    } else {
-      attribute = 'per';
-    }
-
-    if (actorData.data.attributes[attribute].value <= 8) {
-      modifier = 0;
-    } else if (actorData.data.attributes[attribute].value === 9) {
-      modifier = 1;
-    } else if (actorData.data.attributes[attribute].value === (10 || 11)) {
-      modifier = 2;
-    } else if (actorData.data.attributes[attribute].value === (12 || 13)) {
-      modifier = 3;
-    } else if (actorData.data.attributes[attribute].value === (14 || 15)) {
-      modifier = 4;
-    } else if (actorData.data.attributes[attribute].value >= 16) {
-      modifier = 5;
-    }
-
-    diceQty += modifier;
     if (rollData.momentumModifier > 0) {
       try {
         if (attackerType === 'npc') {
@@ -549,6 +526,10 @@ export default class Conan2d20Dice {
                 rollData.talentModifier = Number(
                   // @ts-ignore
                   template.find('[name="talentModifier"]').val() || 0
+                );
+                rollData.otherModifier = Number(
+                  // @ts-ignore
+                  template.find('[name="otherModifier"]').val() || 0
                 );
                 rollData.attackerType = dialogData.modifiers.attacker;
                 try {

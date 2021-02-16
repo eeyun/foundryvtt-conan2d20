@@ -475,6 +475,7 @@
     "damageRollLoadSpendLabel": "Reloads",
     "damageRollEffectGenLabel": "Effects generated",
     "damageRerollText": "{character} used a talent to reroll selected damage dice.",
+    "other": "Other",
     "doomConversionTitle": "Each point entered here converts from 3 points of doom",
     "doomSpendHeader": "Doom Spend",
     "encumbrance1Each": "1-Each",
