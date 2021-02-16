@@ -645,6 +645,16 @@ CONFIG.damageDice = {
   9: '9',
 };
 
+CONFIG.soakDice = {
+  light: '2dp',
+  heavy: '4dp',
+};
+
+CONFIG.soakValue = {
+  light: 'CONAN.SoakLight',
+  heavy: 'CONAN.SoakHeavy',
+};
+
 CONFIG.weaponDescriptions = {
   axe: 'CONAN.weaponDescriptionAxe',
   bow: 'CONAN.weaponDescriptionBow',

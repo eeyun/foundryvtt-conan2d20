@@ -8,6 +8,7 @@ import registerActors from './module/register-actors';
 import registerSheets from './module/register-sheets';
 import Counter from './module/system/counter';
 import CombatDie from './module/system/dice';
+import SoakForm from './module/system/soak';
 
 require('./styles/conan2d20.scss');
 
@@ -112,6 +113,50 @@ Hooks.on('renderChatMessage', (msg, html, data) => {
       .append(
         ` (${msg.data.flags.conan2d20.effects} <img class="effect-total" src='systems/conan2d20/assets/dice/phoenix/phoenix-black.png'>)`
       );
+  }
+});
+
+/**
+ * Adds the cover/soak roll button to tiles and drawings
+ */
+Hooks.on('renderBasePlaceableHUD', (hud: any, html: HTMLDocument) => {
+  // @ts-ignore
+  if (hud.object instanceof Drawing || hud.object instanceof Tile) {
+    const button = $(
+      `<div class='control-icon'><img src="systems/conan2d20/assets/dice/phoenix/phoenix-white.png" width="36" height="36"></div>`
+    );
+    button.attr(
+      'title',
+      'Left Click to roll Morale and Soak\nRight Click to configure Morale or Cover'
+    );
+    button.mousedown(event => {
+      if (event.button === 0) {
+        const moraleRoll =
+          CONFIG.CONAN.soakDice[
+            getProperty(hud.object, 'data.flags.conan2d20.soak.morale')
+          ];
+        const coverRoll =
+          CONFIG.CONAN.soakDice[
+            getProperty(hud.object, 'data.flags.conan2d20.soak.cover')
+          ];
+
+        if (moraleRoll)
+          new Roll(moraleRoll)
+            .roll()
+            .toMessage({flavor: game.i18n.localize('CONAN.soakMorale')});
+        if (coverRoll)
+          new Roll(coverRoll)
+            .roll()
+            .toMessage({flavor: game.i18n.localize('CONAN.soakCover')});
+
+        if (!moraleRoll && !coverRoll)
+          ui.notifications.warn('No area soak. Right click to configure.');
+      } else if (event.button === 2) {
+        new SoakForm(hud.object).render(true);
+      }
+    });
+    // @ts-ignore
+    html.find('.col.right').append(button);
   }
 });
 
