@@ -1,7 +1,7 @@
 export default class SoakForm extends FormApplication {
   constructor(object, options = {}) {
     super(object.data, options);
-    //@ts-ignore
+    // @ts-ignore
     this.objectType = object.constructor.name;
   }
 
@@ -17,9 +17,9 @@ export default class SoakForm extends FormApplication {
   }
 
   async _updateObject(event: Event, formData: any) {
-    //@ts-ignore
-    formData['_id'] = this.object._id;
-    //@ts-ignore
+    // @ts-ignore
+    formData._id = this.object._id;
+    // @ts-ignore
     return canvas.scene.updateEmbeddedEntity(this.objectType, formData);
   }
 }
