@@ -137,7 +137,7 @@ export default class TraitSelector extends FormApplication {
         const {name} = ev.currentTarget;
         html.find(`input[type=checkbox][name="${name}"]`).prop('checked', true);
       });
-      if (!this.options.allow_empty_values) {
+      if (!this.options.allowEmptyValues) {
         html.find('input[id^=input_value]').focusout(ev => {
           const input = ev.currentTarget;
           if (input.value === '')
@@ -213,7 +213,7 @@ export default class TraitSelector extends FormApplication {
         if (v.length > 1 && v[0]) {
           if (
             (!Number.isNaN(v[1]) && v[1] !== '') ||
-            this.options.allow_empty_values
+            this.options.allowEmptyValues
           ) {
             const label = this.options.choices[k];
             const exceptions = v[2] || '';

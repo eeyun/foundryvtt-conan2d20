@@ -160,7 +160,7 @@ export default class ItemSheetConan2d20 extends ItemSheet {
       data.difficulty = CONFIG.CONAN.availabilityTypes;
       data.damageDice = CONFIG.CONAN.damageDice;
       data.ingredient = CONFIG.CONAN.enchantmentIngredients;
-      data.hitLocations = CONFIG.CONAN.coverageTypes;
+      data.coverageTypes = CONFIG.CONAN.coverageTypes;
       data.upasGlassSizes = CONFIG.CONAN.upasGlassSizes;
       data.talismanTypes = CONFIG.CONAN.enchantmentTalismanTypes;
       data.lotusPollenColors = CONFIG.CONAN.lotusPollenColors;
@@ -190,8 +190,8 @@ export default class ItemSheetConan2d20 extends ItemSheet {
       name: a.parents('label').attr('for'),
       title: a.parent().text().trim(),
       choices: CONFIG.CONAN[a.attr('data-options')],
-      has_values: a.attr('data-has-values') === 'true',
-      allow_empty_values: a.attr('data-allow-empty-values') === 'true',
+      hasValues: a.attr('data-has-values') === 'true',
+      allowEmptyValues: a.attr('data-allow-empty-values') === 'true',
     };
     new TraitSelector(this.item, options).render(true);
   }
