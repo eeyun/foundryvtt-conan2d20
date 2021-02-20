@@ -9,7 +9,7 @@
 
 <div class="form-group">
   <label>{{localize "CONAN.actionCountLabel"}}</label>
-  <select name="data.actionCount" data-dtype="Number">
+  <select name="data.actionCount" data-dtype="String">
     {{#select data.actionCount}}
     <option value=""></option>
     {{#each actionCounts as |name type|}}
