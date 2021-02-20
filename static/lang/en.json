@@ -565,10 +565,11 @@
     "tabTalentsLabel": "Talents",
     "qualitiesLabel": "Qualities",
     "quantityLabel": "Quantity",
-    "talentCategories": {
+    "actionCategories": {
       "off": "Offensive",
       "def": "Defensive",
-      "int": "Interaction"
+      "int": "Interaction",
+      "mov": "Movement"
     },
     "talentLabel": "Talent",
     "talentActionTypeLabel": "Talent Action Type",
@@ -587,6 +588,7 @@
       "education": "Education Talents",
       "nature": "Nature Talents",
       "archetype": "Archetype Talents",
+      "skill": "Skill",
       "other": "Other Talents"
     },
     "talentActionCategoryLabel": "Talent Action Category",
@@ -674,12 +676,10 @@
       "clu": "Club",
       "cro": "Crossbow",
       "dag": "Dagger",
-      "dir": "Dirk",
       "fla": "Flail",
-      "fle": "Flexile",
-      "ham": "Hammer",
+      "fle": "Flexible",
+      "hid": "Hidden",
       "imp": "Improvised Weapon",
-      "pic": "Pick",
       "pol": "Polearm",
       "shi": "Shield",
       "sli": "Sling",
@@ -696,6 +696,7 @@
       "l": "Long"
     },
     "weaponSizes": {
+      "no": "None",
       "1h": "One-Handed",
       "2h": "Two-Handed",
       "ub": "Unbalanced",
@@ -715,7 +716,8 @@
       "armor": {
         "heav": "Heavy",
         "nois": "Noisy",
-        "very": "Very Heavy"
+        "very": "Very Heavy",
+        "frag": "Fragile"
       },
       "weapons": {
         "area": "Area",
@@ -731,6 +733,7 @@
         "inte": "Intense",
         "knoc": "Knockdown",
         "nonl": "Non-lethal",
+        "pair": "Paired",
         "parr": "Parrying",
         "pers": "Persistent X",
         "pier": "Piercing X",
@@ -777,6 +780,7 @@
     "qualitiesDescriptionInte": "These attacks are designed to inflict massive harm on a target, incapacitating them far more swiftly. If an Intense attack inflicts one or more Harms upon the target, then it inflicts one additional Harm.",
     "qualitiesDescriptionKnoc": "The attack knocks the target prone if one or more Effects are rolled. The target may ignore this if they add 1 Doom for each Effect rolled, or in the case of NPCs, at the cost of 1 Doom per Effect rolled.",
     "qualitiesDescriptionNonl": "The attack doesn't inflict lasting damage, instead inflicting a temporary penalty. The attack cannot inflict a normal Harm effect, but rather may only inflict temporary conditions. If the attack has no other Qualities that inflict an alternate Harm, then it inflicts the Dazed Condition until the end of the target's next turn.",
+    "qualitiesDescriptionPair": "When used in a pair, the weapons are greatly enhanced. Gaining the specified quality at the value of X. Weapons must be identical, or nearly so. The user cannot use two different weapons for this quality, even if each has the Paired Quality.",
     "qualitiesDescriptionParr": "This weapon is extremely effective at deflecting other attacks. When wielding one or more weapons with this Quality, the Doom cost of making a Defend or Protect Reaction with the Parry skill is reduced by 1, to a minimum of 0.",
     "qualitiesDescriptionPers": "The attack has a lingering, deleterious effect. If one or more Effects are rolled, the target will suffer X d6 damage at the start of each subsequent turn for a number of rounds equal to the number of Effects rolled. Each effect rolled on the ongoing damage adds one additional round of duration. This condition can be avoided entirely at the time it is inflicted by adding a number of points to Doom equal to the number of Effects rolled; after this, it can only be removed by waiting for the duration to end or by taking the Clear action.",
     "qualitiesDescriptionPier": "This attack ignores X points of the target's total Soak for each Effect rolled.",
@@ -788,6 +792,10 @@
     "qualitiesDescriptionUnfo": "If the target of this attack was affected by an Exploit action immediately before this attack was made, then this attack gains the Intense and Vicious X Qualities.",
     "qualitiesDescriptionVici": "An attack with this Quality inflicts X additional damage for each Effect rolled.",
     "qualitiesDescriptionVoll": "This ranged weapon can be used quickly, allowing the wielder to unleash volleys of projectiles. Thus, wielders often carry bundles of ammunition. An attack with a Volley weapon does not expend any Shots; the user has enough ammunition to last the fight, barring Complications. Further, a Load of ammunition can be spent to perform a Volley, adding a bonus d20 to Ranged Weapons tests to attack, and +1 to the weapon's damage if the attack hits. Loads may also be lost as the result of a Complication. After a fight, spent Loads can be recovered in the same way as Shots.",
+    "qualitiesDescriptionHeav": "Attempting any activity outside of combat in this Armor is exhausting and difficult. If wearing Heavy armor on three or more hit locations, your character suffers one additional Fatigue whenever suffering Fatigue normally. If hit locations are not being used, the armor is assumed to cover enough of the body to cause the additional fatigue.",
+    "qualitiesDescriptionNois": "Attempting stealth of any type in this armor is likely to fail. If your character is wearing Noisy armor on two or more hit locations, the Difficulty of all Stealth tests is increased by one step. If hit locations are not being used, the armor is assumed to cover enough of the body that the Difficulty penalty applies.",
+    "qualitiesDescriptionVHea": "This armor is considered as Heavy and Noisy armor. If worn as a full suit it increases the wearer's Courage Soak by 2, due to confidence gained from such sturdy protection. Very Heavy armor must be crafted to the wearer for greatest efficiency. A full suit of Very Heavy armor that has been crafted specifically for the wearer provides Reach 2, even when wielding no other weapons, allowing the character to have a significant advantage in close quarters combat.",
+    "qualitiesDescriptionAFra": "Whenever this armor is penetrated (wearer takes damage), roll equal to the Armor Soak in that location. If an Effect is rolled, the Armor Soak is reduced by 1 point for that location, to a minimum of 0. Repairs cost Gold equal to the Armor Soak the armor was reduced by, per location",
     "ref-book": "Book",
     "ref-page": "p."
   }
