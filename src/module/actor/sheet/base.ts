@@ -291,9 +291,9 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
       name: a.parents('li').attr('for'),
       title: a.parent().parent().siblings('h4').text().trim(),
       choices: CONFIG.CONAN[a.attr('data-options')],
-      has_values: a.attr('data-has-values') === 'true',
-      allow_empty_values: a.attr('data-allow-empty-values') === 'true',
-      has_exceptions: a.attr('data-has-exceptions') === 'true',
+      hasValues: a.attr('data-has-values') === 'true',
+      allowEmptyValues: a.attr('data-allow-empty-values') === 'true',
+      hasExceptions: a.attr('data-has-exceptions') === 'true',
     };
     new TraitSelector(this.actor, options).render(true);
   }
