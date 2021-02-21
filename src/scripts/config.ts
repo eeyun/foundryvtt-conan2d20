@@ -266,6 +266,7 @@ CONFIG.armorQualities = {
   heavy: 'CONAN.qualities.armor.heav',
   noisy: 'CONAN.qualities.armor.nois',
   vheavy: 'CONAN.qualities.armor.very',
+  fragile: 'CONAN.qualities.armor.frag',
 };
 
 CONFIG.actionTypes = {
@@ -313,9 +314,10 @@ CONFIG.reactionActions = {
 };
 
 CONFIG.actionCategories = {
-  defensive: 'CONAN.talentCategories.def',
-  offensive: 'CONAN.talentCategories.off',
-  interaction: 'CONAN.talentCategories.int',
+  defensive: 'CONAN.actionCategories.def',
+  offensive: 'CONAN.actionCategories.off',
+  interaction: 'CONAN.actionCategories.int',
+  movement: 'CONAN.actionCategories.mov',
 };
 
 CONFIG.actionCounts = {
@@ -552,6 +554,7 @@ CONFIG.talentTypes = {
   education: 'CONAN.talentTypes.education',
   nature: 'CONAN.talentTypes.nature',
   archetype: 'CONAN.talentTypes.archetype',
+  skill: 'CONAN.talentTypes.skill',
   other: 'CONAN.talentTypes.other',
 };
 
@@ -569,6 +572,7 @@ CONFIG.weaponQualities = {
   intense: 'CONAN.qualities.weapons.inte',
   knockdown: 'CONAN.qualities.weapons.knoc',
   nonlethal: 'CONAN.qualities.weapons.nonl',
+  paired: 'CONAN.qualities.weapons.pair',
   parrying: 'CONAN.qualities.weapons.parr',
   persistentx: 'CONAN.qualities.weapons.pers',
   piercingx: 'CONAN.qualities.weapons.pier',
@@ -588,12 +592,10 @@ CONFIG.weaponGroups = {
   club: 'CONAN.weaponGroup.clu',
   crossbow: 'CONAN.weaponGroup.cro',
   dagger: 'CONAN.weaponGroup.dag',
-  dirk: 'CONAN.weaponGroup.dir',
   flail: 'CONAN.weaponGroup.fla',
-  flexile: 'CONAN.weaponGroup.fle',
-  hammer: 'CONAN.weaponGroup.ham',
+  flexible: 'CONAN.weaponGroup.fle',
+  hidden: 'CONAN.weaponGroup.hid',
   improvised: 'CONAN.weaponGroup.imp',
-  pick: 'CONAN.weaponGroup.pic',
   polearm: 'CONAN.weaponGroup.pol',
   shield: 'CONAN.weaponGroup.shi',
   sling: 'CONAN.weaponGroup.sli',
@@ -607,6 +609,7 @@ CONFIG.weaponTypes = {
 };
 
 CONFIG.weaponSizes = {
+  none: 'CONAN.weaponSizes.no',
   oneHanded: 'CONAN.weaponSizes.1h',
   twoHanded: 'CONAN.weaponSizes.2h',
   unbalanced: 'CONAN.weaponSizes.ub',
@@ -675,9 +678,10 @@ CONFIG.weaponDescriptions = {
 };
 
 CONFIG.qualitiesDescriptions = {
-  heavy: 'CONAN.qualitiesDescriptionsHeavy',
-  noisy: 'CONAN.qualitiesDescriptionsNoisy',
-  veryheavy: 'CONAN.qualitiesDescriptionsVHeavy',
+  heavy: 'CONAN.qualitiesDescriptionHeav',
+  noisy: 'CONAN.qualitiesDescriptionNois',
+  veryheavy: 'CONAN.qualitiesDescriptionVHea',
+  armorFragile: 'CONAN.qualitiesDescriptionAFra',
   area: 'CONAN.qualitiesDescriptionArea',
   backlashx: 'CONAN.qualitiesDescriptionBack',
   blinding: 'CONAN.qualitiesDescriptionBlin',
@@ -691,6 +695,7 @@ CONFIG.qualitiesDescriptions = {
   intense: 'CONAN.qualitiesDescriptionInte',
   knockdown: 'CONAN.qualitiesDescriptionKnoc',
   nonlethal: 'CONAN.qualitiesDescriptionNonl',
+  paired: 'CONAN.qualitiesDescriptionPair',
   parrying: 'CONAN.qualitiesDescriptionParr',
   persistentx: 'CONAN.qualitiesDescriptionPers',
   piercingx: 'CONAN.qualitiesDescriptionPier',
