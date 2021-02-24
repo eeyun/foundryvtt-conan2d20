@@ -725,12 +725,17 @@ export default class Conan2d20Dice {
         actor.data.type
       );
 
-      Conan2d20Dice.showSkillRollDialog({
-        dialogData,
-        cardData,
-        rollData,
-        actorData,
-      });
+      try {
+        Conan2d20Dice.showSkillRollDialog({
+          dialogData,
+          cardData,
+          rollData,
+          actorData,
+        });
+      } catch (error) {
+        ui.notifications.error(error);
+        console.log(error);
+      }
     });
     html.on('click', '.chat-execute-damage', ev => {
       const target = $(ev.currentTarget);
