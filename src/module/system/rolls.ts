@@ -711,7 +711,15 @@ export default class Conan2d20Dice {
       );
 
       let weaponSkill;
-      if (weapon.data.weaponType === 'melee') {
+      if (actor.data.type === 'npc') {
+        if (weapon.data.attackType === 'melee') {
+          weaponSkill = 'cmb';
+        } else if (weapon.data.attackType === 'ranged') {
+          weaponSkill = 'cmb';
+        } else if (weapon.data.attackType === 'threaten') {
+          weaponSkill = 'scl';
+        }
+      } else if (weapon.data.weaponType === 'melee') {
         weaponSkill = 'mel';
       } else if (weapon.data.weaponType === 'ranged') {
         weaponSkill = 'ran';
