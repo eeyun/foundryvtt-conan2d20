@@ -492,7 +492,12 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
           break;
         case 'npcattack':
           buttons.append(
-            `<button class="tag npc_damage execute-attack" data-action="npcDamage">${localize(
+            `<button class="tag npc_damage execute-attack" data-action="npcAttack">${localize(
+              'CONAN.attackRollLabel'
+            )}</button>`
+          );
+          buttons.append(
+            `<button class="tag npc_damage execute-damage" data-action="npcDamage">${localize(
               'CONAN.damageRollLabel'
             )}</button>`
           );
@@ -534,6 +539,32 @@ abstract class ActorSheetConan2d20 extends ActorSheet<Conan2d20Actor> {
               weapon
             );
             Conan2d20Dice.showDamageRollDialog({
+              dialogData,
+              cardData,
+              rollData,
+              actorData,
+            });
+            break;
+          }
+          case 'npcAttack': {
+            const actorData = duplicate(this.actor);
+            const weapon = duplicate(this.actor.getOwnedItem(itemId));
+
+            let attackSkill;
+            if (weapon.data.attackType === 'melee') {
+              attackSkill = 'cmb';
+            } else if (weapon.data.attackType === 'ranged') {
+              attackSkill = 'cmb';
+            } else if (weapon.data.attackType === 'threaten') {
+              attackSkill = 'scl';
+            }
+
+            const {dialogData, cardData, rollData} = this.actor.setupSkill(
+              attackSkill,
+              actorData.type
+            );
+
+            Conan2d20Dice.showSkillRollDialog({
               dialogData,
               cardData,
               rollData,

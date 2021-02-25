@@ -14,6 +14,15 @@
   <div class="card-content"><b>{{localize k.label}}:</b> {{{k.detail}}}</div>
   {{/each}}
 
+  <div class="card-content">
+    <button class="tag npc_damage chat-execute-attack" data-action="npcAttack">
+      {{localize 'CONAN.attackRollLabel'}}
+    </button>
+    <button class="tag npc_damage chat-execute-damage" data-action="npcDamage">
+      {{localize 'CONAN.damageRollLabel'}}
+    </button>
+  </div>
+
   <footer class="card-footer">
     {{#each data.properties}}
     <span class="tag chat-tag">{{this}}</span>
