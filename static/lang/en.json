@@ -588,7 +588,7 @@
       "education": "Education Talents",
       "nature": "Nature Talents",
       "archetype": "Archetype Talents",
-      "skill": "Skill",
+      "skill": "Skill Talents",
       "other": "Other Talents"
     },
     "talentActionCategoryLabel": "Talent Action Category",
@@ -598,7 +598,7 @@
     "talentEducationHeader": "Education",
     "talentNatureHeader": "Nature",
     "talentArchetypeHeader": "Archetype",
-    "talentOtherHeader": "Other",
+    "talentOtherHeader": "Acquired/Other",
     "transpoAnimals": {
       "1": "1",
       "1p": "1+",

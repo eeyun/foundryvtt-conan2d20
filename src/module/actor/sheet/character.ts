@@ -241,7 +241,12 @@ class ActorSheetConan2d20Character extends ActorSheetConan2d20 {
       } else if (i.type === 'talent') {
         const talentType = i.data.talentType || 'None';
         const actionType = i.data.actionType || 'passive';
-        talents[talentType].talents.push(i);
+        if (talentType !== 'skill') {
+          talents[talentType].talents.push(i);
+        } else {
+          const other = 'other';
+          talents[other].talents.push(i);
+        }
         if (Object.keys(actions).includes(actionType)) {
           i.talent = true;
           actions[actionType].actions.push(i);
